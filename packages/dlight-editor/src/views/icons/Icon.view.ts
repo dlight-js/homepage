@@ -1,0 +1,12 @@
+
+import { View } from "@dlightjs/dlight"
+import { div, Prop, required } from "@dlightjs/types"
+
+export class Icon extends View {
+  @Prop _$content = required
+
+  Body() {
+    div()
+      .innerHTML(this._$content)
+  }
+}

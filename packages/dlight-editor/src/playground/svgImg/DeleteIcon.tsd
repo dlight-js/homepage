@@ -1,0 +1,27 @@
+import { HStack, Spacer, VStack, ZStack } from "@dlightjs/components";
+import { Await } from "@dlightjs/decorators";
+import { View } from "@dlightjs/dlight";
+import { button, div, Env, h3, img, Prop, PropState, required, State } from "@dlightjs/types";
+import { css, styled } from "@dlightjs/emotion";
+
+export class DeleteIcon extends View {
+    @Prop width = 16
+    @Prop height = 16
+    @Env theme = required
+    @Prop onclick = () => {}
+   
+    
+    svg=`<svg xmlns="http://www.w3.org/2000/svg" height="${this.height}" fill="${this.theme.primary}" viewBox="0 96 960 960" width="${this.width}"><path d="m249 849-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"/></svg>`
+
+    Body() {
+        Icon()
+            .onclick(this.onclick)
+            .innerHTML(this.svg)
+    }   
+}
+
+const Icon = styled.div`
+    height: 16px;
+    cursor: pointer;
+    padding-left: 5px;
+`

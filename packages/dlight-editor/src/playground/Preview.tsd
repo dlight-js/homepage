@@ -1,0 +1,147 @@
+import { HStack, VStack, ZStack } from "@dlightjs/components";
+import { Await } from "@dlightjs/decorators";
+import { View } from "@dlightjs/dlight";
+import { Prop, required, State, Env, div } from "@dlightjs/types";
+import { Div, Button, Iframe } from "./style"
+import { TranspilerProjectDto } from "../service/input.dto";
+import { runProjectAndGetDLightPreview } from "../service/service"
+import * as monaco from 'monaco-editor'
+// @ts-expect-error
+import {RefreshIcon} from './svgImg/RefreshIcon.tsd'
+
+
+export class Preview extends View {
+    // ---- prop
+    @Prop projectBody: TranspilerProjectDto = required
+    @Prop currentPath = required
+    @Prop refreshFunc
+
+    // ---- state
+    @State tag: "result" | "output" = "result"
+    @State containerDocument?: any
+    @State@Await project: any = runProjectAndGetDLightPreview(this.projectBody, this.containerDocument)
+    @Env theme = required
+    editorTheme = this.theme.name === "light" ? "vs" : "vs-dark"
+
+    // ---- element
+    containerEl: HTMLElement
+    editorEl: HTMLElement
+
+    // ---- member
+    editor: any
+    @State highlightedOutput = "loading..."
+    getHighlightedOutput = function() {
+        const outputContent = this.project?.find(function (p: any){
+            return p.path === this.currentPath
+        }.bind(this))?.dlightBody ?? "not available..."
+
+        this.editor?.getModel().setValue(outputContent)
+    }.call(this)
+
+    changePreviewTheme = function() {
+        if(this.containerDocument)
+            this.containerDocument.body.style.color = this.theme.font
+    }.call(this)
+
+    buildPlaygroundDocument() {
+        // ---- 生成新的document
+        const containerDocument = document.implementation.createHTMLDocument("Playground Container Document")
+        // ---- 给他加上一个id叫app的div
+        const app = containerDocument.createElement("div")
+        app.id = "app"
+        containerDocument.body.appendChild(app)
+        // ---- 把document放到iframe下面
+        const destDocument = (this.containerEl as any).contentDocument 
+        let srcNode = containerDocument.documentElement;
+        let newNode = destDocument.importNode(srcNode, true);
+        
+        destDocument.replaceChild(newNode, destDocument.documentElement);
+        
+        this.containerDocument = destDocument
+    }
+
+    initEditor() {
+        this.editor = monaco.editor.create(this.editorEl!,{
+            value: "loading...",
+            theme: this.editorTheme,
+            minimap: { enabled: false },
+            readOnly: true,
+            language: "typescript",
+            automaticLayout: true 
+        })
+    }
+    didMount() {
+        this.buildPlaygroundDocument()
+        this.initEditor()
+    }
+
+
+    // ----- Views
+    @View
+    Head({title}): any {
+        Button.Header(title)
+            .backgroundColor(this.tag === title ? this.theme.activeTabBg: this.theme.tabsBg)
+            .color(this.tag === title ? this.theme.activeFont : this.theme.subFont )
+            .selected(this.tag === title)
+            .onclick(() => {
+                this.tag = title
+            })
+    }
+
+    @View 
+    Header(): any {
+        Div.HeaderBG()
+            .backgroundColor(this.theme.tabsBg)
+            .borderColor(this.theme.borderColor)
+        {
+            HStack()
+                .height("30px")
+                .spacing(0)
+                .alignment('center')
+                {
+                    RefreshIcon()
+                    .color(this.theme.font)
+                    .onclick(()=>{
+                        this.refreshFunc()
+                    })
+                    // @ts-expect-error
+                    this.Head()
+                        .title("result")
+                    // @ts-expect-error
+                    this.Head()
+                        .title("output")
+                }
+        }
+    }
+
+    @View 
+    Result() {
+        Iframe.Playground()
+            .backgroundColor(this.theme.bg)
+            .element(this.containerEl)
+            .displayed(this.tag === "result")
+    }
+    @View
+    Output() {
+        Div.Output()
+            .displayed(this.tag === "output")
+            .element(this.editorEl)
+       
+    }
+    Body() {
+        VStack()
+            .spacing(0)
+        {
+            this.Header()
+            Div.Preview()
+            {
+                this.Result()
+                this.Output()
+            }
+           
+        }
+       
+        
+    }
+}
+
