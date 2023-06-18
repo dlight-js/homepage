@@ -16,7 +16,7 @@ class App extends View {
       }
       Route("documents")
       {
-        div("Documents")
+        div("hhh")
           .className("mt-28 text-red-200")
       }
       Route(".")
