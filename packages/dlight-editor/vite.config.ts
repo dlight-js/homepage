@@ -1,5 +1,8 @@
 import { defineConfig } from "vite"
 import dlight from "vite-plugin-dlight"
+import { resolve } from "path"
+import dts from "vite-plugin-dts"
+import { dependencies } from "./package.json"
 
 export default defineConfig({
   server: {
@@ -7,6 +10,17 @@ export default defineConfig({
   },
   base: "",
   plugins: [
-    dlight({ appendix: [".view.ts"] })
-  ]
+    dts(),
+    dlight({ appendix: ["view.ts"] })
+  ],
+  build: {
+    lib: {
+      entry: resolve(__dirname, "./src/views/Playground.view.ts"),
+      name: "component",
+      fileName: "index"
+    },
+    rollupOptions: {
+      external: [...Object.keys(dependencies)]
+    }
+  }
 })

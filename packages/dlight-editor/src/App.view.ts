@@ -12,36 +12,37 @@ class App extends View {
     {
       // div()
       // {
-      //   button("这是换主题sb")
-      //     .onclick(() => {
-      //       this.toggle = !this.toggle
-      //     })
+      button("这是换主题sb")
+        .onclick(() => {
+          this.toggle = !this.toggle
+        })
       // }
-
-      Playground()
-        .modules([{
-          code: indexCode,
-          path: "/index.ts"
-        }, {
-          code: HelloView,
-          path: "/hello.ts"
-        }, {
-          code: CounterView,
-          path: "/counter.ts"
-        }, {
-          code: ArrayView,
-          path: "/array.ts"
-        }, {
-          code: ToggleView,
-          path: "/toggle.ts"
-        }, {
-          code: WrapperView,
-          path: "/wrapper.ts"
-        }
-        ])
+      if (this.toggle) {
+        Playground()
+          .modules([{
+            code: indexCode,
+            path: "/index.ts"
+          }, {
+            code: HelloView,
+            path: "/hello.ts"
+          }, {
+            code: CounterView,
+            path: "/counter.ts"
+          }, {
+            code: ArrayView,
+            path: "/array.ts"
+          }, {
+            code: ToggleView,
+            path: "/toggle.ts"
+          }, {
+            code: WrapperView,
+            path: "/wrapper.ts"
+          }
+          ])
         // .height("700px")
         // .width("900px")
-        .themeType(this.toggle ? "dark" : "light")
+          .themeType(this.toggle ? "dark" : "light")
+      }
     }
   }
 }

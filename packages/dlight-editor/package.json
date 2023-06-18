@@ -3,6 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "typings": "dist/views/Playground.view.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -12,17 +17,18 @@
     "@babel/plugin-transform-modules-commonjs": "^7.21.5",
     "@babel/preset-env": "^7.22.4",
     "@babel/standalone": "^7.22.4",
-    "@dlightjs/components": "0.8.3",
-    "@dlightjs/dlight": "0.8.2",
-    "@dlightjs/emotion": "0.8.2",
-    "@dlightjs/transpiler-standalone": "0.8.1",
+    "@dlightjs/components": "0.8.5",
+    "@dlightjs/dlight": "0.8.5",
+    "@dlightjs/emotion": "0.8.5",
+    "@dlightjs/transpiler-standalone": "0.8.3",
     "monaco-editor": "^0.36.0"
   },
   "devDependencies": {
+    "@dlightjs/types": "0.8.3",
     "typescript": "^4.9.3",
     "vite": "^4.0.0",
-    "vite-plugin-dlight": "0.8.1",
-    "@dlightjs/types": "0.8.3"
+    "vite-plugin-dlight": "0.8.3",
+    "vite-plugin-dts": "^2.3.0"
   },
   "keywords": [
     "dlight.js"

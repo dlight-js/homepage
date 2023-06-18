@@ -1,6 +1,11 @@
+/* eslint-disable no-eval */
 import { Console } from "./log"
 import { CodeParser, Module } from "./module"
 import { Path } from "./path"
+import * as DLight from "@dlightjs/dlight"
+import * as Types from "@dlightjs/types"
+import * as Components from "@dlightjs/components"
+import * as Emotion from "@dlightjs/emotion"
 
 export class Project {
   modules: Module[] = []
@@ -20,7 +25,7 @@ export class Project {
     try {
       await this.require(this.entryFile)
     } catch (e) {
-      this.console.errors.push(e)
+      this.console.error(e)
     }
   }
 
@@ -32,13 +37,13 @@ export class Project {
     if (![".", "/"].includes(fileName[0])) {
       switch (fileName) {
         case "@dlightjs/dlight":
-          return await import("@dlightjs/dlight")
+          return DLight
         case "@dlightjs/types":
-          return await import("@dlightjs/types")
+          return Types
         case "@dlightjs/components":
-          return await import("@dlightjs/components")
+          return Components
         case "@dlightjs/emotion":
-          return await import("@dlightjs/emotion")
+          return Emotion
         default:
           return
       }

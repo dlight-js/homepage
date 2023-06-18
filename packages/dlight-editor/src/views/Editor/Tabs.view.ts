@@ -176,7 +176,6 @@ class Tabs extends View {
   `
 
   tabNameCss = css`
-    height: 30px;
     line-height: 30px;
     font-size: 18px;
     background-color: ${this.theme.background};
@@ -211,7 +210,6 @@ class Tabs extends View {
 
   tabWrapCss = (tab: string) => css`
     padding: 2px 10px 0 10px;
-    height: 30px;
     border-bottom: ${tab === this.tabKey ? `3px solid ${this.theme.text}` : undefined};
   `
 }

@@ -1,4 +1,4 @@
-import DLight, { View, $ } from "@dlightjs/dlight"
+import DLight, { View, $, CustomNode } from "@dlightjs/dlight"
 import { type Typed, Prop, RequiredProp, required, env, div } from "@dlightjs/types"
 import ProjectEditor from "./Editor/ProjectEditor.view"
 import PreviewView from "./Preview/Preview.view"
@@ -7,6 +7,9 @@ import { ToBeTransformedModule } from "../project/types"
 import { colors, dividerWidth } from "../utils/const"
 import HorizontalResizer from "./components/HorizontalResizer.view"
 import { DLightProject } from "../project/dlightProject"
+import { loadMonacoWorker } from "../playground/editor/loader"
+
+loadMonacoWorker()
 
 class Playground extends View {
   /** @project */
