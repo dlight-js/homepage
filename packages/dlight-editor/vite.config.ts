@@ -6,7 +6,7 @@ import { dependencies } from "./package.json"
 
 export default defineConfig({
   server: {
-    port: 26660
+    port: 27000
   },
   base: "",
   plugins: [

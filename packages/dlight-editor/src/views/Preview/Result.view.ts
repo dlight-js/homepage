@@ -11,8 +11,10 @@ class Result extends View {
   Body() {
     div()
       .id(`app-${this.mountId}`)
-      ._color(this.theme.text)
-      ._padding("20px")
+      .style({
+        color: this.theme.text,
+        padding: "20px"
+      })
   }
 
   /** @style */

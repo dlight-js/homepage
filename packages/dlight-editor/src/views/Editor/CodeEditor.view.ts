@@ -1,5 +1,5 @@
 import DLight, { View } from "@dlightjs/dlight"
-import { css } from "@dlightjs/emotion"
+import { css } from "@emotion/css"
 import { Prop, Env, div, Static, type Typed, required, type RequiredProp } from "@dlightjs/types"
 import * as monaco from "monaco-editor"
 

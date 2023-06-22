@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import DLight, { View } from "@dlightjs/dlight"
 import { div, Env, Prop, required, Typed } from "@dlightjs/types"
-import { css } from "@dlightjs/emotion"
+import { css } from "@emotion/css"
 
 class DeleteIcon extends View {
   /** @prop */

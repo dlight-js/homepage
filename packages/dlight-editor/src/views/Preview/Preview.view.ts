@@ -4,7 +4,7 @@ import ResultView from "./Result.view"
 import OutputView from "./Output.view"
 import { HStack } from "@dlightjs/components"
 import RefreshIcon from "../icons/RefreshIcon.view"
-import { css } from "@dlightjs/emotion"
+import { css } from "@emotion/css"
 import { Color, headerHeight } from "../../utils/const"
 
 class Preview extends View {
@@ -26,7 +26,9 @@ class Preview extends View {
   Head({ _$content }: any): any {
     button(_$content)
       .className(this.headerCss)
-      ._borderBottom(_$content === this.tab ? `3px solid ${this.theme.text}` : "")
+      .style({
+        borderBottom: _$content === this.tab ? `3px solid ${this.theme.text}` : ""
+      })
       .onclick(() => {
         this.tab = _$content
       })
@@ -54,17 +56,23 @@ class Preview extends View {
     div()
       .id("dlight-playground-preview")
       .className(this.wrapperCss)
-      ._width(this.width)
+      .style({
+        width: this.width
+      })
     {
       this.Header()
       div()
-        ._display(this.tab === "result" ? "block" : "none")
+        .style({
+          display: this.tab === "result" ? "block" : "none"
+        })
       {
         ResultView()
           .mountId(this.mountId)
       }
       div()
-        ._display(this.tab === "output" ? "block" : "none")
+        .style({
+          display: this.tab === "output" ? "block" : "none"
+        })
       {
         OutputView()
           .code(this.currTransformedCode)

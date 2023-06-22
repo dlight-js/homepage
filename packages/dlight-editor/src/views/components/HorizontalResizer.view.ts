@@ -1,6 +1,6 @@
 import DLight, { View, $ } from "@dlightjs/dlight"
 import { div, Env, Prop, required, Typed } from "@dlightjs/types"
-import { css } from "@dlightjs/emotion"
+import { css } from "@emotion/css"
 import Resizer, { OnDragFunc } from "./Resizer.view"
 import { Color, dividerWidth } from "../../utils/const"
 import { Spacer, VStack } from "@dlightjs/components"

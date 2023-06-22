@@ -1,4 +1,4 @@
-import DLight, { View, $, CustomNode } from "@dlightjs/dlight"
+import DLight, { View } from "@dlightjs/dlight"
 import { type Typed, Prop, RequiredProp, required, env, div } from "@dlightjs/types"
 import ProjectEditor from "./Editor/ProjectEditor.view"
 import PreviewView from "./Preview/Preview.view"
@@ -7,7 +7,7 @@ import { ToBeTransformedModule } from "../project/types"
 import { colors, dividerWidth } from "../utils/const"
 import HorizontalResizer from "./components/HorizontalResizer.view"
 import { DLightProject } from "../project/dlightProject"
-import { loadMonacoWorker } from "../playground/editor/loader"
+import { loadMonacoWorker } from "../utils/loader"
 
 loadMonacoWorker()
 
@@ -39,6 +39,19 @@ class Playground extends View {
   editorWidth = "50%"
   previewWitth = `calc(50% - ${dividerWidth}px)`
 
+  /** @method */
+  handleRedizerDrag(x: number) {
+    const fullWidth = this.wrapperEl!.offsetWidth
+    this.editorWidth = `${x / fullWidth * 100 + +this.editorWidth.slice(0, -1)}%`
+    const editorWidth = +this.editorWidth.slice(0, -1)
+    if (editorWidth < 20) {
+      this.editorWidth = "20%"
+    } else if (editorWidth > 80) {
+      this.editorWidth = "80%"
+    }
+    this.previewWitth = `calc(${100 - +this.editorWidth.slice(0, -1)}% - ${dividerWidth}px)`
+  }
+
   /** @member */
   wrapperEl?: HTMLDivElement
 
@@ -49,7 +62,9 @@ class Playground extends View {
       .height(this.height)
     {
       div()
-        ._backgroundColor(this.theme?.background)
+        .style({
+          backgroundColor: this.theme?.background
+        })
         .element(this.wrapperEl)
       {
         HStack()
@@ -66,17 +81,7 @@ class Playground extends View {
             .onSave(this.onSave)
           HorizontalResizer()
             .height(`${this.height}`)
-            .onDrag($((x) => {
-              const fullWidth = this.wrapperEl!.offsetWidth
-              this.editorWidth = `${x / fullWidth * 100 + +this.editorWidth.slice(0, -1)}%`
-              const editorWidth = +this.editorWidth.slice(0, -1)
-              if (editorWidth < 20) {
-                this.editorWidth = "20%"
-              } else if (editorWidth > 80) {
-                this.editorWidth = "80%"
-              }
-              this.previewWitth = `calc(${100 - +this.editorWidth.slice(0, -1)}% - ${dividerWidth}px)`
-            }))
+            .onDrag(this.handleRedizerDrag.bind(this))
           PreviewView()
             .width(this.previewWitth)
             .mountId(this.mountId)

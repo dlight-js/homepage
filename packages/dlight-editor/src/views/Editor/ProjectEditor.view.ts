@@ -1,7 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import DLight, { View, $ } from "@dlightjs/dlight"
 import { div, Prop, required, RequiredProp, Static, Typed } from "@dlightjs/types"
-import { css } from "@dlightjs/emotion"
+import { css } from "@emotion/css"
 import { DLightProject } from "../../project/dlightProject"
 import { VStack } from "@dlightjs/components"
 import CodeEditor, { EditorStore } from "./CodeEditor.view"
@@ -100,7 +99,9 @@ class ProjectEditor extends View {
 
   Body() {
     div()
-      ._width(this.width)
+      .style({
+        width: this.width
+      })
     {
       VStack()
         .width("100%")

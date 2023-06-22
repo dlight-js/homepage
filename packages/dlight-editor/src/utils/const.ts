@@ -116,9 +116,11 @@ class WrapperView extends View {
   @Prop color = required
   Body() {
     div()
-      ._border(\`1px solid \${this.color}\`)
-      ._padding("10px")
-      ._margin("10px")
+      .style({
+        border: \`1px solid \${this.color}\`,
+        padding: "10px",
+        margin: "10px"
+      })
     {
       _(this._$children)
     }

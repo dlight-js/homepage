@@ -5,7 +5,6 @@ import { Path } from "./path"
 import * as DLight from "@dlightjs/dlight"
 import * as Types from "@dlightjs/types"
 import * as Components from "@dlightjs/components"
-import * as Emotion from "@dlightjs/emotion"
 
 export class Project {
   modules: Module[] = []
@@ -42,8 +41,6 @@ export class Project {
           return Types
         case "@dlightjs/components":
           return Components
-        case "@dlightjs/emotion":
-          return Emotion
         default:
           return
       }
