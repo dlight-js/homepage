@@ -2,8 +2,7 @@ import DLight, { View, $, CustomNode } from "@dlightjs/dlight"
 import { div, Env, Prop, required, RequiredProp, span, Static, SubView, Typed } from "@dlightjs/types"
 import { css } from "@emotion/css"
 import { HStack } from "@dlightjs/components"
-import DeleteIcon from "../icons/DeleteIcon.view"
-import AddIcon from "../icons/AddIcon.view"
+import { CloseFilled, AddFilled } from "@dlightjs/material-icons"
 import { EditorStore } from "./CodeEditor.view"
 import * as monaco from "monaco-editor"
 import { codeTemplate, Color } from "../../utils/const"
@@ -129,7 +128,8 @@ class Tabs extends View {
       }
 
       if (tabName !== "index") {
-        DeleteIcon()
+        CloseFilled()
+          .className(this.deleteIconCss)
           .onclick($(e => {
             e.stopPropagation()
             this.handleDeleteTab(tabName)
@@ -156,7 +156,8 @@ class Tabs extends View {
               .tabName(this.pathToTab(path))
           }
         }
-        AddIcon()
+        AddFilled()
+          .className(this.addIconCss)
           .onclick(() => {
             this.hanleAddTab()
           })
@@ -210,6 +211,17 @@ class Tabs extends View {
   tabWrapCss = (tab: string) => css`
     padding: 2px 10px 0 10px;
     border-bottom: ${tab === this.tabKey ? `3px solid ${this.theme.text}` : undefined};
+  `
+
+  deleteIconCss = css`
+    height: 16px;
+    cursor: pointer;
+    padding-left: 5px;
+  `
+
+  addIconCss = css`
+  height: 18px;
+  cursor: pointer;
   `
 }
 

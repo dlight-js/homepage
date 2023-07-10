@@ -10,7 +10,7 @@ class NavButton extends View {
 
   Body() {
     button(this._$content)
-      .className("rounded p-3")
+      .className("rounded p-3 text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4")
       .onclick(this.handleClickNav)
   }
 }

@@ -1,10 +1,9 @@
 import DLight, { View } from "@dlightjs/dlight"
-import { type Typed, div, button } from "@dlightjs/types"
+import { type Typed, div, button, ul, li, h1, table, tbody, tr, td, thead, th, input, p } from "@dlightjs/types"
 import { Route, RouterSpace } from "@dlightjs/components"
 import Home from "./pages/Home/Home.view"
 import ErrorPage from "./pages/ErrorPage.view"
 import Playground from "./pages/Playground.view"
-import MyView from "./pages/MarkitPage.view"
 
 class App extends View {
   Body() {
@@ -21,8 +20,7 @@ class App extends View {
       }
       Route(".")
       {
-        // Home()
-        MyView()
+        Home()
       }
       Route()
       {

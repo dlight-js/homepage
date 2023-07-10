@@ -1,5 +1,6 @@
 import DLight, { View, $ } from "@dlightjs/dlight"
 import { div, Prop, type Typed, _ } from "@dlightjs/types"
+import { css } from "@emotion/css"
 
 export type OnDragFunc = (x: number, y: number) => void
 export type DragAxis = "x" | "y" | "all"
@@ -63,12 +64,17 @@ class Resizer extends View {
     div()
       .element(this.draggableEl)
       .onmousedown(this.onMouseDown)
-      ._width("8px")
-      ._backgroundColor("gray")
+      .className(this.resizerCss)
     {
       _(this._$children)
     }
   }
+
+  /** @style */
+  resizerCss = css`
+    width: 8px;
+    background-color: gray;
+  `
 }
 
 export default Resizer as any as Typed<Resizer>
