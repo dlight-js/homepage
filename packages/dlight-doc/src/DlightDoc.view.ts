@@ -1,9 +1,23 @@
-import DLight, { View } from "@dlightjs/dlight"
-import MarkitView, { addBlockRule } from "@dlightjs/markit"
-import { code, div, pre, Typed } from "@dlightjs/types"
-import hljs from "highlight.js/lib/core"
-import javascript from "highlight.js/lib/languages/javascript"
+import DLight, { CustomNode, View } from "@dlightjs/dlight"
+import { MarkitView, addBlockRule } from "@dlightjs/markit"
+import { code, pre, Typed } from "@dlightjs/types"
 import "highlight.js/styles/github.css"
+import AdvantageBlock from "./advantageBlock/AdvantageBlock.view"
+
+addBlockRule({
+  name: "CodeBlock",
+  rule: {
+    getProps: raw => {
+      const text = raw.replace(/ *```|```$/g, "")
+      let [language, title] = (text.match(/^.+?\n/g) ?? ["text"])[0].replace("```", "").trim().split("[")
+      if (title) {
+        title = title.replace("]", "")
+      }
+      return { language, title }
+    }
+  },
+  view: AdvantageBlock
+})
 
 class DlightDoc extends View {
   testMDString = `
@@ -18,8 +32,36 @@ hhh
 
 [haha](https://www.baidu.com)
 
-\`\`\`js
-console.log('hello');
+\`\`\`js [config.js]
+console.log('hello sd dyh');
+function test () {
+  const hh = 1
+}
+Body() {
+  div()
+    .className(this.dlightMarkitCodeBlock)
+  {
+    div(this.title)
+      .className(this.dlightMarkitCodeBlockHeader)
+    div()
+      .className(this.dlightMarkitCode)
+    {
+      pre()
+      {
+        code()
+          .innerHTML(this.highlightedCode)
+      }
+      div("copy")
+    }
+  }
+}
+\`\`\`
+
+\`\`\`python
+print("hhh")
+a=12
+b=15
+c=a+b
 \`\`\`
 
 # heading1
@@ -30,26 +72,19 @@ console.log('hello');
 
 ----[dashed]
 `
-  highlightedCode
-  willMount() {
-    // const highlighter = await getHighlighter({
-    //   theme: t,
-    //   langs: ["javascript", "python"]
-    // })
-    // const code = "console.log(\"Here is your code.\");"
-    hljs.registerLanguage("javascript", javascript)
-    const highlightedCode = hljs.highlightAuto("console.log(\"Here is your code.\");").value
-    this.highlightedCode = highlightedCode
-    console.log(highlightedCode, "看看输出")
+  guideMDString = ""
+  async didMount() {
+    fetch("README-dep.md")
+      .then(async response => await response.text())
+      .then(content => {
+        console.log(content)
+        this.guideMDString = content
+      })
+      .catch(err => console.log(err))
   }
 
   Body() {
-    pre()
-    {
-      code()
-        .innerHTML(this.highlightedCode)
-    }
-    MarkitView(this.testMDString)
+    MarkitView(this.guideMDString)
   }
 }
 
