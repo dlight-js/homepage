@@ -1,10 +1,10 @@
-import DLight, { View } from "@dlightjs/dlight"
-import { button, div, Env, Prop, required, RequiredProp, SubView, Typed } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { div, button, Env, Prop, required, RequiredProp, SubView, Typed } from "@dlightjs/types"
 import ResultView from "./Result.view"
 import OutputView from "./Output.view"
 import { HStack } from "@dlightjs/components"
 import { RefreshFilled } from "@dlightjs/material-icons"
-import { css } from "@emotion/css"
+import { css } from "@dlightjs/easy-css"
 import { Color, headerHeight } from "../../utils/const"
 
 class Preview extends View {
@@ -46,6 +46,7 @@ class Preview extends View {
         RefreshFilled()
           .onclick(this.refreshFunc)
           .className(this.refreshIconCss)
+          .color(this.theme.primary)
         this.Head("result")
         this.Head("output")
       }
@@ -106,7 +107,6 @@ class Preview extends View {
   refreshIconCss = css`
     padding: 5px 5px 0 5px;
     cursor: pointer;
-    color: ${this.theme.text};
   `
 }
 

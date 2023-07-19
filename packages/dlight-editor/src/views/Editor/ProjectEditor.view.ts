@@ -1,6 +1,5 @@
-import DLight, { View, $ } from "@dlightjs/dlight"
-import { div, Prop, required, RequiredProp, Static, Typed } from "@dlightjs/types"
-import { css } from "@emotion/css"
+import { View } from "@dlightjs/dlight"
+import { div, Prop, required, RequiredProp, Typed } from "@dlightjs/types"
 import { DLightProject } from "../../project/dlightProject"
 import { VStack } from "@dlightjs/components"
 import CodeEditor, { EditorStore } from "./CodeEditor.view"
@@ -45,7 +44,9 @@ class ProjectEditor extends View {
     this.getMountId(this.dlightProject.moduleId)
   })()
 
-  @Static _dlightProject = this.dlightProject
+  getSaveViewState(saveState: any) {
+    this.saveViewState = saveState
+  }
 
   updateModulePath(currPath: string, newPath: string) {
     const modules = this.dlightProject.modules.map(module => (
@@ -116,53 +117,13 @@ class ProjectEditor extends View {
           .addTab(this.addTab.bind(this))
           .deleteTab(this.deleteTab.bind(this))
         CodeEditor()
-          .editorStore(this.currEditorStore!)
-          .getSaveViewState($((saveState: any) => {
-            this.saveViewState = saveState
-          }))
+          .editorStore(this.currEditorStore)
+          .getSaveViewState(this.getSaveViewState)
           .onCodeChange(this.updateModuleCode.bind(this))
           .language(this.language)
       }
     }
   }
-
-  /** @style */
-  tabNameCss = css`
-    height: 30px;
-    line-height: 30px;
-    font-size: 18px;
-    background-color: transparent;
-    border-width: 0px;
-  `
-
-  tabNameSpanCss = css`
-    padding: 2px;
-    cursor: pointer;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-  `
-
-  preventSelectCss = css`
-    -moz-user-select: none;
-    -webkit-user-select: none;
-  `
-
-  tabCss = (backgroundColor: string, borderColor: string) => css`
-    background-color: ${backgroundColor};
-    width: 600px;
-    overflow: scroll;
-    ::-webkit-scrollbar {
-        display: none;
-    }
-    height: 30px;
-    border-right: ${borderColor} solid 3px;
-    border-top: ${borderColor} solid 1px;
-  `
-
-  tabWrapCss = css`
-    padding: 0px 10px;
-    height: 30px;
-  `
 }
 
 export default ProjectEditor as any as Typed<ProjectEditor>

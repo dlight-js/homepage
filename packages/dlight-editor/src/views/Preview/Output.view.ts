@@ -1,6 +1,6 @@
-import DLight, { View } from "@dlightjs/dlight"
-import { css } from "@emotion/css"
-import { div, Env, Prop, required, RequiredProp, Static, Typed } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { div } from "@dlightjs/easy-css"
+import { Env, Prop, required, RequiredProp, Static, Typed } from "@dlightjs/types"
 import * as monaco from "monaco-editor"
 import { Color, headerHeight } from "../../utils/const"
 
@@ -39,13 +39,8 @@ class Output extends View {
   Body() {
     div()
       .element(this.editorEl)
-      .className(this.editorCss)
+      .height(`calc(${this.height} - ${headerHeight}px)`)
   }
-
-  /** @style */
-  editorCss = css`
-    height: calc(${this.height} - ${headerHeight}px);
-  `
 }
 
 export default Output as any as Typed<Output>

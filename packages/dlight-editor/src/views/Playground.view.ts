@@ -1,4 +1,4 @@
-import DLight, { View } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { type Typed, Prop, RequiredProp, required, env, div } from "@dlightjs/types"
 import ProjectEditor from "./Editor/ProjectEditor.view"
 import PreviewView from "./Preview/Preview.view"

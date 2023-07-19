@@ -1,6 +1,6 @@
-import DLight, { View } from "@dlightjs/dlight"
-import { css } from "@emotion/css"
-import { Prop, Env, div, Static, type Typed, required, type RequiredProp } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { div } from "@dlightjs/easy-css"
+import { Prop, Env, Static, type Typed, required, type RequiredProp } from "@dlightjs/types"
 import * as monaco from "monaco-editor"
 
 export interface EditorStore {
@@ -70,14 +70,9 @@ class CodeEditor extends View {
   Body() {
     div()
       .element(this.editorEl)
-      .className(this.editorCss)
+      .width("100%")
+      .height(`calc(${this.height} - 45px)`)
   }
-
-  /** @style */
-  editorCss = css`
-    width: 100%;
-    height: calc(${this.height} - 45px);
-  `
 }
 
 export default CodeEditor as any as Typed<CodeEditor>

@@ -29,13 +29,6 @@
         "@typescript-eslint/no-unused-expressions": "off",
         "@typescript-eslint/consistent-type-imports": "off",
         "@typescript-eslint/ban-types": "off",
-        "@typescript-eslint/no-unused-vars":  [
-            "error",
-            {
-                "varsIgnorePattern": "DLight",
-                "argsIgnorePattern": "^_"
-            }
-        ],
         "no-lone-blocks": "off",
         "no-fallthrough": "off",
         "multiline-ternary": ["error", "always-multiline"],

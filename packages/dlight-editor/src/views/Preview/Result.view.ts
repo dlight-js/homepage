@@ -1,4 +1,4 @@
-import DLight, { View } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { div, Env, Prop, required, RequiredProp, Typed } from "@dlightjs/types"
 import { Color } from "../../utils/const"
 

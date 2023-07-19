@@ -1,6 +1,6 @@
-import DLight, { View, $, CustomNode } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { div, Env, Prop, required, RequiredProp, span, Static, SubView, Typed } from "@dlightjs/types"
-import { css } from "@emotion/css"
+import { css } from "@dlightjs/easy-css"
 import { HStack } from "@dlightjs/components"
 import { CloseFilled, AddFilled } from "@dlightjs/material-icons"
 import { EditorStore } from "./CodeEditor.view"
@@ -79,7 +79,7 @@ class Tabs extends View {
   }
 
   /** @lifecycle */
-  didMount(_els: HTMLElement[], _node: CustomNode): void {
+  didMount() {
     document.addEventListener("click", this.clickTabOutside.bind(this))
     this.editorStores = Object.fromEntries(
       this.modules.map(({ code, path }) => [
@@ -116,24 +116,26 @@ class Tabs extends View {
             }
           })
           .contentEditable(`${this.tabKey === tabName && this.isTabEdit && tabName !== "index"}`)
-          .oninput($((e: any) => {
+          .oninput((e: any) => {
             this.updateModulePath(tabName, `/${e.target.innerText}.ts`)
-          }))
-          .ondblclick($(e => {
-            this.isTabEdit = true;
-            (e.target as any).focus()
-          }))
+          })
+          .ondblclick((e: any) => {
+            this.isTabEdit = true
+            e.target.focus()
+          })
         span(".ts")
           .className(this.preventSelectCss)
       }
 
       if (tabName !== "index") {
         CloseFilled()
+          .height(16)
           .className(this.deleteIconCss)
-          .onclick($(e => {
+          .color(this.theme.primary)
+          .onclick(e => {
             e.stopPropagation()
             this.handleDeleteTab(tabName)
-          }))
+          })
       }
     }
   }
@@ -148,16 +150,18 @@ class Tabs extends View {
         for (const { path } of this.modules) {
           div()
             .className(this.tabWrapCss(this.pathToTab(path)))
-            .onclick($(() => {
+            .onclick(() => {
               this.swithTab(this.pathToTab(path))
-            }))
+            })
           {
             this.Tab({})
               .tabName(this.pathToTab(path))
           }
         }
         AddFilled()
+          .height(18)
           .className(this.addIconCss)
+          .color(this.theme.primary)
           .onclick(() => {
             this.hanleAddTab()
           })
@@ -220,8 +224,8 @@ class Tabs extends View {
   `
 
   addIconCss = css`
-  height: 18px;
-  cursor: pointer;
+    height: 18px;
+    cursor: pointer;
   `
 }
 
