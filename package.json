@@ -2,6 +2,7 @@
   "name": "@dlight-homepage/monorepo",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "prepare": "husky install",
     "test": "pnpm --prefix apps/example dev",

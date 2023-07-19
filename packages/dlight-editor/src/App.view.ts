@@ -1,5 +1,5 @@
-import DLight, { View } from "@dlightjs/dlight"
-import { button, div, type Typed } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { div, type Typed } from "@dlightjs/types"
 import { ArrayView, colors, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "./utils/const"
 import Playground from "./views/Playground.view"
 
@@ -10,8 +10,6 @@ class App extends View {
   Body() {
     div()
     {
-      button("+++")
-        .className("text-red-50")
       Playground()
         .modules([{
           code: indexCode,
