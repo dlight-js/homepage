@@ -3,7 +3,7 @@ import dlight from "vite-plugin-dlight"
 
 export default defineConfig({
   server: {
-    port: 26667
+    port: 5932
   },
   base: "",
   plugins: [

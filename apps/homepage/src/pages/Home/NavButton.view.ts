@@ -1,6 +1,7 @@
 import DLight, { View } from "@dlightjs/dlight"
 import { type Typed, div, button, Env, required, Prop, RequiredProp } from "@dlightjs/types"
 import { Route, RouterSpace, VStack } from "@dlightjs/components"
+import { css } from "@iandx/easy-css"
 // import { Nuti } from "@dlightjs/material-icons"
 
 class NavButton extends View {
@@ -10,9 +11,18 @@ class NavButton extends View {
 
   Body() {
     button(this._$content)
-      .className("rounded p-3 text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4")
+      .className(this.navBtnCss)
       .onclick(this.handleClickNav)
   }
+
+  navBtnCss=css`
+    padding: 8px 16px;
+    background-color: #FDE5D2;
+    border-width: 0;
+    border-radius: 5px;
+    margin-right: 16px;
+    color: #526E37;
+  `
 }
 
 export default NavButton as any as Typed<NavButton>
