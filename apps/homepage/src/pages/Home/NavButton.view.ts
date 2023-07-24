@@ -17,7 +17,6 @@ class NavButton extends View {
 
   navBtnCss=css`
     padding: 8px 16px;
-    background-color: #FDE5D2;
     border-width: 0;
     border-radius: 5px;
     margin-right: 16px;

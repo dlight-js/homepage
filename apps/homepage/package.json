@@ -13,9 +13,10 @@
     "@dlightjs/dlight": "0.9.16",
     "@dlightjs/markit": "^0.0.2",
     "@dlightjs/material-icons": "0.9.16",
+    "@iandx/easy-css": "^0.10.1",
     "@iandx/markit": "0.1.3",
-    "dlight-editor": "workspace:*",
-    "dlight-doc": "workspace:*"
+    "dlight-doc": "workspace:*",
+    "dlight-editor": "workspace:*"
   },
   "devDependencies": {
     "@dlightjs/types": "^0.9.0",
