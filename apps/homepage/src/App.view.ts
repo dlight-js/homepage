@@ -4,6 +4,7 @@ import { Route, RouterSpace } from "@dlightjs/components"
 import Home from "./pages/Home/Home.view"
 import ErrorPage from "./pages/ErrorPage.view"
 import Playground from "./pages/Playground.view"
+import DocPage from "./pages/DocPage.view"
 
 class App extends View {
   Body() {
@@ -11,7 +12,7 @@ class App extends View {
     {
       Route("playground")
       {
-        Playground()
+        DocPage()
       }
       Route("documents")
       {

@@ -6,8 +6,21 @@ import { css } from "@iandx/easy-css"
 
 class NavButton extends View {
   @Env navigator: any = required
+  @Env theme: any = required
   @Prop _$content: RequiredProp<string> = required
   @Prop handleClickNav: RequiredProp<() => void> = required
+
+  // guideMDString = ""
+  // async didMount() {
+  //   fetch("README-dep.md")
+  //     .then(async response => await response.text())
+  //     .then(content => {
+  //       console.log(content)
+  //       this.guideMDString = content
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+
 
   Body() {
     button(this._$content)
@@ -16,6 +29,7 @@ class NavButton extends View {
   }
 
   navBtnCss=css`
+   background-color: ${this.theme.orange4};
     padding: 8px 16px;
     border-width: 0;
     border-radius: 5px;

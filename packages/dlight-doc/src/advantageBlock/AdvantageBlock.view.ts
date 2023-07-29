@@ -40,15 +40,15 @@ class AdvantageBlock extends View {
         if (this.hoverState && !this.hasCopied) {
           ContentCopyFilled()
             .color("#999999")
-            .width("18px")
-            .height("18px")
+            .width(18)
+            .height(18)
             .className(this.copyIcon)
             .onclick(this.handleCopy.bind(this))
         } else if (this.hoverState && this.hasCopied) {
           DoneFilled()
             .color("#999999")
-            .width("18px")
-            .height("18px")
+            .width(18)
+            .height(18)
             .className(this.copyIcon)
         }
       }
@@ -95,4 +95,5 @@ class AdvantageBlock extends View {
   `
 }
 
-export default AdvantageBlock as any as Typed<AdvantageBlock>
+// export default AdvantageBlock as any as Typed<AdvantageBlock>
+export default AdvantageBlock

@@ -3,7 +3,7 @@ import { type Typed, div, button, Env, required, Prop, RequiredProp } from "@dli
 import { Route, RouterSpace, VStack } from "@dlightjs/components"
 import { css } from "@iandx/easy-css"
 import DLightEditor from "dlight-editor"
-import { PreviewCode, indexCode } from "../../utils/const"
+import { PreviewCode } from "../../utils/const"
 
 
 class PreviewSection extends View {
@@ -17,19 +17,24 @@ class PreviewSection extends View {
         div("preview testtest")
         DLightEditor()
             .modules([{
-                code: indexCode,
+                code: PreviewCode,
                 path: "/index.ts"
             },])
+            .width("500px")
+            .height("500px")
             .themeType("light")
     }
   }
 
   previewWrapCss = css`
+    margin: 108px auto;
+    padding: 50px;
     display: flex;
     flex-direction: row;
     border-radius: 15px;
-    width: 70%;
-    height: 780px;
+    background-color: ${this.theme.orange4};
+    width: 600px;
+    height: 680px;
   `
 
 }

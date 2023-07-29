@@ -1,20 +1,14 @@
 export const indexCode = `import DLight, { View, render } from "@dlightjs/dlight"
+import HelloView from "./hello"
+import CounterView from "./counter"
+import ArrayView from "./array"
+import ToggleView from "./toggle"
 class MyComp extends View {
-  toggle = true
-  fruits = ["🍎", "🍊", "🥑"]
   Body() {
-    h1("hello, dlight js")
-    button("toggle")
-      .className("toggle")
-      .onclick(() => {
-        this.toggle = !this.toggle
-      })
-    if (this.toggle) {
-      "simple text"
-    }
-    for (const fruit of this.fruits) {
-      div(fruit)
-    }
+    HelloView()
+    CounterView()
+    ArrayView()
+    ToggleView()
   }
 }
 render("app", MyComp)

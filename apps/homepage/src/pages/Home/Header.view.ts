@@ -1,4 +1,4 @@
-import DLight, { View } from "@dlightjs/dlight"
+import DLight, { CustomNode, View } from "@dlightjs/dlight"
 import { type Typed, div, button, Env, required, Prop, RequiredProp, img, SubView, a, env } from "@dlightjs/types"
 import { HStack, Route, RouterSpace, VStack } from "@dlightjs/components"
 import { HelpCenterFilled } from "@dlightjs/material-icons"
@@ -13,6 +13,7 @@ class Header extends View {
   @Prop handleClickNav: RequiredProp<(tabKey: string) => void> = required
   @Prop themeType: RequiredProp<string> = required
   navBtn = ["Guides", "Examples", "Tutorial", "Blog", "Ecosystem"]
+  style2 = false
 
   @SubView
   NavIcon({src, onclick, isBorder, href}: any):any {
@@ -31,6 +32,23 @@ class Header extends View {
     console.log("hhhh")
   }
 
+  listenScroll = function() {
+    //为了保证兼容性，这里取两个值，哪个有值取哪一个
+    //scrollTop就是触发滚轮事件时滚轮的高度
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    console.log("滚动距离" + scrollTop);
+    if(scrollTop > 500) {
+      this.style2 = true
+    }
+    if(this.style2 && scrollTop < 500) {
+      this.style2 = false
+    }
+  }.bind(this)
+
+  didMount(_els: HTMLElement[], _node: CustomNode): void {
+    window.onscroll = this.listenScroll
+  }
+
   Body() {
       div()
       .className(this.headerWrapCss)
@@ -39,9 +57,14 @@ class Header extends View {
         .className(this.sectionNav)
       {
         div()
-        .className(this.logoWrapCss)
+        div()
+          .className(this.logoWrapCss)
         {
-          Logo()
+          if(this.style2) {
+            LogoTitle()
+          } else {
+            Logo()
+          }
         }
         for (const btn of this.navBtn) {
           NavButton(btn)
@@ -71,7 +94,7 @@ class Header extends View {
   }
 
   headerWrapCss = css`
-    background-color: ${this.theme.orange2};
+    background-color: ${this.style2 ? this.theme.orange4 : this.theme.orange2};
     position: fixed;
     top: 0;
     display: flex;
@@ -79,7 +102,9 @@ class Header extends View {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 16px;
+    /* padding: ${this.style2 ? "0 16px" : "16px 16px"}; */
+    padding: 0 16px;
+    z-index: 100;
   `
   sectionNav = css`
     flex: 1;

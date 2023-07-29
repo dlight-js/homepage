@@ -34,16 +34,15 @@ class Home extends View {
       }
       div()
         .className(this.featureCardWrap)
-      // {
-      //   for(let feature of this.featureData) {
-      //     FeatureCard()
-      //       .data(feature)
-      //   }
-      // }
-      
+      {
+        for(let feature of this.featureData) {
+          FeatureCard()
+            .data(feature)
+        }
+      }
+      PreviewSection()
     }
     }
-    PreviewSection()
   }
 
   bgCss = css`
