@@ -1,5 +1,5 @@
-import DLight, { View } from "@dlightjs/dlight"
-import { DLightIcon, DLightIconType } from "@dlightjs/material-icons"
+import { View } from "@dlightjs/dlight"
+import { DLightIconType } from "@dlightjs/material-icons"
 import { Prop, RequiredProp, Typed, img, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 

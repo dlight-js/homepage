@@ -1,7 +1,5 @@
-import DLight, { CustomNode, View } from "@dlightjs/dlight"
-import { type Typed, div, button, Env, required, Prop, RequiredProp, img, SubView, a, env } from "@dlightjs/types"
-import { HStack, Route, RouterSpace, VStack } from "@dlightjs/components"
-import { HelpCenterFilled } from "@dlightjs/material-icons"
+import { CustomNode, View } from "@dlightjs/dlight"
+import { type Typed, div, Env, required, Prop, RequiredProp, img, SubView, a, env } from "@dlightjs/types"
 import LogoTitle from "../../Icon/LogoTitle.view"
 import NavButton from "./NavButton.view"
 import Logo from "../../Icon/Logo.view"
@@ -12,19 +10,19 @@ class Header extends View {
   @Env theme: any = required
   @Prop handleClickNav: RequiredProp<(tabKey: string) => void> = required
   @Prop themeType: RequiredProp<string> = required
-  navBtn = ["Guides",  "Tutorial", "Examples", "Playground", "Ecosystem"]
+  navBtn = ["Guides", "Tutorial", "Examples", "Playground", "Ecosystem"]
   style2 = false
 
   @SubView
-  NavIcon({src, onclick, isBorder, href}: any):any {
+  NavIcon({ src, onclick, isBorder, href }: any): any {
     a()
-    .href(href)
+      .href(href)
     {
       img()
-      .className(this.IconSizeCss)
-      .className(isBorder?this.IconBorderCss:"")
-      .src(src)
-      .onclick(onclick)
+        .className(this.IconSizeCss)
+        .className(isBorder ? this.IconBorderCss : "")
+        .src(src)
+        .onclick(onclick)
     }
   }
 
@@ -33,14 +31,14 @@ class Header extends View {
   }
 
   listenScroll = function() {
-    //为了保证兼容性，这里取两个值，哪个有值取哪一个
-    //scrollTop就是触发滚轮事件时滚轮的高度
+    // 为了保证兼容性，这里取两个值，哪个有值取哪一个
+    // scrollTop就是触发滚轮事件时滚轮的高度
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     // console.log("滚动距离" + scrollTop);
-    if(scrollTop > 500) {
+    if (scrollTop > 500) {
       this.style2 = true
     }
-    if(this.style2 && scrollTop < 500) {
+    if (this.style2 && scrollTop < 500) {
       this.style2 = false
     }
   }.bind(this)
@@ -50,7 +48,7 @@ class Header extends View {
   }
 
   Body() {
-      div()
+    div()
       .className(this.headerWrapCss)
     {
       div()
@@ -60,7 +58,7 @@ class Header extends View {
         div()
           .className(this.logoWrapCss)
         {
-          if(this.style2) {
+          if (this.style2) {
             LogoTitle()
           } else {
             Logo()
@@ -68,7 +66,7 @@ class Header extends View {
         }
         for (const btn of this.navBtn) {
           NavButton(btn)
-          .handleClickNav(()=>{this.navigator.to(`./${btn.toLowerCase()}`)})
+            .handleClickNav(() => { this.navigator.to(`./${btn.toLowerCase()}`) })
         }
       }
       div()
@@ -91,7 +89,6 @@ class Header extends View {
           .isBorder()
       }
     }
-    
   }
 
   headerWrapCss = css`
@@ -107,12 +104,14 @@ class Header extends View {
     padding: 0 16px;
     z-index: 100;
   `
+
   sectionNav = css`
     flex: 1;
     display: flex;
     flex-direction: row;
     align-items: center;
   `
+
   logoWrapCss = css`
     margin-right: 16px;
   `

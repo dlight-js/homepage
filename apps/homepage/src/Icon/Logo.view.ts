@@ -1,5 +1,5 @@
-import DLight, { View } from "@dlightjs/dlight"
-import { DLightIcon, DLightIconType } from "@dlightjs/material-icons"
+import { View } from "@dlightjs/dlight"
+import { DLightIconType } from "@dlightjs/material-icons"
 import { Typed, img } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 
@@ -23,7 +23,7 @@ class Logo extends View {
       .src("./logo-leading-png.svg")
       .className(this.logoCss)
   }
-  
+
   logoCss = css`
     width: 50px;
     height: 50px;

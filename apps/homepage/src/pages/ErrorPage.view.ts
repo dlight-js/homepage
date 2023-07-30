@@ -1,5 +1,5 @@
 import { VStack, Spacer } from "@dlightjs/components"
-import DLight, { View, $ } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { type Typed, div, button, Env, required } from "@dlightjs/types"
 
 class ErrorPage extends View {

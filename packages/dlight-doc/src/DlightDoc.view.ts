@@ -1,6 +1,6 @@
-import DLight, { CustomNode, View } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { MarkitView, addBlockRule } from "@dlightjs/markit"
-import { code, defs, pre, Prop, required, RequiredProp, Typed } from "@dlightjs/types"
+import { Prop, required, RequiredProp } from "@dlightjs/types"
 import "highlight.js/styles/github.css"
 import AdvantageBlock from "./advantageBlock/AdvantageBlock.view"
 

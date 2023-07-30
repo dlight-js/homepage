@@ -9,7 +9,7 @@ class HorizontalResizer extends View {
   /** @prop */
   @Env theme: Color = required
   @Prop height: Prop<string> = "100%" as any
-  @Prop onDrag: Prop<OnDragFunc> = (() => {}) as any
+  @Prop onDrag: Prop<OnDragFunc> = (() => { }) as any
   hover: number = 0
 
   /** @method */

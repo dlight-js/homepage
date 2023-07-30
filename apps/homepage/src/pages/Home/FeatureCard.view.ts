@@ -1,12 +1,11 @@
-import DLight, { CustomNode, View } from "@dlightjs/dlight"
-import { type Typed, div, button, Env, required, Prop, RequiredProp, img } from "@dlightjs/types"
-import { Route, RouterSpace, VStack } from "@dlightjs/components"
+import { CustomNode, View } from "@dlightjs/dlight"
+import { type Typed, div, Env, required, Prop, RequiredProp, img } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 
-type FeatureDataType = {
-    title: string
-    imgUrl: string
-    content: string
+interface FeatureDataType {
+  title: string
+  imgUrl: string
+  content: string
 }
 
 class FeatureCard extends View {
@@ -15,20 +14,20 @@ class FeatureCard extends View {
   @Prop data: RequiredProp<FeatureDataType> = required
 
   didMount(_els: HTMLElement[], _node: CustomNode): void {
-      console.log(this.data)
+    console.log(this.data)
   }
 
   Body() {
     div()
-        .className(this.featureCardWrapCss)
+      .className(this.featureCardWrapCss)
     {
-        img()
-            .src(this.data.imgUrl)
-            .className(this.featureCardIconCss)
-        div(this.data.title)
-            .className(this.featureCardTitleCss)
-        div(this.data.content)
-            .className(this.featureCardContentCss)
+      img()
+        .src(this.data.imgUrl)
+        .className(this.featureCardIconCss)
+      div(this.data.title)
+        .className(this.featureCardTitleCss)
+      div(this.data.content)
+        .className(this.featureCardContentCss)
     }
   }
 
@@ -44,6 +43,7 @@ class FeatureCard extends View {
     background-color: ${this.theme.orange4};
     color: ${this.theme.green12};
   `
+
   featureCardIconCss = css`
     width: 50px;
     height: 50px;

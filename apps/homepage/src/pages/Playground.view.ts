@@ -1,10 +1,7 @@
-import { Spacer, HStack } from "@dlightjs/components"
-import DLight, { View } from "@dlightjs/dlight"
-import { type Typed, div, button, Env, required, img } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Env, required } from "@dlightjs/types"
 import { ArrayView, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "../utils/const"
-
 import DLightEditor from "dlight-editor"
-import LogoTitle from "../Icon/LogoTitle.view"
 import Header from "./Home/Header.view"
 
 class Playground extends View {
@@ -17,7 +14,7 @@ class Playground extends View {
       .modules([{
         code: indexCode,
         path: "/index.ts"
-      }, 
+      },
       {
         code: HelloView,
         path: "/hello.ts"
