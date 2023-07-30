@@ -12,7 +12,7 @@ class Header extends View {
   @Env theme: any = required
   @Prop handleClickNav: RequiredProp<(tabKey: string) => void> = required
   @Prop themeType: RequiredProp<string> = required
-  navBtn = ["Guides", "Examples", "Tutorial", "Blog", "Ecosystem"]
+  navBtn = ["Guides",  "Tutorial", "Examples", "Playground", "Ecosystem"]
   style2 = false
 
   @SubView
@@ -36,7 +36,7 @@ class Header extends View {
     //为了保证兼容性，这里取两个值，哪个有值取哪一个
     //scrollTop就是触发滚轮事件时滚轮的高度
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    console.log("滚动距离" + scrollTop);
+    // console.log("滚动距离" + scrollTop);
     if(scrollTop > 500) {
       this.style2 = true
     }
@@ -68,6 +68,7 @@ class Header extends View {
         }
         for (const btn of this.navBtn) {
           NavButton(btn)
+          .handleClickNav(()=>{this.navigator.to(`./${btn.toLowerCase()}`)})
         }
       }
       div()

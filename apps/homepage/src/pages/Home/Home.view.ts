@@ -1,4 +1,4 @@
-import DLight, { View } from "@dlightjs/dlight"
+import DLight, { CustomNode, View } from "@dlightjs/dlight"
 import { type Typed, div, button, Env, required, SubView, env } from "@dlightjs/types"
 import { Route, RouterSpace, VStack } from "@dlightjs/components"
 import Header from "./Header.view"
@@ -8,20 +8,20 @@ import FeatureCard from "./FeatureCard.view"
 import PreviewSection from "./PreviewSection.view"
 
 class Home extends View {
-  @Env navigator: any = required
-  themeType = "light"
-  theme = colors[this.themeType]
+  @Env navigator = required 
+  @Env theme: any = required
   featureData = featureData
 
+  didMount(_els: HTMLElement[], _node: CustomNode): void {
+    // console.log(this.navigator)
+    console.log(this.theme)
+  }
+
   Body() {
-    env()
-      .theme(this.theme)
-    {
-      div()
+    div()
       .className(this.bgCss)
     {
       Header()
-        .themeType(this.themeType)
       div()
         .className(this.titleWrapCss)
       {
@@ -41,7 +41,6 @@ class Home extends View {
         }
       }
       PreviewSection()
-    }
     }
   }
 

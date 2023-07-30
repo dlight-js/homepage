@@ -1,33 +1,55 @@
-import DLight, { View } from "@dlightjs/dlight"
-import { type Typed, div, button, ul, li, h1, table, tbody, tr, td, thead, th, input, p } from "@dlightjs/types"
+import DLight, { CustomNode, View } from "@dlightjs/dlight"
+import { type Typed, div, button, ul, li, h1, table, tbody, tr, td, thead, th, input, p, env } from "@dlightjs/types"
 import { Route, RouterSpace } from "@dlightjs/components"
 import Home from "./pages/Home/Home.view"
 import ErrorPage from "./pages/ErrorPage.view"
 import Playground from "./pages/Playground.view"
 import DocPage from "./pages/DocPage.view"
+import { colors } from "./utils/const"
 
 class App extends View {
+  themeType = "light"
+  theme = colors[this.themeType]
+  
   Body() {
+    env()
+    .theme(this.theme)
+  {
     RouterSpace()
     {
-      Route("playground")
+      Route("guides")
+      {
+        DocPage()
+        .fileName("./guides.md")
+      }
+      Route("tutorial")
       {
         DocPage()
       }
-      Route("documents")
+      Route("examples")
       {
-        div("hhh")
-          .className("mt-28 text-red-200")
+        DocPage()
+          .fileName("./examples.md")
+      }
+      Route("playground")
+      {
+        Playground()
+      }
+      Route("ecosystem")
+      {
+        DocPage()
+          .fileName("./ecosystem.md")
       }
       Route(".")
       {
-        Home()
+          Home()
       }
       Route()
       {
         ErrorPage()
       }
     }
+  }
   }
 }
 

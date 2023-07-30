@@ -1,10 +1,11 @@
 import DLight, { View } from "@dlightjs/dlight"
 import { DLightIcon, DLightIconType } from "@dlightjs/material-icons"
-import { Typed, img } from "@dlightjs/types"
+import { Prop, RequiredProp, Typed, img, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 
 class LogoTitle extends View {
   _$forwardProps = true
+  @Prop onclick: RequiredProp<() => void> = required
   // Body() {
   //   DLightIcon()
   //     .forwardProps(true)
@@ -23,6 +24,7 @@ class LogoTitle extends View {
     img()
       .src("./logo-png.svg")
       .className(this.logoCss)
+      .onclick(this.onclick)
   }
 
   logoCss = css`
