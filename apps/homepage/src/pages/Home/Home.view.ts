@@ -30,6 +30,7 @@ class Home extends View {
           .className(this.titleDescriptionCss)
         button("Get Started")
           .className(this.homeStartBtnCss)
+          .onclick(() => { this.navigator.to("./guides") })
       }
       div()
         .className(this.featureCardWrap)

@@ -1,5 +1,5 @@
 import { CustomNode, View } from "@dlightjs/dlight"
-import { type Typed, div, Env, required, Prop, RequiredProp, img, SubView, a, env } from "@dlightjs/types"
+import { type Typed, div, Env, required, Prop, RequiredProp, img, SubView, a } from "@dlightjs/types"
 import LogoTitle from "../../Icon/LogoTitle.view"
 import NavButton from "./NavButton.view"
 import Logo from "../../Icon/Logo.view"
@@ -10,7 +10,7 @@ class Header extends View {
   @Env theme: any = required
   @Prop handleClickNav: RequiredProp<(tabKey: string) => void> = required
   @Prop themeType: RequiredProp<string> = required
-  navBtn = ["Guides", "Tutorial", "Examples", "Playground", "Ecosystem"]
+  navBtn = ["Guides", "Examples", "Playground", "Ecosystem"]
   style2 = false
 
   @SubView
@@ -30,7 +30,7 @@ class Header extends View {
     console.log("hhhh")
   }
 
-  listenScroll = function() {
+  listenScroll = function () {
     // 为了保证兼容性，这里取两个值，哪个有值取哪一个
     // scrollTop就是触发滚轮事件时滚轮的高度
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -55,7 +55,7 @@ class Header extends View {
         .className(this.sectionNav)
       {
         div()
-        div()
+          .onclick(() => { this.navigator.to("..") })
           .className(this.logoWrapCss)
         {
           if (this.style2) {
@@ -66,7 +66,7 @@ class Header extends View {
         }
         for (const btn of this.navBtn) {
           NavButton(btn)
-            .handleClickNav(() => { this.navigator.to(`./${btn.toLowerCase()}`) })
+            .handleClickNav(() => { this.navigator.to(`../${btn.toLowerCase()}`) })
         }
       }
       div()
@@ -114,6 +114,7 @@ class Header extends View {
 
   logoWrapCss = css`
     margin-right: 16px;
+    cursor: pointer;
   `
   IconSizeCss = css`
     width: 30px;

@@ -1,10 +1,8 @@
-import DLight, { View } from "@dlightjs/dlight"
-import { type Typed, div, button, Env, required, Prop, RequiredProp } from "@dlightjs/types"
-import { Route, RouterSpace, VStack } from "@dlightjs/components"
+import { View } from "@dlightjs/dlight"
+import { type Typed, div, Env, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import DLightEditor from "dlight-editor"
 import { PreviewCode } from "../../utils/const"
-
 
 class PreviewSection extends View {
   @Env navigator: any = required
@@ -12,17 +10,17 @@ class PreviewSection extends View {
 
   Body() {
     div()
-        .className(this.previewWrapCss)
+      .className(this.previewWrapCss)
     {
-        div("preview testtest")
-        DLightEditor()
-            .modules([{
-                code: PreviewCode,
-                path: "/index.ts"
-            },])
-            .width("500px")
-            .height("500px")
-            .themeType("light")
+      div("preview testtest")
+      DLightEditor()
+        .modules([{
+          code: PreviewCode,
+          path: "/index.ts"
+        },])
+        .width("500px")
+        .height("500px")
+        .themeType("light")
     }
   }
 
@@ -36,7 +34,6 @@ class PreviewSection extends View {
     width: 600px;
     height: 680px;
   `
-
 }
 
 export default PreviewSection as any as Typed<PreviewSection>

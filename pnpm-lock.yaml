@@ -45,17 +45,17 @@ importers:
   apps/homepage:
     dependencies:
       '@dlightjs/components':
-        specifier: 0.9.22
-        version: 0.9.22
+        specifier: 0.9.23
+        version: 0.9.23
       '@dlightjs/dlight':
-        specifier: 0.9.22
-        version: 0.9.22
+        specifier: 0.9.23
+        version: 0.9.23
       '@dlightjs/markit':
         specifier: ^0.0.2
         version: 0.0.2(postcss@8.4.24)
       '@dlightjs/material-icons':
-        specifier: 0.9.22
-        version: 0.9.22
+        specifier: 0.9.23
+        version: 0.9.23
       '@iandx/easy-css':
         specifier: ^0.10.1
         version: 0.10.2(postcss@8.4.24)
@@ -70,8 +70,8 @@ importers:
         version: link:../../packages/dlight-editor
     devDependencies:
       '@dlightjs/types':
-        specifier: ^0.9.22
-        version: 0.9.22
+        specifier: ^0.9.23
+        version: 0.9.23
       typescript:
         specifier: ^5.1.3
         version: 5.1.3
@@ -79,8 +79,8 @@ importers:
         specifier: ^4.3.9
         version: 4.3.9(@types/node@20.3.1)
       vite-plugin-dlight:
-        specifier: 0.9.22
-        version: 0.9.22
+        specifier: 0.9.23
+        version: 0.9.23
 
   packages/dlight-doc:
     dependencies:
@@ -94,14 +94,14 @@ importers:
         specifier: ^7.22.4
         version: 7.22.5
       '@dlightjs/dlight':
-        specifier: 0.9.22
-        version: 0.9.22
+        specifier: 0.9.23
+        version: 0.9.23
       '@dlightjs/markit':
         specifier: ^0.0.7
         version: 0.0.7(postcss@8.4.24)
       '@dlightjs/material-icons':
-        specifier: ^0.9.22
-        version: 0.9.22
+        specifier: ^0.9.23
+        version: 0.9.23
       '@iandx/easy-css':
         specifier: ^0.10.1
         version: 0.10.1(postcss@8.4.24)
@@ -116,14 +116,14 @@ importers:
         specifier: ^7.20.12
         version: 7.22.5
       '@dlightjs/types':
-        specifier: 0.9.22
-        version: 0.9.22
+        specifier: 0.9.23
+        version: 0.9.23
       babel-preset-dlight:
-        specifier: 0.9.22
-        version: 0.9.22(@babel/core@7.22.5)
+        specifier: 0.9.23
+        version: 0.9.23(@babel/core@7.22.5)
       babel-preset-dlight-easy-css:
-        specifier: 0.9.22
-        version: 0.9.22(@babel/core@7.22.5)(postcss@8.4.24)
+        specifier: 0.9.23
+        version: 0.9.23(@babel/core@7.22.5)(postcss@8.4.24)
       tsup:
         specifier: ^7.1.0
         version: 7.1.0(postcss@8.4.24)(ts-node@10.9.1)(typescript@4.9.5)
@@ -134,11 +134,11 @@ importers:
         specifier: ^4.0.0
         version: 4.3.9(@types/node@20.3.1)
       vite-plugin-dlight:
-        specifier: 0.9.22
-        version: 0.9.22
+        specifier: 0.9.23
+        version: 0.9.23
       vite-plugin-dlight-easy-css:
-        specifier: 0.9.22
-        version: 0.9.22(postcss@8.4.24)
+        specifier: 0.9.23
+        version: 0.9.23(postcss@8.4.24)
 
   packages/dlight-editor:
     dependencies:
@@ -152,20 +152,20 @@ importers:
         specifier: ^7.22.4
         version: 7.22.5
       '@dlightjs/components':
-        specifier: 0.9.22
-        version: 0.9.22
+        specifier: 0.9.23
+        version: 0.9.23
       '@dlightjs/dlight':
-        specifier: 0.9.22
-        version: 0.9.22
+        specifier: 0.9.23
+        version: 0.9.23
       '@dlightjs/easy-css':
-        specifier: 0.9.22
-        version: 0.9.22(postcss@8.4.24)
+        specifier: 0.9.23
+        version: 0.9.23(postcss@8.4.24)
       '@dlightjs/material-icons':
-        specifier: 0.9.22
-        version: 0.9.22
+        specifier: 0.9.23
+        version: 0.9.23
       '@dlightjs/transpiler-standalone':
-        specifier: 0.9.22
-        version: 0.9.22(@babel/core@7.22.5)
+        specifier: 0.9.23
+        version: 0.9.23(@babel/core@7.22.5)
       monaco-editor:
         specifier: ^0.40.0
         version: 0.40.0
@@ -177,14 +177,14 @@ importers:
         specifier: ^7.20.12
         version: 7.22.5
       '@dlightjs/types':
-        specifier: 0.9.22
-        version: 0.9.22
+        specifier: 0.9.23
+        version: 0.9.23
       babel-preset-dlight:
-        specifier: 0.9.22
-        version: 0.9.22(@babel/core@7.22.5)
+        specifier: 0.9.23
+        version: 0.9.23(@babel/core@7.22.5)
       babel-preset-dlight-easy-css:
-        specifier: 0.9.22
-        version: 0.9.22(@babel/core@7.22.5)(postcss@8.4.24)
+        specifier: 0.9.23
+        version: 0.9.23(@babel/core@7.22.5)(postcss@8.4.24)
       tsup:
         specifier: ^7.1.0
         version: 7.1.0(postcss@8.4.24)(ts-node@10.9.1)(typescript@4.9.5)
@@ -195,11 +195,11 @@ importers:
         specifier: ^4.0.0
         version: 4.3.9(@types/node@20.3.1)
       vite-plugin-dlight:
-        specifier: 0.9.22
-        version: 0.9.22
+        specifier: 0.9.23
+        version: 0.9.23
       vite-plugin-dlight-easy-css:
-        specifier: 0.9.22
-        version: 0.9.22(postcss@8.4.24)
+        specifier: 0.9.23
+        version: 0.9.23(postcss@8.4.24)
 
 packages:
 
@@ -1632,22 +1632,22 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@dlightjs/components@0.9.22:
-    resolution: {integrity: sha512-tkGBYvGCakhMd0yfeqF8sDyx7qUdceiaOfonRP/vJONfO7B6JbizpLAB0xh6k0qKjqHzeIpRn99lJ30z8pYiVw==}
+  /@dlightjs/components@0.9.23:
+    resolution: {integrity: sha512-aapKAMvALHwrE/9f5k3tecNqXCjcfG10CPcPopzjlsl8q/Av16FvO6fBPMjajTfciFX5R25rIe5/B2tFea8S4Q==}
     dependencies:
-      '@dlightjs/dlight': 0.9.22
-      '@dlightjs/emotion': 0.9.22
+      '@dlightjs/dlight': 0.9.23
+      '@dlightjs/emotion': 0.9.23
     dev: false
 
   /@dlightjs/dlight@0.9.0-pre:
     resolution: {integrity: sha512-8jIONSaHgt1JPW2MaCOovUg7L6jWYqEVML7cB6tfkpV70ds+aTUtOkdLDipWHKDfCJTygAwmAfDUvuTi7REb2g==}
     dev: false
 
-  /@dlightjs/dlight@0.9.22:
-    resolution: {integrity: sha512-xYlcxX3WRy3hyE0btrLgXgB75/nBw03dyQ/ZjLF4JuyTO9QCcefSUpVIKAa8iOUF28/SEneDUrczL0v98boOuA==}
+  /@dlightjs/dlight@0.9.23:
+    resolution: {integrity: sha512-Wcz91LOGhqND2jzf7NLSfz1LWZS95/wccyaIIELfbAVuBqLQA8m2eJaBv7Hxb5j4zGbVDloRBNV5U3JycS5k0Q==}
 
-  /@dlightjs/easy-css@0.9.22(postcss@8.4.24):
-    resolution: {integrity: sha512-eM5+u/MseYUr33QYW/ZW7nvPgEJIzufBhyrpnxLHu6XKZMAIXyRMDi9IvKGcFTSuZnePjNfJx2qGj/fD1iquqg==}
+  /@dlightjs/easy-css@0.9.23(postcss@8.4.24):
+    resolution: {integrity: sha512-/C/uahSWuQleSWN1H01KHgRfUKcW+6nbqJqpS16Pz/9W4cRRDdpUkrQ9imBifLtCavM7Qn8royaE9gzPzTtfcg==}
     dependencies:
       '@iandx/easy-css': 0.10.2(postcss@8.4.24)
       '@iandx/easy-css-atomic': 0.10.2(postcss@8.4.24)
@@ -1656,11 +1656,11 @@ packages:
       - postcss
     dev: false
 
-  /@dlightjs/emotion@0.9.22:
-    resolution: {integrity: sha512-ZG/DtFjzbdbFx6sLSi6oQscuUhMQ1Apnnxk4OZrKjrTDuKrEn8U/g5ydOb/AJTMBWReL7gZ8lug1cdOHgCRs5w==}
+  /@dlightjs/emotion@0.9.23:
+    resolution: {integrity: sha512-3QMLipGk6K3ZmYcutrXd1Gl/xGQUevLbAcSRzCy2NbplmT9QKoMwRoB25kh/Zn2Iza7Hc1vqo3+NQCshpQBzrA==}
     dependencies:
-      '@dlightjs/dlight': 0.9.22
-      '@dlightjs/types': 0.9.22
+      '@dlightjs/dlight': 0.9.23
+      '@dlightjs/types': 0.9.23
       '@emotion/css': 11.11.2
     dev: false
 
@@ -1684,26 +1684,26 @@ packages:
       - postcss
     dev: false
 
-  /@dlightjs/material-icons@0.9.22:
-    resolution: {integrity: sha512-RvDyLBx5H57BLKAsE9aD4dLqxBvnk1ChXp57j/6/26sWeO6+ec6WJVpjFwH6sMB8KKIGC4S96xDuFT8y1xhYzQ==}
+  /@dlightjs/material-icons@0.9.23:
+    resolution: {integrity: sha512-43FCHNmfZZe3odSs84P31+9trxfP0I3TE9CgHsPGaOQzYi7g3t8B7laOoeIDRkZWQ0kAd2fxe4e1Q92NuZz9mw==}
     dependencies:
-      '@dlightjs/dlight': 0.9.22
-      '@dlightjs/types': 0.9.22
+      '@dlightjs/dlight': 0.9.23
+      '@dlightjs/types': 0.9.23
     dev: false
 
-  /@dlightjs/transpiler-standalone@0.9.22(@babel/core@7.22.5):
-    resolution: {integrity: sha512-6VGSpFd3nmq8ADf7m8HOL6m/4Tq2oG3KIruk5Oy9vFBxGrbBxnUUwHLUxKF9g0L5JvVP/jaPpptw/w9Ew722WA==}
+  /@dlightjs/transpiler-standalone@0.9.23(@babel/core@7.22.5):
+    resolution: {integrity: sha512-q3p2IP7A//1PCqgVZodT6zfscTGRVDfGaRv9c2hNnfT1rFWqI0sYOSa1OfIgdNznbaDx8e60gStdC1PbxvOxcQ==}
     dependencies:
       '@babel/standalone': 7.22.5
-      babel-preset-dlight: 0.9.22(@babel/core@7.22.5)
+      babel-preset-dlight: 0.9.23(@babel/core@7.22.5)
     transitivePeerDependencies:
       - '@babel/core'
     dev: false
 
-  /@dlightjs/types@0.9.22:
-    resolution: {integrity: sha512-6DhKMCx4vtvxEeubjUENMHeRUxlnUvOiN0nZ7d7hwUAw/RtaAaJVykgvX+AYlw2gBXHR9Stx5ePuwhx5H6p5dQ==}
+  /@dlightjs/types@0.9.23:
+    resolution: {integrity: sha512-eu3+JQe4DNJTjyutwKDkavgQrtu8fRnh/58czv07fCV+ORR9ihj1Z9D2kaUrWHMrTgsFm0MaILyzOtbz1XvzQw==}
     dependencies:
-      '@dlightjs/dlight': 0.9.22
+      '@dlightjs/dlight': 0.9.23
       csstype: 3.1.2
 
   /@emotion/babel-plugin@11.11.0:
@@ -2715,8 +2715,8 @@ packages:
       - supports-color
     dev: false
 
-  /babel-preset-dlight-easy-css@0.9.22(@babel/core@7.22.5)(postcss@8.4.24):
-    resolution: {integrity: sha512-gVIH8piZJDMi/WdgRMaHqcYrBYUCXWZF+Ci9XXxxTdPmnvkq6BDxQZFtaxiBAwZKAFrzlolLVd/rB+ka2bhOAQ==}
+  /babel-preset-dlight-easy-css@0.9.23(@babel/core@7.22.5)(postcss@8.4.24):
+    resolution: {integrity: sha512-S/1GO/YtejBOuncNiWl5uTPejeY/FI9R/SJMvAYFk5aYLG4H12z8aTaStvuczGIWTmbFpBpKF6MB8vNhpLKFYw==}
     dependencies:
       '@babel/types': 7.22.5
       '@iandx/easy-css-atomic': 0.10.2(postcss@8.4.24)
@@ -2728,8 +2728,8 @@ packages:
       - postcss
     dev: true
 
-  /babel-preset-dlight@0.9.22(@babel/core@7.22.5):
-    resolution: {integrity: sha512-u8IcepirRlS0fVyNMESHdJ//wKQHoZGSUM45LLqlB/uALoeVOKs8epalwJ6WvfjxDsPosY/cIJ3MXOnuFLD5+A==}
+  /babel-preset-dlight@0.9.23(@babel/core@7.22.5):
+    resolution: {integrity: sha512-lRPeNiP+AurqPlfgKQmzjSDRGpwN0apwzHJXjpGTMcpBL0b1Gasbh136BQzY5Ja0qKEJOXR4IhNE1XwJnFoVFA==}
     dependencies:
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-decorators': 7.22.5(@babel/core@7.22.5)
@@ -5249,22 +5249,22 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite-plugin-dlight-easy-css@0.9.22(postcss@8.4.24):
-    resolution: {integrity: sha512-vb20vk3Gd/mvvG7L1a/7+u1c2yePXhEOjFyyISgencnSvfr85Wg41CDXZlz0ZuhT+DFz3rvoVIAPGRZpUMsp8Q==}
+  /vite-plugin-dlight-easy-css@0.9.23(postcss@8.4.24):
+    resolution: {integrity: sha512-J9rzT1bjW99rWXo/uDBSOktI3QquSX6vwTWh5o/BGq1gpVBh8KyjYH8SLmwGBdZ0KXG8n7bKvIBEu2P/XYVMBA==}
     dependencies:
       '@babel/core': 7.22.5
-      babel-preset-dlight-easy-css: 0.9.22(@babel/core@7.22.5)(postcss@8.4.24)
+      babel-preset-dlight-easy-css: 0.9.23(@babel/core@7.22.5)(postcss@8.4.24)
       minimatch: 9.0.3
     transitivePeerDependencies:
       - postcss
       - supports-color
     dev: true
 
-  /vite-plugin-dlight@0.9.22:
-    resolution: {integrity: sha512-drqzaNx/dt5CyaBG2TkCzzcI1wmrxKT79DPp9QGAvBoogmIB8r+slmOpP5XVt6YqfxPA/GH6h2fLQlI6hqXSnA==}
+  /vite-plugin-dlight@0.9.23:
+    resolution: {integrity: sha512-Xook0iLMgOX1E+ch0V9rsPI2zj92VguTzyADoz4pbO9gws7nHkxncpCTnVow5UjGSQaME8ZAUIZKv6movIusnw==}
     dependencies:
       '@babel/core': 7.22.5
-      babel-preset-dlight: 0.9.22(@babel/core@7.22.5)
+      babel-preset-dlight: 0.9.23(@babel/core@7.22.5)
       minimatch: 9.0.3
     transitivePeerDependencies:
       - supports-color
