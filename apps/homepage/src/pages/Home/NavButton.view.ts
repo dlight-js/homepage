@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, button, Env, required, Prop, RequiredProp } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@dlightjs/easy-css"
 
 class NavButton extends View {
   @Env navigator: any = required

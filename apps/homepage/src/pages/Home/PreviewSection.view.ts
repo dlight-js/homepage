@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, div, Env, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@dlightjs/easy-css"
 import DLightEditor from "dlight-editor"
 import { PreviewCode } from "../../utils/const"
 

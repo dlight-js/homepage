@@ -1,10 +1,10 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, div, button, Env, required } from "@dlightjs/types"
+import { type Typed, button, Env, required } from "@dlightjs/types"
 import Header from "./Header.view"
-import { css } from "@iandx/easy-css"
+import { css, div } from "@dlightjs/easy-css"
 import { featureData } from "../../utils/const"
-import FeatureCard from "./FeatureCard.view"
 import PreviewSection from "./PreviewSection.view"
+import FeatureCardGroup from "./FeatureCardGroup.view"
 
 class Home extends View {
   @Env navigator = required
@@ -28,12 +28,14 @@ class Home extends View {
           .onclick(() => { this.navigator.to("./guides") })
       }
       div()
+        .grid()
+        .gridTemplateColumns("repeat( auto-fit, minmax(300px, 1fr) )")
         .className(this.featureCardWrap)
       {
-        for (const feature of this.featureData) {
-          FeatureCard()
-            .data(feature)
-        }
+        FeatureCardGroup()
+          .data(this.featureData.slice(0, 2))
+        FeatureCardGroup()
+          .data(this.featureData.slice(2, 4))
       }
       PreviewSection()
     }
@@ -77,11 +79,9 @@ class Home extends View {
   `
 
   featureCardWrap = css`
-    display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(max(50%, 450px), 1fr) );
     align-items: center;
     justify-content: center;
-    padding: 0 20px;
+    padding: 0 30px;
   `
 }
 

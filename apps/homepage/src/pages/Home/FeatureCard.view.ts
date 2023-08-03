@@ -1,8 +1,8 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, div, Env, required, Prop, RequiredProp, img } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@dlightjs/easy-css"
 
-interface FeatureDataType {
+export interface FeatureDataType {
   title: string
   imgUrl: string
   content: string
@@ -28,12 +28,13 @@ class FeatureCard extends View {
   }
 
   featureCardWrapCss = css`
-    margin: 20px auto;
+    margin: 20px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     max-width: 450px;
+    min-width: 260px;
     height: 350px;
     border-radius: 15px;
     background-color: ${this.theme.orange4};

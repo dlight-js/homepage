@@ -3,7 +3,7 @@ import { type Typed, div, Env, required, Prop, RequiredProp, img, SubView, a } f
 import LogoTitle from "../../Icon/LogoTitle.view"
 import NavButton from "./NavButton.view"
 import Logo from "../../Icon/Logo.view"
-import { css } from "@iandx/easy-css"
+import { css } from "@dlightjs/easy-css"
 
 class Header extends View {
   @Env navigator: any = required
@@ -110,6 +110,10 @@ class Header extends View {
     display: flex;
     flex-direction: row;
     align-items: center;
+    overflow: scroll;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   `
 
   logoWrapCss = css`

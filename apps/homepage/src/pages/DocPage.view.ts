@@ -2,7 +2,7 @@ import { CustomNode, View } from "@dlightjs/dlight"
 import { Prop, RequiredProp, Typed, div, required } from "@dlightjs/types"
 import DlightDoc from "dlight-doc"
 import Header from "./Home/Header.view"
-import { css } from "@iandx/easy-css"
+import { css } from "@dlightjs/easy-css"
 
 class DocPage extends View {
   @Prop fileName: RequiredProp<string> = required
