@@ -19,7 +19,7 @@
     "@babel/preset-env": "^7.22.4",
     "@babel/standalone": "^7.22.4",
     "@dlightjs/dlight": "0.9.23",
-    "@dlightjs/markit": "^0.0.7",
+    "@dlightjs/markit": "^0.0.8",
     "@iandx/easy-css": "^0.10.1",
     "highlight.js": "^11.8.0",
     "@dlightjs/material-icons": "^0.9.23"

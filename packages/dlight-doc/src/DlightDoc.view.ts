@@ -1,4 +1,4 @@
-import { View } from "@dlightjs/dlight"
+import { CustomNode, View } from "@dlightjs/dlight"
 import { MarkitView, addBlockRule } from "@dlightjs/markit"
 import { Prop, required, RequiredProp } from "@dlightjs/types"
 import "highlight.js/styles/github.css"
@@ -21,8 +21,19 @@ addBlockRule({
 
 class DlightDoc extends View {
   @Prop _$content: RequiredProp<string> = required
+  cata = []
+
+  didMount(_els: HTMLElement[], _node: CustomNode): void {
+    console.log(this.cata)
+  }
+
+  getCatalogue = (cata) => {
+    this.cata = cata
+  }
+
   Body() {
     MarkitView(this._$content)
+      .getCatalogue(this.getCatalogue)
   }
 }
 
