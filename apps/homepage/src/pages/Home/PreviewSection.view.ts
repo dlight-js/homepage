@@ -17,7 +17,7 @@ class PreviewSection extends View {
         .modules([{
           code: PreviewCode,
           path: "/index.ts"
-        },])
+        }])
         .width("500px")
         .height("500px")
         .themeType("light")
@@ -31,7 +31,8 @@ class PreviewSection extends View {
     flex-direction: row;
     border-radius: 15px;
     background-color: ${this.theme.orange4};
-    width: 600px;
+    width: 60%;
+    min-width: 550px;
     height: 680px;
   `
 }

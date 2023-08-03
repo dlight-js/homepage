@@ -1,4 +1,4 @@
-import { CustomNode, View } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { type Typed, div, button, Env, required } from "@dlightjs/types"
 import Header from "./Header.view"
 import { css } from "@iandx/easy-css"
@@ -10,11 +10,6 @@ class Home extends View {
   @Env navigator = required
   @Env theme: any = required
   featureData = featureData
-
-  didMount(_els: HTMLElement[], _node: CustomNode): void {
-    // console.log(this.navigator)
-    console.log(this.theme)
-  }
 
   Body() {
     div()
@@ -61,6 +56,7 @@ class Home extends View {
     font-weight: bold;
     font-size: 40px;
     margin: 32px 0;
+    text-align: center;
   `
 
   homeStartBtnCss = css`
@@ -82,11 +78,10 @@ class Home extends View {
 
   featureCardWrap = css`
     display: grid;
-    grid-template-columns: repeat(2, 480px);
-    grid-column-gap: 108px;
-    grid-row-gap: 64px;
+    grid-template-columns: repeat( auto-fit, minmax(max(50%, 450px), 1fr) );
     align-items: center;
     justify-content: center;
+    padding: 0 20px;
   `
 }
 

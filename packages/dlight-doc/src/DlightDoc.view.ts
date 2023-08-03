@@ -1,9 +1,10 @@
 import { View } from "@dlightjs/dlight"
 import { MarkitView, addBlockRule } from "@dlightjs/markit"
-import { Prop, required, RequiredProp } from "@dlightjs/types"
+import { div, Prop, required, RequiredProp, Typed } from "@dlightjs/types"
 import "highlight.js/styles/github.css"
 import AdvantageBlock from "./advantageBlock/AdvantageBlock.view"
 import CatalogueView from "./catalogueView/CatalogueView.view"
+import { css } from "@dlightjs/easy-css"
 
 addBlockRule({
   name: "CodeBlock",
@@ -76,7 +77,7 @@ c=a+b
 
 ----[dashed]
   `
-  docAst = []
+  docAst: any = []
   cata = []
 
   getAst = (ast) => {
@@ -84,11 +85,29 @@ c=a+b
   }
 
   Body() {
-    MarkitView(this.testMDString)
-      .getAst(this.getAst)
-    CatalogueView(this.docAst.filter(paragraph => paragraph.type === "Heading"))
+    div()
+      .className(this.dlightDocWrap)
+    {
+      div()
+        .className(this.dlightContentWrap)
+      {
+        MarkitView(this.testMDString)
+          .getAst(this.getAst)
+      }
+      CatalogueView(this.docAst.filter(paragraph => paragraph.type === "Heading"))
+    }
   }
+
+  dlightContentWrap = css`
+    flex-grow: 1;
+  `
+
+  dlightDocWrap = css`
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  `
 }
 
-// export default DlightDoc as any as Typed<DlightDoc>
-export default DlightDoc
+export default DlightDoc as any as Typed<DlightDoc>
+// export default DlightDoc

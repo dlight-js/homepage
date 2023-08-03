@@ -1,4 +1,4 @@
-import { CustomNode, View } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { type Typed, div, Env, required, Prop, RequiredProp, img, SubView, a } from "@dlightjs/types"
 import LogoTitle from "../../Icon/LogoTitle.view"
 import NavButton from "./NavButton.view"
@@ -30,7 +30,7 @@ class Header extends View {
     console.log("hhhh")
   }
 
-  listenScroll = function () {
+  listenScroll = function() {
     // 为了保证兼容性，这里取两个值，哪个有值取哪一个
     // scrollTop就是触发滚轮事件时滚轮的高度
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -43,7 +43,7 @@ class Header extends View {
     }
   }.bind(this)
 
-  didMount(_els: HTMLElement[], _node: CustomNode): void {
+  didMount() {
     window.onscroll = this.listenScroll
   }
 
@@ -96,17 +96,17 @@ class Header extends View {
     position: fixed;
     top: 0;
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    /* padding: ${this.style2 ? "0 16px" : "16px 16px"}; */
-    padding: 0 16px;
+    padding: 5px 16px;
     z-index: 100;
   `
 
   sectionNav = css`
-    flex: 1;
+    margin-right: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;

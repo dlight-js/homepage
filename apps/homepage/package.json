@@ -11,7 +11,7 @@
   "dependencies": {
     "@dlightjs/components": "0.9.23",
     "@dlightjs/dlight": "0.9.23",
-    "@dlightjs/markit": "^0.0.2",
+    "@dlightjs/markit": "^0.1.2",
     "@dlightjs/material-icons": "0.9.23",
     "@iandx/easy-css": "^0.10.1",
     "@iandx/markit": "0.1.3",

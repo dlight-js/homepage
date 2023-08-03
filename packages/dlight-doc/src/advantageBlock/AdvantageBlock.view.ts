@@ -70,7 +70,7 @@ class AdvantageBlock extends View {
     font-size: 90%;
     margin: 10px;
   `
-  dlightMarkitCode = css`
+  dlightHomepageMarkitCode = css`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
