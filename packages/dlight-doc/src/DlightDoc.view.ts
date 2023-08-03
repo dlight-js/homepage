@@ -1,4 +1,4 @@
-import { CustomNode, View } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { MarkitView, addBlockRule } from "@dlightjs/markit"
 import { Prop, required, RequiredProp } from "@dlightjs/types"
 import "highlight.js/styles/github.css"
@@ -21,19 +21,77 @@ addBlockRule({
 
 class DlightDoc extends View {
   @Prop _$content: RequiredProp<string> = required
-  cata = []
+  testMDString = `
+Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 
-  didMount(_els: HTMLElement[], _node: CustomNode): void {
-    console.log(this.cata)
-  }
+hhh
+**b*o*ld**
 
-  getCatalogue = (cata) => {
-    this.cata = cata
+***hhh*hh**
+
+*italic*~~ddd~~test \`function test { console.log('hello')}\`
+
+## 标题2
+
+[haha](https://www.baidu.com)
+
+\`\`\`js [config.js]
+console.log('hello sd dyh');
+function test () {
+  const hh = 1
+}
+Body() {
+  div()
+    .className(this.dlightMarkitCodeBlock)
+  {
+    div(this.title)
+      .className(this.dlightMarkitCodeBlockHeader)
+    div()
+      .className(this.dlightMarkitCode)
+    {
+      pre()
+      {
+        code()
+          .innerHTML(this.highlightedCode)
+      }
+      div("copy")
+    }
   }
+}
+\`\`\`
+
+\`\`\`python
+print("hhh")
+a=12
+b=15
+c=a+b
+\`\`\`
+
+# heading1
+
+## heading2
+
+### heading3
+
+----[dashed]
+  `
+  // docAst = []
+  // cata = []
+
+  // didMount() {
+  //   console.log(this.docAst)
+  //   this.cata = this.docAst.filter(paragraph => paragraph.type === "Heading")
+  //   console.log(this.cata)
+  // }
+
+  // getAst = (ast) => {
+  //   this.docAst = ast
+  // }
 
   Body() {
-    MarkitView(this._$content)
-      .getCatalogue(this.getCatalogue)
+    // CatalogueView(this.cata)
+    MarkitView(this.testMDString)
+    // .getAst(this.getAst)
   }
 }
 

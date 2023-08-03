@@ -97,8 +97,8 @@ importers:
         specifier: 0.9.23
         version: 0.9.23
       '@dlightjs/markit':
-        specifier: ^0.0.7
-        version: 0.0.7(postcss@8.4.24)
+        specifier: ^0.1.2
+        version: 0.1.2(postcss@8.4.24)
       '@dlightjs/material-icons':
         specifier: ^0.9.23
         version: 0.9.23
@@ -1674,10 +1674,10 @@ packages:
       - postcss
     dev: false
 
-  /@dlightjs/markit@0.0.7(postcss@8.4.24):
-    resolution: {integrity: sha512-CC06kbsMhJbE165GQS1OL6qzZ1ea0EgjkQmWIq/Wv1ZeziSCNIXEF43Pj4X8a1w2dvHGcN6q8gywud5eyNOuFg==}
+  /@dlightjs/markit@0.1.2(postcss@8.4.24):
+    resolution: {integrity: sha512-c6ELJts/hgiofagYknhR4R7GoLlPQMFDPG5Yv7AdduAWeelIGDKTJq0Nsbbg60ioWlv+LnwTYKylyzuMYVmJ9A==}
     dependencies:
-      '@dlightjs/dlight': 0.9.0-pre
+      '@dlightjs/dlight': 0.9.23
       '@iandx/easy-css': 0.9.3(postcss@8.4.24)
       '@iandx/markit': 0.1.5
     transitivePeerDependencies:
