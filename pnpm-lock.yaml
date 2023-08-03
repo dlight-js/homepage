@@ -96,15 +96,15 @@ importers:
       '@dlightjs/dlight':
         specifier: 0.9.23
         version: 0.9.23
+      '@dlightjs/easy-css':
+        specifier: 0.9.23
+        version: 0.9.23(postcss@8.4.24)
       '@dlightjs/markit':
-        specifier: ^0.1.2
-        version: 0.1.2(postcss@8.4.24)
+        specifier: ^0.9.24
+        version: 0.9.24(postcss@8.4.24)
       '@dlightjs/material-icons':
         specifier: ^0.9.23
         version: 0.9.23
-      '@iandx/easy-css':
-        specifier: ^0.10.1
-        version: 0.10.1(postcss@8.4.24)
       highlight.js:
         specifier: ^11.8.0
         version: 11.8.0
@@ -1646,12 +1646,26 @@ packages:
   /@dlightjs/dlight@0.9.23:
     resolution: {integrity: sha512-Wcz91LOGhqND2jzf7NLSfz1LWZS95/wccyaIIELfbAVuBqLQA8m2eJaBv7Hxb5j4zGbVDloRBNV5U3JycS5k0Q==}
 
+  /@dlightjs/dlight@0.9.24:
+    resolution: {integrity: sha512-/bsNbnV+/IoFxzTOM+UoPy6wPBiCk6UoBLyHEIHZ2Fxd30HLr/sI2PwVNaOnKim1ZHVCFSnYbeh50tZpF1Uw0w==}
+    dev: false
+
   /@dlightjs/easy-css@0.9.23(postcss@8.4.24):
     resolution: {integrity: sha512-/C/uahSWuQleSWN1H01KHgRfUKcW+6nbqJqpS16Pz/9W4cRRDdpUkrQ9imBifLtCavM7Qn8royaE9gzPzTtfcg==}
     dependencies:
       '@iandx/easy-css': 0.10.2(postcss@8.4.24)
       '@iandx/easy-css-atomic': 0.10.2(postcss@8.4.24)
       '@iandx/easy-css-utility': 0.10.2(postcss@8.4.24)
+    transitivePeerDependencies:
+      - postcss
+    dev: false
+
+  /@dlightjs/easy-css@0.9.24(postcss@8.4.24):
+    resolution: {integrity: sha512-eTVnE9J7VI5NcLde1nsvaTWO+OmVavSLZBBfvyNkTtnIbLEMTBMeXTjVejNVHAQCkAgtoyrPBCRCoijAp2jq5A==}
+    dependencies:
+      '@iandx/easy-css': 0.10.8(postcss@8.4.24)
+      '@iandx/easy-css-atomic': 0.10.8(postcss@8.4.24)
+      '@iandx/easy-css-utility': 0.10.8(postcss@8.4.24)
     transitivePeerDependencies:
       - postcss
     dev: false
@@ -1674,11 +1688,11 @@ packages:
       - postcss
     dev: false
 
-  /@dlightjs/markit@0.1.2(postcss@8.4.24):
-    resolution: {integrity: sha512-c6ELJts/hgiofagYknhR4R7GoLlPQMFDPG5Yv7AdduAWeelIGDKTJq0Nsbbg60ioWlv+LnwTYKylyzuMYVmJ9A==}
+  /@dlightjs/markit@0.9.24(postcss@8.4.24):
+    resolution: {integrity: sha512-DCC6RC03eh+L6RpU4xZXJYBNcczDoq+6eSY2Kka+qS73HzvXriIEpa5ERmL6CvMgZBaPcoEIwBYwiYswQLg/Gg==}
     dependencies:
-      '@dlightjs/dlight': 0.9.23
-      '@iandx/easy-css': 0.9.3(postcss@8.4.24)
+      '@dlightjs/dlight': 0.9.24
+      '@dlightjs/easy-css': 0.9.24(postcss@8.4.24)
       '@iandx/markit': 0.1.5
     transitivePeerDependencies:
       - postcss
@@ -2236,6 +2250,14 @@ packages:
     transitivePeerDependencies:
       - postcss
 
+  /@iandx/easy-css-atomic@0.10.8(postcss@8.4.24):
+    resolution: {integrity: sha512-xWulo39pJwF9socWT6hfGj3vMBu4IK8mFjVfT5RS7Kpb+Ts9lFXP3ZDcsY4oUXgc6QYeZ0KPnKXgYx9JCefSRg==}
+    dependencies:
+      '@iandx/easy-css': 0.10.8(postcss@8.4.24)
+    transitivePeerDependencies:
+      - postcss
+    dev: false
+
   /@iandx/easy-css-utility@0.10.2(postcss@8.4.24):
     resolution: {integrity: sha512-kzsRo64fGg5sHQEkPml5owmi6KOKztdIyUkEcajbCFqqQwLgTidmWpwaxQI/bRYNV3fFVM46EB4v8gvAmIFSNg==}
     dependencies:
@@ -2243,10 +2265,10 @@ packages:
     transitivePeerDependencies:
       - postcss
 
-  /@iandx/easy-css@0.10.1(postcss@8.4.24):
-    resolution: {integrity: sha512-ktz0zfOeBMFzVbMVYvapEPUxgQ7KO9Ku187aXfLbe+74WucSuBLehvCu4quOuRLtAl37feco5YyuT0wDfgXd+w==}
+  /@iandx/easy-css-utility@0.10.8(postcss@8.4.24):
+    resolution: {integrity: sha512-Sg/C3gTja2pyMVflzy1Kp26tWinfSv1gPLZOYjF6XQJxw9hcA3FWf6KEmL1m2bC1PYfEjPsE23LtgKwzj4ySLw==}
     dependencies:
-      autoprefixer: 10.4.14(postcss@8.4.24)
+      '@iandx/easy-css': 0.10.8(postcss@8.4.24)
     transitivePeerDependencies:
       - postcss
     dev: false
@@ -2257,6 +2279,14 @@ packages:
       autoprefixer: 10.4.14(postcss@8.4.24)
     transitivePeerDependencies:
       - postcss
+
+  /@iandx/easy-css@0.10.8(postcss@8.4.24):
+    resolution: {integrity: sha512-0VE+EsLI50vWZca+2HLR58CgyLLpeikQcc4shsYYJPNTIQEHn4XIA/Uetc4OA4WZ+09V4tj52KLqD+9PCtnVaA==}
+    dependencies:
+      autoprefixer: 10.4.14(postcss@8.4.24)
+    transitivePeerDependencies:
+      - postcss
+    dev: false
 
   /@iandx/easy-css@0.9.3(postcss@8.4.24):
     resolution: {integrity: sha512-RLeYZPQuXKwJTTdl2VmuE0IO4fPeMei4LJ6hQLOfvxnrfsl52S1Y0YhGc3a41SP93oj0Y2dm1ya3dU48B/3q9A==}

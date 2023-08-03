@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { code, div, pre, Prop, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@dlightjs/easy-css"
 import hljs from "highlight.js"
 import { ContentCopyFilled, DoneFilled } from "@dlightjs/material-icons"
 

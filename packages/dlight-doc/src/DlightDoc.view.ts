@@ -3,6 +3,7 @@ import { MarkitView, addBlockRule } from "@dlightjs/markit"
 import { Prop, required, RequiredProp } from "@dlightjs/types"
 import "highlight.js/styles/github.css"
 import AdvantageBlock from "./advantageBlock/AdvantageBlock.view"
+import CatalogueView from "./catalogueView/CatalogueView.view"
 
 addBlockRule({
   name: "CodeBlock",
@@ -35,7 +36,7 @@ hhh
 
 [haha](https://www.baidu.com)
 
-\`\`\`js [config.js]
+\`\`\`js
 console.log('hello sd dyh');
 function test () {
   const hh = 1
@@ -75,23 +76,17 @@ c=a+b
 
 ----[dashed]
   `
-  // docAst = []
-  // cata = []
+  docAst = []
+  cata = []
 
-  // didMount() {
-  //   console.log(this.docAst)
-  //   this.cata = this.docAst.filter(paragraph => paragraph.type === "Heading")
-  //   console.log(this.cata)
-  // }
-
-  // getAst = (ast) => {
-  //   this.docAst = ast
-  // }
+  getAst = (ast) => {
+    this.docAst = ast
+  }
 
   Body() {
-    // CatalogueView(this.cata)
     MarkitView(this.testMDString)
-    // .getAst(this.getAst)
+      .getAst(this.getAst)
+    CatalogueView(this.docAst.filter(paragraph => paragraph.type === "Heading"))
   }
 }
 
