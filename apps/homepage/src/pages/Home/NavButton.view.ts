@@ -1,8 +1,6 @@
-import DLight, { View } from "@dlightjs/dlight"
-import { type Typed, div, button, Env, required, Prop, RequiredProp } from "@dlightjs/types"
-import { Route, RouterSpace, VStack } from "@dlightjs/components"
+import { View } from "@dlightjs/dlight"
+import { type Typed, button, Env, required, Prop, RequiredProp } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-// import { Nuti } from "@dlightjs/material-icons"
 
 class NavButton extends View {
   @Env navigator: any = required
@@ -10,26 +8,15 @@ class NavButton extends View {
   @Prop _$content: RequiredProp<string> = required
   @Prop handleClickNav: RequiredProp<() => void> = required
 
-  // guideMDString = ""
-  // async didMount() {
-  //   fetch("README-dep.md")
-  //     .then(async response => await response.text())
-  //     .then(content => {
-  //       console.log(content)
-  //       this.guideMDString = content
-  //     })
-  //     .catch(err => console.log(err))
-  // }
-
-
   Body() {
     button(this._$content)
       .className(this.navBtnCss)
       .onclick(this.handleClickNav)
   }
 
-  navBtnCss=css`
-   background-color: ${this.theme.orange4};
+  navBtnCss = css`
+    cursor: pointer;
+    background-color: ${this.theme.orange4};
     padding: 8px 16px;
     border-width: 0;
     border-radius: 5px;

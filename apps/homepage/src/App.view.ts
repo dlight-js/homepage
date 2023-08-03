@@ -1,5 +1,5 @@
-import DLight, { CustomNode, View } from "@dlightjs/dlight"
-import { type Typed, div, button, ul, li, h1, table, tbody, tr, td, thead, th, input, p, env } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, env } from "@dlightjs/types"
 import { Route, RouterSpace } from "@dlightjs/components"
 import Home from "./pages/Home/Home.view"
 import ErrorPage from "./pages/ErrorPage.view"
@@ -10,46 +10,46 @@ import { colors } from "./utils/const"
 class App extends View {
   themeType = "light"
   theme = colors[this.themeType]
-  
+
   Body() {
     env()
-    .theme(this.theme)
-  {
-    RouterSpace()
+      .theme(this.theme)
     {
-      Route("guides")
+      RouterSpace()
       {
-        DocPage()
-        .fileName("./guides.md")
-      }
-      Route("tutorial")
-      {
-        DocPage()
-      }
-      Route("examples")
-      {
-        DocPage()
-          .fileName("./examples.md")
-      }
-      Route("playground")
-      {
-        Playground()
-      }
-      Route("ecosystem")
-      {
-        DocPage()
-          .fileName("./ecosystem.md")
-      }
-      Route(".")
-      {
+        Route("guides")
+        {
+          DocPage()
+            .fileName("./guides.md")
+        }
+        Route("tutorial")
+        {
+          DocPage()
+        }
+        Route("examples")
+        {
+          DocPage()
+            .fileName("./examples.md")
+        }
+        Route("playground")
+        {
+          Playground()
+        }
+        Route("ecosystem")
+        {
+          DocPage()
+            .fileName("./ecosystem.md")
+        }
+        Route(".")
+        {
           Home()
-      }
-      Route()
-      {
-        ErrorPage()
+        }
+        Route()
+        {
+          ErrorPage()
+        }
       }
     }
-  }
   }
 }
 
