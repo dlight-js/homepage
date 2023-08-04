@@ -7,7 +7,7 @@ import { css } from "@dlightjs/easy-css"
 class DocPage extends View {
   @Prop fileName: RequiredProp<string> = required
   mdString: string = ""
-  didMount(_els: HTMLElement[], _node: CustomNode): void {
+  willMount(_els: HTMLElement[], _node: CustomNode): void {
     fetch(this.fileName)
       .then(data => data.text())
       .then(text => this.mdString = text)

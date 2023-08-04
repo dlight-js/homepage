@@ -1,11 +1,3 @@
-# DLight
-
-EN | [中文](./zh/README-dlight-jsx.md)
-
-[JSD](../packages/@dlightjs/dlight/docs/README.md) | JSX
-
-# Tip
-
 Search 🌟 in doc for important concepts and performance results.
 
 # Quick start

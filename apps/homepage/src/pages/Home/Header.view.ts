@@ -30,7 +30,7 @@ class Header extends View {
     console.log("hhhh")
   }
 
-  listenScroll = function() {
+  listenScroll = function () {
     // 为了保证兼容性，这里取两个值，哪个有值取哪一个
     // scrollTop就是触发滚轮事件时滚轮的高度
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -49,47 +49,55 @@ class Header extends View {
 
   Body() {
     div()
-      .className(this.headerWrapCss)
+      .className(this.headerHeightCss)
     {
       div()
-        .className(this.sectionNav)
+        .className(this.headerWrapCss)
       {
         div()
-          .onclick(() => { this.navigator.to("..") })
-          .className(this.logoWrapCss)
+          .className(this.sectionNav)
         {
-          if (this.style2) {
-            LogoTitle()
-          } else {
-            Logo()
+          div()
+            .onclick(() => { this.navigator.to("..") })
+            .className(this.logoWrapCss)
+          {
+            if (this.style2) {
+              LogoTitle()
+            } else {
+              Logo()
+            }
+          }
+          for (const btn of this.navBtn) {
+            NavButton(btn)
+              .handleClickNav(() => { this.navigator.to(`../${btn.toLowerCase()}`) })
           }
         }
-        for (const btn of this.navBtn) {
-          NavButton(btn)
-            .handleClickNav(() => { this.navigator.to(`../${btn.toLowerCase()}`) })
+        div()
+          .className(this.sectionNav)
+        {
+          this.NavIcon({})
+            .src("./github.svg")
+            .onclick(this.handleClickNavIcon)
+            .href("https://github.com/dlight-js/dlight")
+          this.NavIcon({})
+            .src("./discord.svg")
+            .onclick(this.handleClickNavIcon)
+          this.NavIcon({})
+            .src("./lightMode.svg")
+            .onclick(this.handleClickNavIcon)
+            .isBorder()
+          this.NavIcon({})
+            .src("./language.svg")
+            .onclick(this.handleClickNavIcon)
+            .isBorder()
         }
-      }
-      div()
-        .className(this.sectionNav)
-      {
-        this.NavIcon({})
-          .src("./github.svg")
-          .onclick(this.handleClickNavIcon)
-          .href("https://github.com/dlight-js/dlight")
-        this.NavIcon({})
-          .src("./discord.svg")
-          .onclick(this.handleClickNavIcon)
-        this.NavIcon({})
-          .src("./lightMode.svg")
-          .onclick(this.handleClickNavIcon)
-          .isBorder()
-        this.NavIcon({})
-          .src("./language.svg")
-          .onclick(this.handleClickNavIcon)
-          .isBorder()
       }
     }
   }
+
+  headerHeightCss = css`
+    height: 80px;
+  `
 
   headerWrapCss = css`
     background-color: ${this.style2 ? this.theme.orange4 : this.theme.orange2};

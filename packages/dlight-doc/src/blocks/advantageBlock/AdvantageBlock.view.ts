@@ -27,7 +27,7 @@ class AdvantageBlock extends View {
           .className(this.dlightMarkitCodeBlockHeader)
       }
       div()
-        .className(this.dlightMarkitCode)
+        .className(this.dlightHomepageMarkitCode)
         .onmouseover(() => { this.hoverState = true })
         .onmouseleave(() => { this.hoverState = false; this.hasCopied = false })
       {
@@ -74,12 +74,13 @@ class AdvantageBlock extends View {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 16px 16px 16px;
+    padding: 10px 16px;
     font-size: 95%;
   `
   code = css`
     font-family: ui-monospace, SFMono-Regular, Menlo,Monaco, Consolas, Liberation Mono, Courier New, monospace;
     line-height: 1.25rem;
+    text-wrap: wrap;
   `
   copyIcon = css`
     width: 30px;
@@ -95,5 +96,4 @@ class AdvantageBlock extends View {
   `
 }
 
-// export default AdvantageBlock as any as Typed<AdvantageBlock>
 export default AdvantageBlock
