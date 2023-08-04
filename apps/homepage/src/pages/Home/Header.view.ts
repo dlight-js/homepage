@@ -1,9 +1,9 @@
-import { CustomNode, View } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { type Typed, div, Env, required, Prop, RequiredProp, img, SubView, a } from "@dlightjs/types"
 import LogoTitle from "../../Icon/LogoTitle.view"
 import NavButton from "./NavButton.view"
 import Logo from "../../Icon/Logo.view"
-import { css } from "@iandx/easy-css"
+import { css } from "@dlightjs/easy-css"
 
 class Header extends View {
   @Env navigator: any = required
@@ -43,73 +43,85 @@ class Header extends View {
     }
   }.bind(this)
 
-  didMount(_els: HTMLElement[], _node: CustomNode): void {
+  didMount() {
     window.onscroll = this.listenScroll
   }
 
   Body() {
     div()
-      .className(this.headerWrapCss)
+      .className(this.headerHeightCss)
     {
       div()
-        .className(this.sectionNav)
+        .className(this.headerWrapCss)
       {
         div()
-          .onclick(() => { this.navigator.to("..") })
-          .className(this.logoWrapCss)
+          .className(this.sectionNav)
         {
-          if (this.style2) {
-            LogoTitle()
-          } else {
-            Logo()
+          div()
+            .onclick(() => { this.navigator.to("..") })
+            .className(this.logoWrapCss)
+          {
+            if (this.style2) {
+              LogoTitle()
+            } else {
+              Logo()
+            }
+          }
+          for (const btn of this.navBtn) {
+            NavButton(btn)
+              .handleClickNav(() => { this.navigator.to(`../${btn.toLowerCase()}`) })
           }
         }
-        for (const btn of this.navBtn) {
-          NavButton(btn)
-            .handleClickNav(() => { this.navigator.to(`../${btn.toLowerCase()}`) })
+        div()
+          .className(this.sectionNav)
+        {
+          this.NavIcon({})
+            .src("./github.svg")
+            .onclick(this.handleClickNavIcon)
+            .href("https://github.com/dlight-js/dlight")
+          this.NavIcon({})
+            .src("./discord.svg")
+            .onclick(this.handleClickNavIcon)
+          this.NavIcon({})
+            .src("./lightMode.svg")
+            .onclick(this.handleClickNavIcon)
+            .isBorder()
+          this.NavIcon({})
+            .src("./language.svg")
+            .onclick(this.handleClickNavIcon)
+            .isBorder()
         }
-      }
-      div()
-        .className(this.sectionNav)
-      {
-        this.NavIcon({})
-          .src("./github.svg")
-          .onclick(this.handleClickNavIcon)
-          .href("https://github.com/dlight-js/dlight")
-        this.NavIcon({})
-          .src("./discord.svg")
-          .onclick(this.handleClickNavIcon)
-        this.NavIcon({})
-          .src("./lightMode.svg")
-          .onclick(this.handleClickNavIcon)
-          .isBorder()
-        this.NavIcon({})
-          .src("./language.svg")
-          .onclick(this.handleClickNavIcon)
-          .isBorder()
       }
     }
   }
+
+  headerHeightCss = css`
+    height: 80px;
+  `
 
   headerWrapCss = css`
     background-color: ${this.style2 ? this.theme.orange4 : this.theme.orange2};
     position: fixed;
     top: 0;
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    /* padding: ${this.style2 ? "0 16px" : "16px 16px"}; */
-    padding: 0 16px;
+    padding: 5px 16px;
     z-index: 100;
   `
 
   sectionNav = css`
-    flex: 1;
+    margin-right: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    overflow: scroll;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   `
 
   logoWrapCss = css`

@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, div, Env, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@dlightjs/easy-css"
 import DLightEditor from "dlight-editor"
 import { PreviewCode } from "../../utils/const"
 
@@ -17,7 +17,7 @@ class PreviewSection extends View {
         .modules([{
           code: PreviewCode,
           path: "/index.ts"
-        },])
+        }])
         .width("500px")
         .height("500px")
         .themeType("light")
@@ -31,7 +31,8 @@ class PreviewSection extends View {
     flex-direction: row;
     border-radius: 15px;
     background-color: ${this.theme.orange4};
-    width: 600px;
+    width: 60%;
+    min-width: 550px;
     height: 680px;
   `
 }

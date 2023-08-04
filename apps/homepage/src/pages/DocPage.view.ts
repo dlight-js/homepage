@@ -2,12 +2,12 @@ import { CustomNode, View } from "@dlightjs/dlight"
 import { Prop, RequiredProp, Typed, div, required } from "@dlightjs/types"
 import DlightDoc from "dlight-doc"
 import Header from "./Home/Header.view"
-import { css } from "@iandx/easy-css"
+import { css } from "@dlightjs/easy-css"
 
 class DocPage extends View {
   @Prop fileName: RequiredProp<string> = required
   mdString: string = ""
-  didMount(_els: HTMLElement[], _node: CustomNode): void {
+  willMount(_els: HTMLElement[], _node: CustomNode): void {
     fetch(this.fileName)
       .then(data => data.text())
       .then(text => this.mdString = text)

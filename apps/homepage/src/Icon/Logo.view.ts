@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { DLightIconType } from "@dlightjs/material-icons"
 import { Typed, img } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@dlightjs/easy-css"
 
 class Logo extends View {
   _$forwardProps = true

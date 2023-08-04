@@ -1,8 +1,8 @@
-import { CustomNode, View } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { type Typed, div, Env, required, Prop, RequiredProp, img } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@dlightjs/easy-css"
 
-interface FeatureDataType {
+export interface FeatureDataType {
   title: string
   imgUrl: string
   content: string
@@ -12,10 +12,6 @@ class FeatureCard extends View {
   @Env navigator: any = required
   @Env theme: any = required
   @Prop data: RequiredProp<FeatureDataType> = required
-
-  didMount(_els: HTMLElement[], _node: CustomNode): void {
-    console.log(this.data)
-  }
 
   Body() {
     div()
@@ -32,12 +28,13 @@ class FeatureCard extends View {
   }
 
   featureCardWrapCss = css`
-    margin: auto;
+    margin: 20px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 480px;
+    max-width: 450px;
+    min-width: 260px;
     height: 350px;
     border-radius: 15px;
     background-color: ${this.theme.orange4};
