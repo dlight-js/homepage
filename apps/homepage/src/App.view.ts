@@ -4,7 +4,7 @@ import { Route, RouterSpace } from "@dlightjs/components"
 import Home from "./pages/Home/Home.view"
 import ErrorPage from "./pages/ErrorPage.view"
 import Playground from "./pages/Playground.view"
-import DocPage from "./pages/DocPage.view"
+import DocPage from "./pages/Doc/DocPage.view"
 import { colors } from "./utils/const"
 
 class App extends View {
@@ -26,10 +26,9 @@ class App extends View {
         {
           DocPage()
         }
-        Route("examples")
+        Route("docs")
         {
           DocPage()
-            .fileName("./examples.md")
         }
         Route("playground")
         {

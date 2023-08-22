@@ -10,7 +10,7 @@ class Header extends View {
   @Env theme: any = required
   @Prop handleClickNav: RequiredProp<(tabKey: string) => void> = required
   @Prop themeType: RequiredProp<string> = required
-  navBtn = ["Guides", "Examples", "Playground", "Ecosystem"]
+  navBtn = ["Documents", "Playground", "Ecosystem"]
   style2 = false
 
   @SubView

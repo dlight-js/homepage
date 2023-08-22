@@ -1,3 +1,5 @@
+# pageConfiguration
+
 # Getting Started
 
 ## Installation
