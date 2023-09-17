@@ -47,11 +47,16 @@ class DlightDoc extends View {
 
   pathWatcher = (() => {
     if (this.path) {
-      this.catalogueIndex = 0
+      // this.markitViewEl?.scrollTo({
+      //   top: 0
+      //   // behavior: "smooth"
+      // })
       this.markitViewEl?.scrollTo({
-        top: 0,
-        behavior: "smooth"
+        top: 0
       })
+      setTimeout(() => {
+        this.catalogueIndex = 0
+      }, 100)
     }
   })()
 
@@ -60,7 +65,8 @@ class DlightDoc extends View {
       if (index === this.catalogueIndex + 1) {
         const el = document.getElementById(item.content[0].content)
         const fromTop = el?.getBoundingClientRect().top ?? 0
-        if (fromTop <= 10) {
+        if (fromTop < 0) {
+          console.log(fromTop, item.content[0].content)
           this.catalogueIndex += 1
         }
       } else if (index === this.catalogueIndex - 1) {
@@ -105,6 +111,7 @@ class DlightDoc extends View {
         MarkitView(this._$content)
           .getAst(this.getAst)
         NextPageNav()
+          .updateCurrentIndex(this.updateCatalogueIndex)
       }
       if (this.isShowCatalogue) {
         div()

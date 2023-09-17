@@ -12,15 +12,31 @@ class PreviewSection extends View {
     div()
       .className(this.previewWrapCss)
     {
-      div("preview testtest")
-      DLightEditor()
-        .modules([{
-          code: PreviewCode,
-          path: "/index.ts"
-        }])
-        .width("500px")
-        .height("500px")
-        .themeType("light")
+      div()
+      {
+        div("This is a title")
+        div(`In the bustling heart of the city, life pulses with an unyielding energy that seems to infuse every corner with a sense of purpose. Tall skyscrapers reach for the heavens, casting elongated shadows that dance upon the streets below. Amidst the urban cacophony, a symphony of cultures intertwines, creating a vibrant tapestry of diversity.
+        Coffee shops exude the rich aroma of freshly ground beans, inviting passersby to take a momentary escape from the rush. Pedestrians hurry along the sidewalks, their footsteps echoing a rhythm of urgency, while artists display their creations on makeshift galleries, adding splashes of color to the gray concrete.
+        `)
+        div()
+        {
+          div("View More Examples")
+        }
+      }
+      div()
+        .style({
+          height: "500px"
+        })
+      {
+        DLightEditor()
+          .modules([{
+            code: PreviewCode,
+            path: "/index.ts"
+          }])
+          .width("500px")
+          .height("500px")
+          .themeType("light")
+      }
     }
   }
 

@@ -1,11 +1,11 @@
-import { DocsStructureMapType } from "./types"
+import { DocsStructureMapType, ExmaplesCodeDataType } from "./types"
 import { initMap } from "./utilFunc"
 
 export const indexCode = `import DLight, { View, render } from "@dlightjs/dlight"
-import HelloView from "./hello"
-import CounterView from "./counter"
-import ArrayView from "./array"
-import ToggleView from "./toggle"
+import HelloView from "./hello.view"
+import CounterView from "./counter.view"
+import ArrayView from "./array.view"
+import ToggleView from "./toggle.view"
 class MyComp extends View {
   Body() {
     HelloView()
@@ -27,7 +27,7 @@ export default HelloView
 `
 
 export const CounterView = `import DLight, { View } from "@dlightjs/dlight"
-import WrapperView from "./wrapper"
+import WrapperView from "./wrapper.view"
 class CountView extends View {
   count = 1
   Body() {
@@ -50,7 +50,7 @@ export default CountView
 `
 
 export const ArrayView = `import DLight, { View } from "@dlightjs/dlight"
-import WrapperView from "./wrapper"
+import WrapperView from "./wrapper.view"
 class ArrayView extends View {
   apples = ["apple0", "apple1", "apple2"]
   Body() {
@@ -76,7 +76,7 @@ export default ArrayView
 `
 
 export const ToggleView = `import DLight, { View } from "@dlightjs/dlight"
-import WrapperView from "./wrapper"
+import WrapperView from "./wrapper.view"
 class ToggleView extends View {
   toggle = true
   Body() {
@@ -267,6 +267,112 @@ export const featureData = [
   }
 ]
 
+export const ExamplesCodeData: ExmaplesCodeDataType[] = [
+  {
+    title: "Reactivity",
+    description: "",
+    children: [
+      {
+        title: "Declare State",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        modules: [
+          {
+            code: `import DLight, { View, render } from "@dlightjs/dlight"
+import Name from "./Name.view"
+class MyComp extends View {
+  Body() {
+    Name()
+  }
+}
+render("app", MyComp)`,
+            path: "/index.ts"
+          },
+          {
+            code: `import DLight, { View } from "@dlightjs/dlight"
+class Name extends View {
+  name = "John"
+
+  Body() {
+    h1(this.name)
+  }
+}
+
+export default Name`,
+            path: "/Name.view.ts"
+          }
+        ]
+      },
+      {
+        title: "Update State",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae.",
+        modules: [
+          {
+            code: `import DLight, { View, render } from "@dlightjs/dlight"
+import Name from "./Name.view"
+class MyComp extends View {
+  Body() {
+    Name()
+  }
+}
+render("app", MyComp)`,
+            path: "/index.ts"
+          },
+          {
+            code: `import DLight, { View } from "@dlightjs/dlight"
+
+class Name extends View {
+  name = "John"
+
+  beforeInit() {
+    this.name = "Jane"
+  }
+
+  Body() {
+    h1(this.name)
+  }
+}
+            
+export default Name`,
+            path: "/Name.view.ts"
+          }
+        ]
+      },
+      {
+        title: "Computed State",
+        description: "Lorem ipsum dolor sit amet, consectetur.",
+        modules: [
+          {
+            code: `import DLight, { View, render } from "@dlightjs/dlight"
+import DoubleCount from "./DoubleCount.view"
+class MyComp extends View {
+  Body() {
+    DoubleCount()
+  }
+}
+render("app", MyComp)`,
+            path: "/index.ts"
+          },
+          {
+            code: `import DLight, { View } from "@dlightjs/dlight"
+class DoubleCount extends View {
+  count = 10
+  doubleCount = this.count * 2
+
+  Body() {
+    div(this.doubleCount)
+  }
+}
+
+export default DoubleCount`,
+            path: "/DoubleCount.view.ts"
+          }
+        ]
+      }
+    ]
+  }
+
+]
+
 export const DocsStructureMap: DocsStructureMapType[] = initMap([
   {
     name: "Guide",
@@ -311,3 +417,24 @@ export const DocsStructureMap: DocsStructureMapType[] = initMap([
     path: "test"
   }
 ], "docs")
+
+export const HeaderData = [
+  {
+    btnName: "Documents",
+    path: "../docs/guide",
+    structureData: DocsStructureMap
+  },
+  {
+    btnName: "Playground",
+    path: "../playground"
+  },
+  {
+    btnName: "Examples",
+    path: "../examples",
+    structureData: ExamplesCodeData
+  },
+  {
+    btnName: "Ecosystem",
+    path: "../ecosystem"
+  }
+]

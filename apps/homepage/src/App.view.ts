@@ -1,18 +1,26 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, env } from "@dlightjs/types"
-import { Route, RouterSpace } from "@dlightjs/components"
-import Home from "./pages/Home/Home.view"
+import { Route, RouterSpace, lazy } from "@dlightjs/components"
+import Home from "./pages/home/Home.view"
 import ErrorPage from "./pages/ErrorPage.view"
 import Playground from "./pages/Playground.view"
-import DocPage from "./pages/Doc/DocPage.view"
+import DocPage from "./pages/doc/DocPage.view"
 import { colors } from "./utils/const"
+import ExamplesPage from "./pages/examples/ExamplesPage.view"
 
 class App extends View {
   themeType = "light"
   theme = colors[this.themeType]
+  DocPage = lazy(async() => await import("./pages/doc/DocPage.view"))
+
+  updateThemeType() {
+    this.themeType = this.themeType === "light" ? "dark" : "light"
+  }
 
   Body() {
     env()
+      .updateThemeType(this.updateThemeType)
+      .themeType(this.themeType)
       .theme(this.theme)
     {
       RouterSpace()
@@ -34,10 +42,13 @@ class App extends View {
         {
           Playground()
         }
+        Route("examples")
+        {
+          ExamplesPage()
+        }
         Route("ecosystem")
         {
           DocPage()
-            .fileName("./ecosystem.md")
         }
         Route(".")
         {

@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, Prop, required, div, Env } from "@dlightjs/types"
+import { type Typed, Prop, required, div, Env, RequiredProp } from "@dlightjs/types"
 import { css } from "@dlightjs/easy-css"
 import { KeyboardArrowLeftFilled, KeyboardArrowRightFilled } from "@dlightjs/material-icons"
 
@@ -7,15 +7,20 @@ class NextPageNav extends View {
   @Env navigator: any = required
   @Env nextPage: Prop<any> = required
   @Env prePage: Prop<any> = required
+  @Prop updateCurrentIndex: RequiredProp<(index: number) => void> = required
 
   hover1 = false
   hover2 = false
   handleClickNext() {
     this.navigator.to("/" + this.nextPage.path)
+    this.updateCurrentIndex(0)
+    this.hover2 = false
   }
 
   handleClickPre() {
     this.navigator.to("/" + this.prePage.path)
+    this.updateCurrentIndex(0)
+    this.hover1 = false
   }
 
   Body() {

@@ -6,6 +6,7 @@ import { css } from "@dlightjs/easy-css"
 class LogoTitle extends View {
   _$forwardProps = true
   @Prop onclick: RequiredProp<() => void> = required
+  @Prop isShow: RequiredProp<boolean> = required
   // Body() {
   //   DLightIcon()
   //     .forwardProps(true)
@@ -22,14 +23,18 @@ class LogoTitle extends View {
   // }
   Body() {
     img()
-      .src("./logo-png.svg")
+      .src("./light.svg")
       .className(this.logoCss)
       .onclick(this.onclick)
   }
 
   logoCss = css`
-    height: 50px;
+    width: ${this.isShow ? "70px" : 0};
+    height: 30px;
+
+    padding-bottom: 2px;
+    margin-right: 25px;
   `
 }
 
-export default LogoTitle as any as Typed<DLightIconType>
+export default LogoTitle as any as Typed<LogoTitle>

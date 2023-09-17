@@ -6,6 +6,7 @@ import FileStructure from "./FileStructure.view"
 import { findCertainFile, getPrevNext } from "../../utils/utilFunc"
 import { DocsStructureMap } from "../../utils/const"
 import { DocsStructureMapType } from "../../utils/types"
+import Header from "../home/Header.view"
 
 class DocPage extends View {
   @Env path: string = required
@@ -28,6 +29,7 @@ class DocPage extends View {
   })()
 
   Body() {
+    Header()
     env()
       .selectedName(this.selectedName)
       .prePage(this.prevFile)

@@ -28,13 +28,19 @@ class FeatureCard extends View {
   }
 
   featureCardWrapCss = css`
-    margin: 20px 10px;
+    flex: 1;
+    flex-shrink: 1;
+    box-sizing: border-box;
+    min-width: 245px;
+    /* width: 45%; */
+    /* margin: 20px auto; */
+    margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 450px;
-    min-width: 260px;
+    /* max-width: 450px; */
+    /* min-width: 245px; */
     height: 350px;
     border-radius: 15px;
     background-color: ${this.theme.orange4};

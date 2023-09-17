@@ -16,11 +16,14 @@ class FileName extends View {
   @Prop filePath: RequiredProp<string> = required
   @Prop children: RequiredProp<DocsStructureMapType[] | undefined> = required
 
-  isOpen = this.path.startsWith(this.filePath)
+  // isOpen = this.path.startsWith(this.filePath)
+
   isChoose = this.selectedName === this.name
+  isOpen = false
   isHover = false
   content: any
-  nextHeight: number | undefined = this.path.startsWith(this.filePath) ? undefined : 0
+  // nextHeight: number | undefined = this.isOpen ? undefined : 0
+  nextHeight: number | undefined = 0
   targetHeight = 0
 
   updateNextHeight(nextHeight: number) {
