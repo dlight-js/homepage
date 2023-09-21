@@ -21,7 +21,7 @@ class Logo extends View {
   // }
   Body() {
     img()
-      .src("./logo-leading-png.svg")
+      .src("/logo-leading-png.svg")
       .className(this.logoCss)
   }
 

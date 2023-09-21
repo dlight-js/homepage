@@ -23,7 +23,7 @@ class LogoTitle extends View {
   // }
   Body() {
     img()
-      .src("./light.svg")
+      .src("/light.svg")
       .className(this.logoCss)
       .onclick(this.onclick)
   }

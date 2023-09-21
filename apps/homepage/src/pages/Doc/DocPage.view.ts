@@ -16,6 +16,7 @@ class DocPage extends View {
   nextFile: DocsStructureMapType | undefined
   scrollView: any
 
+  // pathWatcher is a function that will be executed when the path changes
   pathWatcher = (() => {
     const fileData = findCertainFile({ mapData: getPrevNext(DocsStructureMap), filePath: this.path })
     const filePath = `/${this.path}${fileData?.children ? "/index.md" : ".md"}`
@@ -65,6 +66,7 @@ class DocPage extends View {
   rowFlexCss = css`
     display: flex;
     flex-direction: row;
+    margin-top: 50px;
   `
 }
 

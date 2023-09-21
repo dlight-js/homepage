@@ -108,7 +108,7 @@ class Header extends View {
           }
 
           div()
-            .onclick(() => { this.navigator.to("..") })
+            .onclick(() => { this.navigator.to("/") })
             .className(this.logoWrapCss)
           {
             TransitionGroup()
@@ -148,10 +148,10 @@ class Header extends View {
             .color(this.theme.green9)
             .onclick(() => {})
           this.NavForwardIcon({})
-            .src("./github.svg")
+            .src("/github.svg")
             .href("https://github.com/dlight-js/dlight")
           this.NavForwardIcon({})
-            .src("./discord.svg")
+            .src("/discord.svg")
         }
       }
     }
