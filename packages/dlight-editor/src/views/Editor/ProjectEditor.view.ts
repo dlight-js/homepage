@@ -20,6 +20,7 @@ class ProjectEditor extends View {
 
   /** @reactive */
   dlightProject = new DLightProject(this.modules)
+
   tabKey = "index"
   isTabEdit = false
   saveViewState?: () => monaco.editor.ICodeEditorViewState

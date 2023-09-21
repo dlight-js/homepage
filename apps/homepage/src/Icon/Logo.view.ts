@@ -1,10 +1,11 @@
 import { View } from "@dlightjs/dlight"
 import { DLightIconType } from "@dlightjs/material-icons"
-import { Typed, img } from "@dlightjs/types"
+import { Prop, RequiredProp, Typed, img, required } from "@dlightjs/types"
 import { css } from "@dlightjs/easy-css"
 
 class Logo extends View {
   _$forwardProps = true
+  @Prop isRotate: RequiredProp<boolean> = required
   // Body() {
   //   DLightIcon()
   //     .forwardProps(true)
@@ -20,14 +21,16 @@ class Logo extends View {
   // }
   Body() {
     img()
-      .src("./logo-leading-png.svg")
+      .src("/logo-leading-png.svg")
       .className(this.logoCss)
   }
 
   logoCss = css`
-    width: 50px;
-    height: 50px;
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+    transform: ${this.isRotate ? "rotate(-90deg)" : ""};
   `
 }
 
-export default Logo as any as Typed<DLightIconType>
+export default Logo as any as Typed<Logo>

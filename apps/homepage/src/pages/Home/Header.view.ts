@@ -4,47 +4,77 @@ import LogoTitle from "../../Icon/LogoTitle.view"
 import NavButton from "./NavButton.view"
 import Logo from "../../Icon/Logo.view"
 import { css } from "@dlightjs/easy-css"
+import { TransitionGroup } from "@dlightjs/components"
+import { MenuRound, CloseRound, LightModeOutlined, TranslateOutlined } from "@dlightjs/material-icons"
+import FileStructure from "../doc/FileStructure.view"
+import { DocsStructureMap, HeaderData } from "../../utils/const"
 
 class Header extends View {
   @Env navigator: any = required
   @Env theme: any = required
+  @Env updateThemeType: any = required
   @Prop handleClickNav: RequiredProp<(tabKey: string) => void> = required
   @Prop themeType: RequiredProp<string> = required
-  navBtn = ["Guides", "Examples", "Playground", "Ecosystem"]
-  style2 = false
+  @Prop isNeedAnimation: RequiredProp<boolean> = required
+  navBtn = HeaderData
+  style2 = !this.isNeedAnimation
+  isShowShadow = !this.isNeedAnimation
+  isShortHeader = window.innerWidth < 818
+  isShowMenu = false
 
   @SubView
-  NavIcon({ src, onclick, isBorder, href }: any): any {
+  NavForwardIcon({ src, href }: any): any {
     a()
       .href(href)
     {
       img()
         .className(this.IconSizeCss)
-        .className(isBorder ? this.IconBorderCss : "")
         .src(src)
-        .onclick(onclick)
     }
   }
 
-  handleClickNavIcon() {
-    console.log("hhhh")
+  @SubView
+  NavFuncIcon({ src, onclick }: any): any {
+    img()
+      .className(this.IconSizeCss)
+      // .className(this.IconBorderCss)
+      .src(src)
+      .onclick(onclick)
   }
 
-  listenScroll = function () {
+  listenScroll = function() {
     // 为了保证兼容性，这里取两个值，哪个有值取哪一个
     // scrollTop就是触发滚轮事件时滚轮的高度
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
     // console.log("滚动距离" + scrollTop);
-    if (scrollTop > 500) {
+    if (scrollTop > 0) {
       this.style2 = true
+      setTimeout(() => {
+        this.isShowShadow = true
+      }, 10)
     }
-    if (this.style2 && scrollTop < 500) {
+    if (this.style2 && scrollTop <= 0) {
       this.style2 = false
+      this.isShowShadow = false
     }
   }.bind(this)
 
+  handleWindowResize() {
+    if (window.innerWidth < 818) {
+      this.isShortHeader = true
+    } else {
+      this.isShortHeader = false
+      this.isShowMenu = false
+    }
+  }
+
   didMount() {
-    window.onscroll = this.listenScroll
+    window.onscroll = this.isNeedAnimation ? this.listenScroll : null
+    window.addEventListener("resize", this.handleWindowResize)
+  }
+
+  willUnmount() {
+    window.removeEventListener("resize", this.handleWindowResize)
   }
 
   Body() {
@@ -58,82 +88,136 @@ class Header extends View {
           .className(this.sectionNav)
         {
           div()
-            .onclick(() => { this.navigator.to("..") })
-            .className(this.logoWrapCss)
+            .style({ marginLeft: "5px" })
           {
-            if (this.style2) {
-              LogoTitle()
-            } else {
-              Logo()
+            if (this.isShortHeader && !this.isShowMenu) {
+              MenuRound()
+                .className(this.IconSizeCss)
+                .color(this.theme.green9)
+                .onclick(() => {
+                  this.isShowMenu = true
+                })
+            } else if (this.isShortHeader && this.isShowMenu) {
+              CloseRound()
+                .className(this.IconSizeCss)
+                .color(this.theme.green9)
+                .onclick(() => {
+                  this.isShowMenu = false
+                })
             }
           }
-          for (const btn of this.navBtn) {
-            NavButton(btn)
-              .handleClickNav(() => { this.navigator.to(`../${btn.toLowerCase()}`) })
+
+          div()
+            .onclick(() => { this.navigator.to("/") })
+            .className(this.logoWrapCss)
+          {
+            TransitionGroup()
+              .delay({
+                disappear: 0.2
+              })
+            {
+              Logo()
+                .isRotate(this.style2)
+            }
+            TransitionGroup()
+            {
+              LogoTitle()
+                .isShow(this.style2)
+            }
+          }
+          if (!this.isShortHeader) {
+            TransitionGroup()
+            {
+              for (const { btnName, path, structureData } of this.navBtn) {
+                NavButton(btnName)
+                  .handleClickNav(() => { this.navigator.to(path) })
+                  .structureData(structureData)
+              }
+            }
           }
         }
         div()
           .className(this.sectionNav)
         {
-          this.NavIcon({})
-            .src("./github.svg")
-            .onclick(this.handleClickNavIcon)
+          LightModeOutlined()
+            .className(this.IconSizeCss)
+            .color(this.theme.green9)
+            .onclick(this.updateThemeType)
+          TranslateOutlined()
+            .className(this.IconSizeCss)
+            .color(this.theme.green9)
+            .onclick(() => {})
+          this.NavForwardIcon({})
+            .src("/github.svg")
             .href("https://github.com/dlight-js/dlight")
-          this.NavIcon({})
-            .src("./discord.svg")
-            .onclick(this.handleClickNavIcon)
-          this.NavIcon({})
-            .src("./lightMode.svg")
-            .onclick(this.handleClickNavIcon)
-            .isBorder()
-          this.NavIcon({})
-            .src("./language.svg")
-            .onclick(this.handleClickNavIcon)
-            .isBorder()
+          this.NavForwardIcon({})
+            .src("/discord.svg")
         }
+      }
+    }
+    if (this.isShortHeader && this.isShowMenu) {
+      div()
+        .className(this.menuWarpCss)
+      {
+        FileStructure()
       }
     }
   }
 
+  menuWarpCss = css`
+    position: fixed;
+    background-color: white;
+    padding: 20px 10px;
+    width: calc(100% - 20px);
+    height: 100%;
+    
+  `
+
   headerHeightCss = css`
-    height: 80px;
+    height: 48px;
+    padding: 6px 0;
+    min-width: 430px;
   `
 
   headerWrapCss = css`
-    background-color: ${this.style2 ? this.theme.orange4 : this.theme.orange2};
+    box-shadow: ${this.isShowShadow ? "0 1px 5px -3px #A9A9A9" : ""};
+    background-color: ${this.theme.orange2};
     position: fixed;
     top: 0;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    height: 60px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 5px 16px;
     z-index: 100;
+    min-width: 430px;
   `
 
   sectionNav = css`
-    margin-right: 20px;
+    margin-right: 30px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    overflow: scroll;
+    /* overflow: scroll;
     ::-webkit-scrollbar {
       display: none;
-    }
+    } */
   `
 
   logoWrapCss = css`
-    margin-right: 16px;
     cursor: pointer;
+    margin-left: ${this.isShortHeader ? "5px" : "30px"};
   `
+
   IconSizeCss = css`
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     margin: 10px;
     cursor: pointer;
   `
+
   IconBorderCss = css`
     padding: 10px;
     background-color: ${this.theme.orange4};

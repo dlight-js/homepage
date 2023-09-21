@@ -1,8 +1,11 @@
+import { DocsStructureMapType, ExmaplesCodeDataType } from "./types"
+import { initMap } from "./utilFunc"
+
 export const indexCode = `import DLight, { View, render } from "@dlightjs/dlight"
-import HelloView from "./hello"
-import CounterView from "./counter"
-import ArrayView from "./array"
-import ToggleView from "./toggle"
+import HelloView from "./hello.view"
+import CounterView from "./counter.view"
+import ArrayView from "./array.view"
+import ToggleView from "./toggle.view"
 class MyComp extends View {
   Body() {
     HelloView()
@@ -24,7 +27,7 @@ export default HelloView
 `
 
 export const CounterView = `import DLight, { View } from "@dlightjs/dlight"
-import WrapperView from "./wrapper"
+import WrapperView from "./wrapper.view"
 class CountView extends View {
   count = 1
   Body() {
@@ -47,7 +50,7 @@ export default CountView
 `
 
 export const ArrayView = `import DLight, { View } from "@dlightjs/dlight"
-import WrapperView from "./wrapper"
+import WrapperView from "./wrapper.view"
 class ArrayView extends View {
   apples = ["apple0", "apple1", "apple2"]
   Body() {
@@ -73,7 +76,7 @@ export default ArrayView
 `
 
 export const ToggleView = `import DLight, { View } from "@dlightjs/dlight"
-import WrapperView from "./wrapper"
+import WrapperView from "./wrapper.view"
 class ToggleView extends View {
   toggle = true
   Body() {
@@ -206,8 +209,7 @@ export const colors: Record<string, Color> = {
     green11: "#526e37",
     green12: "#445d2a",
     green13: "#354d1d",
-    green14: "#263c10",
-    
+    green14: "#263c10"
   },
   dark: {
     text: "#000",
@@ -238,7 +240,7 @@ export const colors: Record<string, Color> = {
     green11: "#e3f3d3",
     green12: "#eaf6de",
     green13: "#f1f9e9",
-    green14: "#f8fcf4",
+    green14: "#f8fcf4"
   }
 }
 
@@ -246,21 +248,193 @@ export const featureData = [
   {
     title: "Delightful",
     imgUrl: "./logo-leading-png.svg",
-    content: "With an API designed to be intuitive and user-friendly, web development becomes effortless with Dlight, whether you're building a simple website or a complex web application.",
+    content: "With an API designed to be intuitive and user-friendly, web development becomes effortless with Dlight, whether you're building a simple website or a complex web application."
   },
   {
     title: "Performant",
     imgUrl: "./performant.svg",
-    content: "With a minuscule file size of just 4KB, Dlight is lightning-fast and ultra-lightweight, delivering optimal performance without the need for manual optimization.",
+    content: "With a minuscule file size of just 4KB, Dlight is lightning-fast and ultra-lightweight, delivering optimal performance without the need for manual optimization."
   },
   {
     title: "DX-first",
     imgUrl: "./insights.svg",
-    content: "Dlight uses the syntax of function calls and dot notation to make development more enjoyable, without the need to write outdated and hard-to-read XML code.",
+    content: "Dlight uses the syntax of function calls and dot notation to make development more enjoyable, without the need to write outdated and hard-to-read XML code."
   },
   {
     title: "Intuitively Simple",
     imgUrl: "./intuitively.svg",
-    content: "Dlight is born reactive and is designed to be intuitively simple, with a minimalistic API that requires no memorization of complex functions or libraries.",
+    content: "Dlight is born reactive and is designed to be intuitively simple, with a minimalistic API that requires no memorization of complex functions or libraries."
+  }
+]
+
+export const ExamplesCodeData: ExmaplesCodeDataType[] = [
+  {
+    title: "Reactivity",
+    description: "",
+    children: [
+      {
+        title: "Declare State",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        modules: [
+          {
+            code: `import DLight, { View, render } from "@dlightjs/dlight"
+import Name from "./Name.view"
+class MyComp extends View {
+  Body() {
+    Name()
+  }
+}
+render("app", MyComp)`,
+            path: "/index.ts"
+          },
+          {
+            code: `import DLight, { View } from "@dlightjs/dlight"
+class Name extends View {
+  name = "John"
+
+  Body() {
+    h1(this.name)
+  }
+}
+
+export default Name`,
+            path: "/Name.view.ts"
+          }
+        ]
+      },
+      {
+        title: "Update State",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae.",
+        modules: [
+          {
+            code: `import DLight, { View, render } from "@dlightjs/dlight"
+import Name from "./Name.view"
+class MyComp extends View {
+  Body() {
+    Name()
+  }
+}
+render("app", MyComp)`,
+            path: "/index.ts"
+          },
+          {
+            code: `import DLight, { View } from "@dlightjs/dlight"
+
+class Name extends View {
+  name = "John"
+
+  beforeInit() {
+    this.name = "Jane"
+  }
+
+  Body() {
+    h1(this.name)
+  }
+}
+            
+export default Name`,
+            path: "/Name.view.ts"
+          }
+        ]
+      },
+      {
+        title: "Computed State",
+        description: "Lorem ipsum dolor sit amet, consectetur.",
+        modules: [
+          {
+            code: `import DLight, { View, render } from "@dlightjs/dlight"
+import DoubleCount from "./DoubleCount.view"
+class MyComp extends View {
+  Body() {
+    DoubleCount()
+  }
+}
+render("app", MyComp)`,
+            path: "/index.ts"
+          },
+          {
+            code: `import DLight, { View } from "@dlightjs/dlight"
+class DoubleCount extends View {
+  count = 10
+  doubleCount = this.count * 2
+
+  Body() {
+    div(this.doubleCount)
+  }
+}
+
+export default DoubleCount`,
+            path: "/DoubleCount.view.ts"
+          }
+        ]
+      }
+    ]
+  }
+
+]
+
+export const DocsStructureMap: DocsStructureMapType[] = initMap([
+  {
+    name: "Guide",
+    path: "guide",
+    children: [
+      {
+        name: "Organize Files",
+        path: "organize-files"
+      },
+      {
+        name: "Advanced",
+        path: "advanced"
+      },
+      {
+        name: "Markdown",
+        path: "markdown"
+      }
+    ]
+  },
+  {
+    name: "Docs Theme",
+    path: "docs-theme",
+    children: [
+      {
+        name: "hh",
+        path: "hh",
+        children: [
+          {
+            name: "Get Started",
+            path: "get-started"
+          },
+          {
+            name: "Page Configuration",
+            path: "page-configuration"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    name: "Test",
+    path: "test"
+  }
+], "docs")
+
+export const HeaderData = [
+  {
+    btnName: "Documents",
+    path: "../docs/guide",
+    structureData: DocsStructureMap
+  },
+  {
+    btnName: "Playground",
+    path: "../playground"
+  },
+  {
+    btnName: "Examples",
+    path: "../examples",
+    structureData: ExamplesCodeData
+  },
+  {
+    btnName: "Ecosystem",
+    path: "../ecosystem"
   }
 ]

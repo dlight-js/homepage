@@ -5,6 +5,7 @@ import { css, div } from "@dlightjs/easy-css"
 import { featureData } from "../../utils/const"
 import PreviewSection from "./PreviewSection.view"
 import FeatureCardGroup from "./FeatureCardGroup.view"
+import Footer from "./Footer.view"
 
 class Home extends View {
   @Env navigator = required
@@ -16,6 +17,7 @@ class Home extends View {
       .className(this.bgCss)
     {
       Header()
+        .isNeedAnimation(true)
       div()
         .className(this.titleWrapCss)
       {
@@ -25,11 +27,12 @@ class Home extends View {
           .className(this.titleDescriptionCss)
         button("Get Started")
           .className(this.homeStartBtnCss)
-          .onclick(() => { this.navigator.to("./guides") })
+          .onclick(() => { this.navigator.to("./docs/guide") })
       }
       div()
-        .grid()
-        .gridTemplateColumns("repeat( auto-fit, minmax(300px, 1fr) )")
+        // .grid()
+        // .gridTemplateColumns("repeat( auto-fit, minmax(180px, 1fr) )")
+        // .gap("20px")
         .className(this.featureCardWrap)
       {
         FeatureCardGroup()
@@ -38,6 +41,7 @@ class Home extends View {
           .data(this.featureData.slice(2, 4))
       }
       PreviewSection()
+      Footer()
     }
   }
 
@@ -79,6 +83,11 @@ class Home extends View {
   `
 
   featureCardWrap = css`
+    /* align-items: center;
+    justify-content: center; */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     padding: 0 30px;

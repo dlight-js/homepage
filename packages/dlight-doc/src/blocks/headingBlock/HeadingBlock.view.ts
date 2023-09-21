@@ -6,10 +6,12 @@ import { InlineRenderer } from "@dlightjs/markit"
 class HeadingBlock extends View {
   @Prop _$content = required
   @Prop props = required
+
   headdingName = `h${this.props.headingLevel}`
 
   Body() {
     htmlTag(this.headdingName)()
+      .id(this._$content[0].content)
       .className(this.dlightMarkitHeading)
     {
       for (const content of this._$content) {

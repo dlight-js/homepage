@@ -158,8 +158,8 @@ export const colors: Record<string, Color> = {
   },
   dark: {
     background: "#1C1C1E",
-    text: "#FFFFFF",
-    primary: "#0A84FF",
+    text: "#ddd",
+    primary: "#0856b6",
     secondary: "#333",
     secondaryText: "#ccc"
   }
