@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, env, div } from "@dlightjs/types"
 import { Route, RouterSpace, lazy } from "@dlightjs/components"
-// import Home from "./pages/home/Home.view"
+import Home from "./pages/home/Home.view"
 import ErrorPage from "./pages/ErrorPage.view"
 import Playground from "./pages/Playground.view"
 // import DocPage from "./pages/doc/DocPage.view"
@@ -56,8 +56,7 @@ class App extends View {
         // }
         Route(".")
         {
-          // Home()
-          div("hello")
+          Home()
         }
         Route()
         {
