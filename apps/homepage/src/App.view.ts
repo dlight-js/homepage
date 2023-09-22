@@ -5,6 +5,7 @@ import Home from "./pages/home/Home.view"
 import ErrorPage from "./pages/ErrorPage.view"
 import Playground from "./pages/Playground.view"
 import DocPage from "./pages/doc/DocPage.view"
+
 import { colors } from "./utils/const"
 import ExamplesPage from "./pages/examples/ExamplesPage.view"
 import MobileHome from "./pages/home/MobileHome.view"
@@ -33,7 +34,6 @@ class App extends View {
         Route("guides")
         {
           DocPage()
-            .fileName("./guides.md")
         }
         Route("tutorial")
         {
