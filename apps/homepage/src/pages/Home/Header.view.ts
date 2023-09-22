@@ -7,7 +7,7 @@ import { css } from "@dlightjs/easy-css"
 import { TransitionGroup } from "@dlightjs/components"
 import { MenuRound, CloseRound, LightModeOutlined, TranslateOutlined } from "@dlightjs/material-icons"
 import FileStructure from "../doc/FileStructure.view"
-import { DocsStructureMap, HeaderData } from "../../utils/const"
+import { HeaderData } from "../../utils/const"
 
 class Header extends View {
   @Env navigator: any = required

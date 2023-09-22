@@ -1,19 +1,9 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, required, Prop, RequiredProp, img, Env } from "@dlightjs/types"
+import { type Typed, required, img, Env } from "@dlightjs/types"
 import { css, div } from "@dlightjs/easy-css"
 
 class Footer extends View {
   @Env theme: any = required
-
-  createHeart() {
-    const heart = document.createElement("div")
-    heart.className = "heart"
-    heartsContainer.appendChild(heart)
-
-    setTimeout(() => {
-      heart.remove()
-    }, 1000)
-  }
 
   Body() {
     div()
