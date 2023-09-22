@@ -1,5 +1,7 @@
 import { DocsStructureMapType, ExmaplesCodeDataType } from "./types"
 import { initMap } from "./utilFunc"
+import DocsStructureMapJson from "../../public/docs/documentsStructure.json"
+import EcosStructureMapJson from "../../public/ecosystem/ecosystemStructure.json"
 
 export const indexCode = `import DLight, { View, render } from "@dlightjs/dlight"
 import HelloView from "./hello.view"
@@ -373,15 +375,9 @@ export default DoubleCount`,
 
 ]
 
-export const DocsStructureMap: DocsStructureMapType[] = initMap(await fetch("/docs/documentsStructure.json")
-  .then(async data => await data.json())
-  .catch(err => console.log(err))
-, "docs")
+export const DocsStructureMap: DocsStructureMapType[] = initMap(DocsStructureMapJson, "docs")
 
-export const EcosStructureMap: DocsStructureMapType[] = initMap(await fetch("/ecosystem/ecosystemStructure.json")
-  .then(async data => await data.json())
-  .catch(err => console.log(err))
-, "ecosystem")
+export const EcosStructureMap: DocsStructureMapType[] = initMap(EcosStructureMapJson, "ecosystem")
 
 export const HeaderData = [
   {
