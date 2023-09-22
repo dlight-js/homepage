@@ -66,7 +66,6 @@ class DocPage extends View {
   rowFlexCss = css`
     display: flex;
     flex-direction: row;
-    margin-top: 50px;
   `
 }
 

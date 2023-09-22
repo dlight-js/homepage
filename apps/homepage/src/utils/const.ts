@@ -421,20 +421,20 @@ export const DocsStructureMap: DocsStructureMapType[] = initMap([
 export const HeaderData = [
   {
     btnName: "Documents",
-    path: "../docs/guide",
+    path: "/docs/guide",
     structureData: DocsStructureMap
   },
   {
     btnName: "Playground",
-    path: "../playground"
+    path: "/playground"
   },
   {
     btnName: "Examples",
-    path: "../examples",
+    path: "/examples",
     structureData: ExamplesCodeData
   },
   {
     btnName: "Ecosystem",
-    path: "../ecosystem"
+    path: "/ecosystem"
   }
 ]

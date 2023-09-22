@@ -34,7 +34,7 @@ class FeatureCard extends View {
     min-width: 245px;
     /* width: 45%; */
     /* margin: 20px auto; */
-    margin: 10px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;

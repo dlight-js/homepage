@@ -1,4 +1,4 @@
-import { View } from "@dlightjs/dlight"
+import { CustomNode, View } from "@dlightjs/dlight"
 import { type Typed, button, Env, required } from "@dlightjs/types"
 import Header from "./Header.view"
 import { css, div } from "@dlightjs/easy-css"
@@ -6,11 +6,18 @@ import { featureData } from "../../utils/const"
 import PreviewSection from "./PreviewSection.view"
 import FeatureCardGroup from "./FeatureCardGroup.view"
 import Footer from "./Footer.view"
+import { getPixel } from "../../utils/utilFunc"
 
 class Home extends View {
   @Env navigator = required
   @Env theme: any = required
+  @Env windowWidth: number = required
   featureData = featureData
+
+  didMount(_els: HTMLElement[], _node: CustomNode): void {
+    console.log(60 / this.windowWidth * 1920)
+    console.log(this.windowWidth)
+  }
 
   Body() {
     div()
@@ -19,6 +26,7 @@ class Home extends View {
       Header()
         .isNeedAnimation(true)
       div()
+        .element(this.title)
         .className(this.titleWrapCss)
       {
         div("DLight.js")
@@ -47,6 +55,7 @@ class Home extends View {
 
   bgCss = css`
     background-color: ${this.theme.orange2};
+    overflow-x: hidden;
   `
 
   homeTitleCss = css`

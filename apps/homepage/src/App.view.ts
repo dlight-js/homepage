@@ -1,4 +1,4 @@
-import { View } from "@dlightjs/dlight"
+import { CustomNode, View } from "@dlightjs/dlight"
 import { type Typed, env } from "@dlightjs/types"
 import { Route, RouterSpace, lazy } from "@dlightjs/components"
 import Home from "./pages/home/Home.view"
@@ -7,11 +7,14 @@ import Playground from "./pages/Playground.view"
 import DocPage from "./pages/doc/DocPage.view"
 import { colors } from "./utils/const"
 import ExamplesPage from "./pages/examples/ExamplesPage.view"
+import MobileHome from "./pages/home/MobileHome.view"
 
 class App extends View {
   themeType = "light"
   theme = colors[this.themeType]
   DocPage = lazy(async() => await import("./pages/doc/DocPage.view"))
+  mobileDetail = window.navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
+  windowWidth = window.innerWidth
 
   updateThemeType() {
     this.themeType = this.themeType === "light" ? "dark" : "light"
@@ -22,6 +25,8 @@ class App extends View {
       .updateThemeType(this.updateThemeType)
       .themeType(this.themeType)
       .theme(this.theme)
+      .mobileDetail(this.mobileDetail)
+      .windowWidth(this.windowWidth)
     {
       RouterSpace()
       {
@@ -53,6 +58,7 @@ class App extends View {
         Route(".")
         {
           Home()
+          // MobileHome()
         }
         Route()
         {

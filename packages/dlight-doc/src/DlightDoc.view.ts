@@ -47,10 +47,6 @@ class DlightDoc extends View {
 
   pathWatcher = (() => {
     if (this.path) {
-      // this.markitViewEl?.scrollTo({
-      //   top: 0
-      //   // behavior: "smooth"
-      // })
       this.markitViewEl?.scrollTo({
         top: 0
       })
@@ -146,7 +142,7 @@ class DlightDoc extends View {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    height: 90vh;
+    height: 82vh;
     overflow: scroll;
     padding: 30px 25px;
   `
