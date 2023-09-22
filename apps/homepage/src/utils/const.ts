@@ -373,50 +373,15 @@ export default DoubleCount`,
 
 ]
 
-export const DocsStructureMap: DocsStructureMapType[] = initMap([
-  {
-    name: "Guide",
-    path: "guide",
-    children: [
-      {
-        name: "Organize Files",
-        path: "organize-files"
-      },
-      {
-        name: "Advanced",
-        path: "advanced"
-      },
-      {
-        name: "Markdown",
-        path: "markdown"
-      }
-    ]
-  },
-  {
-    name: "Docs Theme",
-    path: "docs-theme",
-    children: [
-      {
-        name: "hh",
-        path: "hh",
-        children: [
-          {
-            name: "Get Started",
-            path: "get-started"
-          },
-          {
-            name: "Page Configuration",
-            path: "page-configuration"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    name: "Test",
-    path: "test"
-  }
-], "docs")
+export const DocsStructureMap: DocsStructureMapType[] = initMap(await fetch("/docs/documentsStructure.json")
+  .then(async data => await data.json())
+  .catch(err => console.log(err))
+, "docs")
+
+export const EcosStructureMap: DocsStructureMapType[] = initMap(await fetch("/ecosystem/ecosystemStructure.json")
+  .then(async data => await data.json())
+  .catch(err => console.log(err))
+, "ecosystem")
 
 export const HeaderData = [
   {
