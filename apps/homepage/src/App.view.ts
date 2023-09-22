@@ -5,7 +5,6 @@ import Home from "./pages/home/Home.view"
 import ErrorPage from "./pages/ErrorPage.view"
 import Playground from "./pages/Playground.view"
 import DocPage from "./pages/doc/DocPage.view"
-
 import { colors } from "./utils/const"
 import ExamplesPage from "./pages/examples/ExamplesPage.view"
 
