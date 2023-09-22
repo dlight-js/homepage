@@ -42,7 +42,7 @@ class Header extends View {
       .onclick(onclick)
   }
 
-  listenScroll = function() {
+  listenScroll() {
     // 为了保证兼容性，这里取两个值，哪个有值取哪一个
     // scrollTop就是触发滚轮事件时滚轮的高度
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
@@ -57,7 +57,7 @@ class Header extends View {
       this.style2 = false
       this.isShowShadow = false
     }
-  }.bind(this)
+  }
 
   handleWindowResize() {
     if (window.innerWidth < 818) {

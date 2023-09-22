@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { css } from "@dlightjs/easy-css"
-import { type Typed, div, button, Env, required, Prop } from "@dlightjs/types"
-// import Header from "../home/Header.view"
+import { type Typed, div, Env, required, Prop } from "@dlightjs/types"
+import Header from "../home/Header.view"
 import DLightEditor from "dlight-editor"
 import { ExamplesCodeData } from "../../utils/const"
 import { CodeModuleType, ExmaplesCodeDataType } from "../../utils/types"
@@ -49,8 +49,8 @@ class ExamplesPage extends View {
   }
 
   Body() {
-    // Header()
-    //   .isNeedAnimation(false)
+    Header()
+      .isNeedAnimation(false)
     div()
       .className(this.exmaplesPageWrapCss)
     {

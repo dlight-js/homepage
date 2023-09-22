@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, button, Env, required } from "@dlightjs/types"
-// import Header from "./Header.view"
+import Header from "./Header.view"
 import { css, div } from "@dlightjs/easy-css"
 import { featureData } from "../../utils/const"
 import PreviewSection from "./PreviewSection.view"
@@ -17,8 +17,8 @@ class Home extends View {
     div()
       .className(this.bgCss)
     {
-      // Header()
-      //   .isNeedAnimation(true)
+      Header()
+        .isNeedAnimation(true)
       div()
         .className(this.titleWrapCss)
       {
