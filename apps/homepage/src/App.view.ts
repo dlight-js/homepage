@@ -12,7 +12,7 @@ import ExamplesPage from "./pages/examples/ExamplesPage.view"
 class App extends View {
   themeType = "light"
   theme = colors[this.themeType]
-  DocPage = lazy(async() => await import("./pages/doc/DocPage.view"))
+  // DocPage = lazy(async() => await import("./pages/doc/DocPage.view"))
   mobileDetail = window.navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
   windowWidth = window.innerWidth
 
