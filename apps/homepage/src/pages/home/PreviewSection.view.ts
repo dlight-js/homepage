@@ -1,15 +1,43 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, div, Env, required } from "@dlightjs/types"
 import { css } from "@dlightjs/easy-css"
-import DLightEditor from "dlight-editor"
 import { PreviewCode } from "../../utils/const"
 import { KeyboardArrowRightFilled } from "@dlightjs/material-icons"
+import { lazy } from "@dlightjs/components"
 
+const DLightEditor = lazy(async() => await import("dlight-editor"))
 class PreviewSection extends View {
   @Env navigator: any = required
   @Env theme: any = required
 
   isHover = false
+
+  editorWrapperEl?: HTMLElement
+  editorLoaded = false
+
+  loadEditor() {
+    if (!this.editorWrapperEl) return false
+    const rect = this.editorWrapperEl.getBoundingClientRect()
+
+    const isInViewport = (
+      rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom > 0 &&
+      rect.left < (window.innerWidth || document.documentElement.clientWidth) &&
+      rect.right > 0
+    )
+
+    if (isInViewport && !this.editorLoaded) {
+      this.editorLoaded = true
+    }
+  }
+
+  willMount() {
+    window.addEventListener("scroll", this.loadEditor.bind(this))
+  }
+
+  didUnmount() {
+    window.removeEventListener("scroll", this.loadEditor.bind(this))
+  }
 
   Body() {
     div()
@@ -38,15 +66,20 @@ class PreviewSection extends View {
       }
       div()
         .className(this.codeWrapCss)
+        .element(this.editorWrapperEl)
       {
-        DLightEditor()
-          .modules([{
-            code: PreviewCode,
-            path: "/index.ts"
-          }])
-          .width("500px")
-          .height("500px")
-          .themeType("light")
+        if (this.editorLoaded) {
+          DLightEditor()
+            .modules([{
+              code: PreviewCode,
+              path: "/index.ts"
+            }])
+            .width("500px")
+            .height("500px")
+            .themeType("light")
+        } else {
+          "Loading editor"
+        }
       }
     }
   }
