@@ -19,10 +19,10 @@
     "@babel/preset-env": "^7.22.4",
     "@babel/standalone": "^7.22.4",
     "highlight.js": "^11.8.0",
-    "@dlightjs/dlight":"^0.9.28",
-    "@dlightjs/markit":"^0.9.35",
-    "@iandx/easy-css":"^0.10.14",
-    "@dlightjs/material-icons":"^0.9.28"
+    "@dlightjs/dlight": "^0.9.28",
+    "@dlightjs/markit": "^0.9.36",
+    "@iandx/easy-css": "^0.10.14",
+    "@dlightjs/material-icons": "^0.9.28"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.6",
@@ -33,7 +33,7 @@
     "typescript": "^4.9.3",
     "vite": "^4.0.0",
     "vite-plugin-dlight":"^0.9.26",
-    "vite-plugin-dlight-easy-css": "0.9.27"
+    "vite-plugin-easy-css": "^0.10.14"
   },
   "keywords": [
     "dlight.js"
