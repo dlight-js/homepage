@@ -10,7 +10,6 @@ import Footer from "./Footer.view"
 class Home extends View {
   @Env navigator = required
   @Env theme: any = required
-  @Env windowWidth: number = required
   featureData = featureData
 
   Body() {

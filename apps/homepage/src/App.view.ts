@@ -1,19 +1,12 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, env } from "@dlightjs/types"
 import { Route, RouterSpace, lazy } from "@dlightjs/components"
-import Home from "./pages/home/Home.view"
-import ErrorPage from "./pages/ErrorPage.view"
-import Playground from "./pages/Playground.view"
-import DocPage from "./pages/doc/DocPage.view"
 import { colors } from "./utils/const"
-import ExamplesPage from "./pages/examples/ExamplesPage.view"
+import Home from "./pages/home/Home.view"
 
 class App extends View {
   themeType = "light"
   theme = colors[this.themeType]
-  DocPage = lazy(async() => await import("./pages/doc/DocPage.view"))
-  mobileDetail = window.navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
-  windowWidth = window.innerWidth
 
   updateThemeType() {
     this.themeType = this.themeType === "light" ? "dark" : "light"
@@ -24,42 +17,32 @@ class App extends View {
       .updateThemeType(this.updateThemeType)
       .themeType(this.themeType)
       .theme(this.theme)
-      .mobileDetail(this.mobileDetail)
-      .windowWidth(this.windowWidth)
     {
       RouterSpace()
       {
-        Route("guides")
-        {
-          DocPage()
-        }
-        Route("tutorial")
-        {
-          DocPage()
-        }
         Route("docs")
+          .lazyLoad(async() => await import("./pages/doc/DocPage.view"))
         {
-          DocPage()
         }
         Route("playground")
+          .lazyLoad(async() => await import("./pages/Playground.view"))
         {
-          Playground()
         }
         Route("examples")
+          .lazyLoad(async() => await import("./pages/examples/ExamplesPage.view"))
         {
-          ExamplesPage()
         }
         Route("ecosystem")
+          .lazyLoad(async() => await import("./pages/doc/DocPage.view"))
         {
-          DocPage()
         }
         Route(".")
         {
           Home()
         }
         Route()
+        .lazyLoad(async() => await import("./pages/ErrorPage.view"))
         {
-          ErrorPage()
         }
       }
     }

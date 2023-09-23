@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@dlightjs/components": "0.9.29",
+    "@dlightjs/components": "0.9.30",
     "@dlightjs/dlight": "0.9.27",
     "@dlightjs/markit": "^0.1.2",
     "@dlightjs/material-icons": "0.9.25",
