@@ -382,7 +382,7 @@ export const EcosStructureMap: DocsStructureMapType[] = initMap(EcosStructureMap
 export const HeaderData = [
   {
     btnName: "Documents",
-    path: "/docs/guide",
+    path: "/docs/getting-started",
     structureData: DocsStructureMap
   },
   {
