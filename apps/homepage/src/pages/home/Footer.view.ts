@@ -9,23 +9,31 @@ class Footer extends View {
     div()
       .className(this.footerWrapCss)
     {
-      img()
-        .src("./logo-png.svg")
-      div("built with heart 💝")
-        .onmouseenter(() => {})
+      div()
+      .className(this.textWrapCss)
+      {
+        div("Built with DLight and ❤️")
+        div("by @iandx and @orange04")
+      }
     }
   }
 
-  footerWrapCss = css`
-    position: relative;
+  textWrapCss = css`
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+  `
+
+  footerWrapCss = css`
+    display: flex;
+    justify-content: center;
     align-items: center;
     margin: 0 8%;
+    margin-top: 80px;
     padding: 30px 0;
     border-top: solid 1px rgba(82,110,52,0.2);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: ${this.theme.green11};
+    color: rgba(82,110,52,0.7);
     cursor: default;
   `
 }

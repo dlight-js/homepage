@@ -83,6 +83,7 @@ class ExamplesPage extends View {
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
     padding: 10px 60px;
     background-color: ${this.theme.orange1};
     height: 89vh;
@@ -98,7 +99,9 @@ class ExamplesPage extends View {
   examplesListWrapCss = css`
     width: 30%;
     max-width: 240px;
+    min-width: 180px;
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: flex-start;
     /* border: solid 1px rgba(97,126,68, 0.3); */

@@ -9,9 +9,6 @@ class FeatureCardGroup extends View {
   Body() {
     div()
       .className(this.featureGroupWrapCss)
-    // .grid()
-    // .gridTemplateColumns("repeat( auto-fit, minmax(180px, 1fr) )")
-    // .gap("20px")
     {
       for (const feature of this.data) {
         FeatureCard()
@@ -22,7 +19,7 @@ class FeatureCardGroup extends View {
 
   featureGroupWrapCss = css`
     box-sizing: border-box;
-    max-width: 500px;
+    max-width: 580px;
     display: flex;
     flex: 1;
     flex-wrap: wrap;
