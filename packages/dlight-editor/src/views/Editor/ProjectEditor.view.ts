@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { div, Prop, required, RequiredProp, Typed } from "@dlightjs/types"
+import { div, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import { DLightProject } from "../../project/dlightProject"
 import { VStack } from "@dlightjs/components"
 import CodeEditor, { EditorStore } from "./CodeEditor.view"
@@ -8,15 +8,25 @@ import { codeTemplate } from "../../utils/const"
 import { ToBeTransformedModule, TransformedProjectModule } from "../../project/types"
 import Tabs from "./Tabs.view"
 
+interface ProjectEditorProps {
+  modules: ToBeTransformedModule[]
+  getCurrTransformedCode: (code: string) => void
+  getRefreshFunc: (func: any) => void
+  getMountId: (id: string) => void
+  language?: string
+  width?: string
+  onSave?: (project: DLightProject) => void
+}
+
 class ProjectEditor extends View {
   /** @prop */
-  @Prop modules: RequiredProp<ToBeTransformedModule[]> = required
-  @Prop getCurrTransformedCode: RequiredProp<(code: string) => void> = required
-  @Prop getRefreshFunc: RequiredProp<(func: any) => void> = required
-  @Prop getMountId: RequiredProp<(id: string) => void> = required
-  @Prop language: Prop<string> = "typescript" as any
-  @Prop width: Prop<string> = "100%" as any
-  @Prop onSave: Prop<(project: DLightProject) => void> = (() => {}) as any
+  @Prop modules = required
+  @Prop getCurrTransformedCode = required
+  @Prop getRefreshFunc = required
+  @Prop getMountId = required
+  @Prop language = "typescript"
+  @Prop width = "100%"
+  @Prop onSave?: (project: DLightProject) => void
 
   /** @reactive */
   dlightProject = new DLightProject(this.modules)
@@ -24,7 +34,7 @@ class ProjectEditor extends View {
   tabKey = "index"
   isTabEdit = false
   saveViewState?: () => monaco.editor.ICodeEditorViewState
-  currEditorStore?: EditorStore
+  currEditorStore: EditorStore = undefined as any
   getCurrEditorStore(editorStore: EditorStore) {
     this.currEditorStore = editorStore
   }
@@ -80,7 +90,7 @@ class ProjectEditor extends View {
     ))
     this.dlightProject = new DLightProject(modules) as any
     void this.dlightProject.run()
-    this.onSave(this.dlightProject)
+    this.onSave?.(this.dlightProject)
   }
 
   pathToTab(path: string) {
@@ -95,7 +105,7 @@ class ProjectEditor extends View {
   didMount() {
     void this.dlightProject.run()
     this.getRefreshFunc(() => {
-      this.updateModuleCode(this.currEditorStore!.model.getValue())
+      this.updateModuleCode(this.currEditorStore.model.getValue())
     })
   }
 
@@ -127,4 +137,4 @@ class ProjectEditor extends View {
   }
 }
 
-export default ProjectEditor as any as Typed<ProjectEditor>
+export default ProjectEditor as Pretty as Typed<ProjectEditorProps>

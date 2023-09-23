@@ -1,12 +1,16 @@
 import { View } from "@dlightjs/dlight"
-import { div } from "@dlightjs/easy-css"
-import { Env, Prop, required, RequiredProp, Static, Typed } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
+import { Env, Pretty, Prop, required, Static, Typed, div } from "@dlightjs/types"
 import * as monaco from "monaco-editor"
 import { Color, headerHeight } from "../../utils/const"
 
-class Output extends View {
+interface OutputProps {
+  code: string
+}
+
+class Output extends View implements OutputProps {
   /** @prop */
-  @Prop code: RequiredProp<string> = required
+  @Prop code = required
   @Env theme: Color = required
   @Env height: string = required
 
@@ -39,8 +43,12 @@ class Output extends View {
   Body() {
     div()
       .element(this.editorEl)
-      .height(`calc(${this.height} - ${headerHeight}px)`)
+      .className(this.outputCss)
   }
+
+  outputCss = css`
+    height: calc(${this.height} - ${headerHeight}px);
+  `
 }
 
-export default Output as any as Typed<Output>
+export default Output as Pretty as Typed<OutputProps>

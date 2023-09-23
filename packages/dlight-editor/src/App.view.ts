@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { div, type Typed } from "@dlightjs/types"
+import { div, Pretty, type Typed } from "@dlightjs/types"
 import { ArrayView, colors, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "./utils/const"
 import Playground from "./views/Playground.view"
 
@@ -38,4 +38,4 @@ class App extends View {
   }
 }
 
-export default App as any as Typed<App>
+export default App as Pretty as Typed

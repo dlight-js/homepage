@@ -1,10 +1,14 @@
 import { View } from "@dlightjs/dlight"
-import { div, Env, Prop, required, RequiredProp, Typed } from "@dlightjs/types"
+import { div, Env, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import { Color } from "../../utils/const"
+
+interface ResultProps {
+  mountId: string
+}
 
 class Result extends View {
   /** @prop */
-  @Prop mountId: RequiredProp<string> = required
+  @Prop mountId: string = required
   @Env theme: Color = required
 
   /** @view */
@@ -20,4 +24,4 @@ class Result extends View {
   /** @style */
 }
 
-export default Result as any as Typed<Result>
+export default Result as Pretty as Typed<ResultProps>
