@@ -63,3 +63,12 @@ export function findCertainFile({ mapData, filePath, fileName }: { mapData: Docs
   })
   return res
 }
+
+const isMobile = /Android|iPhone/i.test(window.navigator.userAgent)
+
+export function getSize(value: number) {
+  if (isMobile) {
+    return Math.ceil(value / 1100 * window.innerWidth * 2) + "px"
+  }
+  return value + "px"
+}

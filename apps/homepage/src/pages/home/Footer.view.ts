@@ -1,6 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, required, Env, Pretty, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
+import { getSize } from "../../utils/utilFunc"
 
 class Footer extends View {
   @Env theme: any = required
@@ -22,6 +23,7 @@ class Footer extends View {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: ${getSize(16)};
   `
 
   footerWrapCss = css`
@@ -29,8 +31,8 @@ class Footer extends View {
     justify-content: center;
     align-items: center;
     margin: 0 8%;
-    margin-top: 80px;
-    padding: 30px 0;
+    margin-top: ${getSize(80)};
+    padding: ${getSize(30)} 0;
     border-top: solid 1px rgba(82,110,52,0.2);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: rgba(82,110,52,0.7);

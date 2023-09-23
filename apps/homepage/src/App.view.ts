@@ -1,4 +1,4 @@
-import { View } from "@dlightjs/dlight"
+import { CustomNode, View } from "@dlightjs/dlight"
 import { type Typed, env, Pretty } from "@dlightjs/types"
 import { Route, RouterSpace } from "@dlightjs/components"
 import { colors } from "./utils/const"
@@ -11,6 +11,10 @@ class App extends View {
 
   updateThemeType() {
     this.themeType = this.themeType === "light" ? "dark" : "light"
+  }
+
+  didMount(_els: HTMLElement[], _node: CustomNode): void {
+    console.log(window.innerWidth, "devicePixelRatio")
   }
 
   Body() {

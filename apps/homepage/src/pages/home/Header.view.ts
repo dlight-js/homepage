@@ -8,6 +8,7 @@ import { Transition, TransitionGroup } from "@dlightjs/components"
 import { MenuRound, CloseRound, LightModeOutlined, TranslateOutlined } from "@dlightjs/material-icons"
 import FileStructure from "../doc/FileStructure.view"
 import { HeaderData } from "../../utils/const"
+import { getSize } from "../../utils/utilFunc"
 
 interface HeaderProps {
   handleClickNav: (tabKey: string) => void
@@ -117,28 +118,19 @@ class Header extends View implements HeaderProps {
             .onclick(() => { this.navigator.to("/") })
             .className(this.logoWrapCss)
           {
-            TransitionGroup()
-              .delay({
-                disappear: 0.2
-              })
+            Transition()
             {
               Logo()
                 .isRotate(this.style2)
-            }
-            TransitionGroup()
-            {
               LogoTitle()
                 .isShow(this.style2)
             }
           }
           if (!this.isShortHeader) {
-            Transition()
-            {
-              for (const { btnName, path, structureData } of this.navBtn) {
-                NavButton(btnName)
-                  .handleClickNav(() => { this.navigator.to(path) })
-                  .structureData(structureData)
-              }
+            for (const { btnName, path, structureData } of this.navBtn) {
+              NavButton(btnName)
+                .handleClickNav(() => { this.navigator.to(path) })
+                .structureData(structureData)
             }
           }
         }
@@ -176,7 +168,7 @@ class Header extends View implements HeaderProps {
     padding: 20px 10px;
     width: calc(100% - 20px);
     height: 100%;
-    
+    z-index: 100;
   `
 
   headerHeightCss = css`
@@ -191,18 +183,17 @@ class Header extends View implements HeaderProps {
     position: fixed;
     top: 0;
     display: flex;
-    flex-wrap: wrap;
     width: 100%;
     height: 60px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     z-index: 100;
-    min-width: 430px;
+    min-width: ${getSize(430)};
   `
 
   sectionNav = css`
-    margin-right: 30px;
+    margin-right: ${getSize(10)};
     display: flex;
     flex-direction: row;
     align-items: center;

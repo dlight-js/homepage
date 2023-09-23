@@ -1,6 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, div, Env, required, Prop, img, Pretty } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
+import { getSize } from "../../utils/utilFunc"
 
 export interface FeatureDataType {
   title: string
@@ -35,29 +36,31 @@ class FeatureCard extends View implements FeatureCardProps {
     flex: 1;
     flex-shrink: 1;
     box-sizing: border-box;
-    min-width: 270px;
-    margin: 20px 8px;
+    min-width: ${getSize(270)};
+    margin: ${getSize(20)} ${getSize(8)};
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 350px;
+    height: ${getSize(350)};
     border-radius: 15px;
     background-color: ${this.theme.orange4};
     color: ${this.theme.green12};
   `
 
   featureCardIconCss = css`
-    width: 50px;
-    height: 50px;
+    width: ${getSize(50)};
+    height: ${getSize(50)};
   `
+
   featureCardTitleCss = css`
-    font-size: 20px;
+    font-size: ${getSize(20)};
     font-weight: 600;
-    margin: 18px 0;
+    margin: ${getSize(18)} 0;
   `
+
   featureCardContentCss = css`
-    font-size: 17px;
+    font-size: ${getSize(17)};
     font-weight: light;
     width: 60%;
     display: flex;

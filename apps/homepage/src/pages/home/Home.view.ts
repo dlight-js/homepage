@@ -7,6 +7,7 @@ import PreviewSection from "./PreviewSection.view"
 import FeatureCardGroup from "./FeatureCardGroup.view"
 import Footer from "./Footer.view"
 import Example from "./Example.view"
+import { getSize } from "../../utils/utilFunc"
 
 class Home extends View {
   @Env navigator = required
@@ -58,7 +59,7 @@ class Home extends View {
   `
 
   titleExampleWrapCss = css`
-    margin-top: 30px;
+    margin-top: ${getSize(30)};
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -69,21 +70,21 @@ class Home extends View {
   homeTitleCss = css`
     color: ${this.theme.orange10};
     font-weight: bold;
-    font-size: 60px;
+    font-size: ${getSize(60)};
     text-shadow: 0 1px 5px;
   `
 
   titleDescriptionCss = css`
     color: ${this.theme.green12};
     font-weight: bold;
-    font-size: 50px;
+    font-size: ${getSize(50)};
     margin-top: 10px;
     text-align: ${this.isMobile ? "center" : ""};;
   `
 
   introDescriptionCss = css`
-    font-size: 25px;
-    line-height: 35px;
+    font-size: ${getSize(25)};
+    line-height: ${getSize(35)};
     margin-top: 10px;
     color: ${this.theme.green12};
     text-align: ${this.isMobile ? "center" : ""};;
@@ -97,16 +98,17 @@ class Home extends View {
     box-shadow: 1px 1px 2px ${this.theme.green10};
     border-width: 0;
     margin-top: 25px;
+    cursor: pointer;
   `
 
   titleWrapCss = css`
-    margin: 65px 10% 86px 0;
+    margin: ${getSize(65)} 10% ${getSize(86)} 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     align-items: ${this.isMobile ? "center" : ""};
     justify-content: center;
-    width: 500px;
+    width: ${getSize(500)};
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin-right: ${this.isMobile ? "0" : "10%"};
   `

@@ -1,9 +1,11 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, required, img, Env, Pretty, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
+import { getSize } from "../../utils/utilFunc"
 
 class Example extends View {
   @Env theme: any = required
+  @Env isMobile: boolean = required
   count = 2
 
   Body() {
@@ -28,7 +30,7 @@ class Example extends View {
     align-items: center;
     background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
     border: 0;
-    width: 38px;
+    width: ${getSize(38)};
     border-radius: 8px;
     box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
     box-sizing: border-box;
@@ -39,29 +41,29 @@ class Example extends View {
     justify-content: center;
     line-height: 1em;
     max-width: 100%;
-    min-width: 140px;
-    padding: 16px 24px;
+    min-width: ${getSize(140)};
+    padding: ${getSize(16)} ${getSize(24)};
     text-decoration: none;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
     white-space: nowrap;
     cursor: pointer;
-    transform: translate(250px, -263px);
+    transform: ${`translate(${getSize(250)}, ${getSize(-263)})`};
   `
 
   exampleWrapCss = css`
-    padding-top: 30px;
+    padding-top: ${getSize(30)};
   `
 
   codeResultExampleCss = css`
-    width: 200px;
+    width: ${getSize(200)};
     display: block;
-    transform: translate(220px, -180px);
+    transform: ${`translate(${getSize(220)}, ${getSize(-180)})`};
   `
 
   codeExampleCss = css`
-    width: 400px;
+    width: ${getSize(400)};
   `
 }
 

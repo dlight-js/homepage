@@ -28,7 +28,6 @@ class NavButton extends View implements NavButtonProps {
         .className(this.navBtnCss)
         .onclick(this.handleClickNav)
         .onmouseenter(() => { this.isHover = true })
-        // .onmouseleave(() => { setTimeout(() => { this.isHover = false }, 0) })
         .onmouseleave(() => { this.isHover = false })
       // if (this.isShowHoverMenu) {
       //   div()
@@ -40,8 +39,8 @@ class NavButton extends View implements NavButtonProps {
       if (this.isShowHoverMenu && (this.isMenuHover || this.isHover)) {
         div()
           .className(this.hoverMenuWrapCss)
-          .onmouseenter(() => { this.isMenuHover = true })
-          .onmouseleave(() => { this.isMenuHover = false })
+          .onmouseenter(() => { this.isMenuHover = true; this.isHover = true })
+          .onmouseleave(() => { this.isMenuHover = false; this.isHover = false })
         {
           for (const { name, title, path } of this.structureData) {
             MenuItem()
