@@ -1,9 +1,14 @@
 import { View } from "@dlightjs/dlight"
-import { htmlTag, Prop, required } from "@dlightjs/types"
-import { div, css } from "@dlightjs/easy-css"
+import { div, htmlTag, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 import { InlineRenderer } from "@dlightjs/markit"
 
-class HeadingBlock extends View {
+interface HeadingBlockProps {
+  _$content: any
+  props: any
+}
+
+class HeadingBlock extends View implements HeadingBlockProps {
   @Prop _$content = required
   @Prop props = required
 
@@ -21,16 +26,20 @@ class HeadingBlock extends View {
     }
     if (this.props.headingLevel === 1) {
       div()
-        .height("1px")
-        .width("90%")
-        .marginTop("-10px")
-        .marginBottom("20px")
-        .rounded()
-        .bgSlate200()
+        .className(this.dlightMarkitHeading1UnderLineCss)
     }
   }
 
   dlightMarkitHeading = css``
+
+  dlightMarkitHeading1UnderLineCss = css`
+    height: 1px;
+    width: 90%;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: rgba(44, 50, 56, 0.2);
+  `
 }
 
-export default HeadingBlock
+export default HeadingBlock as Pretty as Typed<HeadingBlockProps>

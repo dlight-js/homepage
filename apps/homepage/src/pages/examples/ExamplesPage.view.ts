@@ -1,13 +1,17 @@
 import { View } from "@dlightjs/dlight"
-import { css } from "@dlightjs/easy-css"
-import { type Typed, div, Env, required, Prop } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
+import { type Typed, div, Env, required, Prop, Pretty } from "@dlightjs/types"
 import Header from "../home/Header.view"
 import DLightEditor from "dlight-editor"
 import { ExamplesCodeData } from "../../utils/const"
 import { CodeModuleType, ExmaplesCodeDataType } from "../../utils/types"
 import SubExampleItem from "./SubExampleItem.view"
 
-class NewPlayGround extends View {
+interface NewPlayGroundProps {
+  modules: any
+}
+
+class NewPlayGround extends View implements NewPlayGroundProps {
   @Prop modules: any
   @Env themeType: "light" | "dark" = required
   a = true
@@ -125,4 +129,4 @@ class ExamplesPage extends View {
   `
 }
 
-export default ExamplesPage as any as Typed<ExamplesPage>
+export default ExamplesPage as Pretty as Typed

@@ -1,16 +1,24 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, required, Prop, RequiredProp, Env } from "@dlightjs/types"
-import { css, div } from "@dlightjs/easy-css"
+import { type Typed, required, Prop, Env, Pretty, div } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 import { CodeModuleType } from "../../utils/types"
 
-class SubExampleItem extends View {
+interface SubExampleItemProps {
+  title: string
+  description: string
+  modules: CodeModuleType[]
+  updateModules: (modules: CodeModuleType[], title: string) => void
+  selectedTitle: string
+}
+
+class SubExampleItem extends View implements SubExampleItemProps {
   @Env navigator: any = required
   @Env theme: any = required
-  @Prop title: RequiredProp<string> = required
-  @Prop description: RequiredProp<string> = required
-  @Prop modules: RequiredProp<CodeModuleType[]> = required
-  @Prop updateModules: RequiredProp<(modules: CodeModuleType[], title: string) => void> = required
-  @Prop selectedTitle: RequiredProp<string> = required
+  @Prop title = required
+  @Prop description = required
+  @Prop modules = required
+  @Prop updateModules = required
+  @Prop selectedTitle = required
 
   isHover = false
   isSelected = this.selectedTitle === this.title
@@ -51,4 +59,4 @@ class SubExampleItem extends View {
   `
 }
 
-export default SubExampleItem as any as Typed<SubExampleItem>
+export default SubExampleItem as Pretty as Typed<SubExampleItemProps>

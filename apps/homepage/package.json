@@ -9,20 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@dlightjs/components": "0.9.30",
-    "@dlightjs/dlight": "0.9.27",
-    "@dlightjs/markit": "^0.1.2",
-    "@dlightjs/material-icons": "0.9.25",
-    "@dlightjs/easy-css": "0.9.27",
+    "@dlightjs/components": "0.9.31",
+    "@dlightjs/dlight": "0.9.28",
+    "@dlightjs/material-icons": "0.9.28",
+    "@iandx/easy-css": "0.10.14",
     "dlight-doc": "workspace:*",
     "dlight-editor": "workspace:*"
   },
   "devDependencies": {
-    "@dlightjs/types": "^0.9.25",
+    "@dlightjs/types": "^0.9.28",
     "typescript": "^5.1.3",
     "vite": "^4.3.9",
-    "vite-plugin-dlight": "0.9.25",
-    "vite-plugin-dlight-easy-css": "0.9.27"
+    "vite-plugin-dlight": "0.9.26",
+    "vite-plugin-easy-css": "^0.10.14"
   },
   "keywords": [
     "dlight.js"

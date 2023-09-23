@@ -1,13 +1,20 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, Prop, required, div, Env, RequiredProp } from "@dlightjs/types"
-import { css } from "@dlightjs/easy-css"
+import { type Typed, Prop, required, div, Env, Pretty } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 import { KeyboardArrowLeftFilled, KeyboardArrowRightFilled } from "@dlightjs/material-icons"
 
-class NextPageNav extends View {
+interface NextPageNavProps {
+  navigator: any
+  nextPage: any
+  prePage: any
+  updateCurrentIndex: (index: number) => void
+}
+
+class NextPageNav extends View implements NextPageNavProps {
   @Env navigator: any = required
-  @Env nextPage: Prop<any> = required
-  @Env prePage: Prop<any> = required
-  @Prop updateCurrentIndex: RequiredProp<(index: number) => void> = required
+  @Env nextPage = required
+  @Env prePage = required
+  @Prop updateCurrentIndex = required
 
   hover1 = false
   hover2 = false
@@ -97,4 +104,4 @@ class NextPageNav extends View {
   `
 }
 
-export default NextPageNav as any as Typed<NextPageNav>
+export default NextPageNav as Pretty as Typed<NextPageNavProps>

@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
-import { Env, Typed, div, env, required } from "@dlightjs/types"
+import { Env, Pretty, Typed, div, env, required } from "@dlightjs/types"
 import DlightDoc from "dlight-doc"
-import { css } from "@dlightjs/easy-css"
+import { css } from "@iandx/easy-css"
 import FileStructure from "./FileStructure.view"
 import { findCertainFile, getPrevNext } from "../../utils/utilFunc"
 import { DocsStructureMap } from "../../utils/const"
@@ -69,4 +69,4 @@ class DocPage extends View {
   `
 }
 
-export default DocPage as any as Typed<DocPage>
+export default DocPage as Pretty as Typed

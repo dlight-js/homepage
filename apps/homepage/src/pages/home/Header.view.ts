@@ -1,28 +1,34 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, div, Env, required, Prop, RequiredProp, img, SubView, a } from "@dlightjs/types"
+import { type Typed, div, Env, required, Prop, img, a, Pretty } from "@dlightjs/types"
 import LogoTitle from "../../Icon/LogoTitle.view"
 import NavButton from "./NavButton.view"
 import Logo from "../../Icon/Logo.view"
-import { css } from "@dlightjs/easy-css"
+import { css } from "@iandx/easy-css"
 import { Transition, TransitionGroup } from "@dlightjs/components"
 import { MenuRound, CloseRound, LightModeOutlined, TranslateOutlined } from "@dlightjs/material-icons"
 import FileStructure from "../doc/FileStructure.view"
 import { HeaderData } from "../../utils/const"
 
-class Header extends View {
+interface HeaderProps {
+  handleClickNav: (tabKey: string) => void
+  themeType: string
+  isNeedAnimation: boolean
+}
+
+class Header extends View implements HeaderProps {
   @Env navigator: any = required
   @Env theme: any = required
   @Env updateThemeType: any = required
-  @Prop handleClickNav: RequiredProp<(tabKey: string) => void> = required
-  @Prop themeType: RequiredProp<string> = required
-  @Prop isNeedAnimation: RequiredProp<boolean> = required
+  @Prop handleClickNav = required
+  @Prop themeType = required
+  @Prop isNeedAnimation = required
   navBtn = HeaderData
   style2 = !this.isNeedAnimation
   isShowShadow = !this.isNeedAnimation
   isShortHeader = window.innerWidth < 818
   isShowMenu = false
 
-  @SubView
+  @View
   NavForwardIcon({ src, href }: any): any {
     a()
       .href(href)
@@ -33,7 +39,7 @@ class Header extends View {
     }
   }
 
-  @SubView
+  @View
   NavFuncIcon({ src, onclick }: any): any {
     img()
       .className(this.IconSizeCss)
@@ -225,4 +231,4 @@ class Header extends View {
   `
 }
 
-export default Header as any as Typed<Header>
+export default Header as Pretty as Typed<HeaderProps>

@@ -1,14 +1,20 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, button, Env, required, Prop, RequiredProp, div } from "@dlightjs/types"
-import { css } from "@dlightjs/easy-css"
+import { type Typed, button, Env, required, Prop, div, Pretty } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 import MenuItem from "./MenuItem.view"
 
-class NavButton extends View {
+interface NavButtonProps {
+  _$content: string
+  handleClickNav: () => void
+  structureData: any
+}
+
+class NavButton extends View implements NavButtonProps {
   @Env navigator: any = required
   @Env theme: any = required
-  @Prop _$content: RequiredProp<string> = required
-  @Prop handleClickNav: RequiredProp<() => void> = required
-  @Prop structureData: RequiredProp<any> = required
+  @Prop _$content = required
+  @Prop handleClickNav = required
+  @Prop structureData = required
 
   isHover = false
   isMenuHover = false
@@ -84,4 +90,4 @@ class NavButton extends View {
   `
 }
 
-export default NavButton as any as Typed<NavButton>
+export default NavButton as Pretty as Typed<NavButtonProps>

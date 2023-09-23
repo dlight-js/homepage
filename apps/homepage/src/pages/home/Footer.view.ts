@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, required, img, Env } from "@dlightjs/types"
-import { css, div } from "@dlightjs/easy-css"
+import { type Typed, required, Env, Pretty, div } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 
 class Footer extends View {
   @Env theme: any = required
@@ -10,7 +10,7 @@ class Footer extends View {
       .className(this.footerWrapCss)
     {
       div()
-      .className(this.textWrapCss)
+        .className(this.textWrapCss)
       {
         div("Built with DLight and ❤️")
         div("by @iandx and @orange04")
@@ -38,4 +38,4 @@ class Footer extends View {
   `
 }
 
-export default Footer as any as Typed<Footer>
+export default Footer as Pretty as Typed
