@@ -59,6 +59,6 @@ for (const fruit of ["apple", "orange", "banana"]) {
 }
 ```
 Yes, I know it's amazing. Because IT'S JS!
-# DLight 
-# Why DLight
-# When DLight
+# Fine-Tuned Updates
+# Exploring Class Components:
+
