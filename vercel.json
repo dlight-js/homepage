@@ -1,9 +1,6 @@
 {
-    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
-    "rewrites": [
-        {
-            "source": "/assets/:path*",
-            "destination": "https://dlight-js.com/assets/:path*"
-        }
-      ]
+    "routes": [
+        { "src": "/[^.]+/assets/(.+?)", "dest": "/assets/$1", "status": 200},
+        { "src": "/[^.]+", "dest": "/", "status": 200 }
+    ]
   }
