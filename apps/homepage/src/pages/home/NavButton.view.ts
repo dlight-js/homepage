@@ -22,7 +22,8 @@ class NavButton extends View {
         .className(this.navBtnCss)
         .onclick(this.handleClickNav)
         .onmouseenter(() => { this.isHover = true })
-        .onmouseleave(() => { setTimeout(() => { this.isHover = false }, 0) })
+        // .onmouseleave(() => { setTimeout(() => { this.isHover = false }, 0) })
+        .onmouseleave(() => { this.isHover = false })
       // if (this.isShowHoverMenu) {
       //   div()
       //     .className(this.iconCss)
@@ -59,7 +60,7 @@ class NavButton extends View {
 
   navBtnCss = css`
     cursor: pointer;
-    background-color: ${this.isHover ? this.theme.orange4 : this.theme.orange2};
+    background-color: ${this.isHover ? this.theme.orange4 : this.theme.orange1};
     color: ${this.isHover ? this.theme.text : this.theme.green11};
     font-size: 0.875rem;
     font-weight: 600;

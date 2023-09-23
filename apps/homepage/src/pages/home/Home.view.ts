@@ -46,7 +46,7 @@ class Home extends View {
   }
 
   bgCss = css`
-    background-color: ${this.theme.orange2};
+    background-color: ${this.theme.orange1};
     overflow-x: hidden;
   `
 
@@ -76,7 +76,7 @@ class Home extends View {
   `
 
   titleWrapCss = css`
-    padding: 256px 0 156px 0;
+    padding: 100px 0 86px 0;
     display: flex;
     flex-direction: column;
     align-items: center;

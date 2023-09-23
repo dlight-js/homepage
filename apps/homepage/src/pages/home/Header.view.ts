@@ -4,7 +4,7 @@ import LogoTitle from "../../Icon/LogoTitle.view"
 import NavButton from "./NavButton.view"
 import Logo from "../../Icon/Logo.view"
 import { css } from "@dlightjs/easy-css"
-import { TransitionGroup } from "@dlightjs/components"
+import { Transition, TransitionGroup } from "@dlightjs/components"
 import { MenuRound, CloseRound, LightModeOutlined, TranslateOutlined } from "@dlightjs/material-icons"
 import FileStructure from "../doc/FileStructure.view"
 import { HeaderData } from "../../utils/const"
@@ -126,7 +126,7 @@ class Header extends View {
             }
           }
           if (!this.isShortHeader) {
-            TransitionGroup()
+            Transition()
             {
               for (const { btnName, path, structureData } of this.navBtn) {
                 NavButton(btnName)
@@ -181,7 +181,7 @@ class Header extends View {
 
   headerWrapCss = css`
     box-shadow: ${this.isShowShadow ? "0 1px 5px -3px #A9A9A9" : ""};
-    background-color: ${this.theme.orange2};
+    background-color: ${this.theme.orange1};
     position: fixed;
     top: 0;
     display: flex;

@@ -74,7 +74,7 @@ class PreviewSection extends View {
               code: PreviewCode,
               path: "/index.ts"
             }])
-            .width("500px")
+            .width("600px")
             .height("500px")
             .themeType("light")
         } else {
@@ -85,25 +85,24 @@ class PreviewSection extends View {
   }
 
   previewWrapCss = css`
-    margin: 108px auto;
-    padding: 50px;
+    margin: 50px 7%;
     display: flex;
+    flex: 1;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     border-radius: 15px;
-    /* background-color: ${this.theme.orange4}; */
-    width: 75%;
-    min-width: 550px;
-    height: 680px;
     line-height: 1.75rem;
     color: ${this.theme.green12};
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   `
 
   descriptionWrapCss = css`
-    width: 40%;
-    margin-right: 70px;
-    min-width: 310px;
+    flex: 1;
+    margin: 40px 20px;
+    min-width: 410px;
+    max-width: 675px;
   `
 
   titleCss = css`
@@ -128,9 +127,10 @@ class PreviewSection extends View {
 
   codeWrapCss = css`
     height: 500px;
-    width: 500px;
-    overflow: hidden;
+    display: block;
+    width: max-content;
     border-radius: 10px;
+    margin: 0 10px;
   `
 }
 

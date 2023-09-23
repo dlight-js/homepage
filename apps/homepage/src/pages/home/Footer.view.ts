@@ -17,6 +17,7 @@ class Footer extends View {
   }
 
   footerWrapCss = css`
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;

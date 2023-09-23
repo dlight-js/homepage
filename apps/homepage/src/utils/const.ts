@@ -1,7 +1,7 @@
 import { DocsStructureMapType, ExmaplesCodeDataType } from "./types"
 import { initMap } from "./utilFunc"
-import DocsStructureMapJson from "../../public/docs/documentsStructure.json"
-import EcosStructureMapJson from "../../public/ecosystem/ecosystemStructure.json"
+import DocsStructureMapJson from "../pages/doc/structure/documentsStructure.json"
+import EcosStructureMapJson from "../pages/doc/structure/ecosystemStructure.json"
 
 export const indexCode = `import DLight, { View, render } from "@dlightjs/dlight"
 import HelloView from "./hello.view"
