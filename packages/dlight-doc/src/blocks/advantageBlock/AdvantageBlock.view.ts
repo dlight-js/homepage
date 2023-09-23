@@ -1,10 +1,15 @@
 import { View } from "@dlightjs/dlight"
-import { code, div, pre, Prop, required } from "@dlightjs/types"
-import { css } from "@dlightjs/easy-css"
+import { code, div, pre, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 import hljs from "highlight.js"
 import { ContentCopyFilled, DoneFilled } from "@dlightjs/material-icons"
 
-class AdvantageBlock extends View {
+interface AdvantageBlockProps {
+  _$content: any
+  props: any
+}
+
+class AdvantageBlock extends View implements AdvantageBlockProps {
   @Prop _$content = required
   @Prop props = required
   language = this.props.language
@@ -96,4 +101,4 @@ class AdvantageBlock extends View {
   `
 }
 
-export default AdvantageBlock
+export default AdvantageBlock as Pretty as Typed<AdvantageBlockProps>

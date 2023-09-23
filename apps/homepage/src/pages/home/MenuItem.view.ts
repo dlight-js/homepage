@@ -1,12 +1,17 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, required, Prop, RequiredProp, Env } from "@dlightjs/types"
-import { css, div } from "@dlightjs/easy-css"
+import { type Typed, required, Prop, Env, Pretty, div } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 
-class MenuItem extends View {
+interface MenuItemProps {
+  name: string
+  path: string
+}
+
+class MenuItem extends View implements MenuItemProps {
   @Env navigator: any = required
   @Env theme: any = required
-  @Prop name: RequiredProp<string> = required
-  @Prop path: RequiredProp<string> = required
+  @Prop name = required
+  @Prop path = required
 
   isHover = false
 
@@ -32,4 +37,4 @@ class MenuItem extends View {
   `
 }
 
-export default MenuItem as any as Typed<MenuItem>
+export default MenuItem as Pretty as Typed<MenuItemProps>

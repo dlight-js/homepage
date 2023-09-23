@@ -1,10 +1,14 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, required, Prop, RequiredProp } from "@dlightjs/types"
-import { css, div } from "@dlightjs/easy-css"
+import { type Typed, required, Prop, Pretty, div } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 import FeatureCard, { FeatureDataType } from "./FeatureCard.view"
 
-class FeatureCardGroup extends View {
-  @Prop data: RequiredProp<FeatureDataType[]> = required
+interface FeatureCardGroupProps {
+  data: FeatureDataType[]
+}
+
+class FeatureCardGroup extends View implements FeatureCardGroupProps {
+  @Prop data = required
 
   Body() {
     div()
@@ -26,4 +30,4 @@ class FeatureCardGroup extends View {
   `
 }
 
-export default FeatureCardGroup as any as Typed<FeatureCardGroup>
+export default FeatureCardGroup as Pretty as Typed<FeatureCardGroupProps>

@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, div, Env, required, Prop, RequiredProp, img } from "@dlightjs/types"
-import { css } from "@dlightjs/easy-css"
+import { type Typed, div, Env, required, Prop, img, Pretty } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 
 export interface FeatureDataType {
   title: string
@@ -8,10 +8,14 @@ export interface FeatureDataType {
   content: string
 }
 
-class FeatureCard extends View {
+interface FeatureCardProps {
+  data: FeatureDataType
+}
+
+class FeatureCard extends View implements FeatureCardProps {
   @Env navigator: any = required
   @Env theme: any = required
-  @Prop data: RequiredProp<FeatureDataType> = required
+  @Prop data = required
 
   Body() {
     div()
@@ -61,4 +65,4 @@ class FeatureCard extends View {
   `
 }
 
-export default FeatureCard as any as Typed<FeatureCard>
+export default FeatureCard as Pretty as Typed<FeatureCardProps>

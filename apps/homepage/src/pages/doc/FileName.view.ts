@@ -1,20 +1,26 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, Env, required, Prop, RequiredProp, div } from "@dlightjs/types"
-import { css } from "@dlightjs/easy-css"
+import { type Typed, Env, required, Prop, div, Pretty } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 import { DocsStructureMapType } from "../../utils/types"
 import { KeyboardArrowRightFilled, KeyboardArrowDownFilled } from "@dlightjs/material-icons"
 import FileStructure from "./FileStructure.view"
 import { unfoldAnimate } from "../../utils/animations"
 import { Navigator } from "@dlightjs/components"
 
-class FileName extends View {
+interface FileNameProps {
+  name: string
+  filePath: string
+  children: DocsStructureMapType | undefined
+}
+
+class FileName extends View implements FileNameProps {
   @Env navigator: Navigator = required
   @Env theme: any = required
   @Env selectedName: string = required
   @Env path: string = required
-  @Prop name: RequiredProp<string> = required
-  @Prop filePath: RequiredProp<string> = required
-  @Prop children: RequiredProp<DocsStructureMapType[] | undefined> = required
+  @Prop name = required
+  @Prop filePath = required
+  @Prop children = required
 
   // isOpen = this.path.startsWith(this.filePath)
 
@@ -125,4 +131,4 @@ class FileName extends View {
   `
 }
 
-export default FileName as any as Typed<FileName>
+export default FileName as Pretty as Typed<FileNameProps>

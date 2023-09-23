@@ -1,12 +1,18 @@
 import { View } from "@dlightjs/dlight"
-import { a, div, Prop, required, RequiredProp, Typed } from "@dlightjs/types"
+import { a, div, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import { InlineRenderer } from "@dlightjs/markit"
-import { css } from "@dlightjs/easy-css"
+import { css } from "@iandx/easy-css"
 
-class CatalogueView extends View {
+interface CatalogueViewProps {
+  _$content: any
+  currentIndex: number
+  updateCurrentIndex: (index: number) => void
+}
+
+class CatalogueView extends View implements CatalogueViewProps {
   @Prop _$content = required
-  @Prop currentIndex: RequiredProp<number> = required
-  @Prop updateCurrentIndex: RequiredProp<(index: number) => void> = required
+  @Prop currentIndex = required
+  @Prop updateCurrentIndex = required
 
   Body() {
     div()
@@ -59,4 +65,4 @@ class CatalogueView extends View {
   `
 }
 
-export default CatalogueView as any as Typed<CatalogueView>
+export default CatalogueView as Pretty as Typed<CatalogueViewProps>

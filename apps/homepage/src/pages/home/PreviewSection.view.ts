@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, div, Env, required } from "@dlightjs/types"
-import { css } from "@dlightjs/easy-css"
+import { type Typed, div, Env, required, Pretty } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 import { PreviewCode } from "../../utils/const"
 import { KeyboardArrowRightFilled } from "@dlightjs/material-icons"
 import { lazy } from "@dlightjs/components"
@@ -134,4 +134,4 @@ class PreviewSection extends View {
   `
 }
 
-export default PreviewSection as any as Typed<PreviewSection>
+export default PreviewSection as Pretty as Typed

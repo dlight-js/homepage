@@ -1,17 +1,17 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, button, Env, required, img } from "@dlightjs/types"
+import { type Typed, button, Env, required, Pretty, div } from "@dlightjs/types"
 import Header from "./Header.view"
-import { css, div } from "@dlightjs/easy-css"
+import { css } from "@iandx/easy-css"
 import { featureData } from "../../utils/const"
 import PreviewSection from "./PreviewSection.view"
 import FeatureCardGroup from "./FeatureCardGroup.view"
 import Footer from "./Footer.view"
-import Logo from "../../Icon/Logo.view"
 import Example from "./Example.view"
 
 class Home extends View {
   @Env navigator = required
   @Env theme: any = required
+  @Env isMobile: boolean = required
   featureData = featureData
   count = 2
 
@@ -22,7 +22,7 @@ class Home extends View {
       Header()
         .isNeedAnimation(true)
       div()
-      .className(this.titleExampleWrapCss)
+        .className(this.titleExampleWrapCss)
       {
         div()
           .className(this.titleWrapCss)
@@ -50,7 +50,7 @@ class Home extends View {
       // PreviewSection()
       Footer()
     }
-  } 
+  }
 
   bgCss = css`
     background-color: ${this.theme.orange1};
@@ -78,7 +78,7 @@ class Home extends View {
     font-weight: bold;
     font-size: 50px;
     margin-top: 10px;
-    /* text-align: center; */
+    text-align: ${this.isMobile ? "center" : ""};;
   `
 
   introDescriptionCss = css`
@@ -86,7 +86,7 @@ class Home extends View {
     line-height: 35px;
     margin-top: 10px;
     color: ${this.theme.green12};
-    /* text-align: center; */
+    text-align: ${this.isMobile ? "center" : ""};;
   `
 
   homeStartBtnCss = css`
@@ -104,10 +104,11 @@ class Home extends View {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* align-items: center; */
+    align-items: ${this.isMobile ? "center" : ""};
     justify-content: center;
     width: 500px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-right: ${this.isMobile ? "0" : "10%"};
   `
 
   featureCardWrap = css`
@@ -121,4 +122,4 @@ class Home extends View {
   `
 }
 
-export default Home as any as Typed<Home>
+export default Home as Pretty as Typed

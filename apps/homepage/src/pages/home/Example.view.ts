@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, required, img, Env } from "@dlightjs/types"
-import { css, div } from "@dlightjs/easy-css"
+import { type Typed, required, img, Env, Pretty, div } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 
 class Example extends View {
   @Env theme: any = required
@@ -8,20 +8,20 @@ class Example extends View {
 
   Body() {
     div()
-          .className(this.exampleWrapCss)
-        {
-          img()
-            .src("/code-example.png")
-            .alt("code-example")
-            .className(this.codeExampleCss)
-          img()
-            .src("/code-example-result.png")
-            .alt("code-example-result")
-            .className(this.codeResultExampleCss)
-          div(`Count: ${this.count}`)
-            .className(this.countBtnCss)
-            .onclick(() => { this.count++ })
-        }
+      .className(this.exampleWrapCss)
+    {
+      img()
+        .src("/code-example.png")
+        .alt("code-example")
+        .className(this.codeExampleCss)
+      img()
+        .src("/code-example-result.png")
+        .alt("code-example-result")
+        .className(this.codeResultExampleCss)
+      div(`Count: ${this.count}`)
+        .className(this.countBtnCss)
+        .onclick(() => { this.count++ })
+    }
   }
 
   countBtnCss = css`
@@ -63,7 +63,6 @@ class Example extends View {
   codeExampleCss = css`
     width: 400px;
   `
-
 }
 
-export default Example as any as Typed<Example>
+export default Example as Pretty as Typed

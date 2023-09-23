@@ -1,6 +1,6 @@
 import { VStack, Spacer } from "@dlightjs/components"
 import { View } from "@dlightjs/dlight"
-import { type Typed, div, button, Env, required } from "@dlightjs/types"
+import { type Typed, div, button, Env, required, Pretty } from "@dlightjs/types"
 
 class ErrorPage extends View {
   @Env navigator: any = required
@@ -25,4 +25,4 @@ class ErrorPage extends View {
   }
 }
 
-export default ErrorPage as any as Typed<ErrorPage>
+export default ErrorPage as Pretty as Typed

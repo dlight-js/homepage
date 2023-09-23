@@ -1,9 +1,9 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, Env, required, SubView, img, div } from "@dlightjs/types"
+import { type Typed, Env, required, img, div, Pretty } from "@dlightjs/types"
 import { ArrayView, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "../utils/const"
 import DLightEditor from "dlight-editor"
 import { DarkModeOutlined, LightModeOutlined } from "@dlightjs/material-icons"
-import { css } from "@dlightjs/easy-css"
+import { css } from "@iandx/easy-css"
 
 const defaultModules = [{
   code: indexCode,
@@ -34,7 +34,7 @@ class Playground extends View {
     ? JSON.parse(localStorage.getItem("dlight_playground_code")).modules
     : defaultModules
 
-  @SubView
+  @View
   PlayGroundHeader() {
     div()
       .className(this.playGroundHeaderCss)
@@ -119,4 +119,4 @@ class Playground extends View {
   `
 }
 
-export default Playground as any as Typed<Playground>
+export default Playground as Pretty as Typed

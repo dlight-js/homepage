@@ -1,8 +1,8 @@
 import { View } from "@dlightjs/dlight"
 import { MarkitView, addBlockRule } from "@dlightjs/markit"
-import { div, Env, Prop, required, RequiredProp, Typed } from "@dlightjs/types"
+import { div, Env, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import "highlight.js/styles/github.css"
-import { css } from "@dlightjs/easy-css"
+import { css } from "@iandx/easy-css"
 import { AdvantageBlock, HeadingBlock } from "./blocks"
 import { CatalogueView, NextPageNav } from "./views"
 
@@ -27,9 +27,13 @@ addBlockRule({
   view: HeadingBlock
 })
 
-class DlightDoc extends View {
+interface DlightDocProps {
+  _$content: string
+}
+
+class DlightDoc extends View implements DlightDocProps {
   @Env path
-  @Prop _$content: RequiredProp<string> = required
+  @Prop _$content = required
 
   docAst: any = []
   cata = []
@@ -152,4 +156,4 @@ class DlightDoc extends View {
   `
 }
 
-export default DlightDoc as any as Typed<DlightDoc>
+export default DlightDoc as Pretty as Typed<DlightDocProps>
