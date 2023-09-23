@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, Prop, RequiredProp, required, env, div } from "@dlightjs/types"
+import { type Typed, Prop, required, env, div, Pretty } from "@dlightjs/types"
 import ProjectEditor from "./Editor/ProjectEditor.view"
 import PreviewView from "./Preview/Preview.view"
 import { HStack } from "@dlightjs/components"
@@ -11,13 +11,21 @@ import { loadMonacoWorker } from "../utils/loader"
 
 loadMonacoWorker()
 
-class Playground extends View {
+interface PlaygroundProps {
+  modules: ToBeTransformedModule[]
+  themeType?: "light" | "dark"
+  width?: string
+  height?: string
+  onSave?: (project: DLightProject) => void
+}
+
+class Playground extends View implements PlaygroundProps {
   /** @project */
-  @Prop modules: RequiredProp<ToBeTransformedModule[]> = required
-  @Prop themeType: Prop<"light" | "dark"> = "light" as any
-  @Prop width: Prop<string> = "100vw" as any
-  @Prop height: Prop<string> = "100vh" as any
-  @Prop onSave: Prop<(project: DLightProject) => void> = (() => {}) as any
+  @Prop modules: ToBeTransformedModule[] = required
+  @Prop themeType: "light" | "dark" = "light" as any
+  @Prop width = "100vw" as any
+  @Prop height = "100vh" as any
+  @Prop onSave?: (project: DLightProject) => void
 
   /** @reactive */
   theme = colors[this.themeType]
@@ -93,4 +101,4 @@ class Playground extends View {
   }
 }
 
-export default Playground as any as Typed<Playground>
+export default Playground as Pretty as Typed<PlaygroundProps>

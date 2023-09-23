@@ -1,15 +1,20 @@
 import { View } from "@dlightjs/dlight"
-import { Env, Prop, required, Typed } from "@dlightjs/types"
-import { div } from "@dlightjs/easy-css"
+import { div, Env, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import Resizer, { OnDragFunc } from "./Resizer.view"
 import { Color, dividerWidth } from "../../utils/const"
 import { Spacer, VStack } from "@dlightjs/components"
+import { css } from "@iandx/easy-css"
 
-class HorizontalResizer extends View {
+interface HorizontalResizerProps {
+  height?: string
+  onDrag?: OnDragFunc
+}
+
+class HorizontalResizer extends View implements HorizontalResizerProps {
   /** @prop */
   @Env theme: Color = required
-  @Prop height: Prop<string> = "100%" as any
-  @Prop onDrag: Prop<OnDragFunc> = (() => { }) as any
+  @Prop height = "100%"
+  @Prop onDrag?: OnDragFunc
   hover: number = 0
 
   /** @method */
@@ -18,7 +23,7 @@ class HorizontalResizer extends View {
   }
 
   handleDrag(left: number) {
-    this.onDrag(left, 0)
+    this.onDrag?.(left, 0)
   }
 
   onMouseOver() {
@@ -49,15 +54,7 @@ class HorizontalResizer extends View {
       .axis("x")
     {
       div()
-        .color(this.theme.secondaryText)
-        .lineHeight("5px")
-        .fontSize("25px")
-        .cursor("col-resize")
-        .width(`${dividerWidth}px`)
-        .height(this.height)
-        .backgroundColor(this.hover !== 0 ? "#0077be" : this.theme.secondary)
-        .textCenter()
-        .overflow("auto")
+        .className(this.resizerCss)
         .onmouseover(this.onMouseOver)
         .onmousedown(this.onMouseDown)
         .onmouseout(this.onMouseOut)
@@ -73,6 +70,18 @@ class HorizontalResizer extends View {
       }
     }
   }
+
+  resizerCss = css`
+    color: ${this.theme.secondaryText};
+    line-height: 5px;
+    font-size: 25px;
+    cursor: col-resize;
+    width: ${dividerWidth}px;
+    height: ${this.height};
+    background-color: ${this.hover !== 0 ? "#0077be" : this.theme.secondary};
+    text-align: center;
+    overflow: auto;
+  `
 }
 
-export default HorizontalResizer as any as Typed<HorizontalResizer>
+export default HorizontalResizer as Pretty as Typed<HorizontalResizerProps>

@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
-import { div, Env, Prop, required, RequiredProp, span, Static, SubView, Typed } from "@dlightjs/types"
-import { css } from "@dlightjs/easy-css"
+import { div, Env, Pretty, Prop, required, span, Static, Typed } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 import { HStack } from "@dlightjs/components"
 import { CloseFilled, AddFilled } from "@dlightjs/material-icons"
 import { EditorStore } from "./CodeEditor.view"
@@ -8,17 +8,28 @@ import * as monaco from "monaco-editor"
 import { codeTemplate, Color } from "../../utils/const"
 import { ToBeTransformedModule } from "../../project/types"
 
-class Tabs extends View {
+interface TabsProps {
+  modules: ToBeTransformedModule[]
+  language: string
+  tabKey: string
+  getTabKey: (tabKey: string) => void
+  addTab: (tabName: string) => void
+  deleteTab: (tabName: string) => void
+  getCurrEditorStore: (data: any) => void
+  updateModulePath: (currPath: string, newPath: string) => void
+}
+
+class Tabs extends View implements TabsProps {
   /** @prop */
   @Env theme: Color = required
-  @Prop modules: RequiredProp<ToBeTransformedModule[]> = required
-  @Prop language: RequiredProp<string> = required
-  @Prop tabKey: RequiredProp<string> = required
-  @Prop getTabKey: RequiredProp<(tabKey: string) => void> = required
-  @Prop addTab: RequiredProp<(tabName: string) => void> = required
-  @Prop deleteTab: RequiredProp<(tabName: string) => void> = required
-  @Prop getCurrEditorStore: RequiredProp<(data: any) => void> = required
-  @Prop updateModulePath: RequiredProp<(currPath: string, newPath: string) => void> = required
+  @Prop modules: ToBeTransformedModule[] = required
+  @Prop language: string = required
+  @Prop tabKey: string = required
+  @Prop getTabKey: (tabKey: string) => void = required
+  @Prop addTab: (tabName: string) => void = required
+  @Prop deleteTab: (tabName: string) => void = required
+  @Prop getCurrEditorStore: (data: any) => void = required
+  @Prop updateModulePath: (currPath: string, newPath: string) => void = required
 
   /** @reactive */
   isTabEdit = false
@@ -98,7 +109,7 @@ class Tabs extends View {
   }
 
   /** @view */
-  @SubView
+  @View
   Tab({ tabName }: any): any {
     HStack()
       .alignment("center")
@@ -229,4 +240,4 @@ class Tabs extends View {
   `
 }
 
-export default Tabs as any as Typed<Tabs>
+export default Tabs as Pretty as Typed<TabsProps>

@@ -1,14 +1,19 @@
 import { View } from "@dlightjs/dlight"
-import { Prop, type Typed, _ } from "@dlightjs/types"
-import { div } from "@dlightjs/easy-css"
+import { Prop, type Typed, _, Pretty, div } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 
 export type OnDragFunc = (x: number, y: number) => void
 export type DragAxis = "x" | "y" | "all"
 
-class Resizer extends View {
+interface ResizerProps {
+  onDrag?: OnDragFunc
+  axis?: DragAxis
+}
+
+class Resizer extends View implements ResizerProps {
   /** @prop */
-  @Prop onDrag: Prop<OnDragFunc> = (() => {}) as any
-  @Prop axis: Prop<DragAxis> = "all" as any
+  @Prop onDrag?: OnDragFunc
+  @Prop axis: DragAxis = "all"
 
   axises = (() => {
     const axises: Array<"x" | "y"> = []
@@ -32,7 +37,7 @@ class Resizer extends View {
     const y = this.axises.includes("y") ? e.clientY - this.offsetY : 0
     this.offsetX = e.clientX
     this.offsetY = e.clientY
-    this.onDrag(x, y)
+    this.onDrag?.(x, y)
   }
 
   onMouseUp = () => {
@@ -64,12 +69,16 @@ class Resizer extends View {
     div()
       .element(this.draggableEl)
       .onmousedown(this.onMouseDown)
-      .width("8px")
-      .backgroundColor("gray")
+      .className(this.resizerCss)
     {
       _(this._$children)
     }
   }
+
+  resizerCss = css`
+    width: 8px;
+    background-color: gray;
+  `
 }
 
-export default Resizer as any as Typed<Resizer>
+export default Resizer as Pretty as Typed<ResizerProps>

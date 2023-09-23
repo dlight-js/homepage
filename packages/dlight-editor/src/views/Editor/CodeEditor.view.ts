@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
-import { div } from "@dlightjs/easy-css"
-import { Prop, Env, Static, type Typed, required, type RequiredProp } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
+import { Prop, Env, Static, type Typed, required, Pretty, div } from "@dlightjs/types"
 import * as monaco from "monaco-editor"
 
 export interface EditorStore {
@@ -8,12 +8,19 @@ export interface EditorStore {
   state: monaco.editor.ICodeEditorViewState | null
 }
 
-class CodeEditor extends View {
+interface CodeEditorProps {
+  editorStore: EditorStore
+  onCodeChange?: (code: string) => void
+  language?: string
+  getSaveViewState?: (func: () => monaco.editor.ICodeEditorViewState | null) => void
+}
+
+class CodeEditor extends View implements CodeEditorProps {
   /** @prop */
-  @Prop editorStore: RequiredProp<EditorStore> = required
-  @Prop onCodeChange: Prop<(code: string) => void> = (() => {}) as any
-  @Prop language: Prop<string> = "typescript" as any
-  @Prop getSaveViewState: Prop<(func: () => monaco.editor.ICodeEditorViewState | null) => void> = (() => null) as any
+  @Prop editorStore: EditorStore = required
+  @Prop onCodeChange?: (code: string) => void
+  @Prop language = "typescript"
+  @Prop getSaveViewState?: (func: () => monaco.editor.ICodeEditorViewState | null) => void
   @Env themeType: "light" | "dark" = required
   @Env height: string = required
 
@@ -34,7 +41,7 @@ class CodeEditor extends View {
 
   /** @func */
   handleCodeChange() {
-    this.onCodeChange(this.editor!.getValue())
+    this.onCodeChange?.(this.editor!.getValue())
   }
 
   onKeyDown = (e: any) => {
@@ -58,7 +65,7 @@ class CodeEditor extends View {
       minimap: { enabled: false },
       automaticLayout: true
     })
-    this.getSaveViewState(() => this.editor!.saveViewState())
+    this.getSaveViewState?.(() => this.editor!.saveViewState())
   }
 
   willUnmount() {
@@ -70,9 +77,13 @@ class CodeEditor extends View {
   Body() {
     div()
       .element(this.editorEl)
-      .width("100%")
-      .height(`calc(${this.height} - 45px)`)
+      .className(this.editorCss)
   }
+
+  editorCss = css`
+    width: 100%;
+    height: calc(${this.height} - 45px)
+  `
 }
 
-export default CodeEditor as any as Typed<CodeEditor>
+export default CodeEditor as Pretty as Typed<CodeEditorProps>

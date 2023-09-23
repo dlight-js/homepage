@@ -1,18 +1,25 @@
 import { View } from "@dlightjs/dlight"
-import { div, button, Env, Prop, required, RequiredProp, SubView, Typed } from "@dlightjs/types"
+import { div, button, Env, Prop, required, Typed, Pretty } from "@dlightjs/types"
 import ResultView from "./Result.view"
 import OutputView from "./Output.view"
 import { HStack } from "@dlightjs/components"
 import { RefreshFilled } from "@dlightjs/material-icons"
-import { css } from "@dlightjs/easy-css"
+import { css } from "@iandx/easy-css"
 import { Color, headerHeight } from "../../utils/const"
 
-class Preview extends View {
+interface PreviewProps {
+  mountId: string
+  currTransformedCode: string
+  refreshFunc: () => void
+  width: string
+}
+
+class Preview extends View implements PreviewProps {
   /** @prop */
-  @Prop mountId: RequiredProp<string> = required
-  @Prop currTransformedCode: RequiredProp<string> = required
-  @Prop refreshFunc: RequiredProp<() => void> = required
-  @Prop width: RequiredProp<string> = required
+  @Prop mountId: string = required
+  @Prop currTransformedCode: string = required
+  @Prop refreshFunc: () => void = required
+  @Prop width: string = required
   @Env theme: Color = required
   @Env height: string = required
 
@@ -22,7 +29,7 @@ class Preview extends View {
   /** @lifecycle */
 
   /** @view */
-  @SubView
+  @View
   Head({ _$content }: any): any {
     button(_$content)
       .className(this.headerCss)
@@ -34,7 +41,7 @@ class Preview extends View {
       })
   }
 
-  @SubView
+  @View
   Header() {
     div()
       .className(this.headerBGCss)
@@ -110,4 +117,4 @@ class Preview extends View {
   `
 }
 
-export default Preview as any as Typed<Preview>
+export default Preview as Pretty as Typed<PreviewProps>
