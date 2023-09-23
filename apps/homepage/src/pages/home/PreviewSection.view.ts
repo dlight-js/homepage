@@ -103,6 +103,7 @@ class PreviewSection extends View {
   descriptionWrapCss = css`
     width: 40%;
     margin-right: 70px;
+    min-width: 310px;
   `
 
   titleCss = css`

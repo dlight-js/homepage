@@ -2,8 +2,8 @@
     "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }],
     "rewrites": [
         {
-          "source": "/docs/*",
-          "destination": "https://dlight-js.com/assets/index-ba8d6dce.js"
+            "source": "/assets/:path*",
+            "destination": "https://dlight-js.com/assets/:path*"
         }
       ]
   }
