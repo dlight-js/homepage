@@ -1,9 +1,8 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, button, Env, required, Pretty, div } from "@dlightjs/types"
-import Header from "./Header.view"
+import Header from "./header"
 import { css } from "@iandx/easy-css"
 import { featureData } from "../../utils/const"
-import PreviewSection from "./PreviewSection.view"
 import FeatureCardGroup from "./FeatureCardGroup.view"
 import Footer from "./Footer.view"
 import Example from "./Example.view"
@@ -48,7 +47,6 @@ class Home extends View {
         FeatureCardGroup()
           .data(this.featureData.slice(2, 4))
       }
-      // PreviewSection()
       Footer()
     }
   }

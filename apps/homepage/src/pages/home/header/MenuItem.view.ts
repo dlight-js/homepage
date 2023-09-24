@@ -1,6 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, required, Prop, Env, Pretty, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
+import { Navigator } from "@dlightjs/components"
 
 interface MenuItemProps {
   name: string
@@ -8,7 +9,7 @@ interface MenuItemProps {
 }
 
 class MenuItem extends View implements MenuItemProps {
-  @Env navigator: any = required
+  @Env navigator: Navigator = required
   @Env theme: any = required
   @Prop name = required
   @Prop path = required

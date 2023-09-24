@@ -53,7 +53,7 @@ class Example extends View {
   `
 
   exampleWrapCss = css`
-    padding-top: ${getSize(30)};
+    padding-top: ${getSize(60)};
   `
 
   codeResultExampleCss = css`

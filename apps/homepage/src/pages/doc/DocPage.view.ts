@@ -6,7 +6,7 @@ import FileStructure from "./FileStructure.view"
 import { findCertainFile, getPrevNext } from "../../utils/utilFunc"
 import { DocsStructureMap } from "../../utils/const"
 import { DocsStructureMapType } from "../../utils/types"
-import Header from "../home/Header.view"
+import Header from "../home/header/Header.view"
 
 class DocPage extends View {
   @Env path: string = required

@@ -2,6 +2,7 @@ import { View } from "@dlightjs/dlight"
 import { type Typed, button, Env, required, Prop, div, Pretty } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import MenuItem from "./MenuItem.view"
+import { Navigator } from "@dlightjs/components"
 
 interface NavButtonProps {
   _$content: string
@@ -10,7 +11,7 @@ interface NavButtonProps {
 }
 
 class NavButton extends View implements NavButtonProps {
-  @Env navigator: any = required
+  @Env navigator: Navigator = required
   @Env theme: any = required
   @Prop _$content = required
   @Prop handleClickNav = required

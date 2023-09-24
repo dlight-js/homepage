@@ -2,6 +2,7 @@ import { View } from "@dlightjs/dlight"
 import { type Typed, required, Prop, Env, Pretty, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { CodeModuleType } from "../../utils/types"
+import { Navigator } from "@dlightjs/components"
 
 interface SubExampleItemProps {
   title: string
@@ -12,7 +13,7 @@ interface SubExampleItemProps {
 }
 
 class SubExampleItem extends View implements SubExampleItemProps {
-  @Env navigator: any = required
+  @Env navigator: Navigator = required
   @Env theme: any = required
   @Prop title = required
   @Prop description = required

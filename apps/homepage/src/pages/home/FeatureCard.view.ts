@@ -2,6 +2,7 @@ import { View } from "@dlightjs/dlight"
 import { type Typed, div, Env, required, Prop, img, Pretty } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { getSize } from "../../utils/utilFunc"
+import { Navigator } from "@dlightjs/components"
 
 export interface FeatureDataType {
   title: string
@@ -14,7 +15,7 @@ interface FeatureCardProps {
 }
 
 class FeatureCard extends View implements FeatureCardProps {
-  @Env navigator: any = required
+  @Env navigator: Navigator = required
   @Env theme: any = required
   @Prop data = required
 

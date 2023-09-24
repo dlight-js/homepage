@@ -1,5 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, Env, required, img, div, Pretty } from "@dlightjs/types"
+import { Navigator } from "@dlightjs/components"
 import { ArrayView, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "../utils/const"
 import DLightEditor from "dlight-editor"
 import { DarkModeOutlined, LightModeOutlined } from "@dlightjs/material-icons"
@@ -28,11 +29,12 @@ const defaultModules = [{
 ]
 
 class Playground extends View {
-  @Env navigator: any = required
+  @Env navigator: Navigator = required
   toggle: boolean = false
-  modules: any = localStorage.getItem("dlight_playground_code")
-    ? JSON.parse(localStorage.getItem("dlight_playground_code")).modules
-    : defaultModules
+  modules: any = (() => {
+    const code = localStorage.getItem("dlight_playground_code")
+    return code ? JSON.parse(code).modules : defaultModules
+  })()
 
   @View
   PlayGroundHeader() {
