@@ -81,7 +81,6 @@ class NextPageNav extends View implements NextPageNavProps {
     flex-direction: row;
     justify-content: ${this.nextPage && !this.prePage ? "flex-end" : "space-between"};
     margin-top: 30px;
-    margin-right: 40px;
     padding: 40px 0;
     border-top: solid 1px rgb(226 232 240);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

@@ -148,11 +148,20 @@ class DlightDoc extends View implements DlightDocProps {
     justify-content: flex-end;
     height: 82vh;
     overflow: scroll;
+    overflow-x: hidden;
     padding: 30px 25px;
   `
 
   fixCatalogueCss = css`
     width: 268px;
+  `
+
+  dlightMarkitDivider$ = css`
+    border-width: 0 ;
+    height: 1px;
+    width: 100%;
+    background-color: rgb(226 232 240);
+    margin: 40px 0;
   `
 }
 

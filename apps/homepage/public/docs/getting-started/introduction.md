@@ -10,7 +10,7 @@ So, how does DLight.js handle this problem -- making UI building more js? We've 
 We love to make everything a function and just call it. It can modular our code and simpler our life. So here in DLight, we're using a way of "function-call" to build ui views. Let's recall how we declare an element in jsx:
 ```html
 <div>Hello world</div>
-``` 
+```
 This is how we do it in DLight:
 ```js
 div("hello world")

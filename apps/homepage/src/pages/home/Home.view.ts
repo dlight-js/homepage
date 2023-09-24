@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, button, Env, required, Pretty, div } from "@dlightjs/types"
+import { type Typed, Env, required, Pretty, div } from "@dlightjs/types"
 import Header from "./header"
 import { css } from "@iandx/easy-css"
 import { featureData } from "../../utils/const"
@@ -7,6 +7,7 @@ import FeatureCardGroup from "./FeatureCardGroup.view"
 import Footer from "./Footer.view"
 import Example from "./Example.view"
 import { getSize } from "../../utils/utilFunc"
+import Title from "./Title.view"
 
 class Home extends View {
   @Env navigator = required
@@ -14,6 +15,11 @@ class Home extends View {
   @Env isMobile: boolean = required
   featureData = featureData
   count = 2
+  isCenterTitle = false
+
+  handleChangeTitleStyle(value: boolean) {
+    this.isCenterTitle = value
+  }
 
   Body() {
     div()
@@ -21,22 +27,12 @@ class Home extends View {
     {
       Header()
         .isNeedAnimation(true)
+        .handleChangeTitleStyle(this.handleChangeTitleStyle)
       div()
         .className(this.titleExampleWrapCss)
       {
-        div()
-          .className(this.titleWrapCss)
-        {
-          div("DLight.js")
-            .className(this.homeTitleCss)
-          div("DX-first UI Rendering Library")
-            .className(this.titleDescriptionCss)
-          div("Unlocking View Building in Familiar JS Syntax with an Intuitive API")
-            .className(this.introDescriptionCss)
-          button("Get Started")
-            .className(this.homeStartBtnCss)
-            .onclick(() => { this.navigator.to("./docs/getting-started") })
-        }
+        Title()
+          .isCenterTitle(this.isCenterTitle)
         Example()
       }
       div()
@@ -57,58 +53,13 @@ class Home extends View {
   `
 
   titleExampleWrapCss = css`
+    padding: 0 ${getSize(10)};
     margin-top: ${getSize(30)};
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
     flex-wrap: wrap;
-  `
-
-  homeTitleCss = css`
-    color: ${this.theme.orange10};
-    font-weight: bold;
-    font-size: ${getSize(60)};
-    text-shadow: 0 1px 5px;
-  `
-
-  titleDescriptionCss = css`
-    color: ${this.theme.green12};
-    font-weight: bold;
-    font-size: ${getSize(50)};
-    margin-top: 10px;
-    text-align: ${this.isMobile ? "center" : ""};;
-  `
-
-  introDescriptionCss = css`
-    font-size: ${getSize(25)};
-    line-height: ${getSize(35)};
-    margin-top: 10px;
-    color: ${this.theme.green12};
-    text-align: ${this.isMobile ? "center" : ""};;
-  `
-
-  homeStartBtnCss = css`
-    color: ${this.theme.green12};
-    background-color: ${this.theme.orange6};
-    padding: 12px 12px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 2px ${this.theme.green10};
-    border-width: 0;
-    margin-top: 25px;
-    cursor: pointer;
-  `
-
-  titleWrapCss = css`
-    margin: ${getSize(65)} 10% ${getSize(86)} 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    align-items: ${this.isMobile ? "center" : ""};
-    justify-content: center;
-    width: ${getSize(500)};
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin-right: ${this.isMobile ? "0" : "10%"};
   `
 
   featureCardWrap = css`

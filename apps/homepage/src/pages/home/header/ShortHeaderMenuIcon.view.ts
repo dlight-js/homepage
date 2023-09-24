@@ -51,7 +51,7 @@ class ShortHeaderMenuIcon extends View {
   `
 
   menuBtnWrapCss = css`
-    margin-left: 5px;
+    margin-left: 10px;
   `
 }
 

@@ -14,6 +14,7 @@ interface HeaderProps {
   handleClickNav: (tabKey: string) => void
   themeType: string
   isNeedAnimation: boolean
+  handleChangeTitleStyle: (value: boolean) => void
 }
 
 class Header extends View implements HeaderProps {
@@ -23,6 +24,7 @@ class Header extends View implements HeaderProps {
   @Prop handleClickNav = required
   @Prop themeType = required
   @Prop isNeedAnimation = required
+  @Prop handleChangeTitleStyle = required
   navBtn = HeaderData
   style2 = !this.isNeedAnimation
   isShowShadow = !this.isNeedAnimation
@@ -52,6 +54,11 @@ class Header extends View implements HeaderProps {
     } else {
       this.isShortHeader = false
       this.isShowMenu = false
+    }
+    if (window.innerWidth < 1019) {
+      this.handleChangeTitleStyle(true)
+    } else {
+      this.handleChangeTitleStyle(false)
     }
   }
 
@@ -104,7 +111,7 @@ class Header extends View implements HeaderProps {
   headerHeightCss = css`
     height: 48px;
     padding: 6px 0;
-    min-width: 430px;
+    min-width: ${getSize(430)};
   `
 
   headerWrapCss = css`
@@ -127,10 +134,6 @@ class Header extends View implements HeaderProps {
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* overflow: scroll;
-    ::-webkit-scrollbar {
-      display: none;
-    } */
   `
 }
 

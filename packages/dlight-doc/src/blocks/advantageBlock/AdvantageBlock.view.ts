@@ -1,4 +1,4 @@
-import { View } from "@dlightjs/dlight"
+import { CustomNode, View } from "@dlightjs/dlight"
 import { code, div, pre, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import hljs from "highlight.js"
@@ -17,6 +17,11 @@ class AdvantageBlock extends View implements AdvantageBlockProps {
   highlightedCode = hljs.highlight(this._$content, { language: this.language.trim() }).value
   hoverState = true
   hasCopied = false
+
+  didMount(_els: HTMLElement[], _node: CustomNode): void {
+    console.log(this._$content)
+    console.log(this.props)
+  }
 
   async handleCopy() {
     await navigator.clipboard.writeText(this._$content)
@@ -73,7 +78,7 @@ class AdvantageBlock extends View implements AdvantageBlockProps {
     background-color: rgba(242, 214, 159, 0.3);
     border-radius: 12px;
     font-size: 90%;
-    margin: 10px;
+    margin: 10px 0;
   `
   dlightHomepageMarkitCode = css`
     display: flex;
@@ -81,11 +86,11 @@ class AdvantageBlock extends View implements AdvantageBlockProps {
     justify-content: space-between;
     padding: 10px 16px;
     font-size: 95%;
+    overflow-x: auto;
   `
   code = css`
     font-family: ui-monospace, SFMono-Regular, Menlo,Monaco, Consolas, Liberation Mono, Courier New, monospace;
     line-height: 1.25rem;
-    text-wrap: wrap;
   `
   copyIcon = css`
     width: 30px;
