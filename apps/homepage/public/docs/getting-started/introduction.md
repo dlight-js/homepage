@@ -49,7 +49,7 @@ How long since the last time you used `for` or even `if` in js? Because in jsx, 
   }
 </>
 ```
-In jsx, we just have to use conditional statements and function maps, and say goodbye to our good friends "for" and "if". But things are different in DLight, we welcome our old friends back:
+In jsx, we have to use conditional statements and function maps, and say goodbye to our good friends "for" and "if". But things are different in DLight, we welcome our old friends back:
 ```js
 if (showHello) {
   div("hello")
@@ -59,6 +59,61 @@ for (const fruit of ["apple", "orange", "banana"]) {
 }
 ```
 Yes, I know it's amazing. Because IT'S JS!
-# Fine-Tuned Updates
-# Exploring Class Components:
 
+# Exploring Class Components
+React has had everyone buzzing about functional components in recent years. And honestly, it makes sense for React. Think about it: every time there's a re-render, it's like a cascading waterfall of function calls from top to bottom.
+
+But when we shift gears and talk about MVVM with that signal-based reactivity, class components start looking pretty appealing. Unlike templates, which can feel kind of boxed-in and don't play nice as standard JS files, class components have this cool object-oriented vibe.
+
+Now, I totally get why functional programming feels right at home with MVC frameworks. It’s like painting – you add layers one by one, all in order. And data? It’s like a one-way street, following the traffic lights strictly. But MVVM? Totally different ball game. Its essence is like this web that spreads out in every direction, representing views with view-models and exchanging info between views and data sources. It’s not a straight line; it's this intricate web that’s all over the place. And that's where the magic of object-oriented class structures shines. It's like having a chat between data and views through these neat properties and reactive connections.
+
+And if we pause and think about it, isn't the whole deal with giving side effects to pure functional components just to achieve this spontaneous chit-chat between views and data?
+
+Now, a quick side note: DLight’s class components aren’t even close to React's class componennts, which look like a functional components dress up for me. DLight's MVVM philosophy feels a bit closer to Angular's class component spirit. But here’s the kicker – DLight does it in a way that’s sleeker and way more developer-friendly.
+
+# Fine-grained re-renders
+Now, let's take a look at how DLight.js handles updates.
+
+These years, many frameworks have been shifting away from the Virtual DOM to fine-grained updates. This evolution reflects a growing recognition that not every change in a user interface requires a wholesale re-rendering of the entire component or element. Fine-grained updates make our website so much faster.
+
+Instead of relying on a Virtual DOM, we've designed DLight.js to provide granular control over reative variable updates using a signal based reactivity. Here's how it works: each variable, if it is set to a new value or reference, will only result in the updates of its relevant elements' properties. 
+
+Imagine a scenario where you have multiple variables tied to different elements in your UI. When one of these variables changes, DLight.js ensures that only the elements directly affected by that variable's update undergo changes. This approach minimizes unnecessary re-renders and keeps your UI responsive and efficient.
+
+In many UI frameworks, managing derived or computed states can be a bit of a puzzle. You may need to use a "$" in svelte to set a derived reactive variable, or call a "useMemo" in React or "createMemo" in SolidJS to avoid re-render or re-calculation. While in dlight, everything becomes so intuitive. Let's take a closer look at it.
+
+Want to declare a component?
+```js
+class MyComp extends View {
+  Body() {
+    div("hello")
+  }
+}
+```
+Want to declare a reactive variable?
+```js
+class MyComp extends View {
+  count = 0
+  Body() {
+    div("hello")
+    div(this.count)
+  }
+}
+```
+Want to declare a computed state?
+```js
+class MyComp extends View {
+  count = 0
+  doubleCount = this.count * 2
+  Body() {
+    div("hello")
+    div(this.doubleCount)
+  }
+}
+```
+
+The whole point in designing DLight.js is to make everything intuitive. When you want to get something done in DLight, you may think "how can I do this in DLight?", the first answer that pops into your mind has a 99% chance to be the right one.
+
+---
+
+Now that we've given you a taste of what DLight.js brings to the table, it's time to dive deeper. Up next, we'll walk you through the ins and outs of using DLight, making your frontend journey smoother and more enjoyable. Stay tuned, it's about to get even more exciting!
