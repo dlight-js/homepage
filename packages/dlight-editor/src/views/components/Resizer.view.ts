@@ -1,5 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { Prop, type Typed, _, Pretty, div } from "@dlightjs/types"
+import { View, Children, Prop } from "@dlightjs/dlight"
+import { type Typed, _, Pretty, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 
 export type OnDragFunc = (x: number, y: number) => void
@@ -12,6 +12,7 @@ interface ResizerProps {
 
 @View
 class Resizer implements ResizerProps {
+  @Children children: any
   /** @prop */
   @Prop onDrag?: OnDragFunc
   @Prop axis: DragAxis = "all"
@@ -72,7 +73,7 @@ class Resizer implements ResizerProps {
       .onmousedown(this.onMouseDown)
       .className(this.resizerCss)
     {
-      _(this._$children)
+      _(this.children)
     }
   }
 

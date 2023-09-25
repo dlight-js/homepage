@@ -1,4 +1,4 @@
-import { View } from "@dlightjs/dlight"
+import { Prop, required, View } from "@dlightjs/dlight"
 import { div, Pretty, Typed } from "@dlightjs/types"
 import { DLightProject } from "../../project/dlightProject"
 import { VStack } from "@dlightjs/components"

@@ -1,4 +1,4 @@
-import { View } from "@dlightjs/dlight"
+import { Env, Prop, View, required } from "@dlightjs/dlight"
 import { div, button, Typed, Pretty } from "@dlightjs/types"
 import ResultView from "./Result.view"
 import OutputView from "./Output.view"

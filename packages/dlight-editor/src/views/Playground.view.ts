@@ -1,5 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Prop, required, div, Pretty, env } from "@dlightjs/types"
+import { Prop, View, env, required } from "@dlightjs/dlight"
+import { type Typed, div, Pretty } from "@dlightjs/types"
 import ProjectEditor from "./Editor/ProjectEditor.view"
 import PreviewView from "./Preview/Preview.view"
 import { HStack } from "@dlightjs/components"

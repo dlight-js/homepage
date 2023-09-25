@@ -1,4 +1,4 @@
-import { View } from "@dlightjs/dlight"
+import { Env, Prop, View, required } from "@dlightjs/dlight"
 import { div, Pretty, Typed } from "@dlightjs/types"
 import Resizer, { OnDragFunc } from "./Resizer.view"
 import { Color, dividerWidth } from "../../utils/const"

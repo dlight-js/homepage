@@ -1,6 +1,6 @@
 import { defineConfig } from "vite"
 import dlight from "vite-plugin-dlight"
-import dlightEasyCss from "vite-plugin-dlight-easy-css"
+import dlightEasyCss from "vite-plugin-easy-css"
 
 export default defineConfig({
   plugins: [

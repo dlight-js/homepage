@@ -1,6 +1,6 @@
-import { View } from "@dlightjs/dlight"
+import { Env, Prop, Static, View, required } from "@dlightjs/dlight"
 import { css } from "@iandx/easy-css"
-import { Pretty, Static, Typed, div } from "@dlightjs/types"
+import { Pretty, Typed, div } from "@dlightjs/types"
 import * as monaco from "monaco-editor"
 import { Color, headerHeight } from "../../utils/const"
 
