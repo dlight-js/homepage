@@ -2,7 +2,7 @@
 DLight.js is all about rethinking how we build user interfaces, and we're exploring new things with a fresh perspective. Here's the lowdown on what makes DLight.js tick.
 
 
-# Familiar JavaScript Syntax
+# 🥳 Familiar JavaScript Syntax
 In recent years, thanks to React and other frameworks, JSX has become the go-to way to build user interfaces. But here's the catch – JSX is not a silver bullet. JSX and all HTML/XML, are primarily designed for machines, not humans. The opening tag paired with a closing tag makes your code quite bulky. And we like jsx because IT'S JS, right? But the whole syntax -- to create an element, or to set a property -- isn't that JS, is it?
 
 So, how does DLight.js handle this problem -- making UI building more js? We've done three delicate designs to approach this problem.
@@ -60,7 +60,7 @@ for (const fruit of ["apple", "orange", "banana"]) {
 ```
 Yes, I know it's amazing. Because IT'S JS!
 
-# Exploring Class Components
+# 🧐 Exploring Class Components
 React has had everyone buzzing about functional components in recent years. And honestly, it makes sense for React. Think about it: every time there's a re-render, it's like a cascading waterfall of function calls from top to bottom.
 
 But when we shift gears and talk about MVVM with that signal-based reactivity, class components start looking pretty appealing. Unlike templates, which can feel kind of boxed-in and don't play nice as standard JS files, class components have this cool object-oriented vibe.
@@ -71,10 +71,8 @@ And if we pause and think about it, isn't the whole deal with giving side effect
 
 Now, a quick side note: DLight’s class components aren’t even close to React's class componennts, which look like a functional components dress up for me. DLight's MVVM philosophy feels a bit closer to Angular's class component spirit. But here’s the kicker – DLight does it in a way that’s sleeker and way more developer-friendly.
 
-# Fine-grained re-renders
+#  🤌🏻 Fine-grained re-renders
 Now, let's take a look at how DLight.js handles updates.
-
-These years, many frameworks have been shifting away from the Virtual DOM to fine-grained updates. This evolution reflects a growing recognition that not every change in a user interface requires a wholesale re-rendering of the entire component or element. Fine-grained updates make our website so much faster.
 
 Instead of relying on a Virtual DOM, we've designed DLight.js to provide granular control over reative variable updates using a signal based reactivity. Here's how it works: each variable, if it is set to a new value or reference, will only result in the updates of its relevant elements' properties. 
 
