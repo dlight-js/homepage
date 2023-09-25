@@ -1,16 +1,109 @@
 [
-    {
-      "name": "Getting Started",
-      "path": "getting-started",
-      "children": [
-        {
-          "name": "Introduction",
-          "path": "introduction"
-        },
-        {
-          "name": "Quick Start",
-          "path": "quick-start"
-        }
-      ]
-    }
-  ]
+  {
+    "name": "Getting Started",
+    "path": "getting-started",
+    "children": [
+      {
+        "name": "Introduction",
+        "path": "introduction"
+      },
+      {
+        "name": "Quick Start",
+        "path": "quick-start"
+      }
+    ]
+  },
+  {
+    "name": "DLight Syntax",
+    "path": "dlight-syntax",
+    "children": [
+      {
+        "name": "HTML Elements",
+        "path": "html-elements"
+      },
+      {
+        "name": "Text Nodes",
+        "path": "text-nodes"
+      },
+      {
+        "name": "Custom Components",
+        "path": "custom-components"
+      },
+      {
+        "name": "If Statements",
+        "path": "if-statements"
+      },
+      {
+        "name": "For Loops",
+        "path": "for-loops"
+      },
+      {
+        "name": "Environment Variables",
+        "path": "environment-variables"
+      },
+      {
+        "name": "Expressions",
+        "path": "expressions"
+      }
+    ]
+  },
+  {
+    "name": "Basic Usages",
+    "path": "basic-usages",
+    "children": [
+      {
+        "name": "Class Components",
+        "path": "class-components"
+      },
+      {
+        "name": "State Management",
+        "path": "state-management"
+      },
+      {
+        "name": "Prop Passing",
+        "path": "prop-passing"
+      },
+      {
+        "name": "Child Components",
+        "path": "child-components"
+      },
+      {
+        "name": "Environment Variables",
+        "path": "environment-variables"
+      },
+      {
+        "name": "Lifecycle",
+        "path": "lifecycle"
+      }
+    ]
+  },
+  {
+    "name": "Advanced Usages",
+    "path": "advanced-usages",
+    "children": [
+      {
+        "name": "Assertion Tags",
+        "path": "assertion-tags"
+      },
+      {
+        "name": "Expressions",
+        "path": "expressions"
+      },
+      {
+        "name": "Forward Props",
+        "path": "forward-props"
+      },
+      {
+        "name": "Reactivity Utils",
+        "path": "reactivity-utils"
+      },
+      {
+        "name": "DLNodes as Props",
+        "path": "dlnodes-as-props"
+      },
+      {
+
+      }
+    ]
+  }
+]
