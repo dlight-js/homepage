@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { div, button, Env, Prop, required, Typed, Pretty } from "@dlightjs/types"
+import { div, button, Typed, Pretty } from "@dlightjs/types"
 import ResultView from "./Result.view"
 import OutputView from "./Output.view"
 import { HStack } from "@dlightjs/components"
@@ -14,7 +14,8 @@ interface PreviewProps {
   width: string
 }
 
-class Preview extends View implements PreviewProps {
+@View
+class Preview implements PreviewProps {
   /** @prop */
   @Prop mountId: string = required
   @Prop currTransformedCode: string = required
@@ -30,14 +31,14 @@ class Preview extends View implements PreviewProps {
 
   /** @view */
   @View
-  Head({ _$content }: any): any {
-    button(_$content)
+  Head({ content }: any): any {
+    button(content)
       .className(this.headerCss)
       .style({
-        borderBottom: _$content === this.tab ? `3px solid ${this.theme.text}` : ""
+        borderBottom: content === this.tab ? `3px solid ${this.theme.text}` : ""
       })
       .onclick(() => {
-        this.tab = _$content
+        this.tab = content
       })
   }
 

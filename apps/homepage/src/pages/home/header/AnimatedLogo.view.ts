@@ -1,6 +1,7 @@
+
 import { Navigator, Transition } from "@dlightjs/components"
-import { View } from "@dlightjs/dlight"
-import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
+import { View, Env, Prop, required } from "@dlightjs/dlight"
+import { Pretty, Typed, div } from "@dlightjs/types"
 import { Logo, LogoTitle } from "../../../logo"
 import { css } from "@iandx/easy-css"
 
@@ -9,7 +10,8 @@ interface AnimatedLogoProps {
   isShortHeader: boolean
 }
 
-class AnimatedLogo extends View implements AnimatedLogoProps {
+@View
+class AnimatedLogo implements AnimatedLogoProps {
   @Env navigator: Navigator = required
   @Prop isStyle2 = required
   @Prop isShortHeader = required

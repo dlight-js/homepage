@@ -8,7 +8,8 @@ import HelloView from "./hello.view"
 import CounterView from "./counter.view"
 import ArrayView from "./array.view"
 import ToggleView from "./toggle.view"
-class MyComp extends View {
+@View
+class MyComp {
   Body() {
     HelloView()
     CounterView()
@@ -20,7 +21,8 @@ render("app", MyComp)
 `
 
 export const HelloView = `import DLight, { View } from "@dlightjs/dlight"
-class HelloView extends View {
+@View
+class HelloView {
   Body() {
     h1("hello, dlight js")
   }
@@ -30,7 +32,8 @@ export default HelloView
 
 export const CounterView = `import DLight, { View } from "@dlightjs/dlight"
 import WrapperView from "./wrapper.view"
-class CountView extends View {
+@View
+class CountView {
   count = 1
   Body() {
     WrapperView()
@@ -53,7 +56,8 @@ export default CountView
 
 export const ArrayView = `import DLight, { View } from "@dlightjs/dlight"
 import WrapperView from "./wrapper.view"
-class ArrayView extends View {
+@View
+class ArrayView {
   apples = ["apple0", "apple1", "apple2"]
   Body() {
     WrapperView()
@@ -79,7 +83,8 @@ export default ArrayView
 
 export const ToggleView = `import DLight, { View } from "@dlightjs/dlight"
 import WrapperView from "./wrapper.view"
-class ToggleView extends View {
+@View
+class ToggleView {
   toggle = true
   Body() {
     WrapperView()
@@ -103,15 +108,17 @@ export default ToggleView
 `
 
 export const WrapperView = `import DLight, { View, required } from "@dlightjs/dlight"
-class WrapperView extends View {
+@View
+class WrapperView {
   @Prop color = required
+  @Children children = required
   Body() {
     div()
       ._border(\`1px solid \${this.color}\`)
       ._padding("10px")
       ._margin("10px")
     {
-      _(this._$children)
+      _(this.children)
     }
   }
 }
@@ -119,7 +126,8 @@ export default WrapperView
 `
 
 export const codeTemplate = (tabName: string) => `import DLight, { View } from "@dlightjs/dlight"
-class ${tabName[0].toUpperCase() + tabName.slice(1)}View extends View {
+@View
+class ${tabName[0].toUpperCase() + tabName.slice(1)}View {
   Body() {
     "I am ${tabName} view"
   }
@@ -128,7 +136,8 @@ export default ${tabName[0].toUpperCase() + tabName.slice(1)}View
 `
 
 export const PreviewCode = `import DLight, { View, render } from "@dlightjs/dlight"
-class MyComp extends View {
+@View
+class MyComp {
   toggle = true
   fruits = ["🍎", "🍊", "🥑"]
   Body() {
@@ -184,10 +193,10 @@ export interface Color {
 export const colors: Record<string, Color> = {
   light: {
     text: "fff",
-    orange1: "#fff9f4",
+    orange1: "#fff9f4", // primaryBgColor
     orange2: "#fef2e8",
     orange3: "#feecdd",
-    orange4: "#fde5d2",
+    orange4: "#fde5d2", // secondaryBgColor
     orange5: "#fcd8bb",
     orange6: "#fbcba5",
     orange7: "#fabe8e",
@@ -209,7 +218,7 @@ export const colors: Record<string, Color> = {
     green9: "#7fa05d",
     green10: "#617e44",
     green11: "#526e37",
-    green12: "#445d2a",
+    green12: "#445d2a", // primaryTextColor
     green13: "#354d1d",
     green14: "#263c10"
   },
@@ -249,22 +258,22 @@ export const colors: Record<string, Color> = {
 export const featureData = [
   {
     title: "Delightful",
-    imgUrl: "./logo-leading-png.svg",
+    imgUrl: "/imgs/logo-leading-png.svg",
     content: "With an API designed to be intuitive and user-friendly, web development becomes effortless with Dlight, whether you're building a simple website or a complex web application."
   },
   {
     title: "Performant",
-    imgUrl: "./performant.svg",
+    imgUrl: "/imgs/performant.svg",
     content: "With a minuscule file size of just 4KB, Dlight is lightning-fast and ultra-lightweight, delivering optimal performance without the need for manual optimization."
   },
   {
     title: "DX-first",
-    imgUrl: "./insights.svg",
+    imgUrl: "/imgs/insights.svg",
     content: "Dlight uses the syntax of function calls and dot notation to make development more enjoyable, without the need to write outdated and hard-to-read XML code."
   },
   {
     title: "Intuitively Simple",
-    imgUrl: "./intuitively.svg",
+    imgUrl: "/imgs/intuitively.svg",
     content: "Dlight is born reactive and is designed to be intuitively simple, with a minimalistic API that requires no memorization of complex functions or libraries."
   }
 ]
@@ -281,7 +290,8 @@ export const ExamplesCodeData: ExmaplesCodeDataType[] = [
           {
             code: `import DLight, { View, render } from "@dlightjs/dlight"
 import Name from "./Name.view"
-class MyComp extends View {
+@View
+class MyComp {
   Body() {
     Name()
   }
@@ -291,7 +301,8 @@ render("app", MyComp)`,
           },
           {
             code: `import DLight, { View } from "@dlightjs/dlight"
-class Name extends View {
+@View
+class Name {
   name = "John"
 
   Body() {
@@ -311,7 +322,8 @@ export default Name`,
           {
             code: `import DLight, { View, render } from "@dlightjs/dlight"
 import Name from "./Name.view"
-class MyComp extends View {
+@View
+class MyComp {
   Body() {
     Name()
   }
@@ -322,7 +334,8 @@ render("app", MyComp)`,
           {
             code: `import DLight, { View } from "@dlightjs/dlight"
 
-class Name extends View {
+@View
+class Name {
   name = "John"
 
   beforeInit() {
@@ -346,7 +359,8 @@ export default Name`,
           {
             code: `import DLight, { View, render } from "@dlightjs/dlight"
 import DoubleCount from "./DoubleCount.view"
-class MyComp extends View {
+@View
+class MyComp {
   Body() {
     DoubleCount()
   }
@@ -356,7 +370,8 @@ render("app", MyComp)`,
           },
           {
             code: `import DLight, { View } from "@dlightjs/dlight"
-class DoubleCount extends View {
+@View
+class DoubleCount {
   count = 10
   doubleCount = this.count * 2
 

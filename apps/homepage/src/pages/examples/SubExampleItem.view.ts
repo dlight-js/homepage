@@ -1,5 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, required, Prop, Env, Pretty, div } from "@dlightjs/types"
+import { Env, Prop, View, required } from "@dlightjs/dlight"
+import { type Typed, Pretty, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { CodeModuleType } from "../../utils/types"
 import { Navigator } from "@dlightjs/components"
@@ -12,7 +12,8 @@ interface SubExampleItemProps {
   selectedTitle: string
 }
 
-class SubExampleItem extends View implements SubExampleItemProps {
+@View
+class SubExampleItem implements SubExampleItemProps {
   @Env navigator: Navigator = required
   @Env theme: any = required
   @Prop title = required

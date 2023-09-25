@@ -1,10 +1,11 @@
-import { View } from "@dlightjs/dlight"
-import { Env, Pretty, Typed, a, div, img, required } from "@dlightjs/types"
+import { Env, View, required } from "@dlightjs/dlight"
+import { Pretty, Typed, a, div, img } from "@dlightjs/types"
 import { LightModeOutlined, TranslateOutlined } from "@dlightjs/material-icons"
 import { css } from "@iandx/easy-css"
 import { getSize } from "../../../utils/utilFunc"
 
-class RightSetting extends View {
+@View
+class RightSetting {
   @Env theme: any = required
   @Env updateThemeType: any = required
 
@@ -32,10 +33,10 @@ class RightSetting extends View {
         .color(this.theme.green9)
         .onclick(() => {})
       this.NavForwardIcon({})
-        .src("/github.svg")
+        .src("/imgs/github.svg")
         .href("https://github.com/dlight-js/dlight")
       this.NavForwardIcon({})
-        .src("/discord.svg")
+        .src("/imgs/discord.svg")
     }
   }
 

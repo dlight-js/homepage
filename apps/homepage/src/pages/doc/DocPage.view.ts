@@ -1,5 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { Env, Pretty, Typed, div, env, required } from "@dlightjs/types"
+import { View, Env, required, env } from "@dlightjs/dlight"
+import { Pretty, Typed, div } from "@dlightjs/types"
 import DlightDoc from "dlight-doc"
 import { css } from "@iandx/easy-css"
 import FileStructure from "./FileStructure.view"
@@ -9,7 +9,8 @@ import { DocsStructureMapType } from "../../utils/types"
 import Header from "../home/header/Header.view"
 import { MenuRound } from "@dlightjs/material-icons"
 
-class DocPage extends View {
+@View
+class DocPage {
   @Env path: string = required
   @Env isMobile: boolean = required
   mdString: string = ""
@@ -72,7 +73,7 @@ class DocPage extends View {
     height: 100%;
     background-color: white;
     z-index: ${this.isOpenMenu ? 100 : ""};
-    position: ${this.isOpenMenu ? "absolute" : ""};
+    position: ${this.isOpenMenu ? "absolute" : "default"};
   `
 
   docWrapCss = css`

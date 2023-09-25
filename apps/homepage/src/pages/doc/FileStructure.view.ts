@@ -1,5 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Prop, Pretty } from "@dlightjs/types"
+import { Prop, View } from "@dlightjs/dlight"
+import { type Typed, Pretty } from "@dlightjs/types"
 import { DocsStructureMap } from "../../utils/const"
 import { DocsStructureMapType } from "../../utils/types"
 import FileName from "./FileName.view"
@@ -8,7 +8,8 @@ interface FileStructureProps {
   structureData: DocsStructureMapType[]
 }
 
-class FileStructure extends View implements FileStructureProps {
+@View
+class FileStructure implements FileStructureProps {
   @Prop structureData = DocsStructureMap as any
 
   Body() {

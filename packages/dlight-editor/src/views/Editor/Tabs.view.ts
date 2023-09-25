@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { div, Env, Pretty, Prop, required, span, Static, Typed } from "@dlightjs/types"
+import { div, Pretty, span, Static, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { HStack } from "@dlightjs/components"
 import { CloseFilled, AddFilled } from "@dlightjs/material-icons"
@@ -19,7 +19,8 @@ interface TabsProps {
   updateModulePath: (currPath: string, newPath: string) => void
 }
 
-class Tabs extends View implements TabsProps {
+@View
+class Tabs implements TabsProps {
   /** @prop */
   @Env theme: Color = required
   @Prop modules: ToBeTransformedModule[] = required

@@ -1,5 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { div, button, Pretty, Typed, Env, required, Prop } from "@dlightjs/types"
+import { Env, View, required, Prop } from "@dlightjs/dlight"
+import { div, button, Pretty, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { getSize } from "../../utils/utilFunc"
 import { Navigator } from "@dlightjs/components"
@@ -8,7 +8,8 @@ interface TitleProps {
   isCenterTitle: boolean
 }
 
-class Title extends View implements TitleProps {
+@View
+class Title implements TitleProps {
   @Env navigator: Navigator = required
   @Env theme: any = required
   @Env isMobile: boolean = required

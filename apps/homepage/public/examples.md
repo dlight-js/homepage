@@ -81,7 +81,8 @@ Writing components in Dlight is simple and straightforward. Small focused compon
 // ~> Name.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class Name extends View {
+@View
+class Name {
   name = "John"
 
   Body() {
@@ -96,7 +97,8 @@ export default Name
 // ~> Name.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class Name extends View {
+@View
+class Name {
   name = "John"
 
   beforeInit() {
@@ -115,7 +117,8 @@ export default Name
 // ~> DoubleCount.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class DoubleCount extends View {
+@View
+class DoubleCount {
   count = 10
   doubleCount = this.count * 2
 
@@ -133,7 +136,8 @@ export default DoubleCount
 // ~> HelloWorld.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class HelloWorld extends View {
+@View
+class HelloWorld {
   Body() {
     h1("hello world")
   }
@@ -147,7 +151,8 @@ export default HelloWorld
 import DLight, { View } from "@dlightjs/dlight"
 import "./style.css"
 
-class CssStyle extends View {
+@View
+class CssStyle {
   Body() {
     h1("I am red")
       .className("title")
@@ -169,7 +174,8 @@ export default CssStyle
 // ~> Colors.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class Colors extends View {
+@View
+class Colors {
   colors = ["red", "green", "blue"]
 
   Body() {
@@ -189,7 +195,8 @@ export default Colors
 // ~> Counter.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class Counter extends View {
+@View
+class Counter {
   count = 0
 
   Body() {
@@ -208,7 +215,8 @@ export default Counter
 // ~> InputFocused.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class InputFocused extends View {
+@View
+class InputFocused {
   inputElement
 
   didMount() {
@@ -231,7 +239,8 @@ import DLight, { View } from "@dlightjs/dlight"
 
 const TRAFFIC_LIGHTS = ["red", "orange", "green"]
 
-class TrafficLight extends View {
+@View
+class TrafficLight {
   lightIndex = 0
   light = TRAFFIC_LIGHTS[this.lightIndex]
 
@@ -269,7 +278,8 @@ export default TrafficLight
 // ~> PageTitle.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class PageTitle extends View {
+@View
+class PageTitle {
   pageTitle = ""
 
   didMount() {
@@ -288,7 +298,8 @@ export default PageTitle
 // ~> Time.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class Time extends View {
+@View
+class Time {
   time = new Date().toLocaleTimeString()
   timer
 
@@ -316,7 +327,8 @@ export default Time
 import DLight, { View } from "@dlightjs/dlight"
 import UserProfile from "./UserProfile"
 
-class App extends View {
+@View
+class App {
   Body() {
     UserProfile()
       .name("John")
@@ -330,7 +342,8 @@ export default App
 ```
 ```ts
 // ~> UserProfile.view.js
-class UserProfile extends View {
+@View
+class UserProfile {
   @Prop name = ""
   @Prop age = null
   @Prop favouriteColors = []
@@ -351,7 +364,8 @@ export default UserProfile
 // ~> App.view.js
 import DLight, { View } from "@dlightjs/dlight"
 import AnswerButton from "./AnswerButton.view"
-class App extends View {
+@View
+class App {
   canCome = true
 
   onAnswerNo() {
@@ -376,7 +390,8 @@ export default App
 ```
 ```js
 // ~> AnswerButton.view.js
-class AnswerButton extends View {
+@View
+class AnswerButton {
   @Prop onYes
   @Prop onNo
 
@@ -396,7 +411,8 @@ export default AnswerButton
 import DLight, { View } from "@dlightjs/dlight"
 import FunnyButton from "./FunnyButton.view"
 
-class App extends View {
+@View
+class App {
   Body() {
     FunnyButton()
     {
@@ -409,7 +425,8 @@ export default App
 ```
 ```js
 // ~> FunnyButton.view.js
-class FunnyButton extends View {
+@View
+class FunnyButton {
   Body() {
     button()
       .style({
@@ -438,7 +455,8 @@ export default FunnyButton
 import DLight, { View } from "@dlightjs/dlight"
 import FunnyButton from "./FunnyButton"
 
-class App extends View {
+@View
+class App {
   Body() {
     FunnyButton()
     {
@@ -452,7 +470,8 @@ export default App
 ```
 ```js
 // ~> FunnyButton.view.js
-class FunnyButton extends View {
+@View
+class FunnyButton {
   Body() {
     button()
       .style({
@@ -485,7 +504,8 @@ export default FunnyButton
 import DLight, { View } from "@dlightjs/dlight"
 import UserProfile from 'UserProfile.view'
 
-class App extends View {
+@View
+class App {
   user = {
     id: 1,
     username: "unicorn42",
@@ -511,7 +531,8 @@ export default App
 ```
 ```ts
 // ~> UserProfile.view.js
-class UserProfile extends View {
+@View
+class UserProfile {
   @Env user
   @Env updateUsername
 
@@ -535,7 +556,8 @@ export default UserProfile
 // ~> InputHello.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class InputHello extends View {
+@View
+class InputHello {
   text = "Hello world"
 
   Body() {
@@ -555,7 +577,8 @@ export default InputHello
 // ~> IsAvailable.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class IsAvailable extends View {
+@View
+class IsAvailable {
   isAvailable = false
 
   Body() {
@@ -576,7 +599,8 @@ export default IsAvailable
 // ~> PickPill.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class PickPill extends View {
+@View
+class PickPill {
   picked = "red"
 
   handleChange(event) {
@@ -616,7 +640,8 @@ const colors = [
   { id: 4, text: "gray", isDisabled: true }
 ]
 
-class ColorSelect extends View {
+@View
+class ColorSelect {
   selectedColorId = 2
 
   Body() {
@@ -651,7 +676,8 @@ export default ColorSelect
 // ~> App.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class App extends View {
+@View
+class App {
   Body() {
     h1("Hello world")
   }
@@ -671,7 +697,8 @@ render("app", App)
 import DLight, { View } from "@dlightjs/dlight"
 import fetchUser from "./fetchUser"
 
-class App extends View {
+@View
+class App {
   isLoading
   error
   users
@@ -725,7 +752,8 @@ export default async function fetchUsers(dataKey = "data", errorKey = "error", i
 // ~> Router.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class Router extends View {
+@View
+class Router {
   @Env navigator
 
   Body() {
@@ -758,7 +786,8 @@ export default Router
 import DLight, { View } from "@dlightjs/dlight"
 import { RouterSpace, Route } from "@dlightjs/components"
 
-class Routing extends View {
+@View
+class Routing {
   Body() {
     RouterSpace()
     {
@@ -790,7 +819,8 @@ For example, a simple Counter component in Dlight may look like this:
 // ~> Counter.view.js
 import DLight, { View } from "@dlightjs/dlight"
 
-class CounterView extends View {
+@View
+class CounterView {
   count = 0
 
   Body() {
@@ -904,7 +934,8 @@ And now it's **done**!!
 
 We offer a babel plugin called `babel-plugin-optional-this` for any js/ts code to eliminate the ugly `this`, e.g.:
 ```js
-export class MyComp extends View {
+export @View
+class MyComp {
   @State count = 0  
 
   Body() {
@@ -915,7 +946,8 @@ export class MyComp extends View {
 now becomes:
 
 ```jsx
-export class MyComp extends View {
+export @View
+class MyComp {
   @State count = 0  
 
   Body() {
@@ -944,7 +976,8 @@ Let's go back to **Write your own component**
 // -> ./MyComp.jsd
 import {View} from "@dlightjs/dlight"
 
-export class MyComp extends View {
+export @View
+class MyComp {
   @State count = 0  
   countPlus1 = this.count + 1  
 
@@ -972,7 +1005,8 @@ For example:
 ```js
 import DLight, { View } from "@dlightjs/dlight"
 
-class MyOtherComp extends View {
+@View
+class MyOtherComp {
   @Prop countProp 
 
   Body() {
@@ -981,7 +1015,8 @@ class MyOtherComp extends View {
   }
 }
 
-class MyComp extends View {
+@View
+class MyComp {
   count = 0
 
   Body() {
@@ -1131,7 +1166,8 @@ For different tags, prop means different things.
      ```js
      import {View, required} from "@dlightjs/dlight"
      
-     class MyOtherComp extends View {
+     @View
+class MyOtherComp {
        @Prop _$content = required
      
        Body() {
@@ -1139,7 +1175,8 @@ For different tags, prop means different things.
        }
      }
      
-     export class MyComp extends View {  
+     export @View
+class MyComp {  
        Body() {
          MyOtherComp("hello world")
        }
@@ -1179,7 +1216,8 @@ In Dlight, reactivity is **simple and efficient**!
   ```jsx
   import {View} from "@dlightjs/dlight"
   
-  export class MyComp extends View {
+  export @View
+class MyComp {
     @State count = 0
   
     Body() {
@@ -1232,7 +1270,8 @@ function ShowMeTheName() {
 🌟This is how we do this in dlight:
 
 ```jsx
-class ShowMeTheName extends View {
+@View
+class ShowMeTheName {
   @State firstName = 'John'
   @State lastName = 'Doe'
   fullName = `${this.firstName} ${this.lastName}`
@@ -1258,7 +1297,8 @@ Dep-chain examples:
    `flag => null`
    
    ```js
-   class DepChainExample1 extends View {
+   @View
+class DepChainExample1 {
      @State count = 0
      @State flag = true
    }
@@ -1273,7 +1313,8 @@ Dep-chain examples:
    `flag => noFlag => null`
    
    ```js
-   class DepChainExample2 extends View {
+   @View
+class DepChainExample2 {
      @State count = 0
      countPlus1 = this.count + 1
      countPlus2 = this.count + 2
@@ -1289,7 +1330,8 @@ Dep-chain examples:
    `count => null`
    
    ```js
-   class DepChainExample3 extends View {
+   @View
+class DepChainExample3 {
      @State count = 0
      // logCount will not be added into dep-chain because it's wrapped with an arrow function
      logCount = () => {
@@ -1303,7 +1345,8 @@ Dep-chain examples:
    `count => logCount => null`
    
    ```js
-   class DepChainExample4 extends View {
+   @View
+class DepChainExample4 {
      @State count = 0
      // logCount will be added into dep-chain because it's wrapped with a function
      logCount = function() {
@@ -1317,7 +1360,8 @@ Dep-chain examples:
    DLight won't have a lot of circumstances that require a "side effect" because **`derived` variable can solve most of the case**. However, if you still want to use it to listen changes or for other specific reason, you can try this:
    
    ```js
-   class DepChainExample5 extends View {
+   @View
+class DepChainExample5 {
      @State count = 0
      // watchCountChange will be added into dep-chain because it's wrapped with a function
      // and this function will re-called if "count" changes
@@ -1334,7 +1378,8 @@ Dep-chain examples:
    1. Just like how we implement `useEffect`
    
    ```js
-   class DepChainExample6_1 extends View {
+   @View
+class DepChainExample6_1 {
      @State count = 0
    
      countPlus1 = function() {
@@ -1347,7 +1392,8 @@ Dep-chain examples:
    2. Split the function out
    
    ```js
-   class DepChainExample6_1 extends View {
+   @View
+class DepChainExample6_1 {
      @State count = 0
      getCount = count => {
        // do other stuff.....
@@ -1422,7 +1468,8 @@ In DLight, we provide real lifecycles for both custom components and html elemen
 - Usage
   
   ```jsx
-  class MyComp extends View {
+  @View
+class MyComp {
     didMount() {
       console.log("I just mounted")
     }
@@ -1441,7 +1488,8 @@ You can get children in a custom component with a inner class member called `thi
 ```jsx
 import {View} from "@dlightjs/dlight"
 
-class MySubComp extends View {
+@View
+class MySubComp {
   // this._$children will be div("hello") and div("dlight") in this case
   // this._$childrenFunc will be () => div("hello") and () => div("dlight") in this case
 
@@ -1452,7 +1500,8 @@ class MySubComp extends View {
   }
 }
 
-export class MyComp extends View {
+export @View
+class MyComp {
   Body() {
     MySubComp()
     {
@@ -1470,7 +1519,8 @@ You can access your component or your children component's tag name by using `th
 ```jsx
 import {View} from "@dlightjs/dlight"
 
-class ThisIsMyComponentHah extends View {
+@View
+class ThisIsMyComponentHah {
   didMount() {
     console.log(this._$tag) // will log "ThisIsMyComponentHah"
   }
@@ -1486,14 +1536,16 @@ Sometimes, you need to access the html element in DOM and alter it manually.
 ```jsx
 import {View} from "@dlightjs/dlight"
 
-class MySubComp extends View {
+@View
+class MySubComp {
   Body() {
     div("hello")
     div("dlight")
   }
 }
 
-class MyComp extends View {
+@View
+class MyComp {
   myHTMLElement?
   myHTMLElements?
   didMount() {
@@ -1514,7 +1566,8 @@ class MyComp extends View {
 Build reusable subviews inside your components. Props inside @View will automatically be reactive.
 
 ```js
-class MyComp extends View {
+@View
+class MyComp {
   @View
   MyButton({id}) {
     button(`I am button ${id}`)
@@ -1533,13 +1586,15 @@ class MyComp extends View {
 Force a expression to be a custom tag.
 
 ```js
-class MySubComp extends View {
+@View
+class MySubComp {
   Body() {
     "hello"
   }
 }
 
-class MyComp extends View {
+@View
+class MyComp {
   myTagObject = {
     getTag: () => MySubComp
   }
@@ -1552,7 +1607,8 @@ class MyComp extends View {
 Force a expression to be a html tag.
 
 ```js
-class MyComp extends View {
+@View
+class MyComp {
   myTagObject = {
     getTag: () => "span"
   }
@@ -1657,21 +1713,24 @@ class MyComp extends View {
 ```js
 import {View, required} from "@dlightjs/dlight"
 
-class MyNestComp extends View {
+@View
+class MyNestComp {
   @Env myMessage = "default value"
   Body() {
     div(this.myMessage)  // will show "use me anywhere inside this environment"
   }
 }
 
-class MySubComp2 extends View {
+@View
+class MySubComp2 {
   @Env myMessage = "default value"
   Body() {
     div(this.myMessage)  // will show "use me anywhere inside this environment"
   }
 }
 
-class MySubComp1 extends View {
+@View
+class MySubComp1 {
   @Env myMessage = "default value"
   Body() {
     MyNestComp()  // call MySubComp2
@@ -1679,7 +1738,8 @@ class MySubComp1 extends View {
   }
 }
 
-export class MyComp extends View {  
+export @View
+class MyComp {  
   Body() {
     Env()
     	.myMessage("use me anywhere inside this environment") 

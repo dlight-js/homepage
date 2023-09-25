@@ -1,8 +1,9 @@
 import { VStack, Spacer, Navigator } from "@dlightjs/components"
-import { View } from "@dlightjs/dlight"
-import { type Typed, div, button, Env, required, Pretty } from "@dlightjs/types"
+import { Env, View, required } from "@dlightjs/dlight"
+import { type Typed, div, button, Pretty } from "@dlightjs/types"
 
-class ErrorPage extends View {
+@View
+class ErrorPage {
   @Env navigator: Navigator = required
 
   Body() {

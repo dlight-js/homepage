@@ -4,7 +4,8 @@ import { css } from "@iandx/easy-css"
 import { HeaderData } from "../../../utils/const"
 import ShortHeaderMenuItem from "./ShortHeaderMenuItem.view"
 
-class ShortHeaderMenu extends View {
+@View
+class ShortHeaderMenu {
   navBtn = HeaderData
   Body() {
     div()

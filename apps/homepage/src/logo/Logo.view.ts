@@ -1,17 +1,17 @@
-import { View } from "@dlightjs/dlight"
-import { Pretty, Prop, Typed, img, required } from "@dlightjs/types"
+import { View, required, Prop } from "@dlightjs/dlight"
+import { Pretty, Typed, img } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 
 interface LogoProps {
   isRotate: boolean
 }
 
-class Logo extends View implements LogoProps {
-  _$forwardProps = true
+@View
+class Logo implements LogoProps {
   @Prop isRotate = required
   Body() {
     img()
-      .src("/logo-leading-png.svg")
+      .src("/imgs/logo-leading-png.svg")
       .className(this.logoCss)
   }
 

@@ -4,7 +4,8 @@ import CounterView from "./counter"
 import ArrayView from "./array"
 import ToggleView from "./toggle"
 
-class MyComp extends View {
+@View
+class MyComp {
   Body() {
     HelloView()
     CounterView()
@@ -18,7 +19,8 @@ render("app", MyComp)
 
 export const HelloView = `import DLight, { View } from "@dlightjs/dlight"
 
-class HelloView extends View {
+@View
+class HelloView {
   Body() {
     h1("hello, dlight js")
   }
@@ -30,7 +32,8 @@ export default HelloView
 export const CounterView = `import DLight, { View } from "@dlightjs/dlight"
 import WrapperView from "./wrapper"
 
-class CountView extends View {
+@View
+class CountView {
   count = 1
 
   Body() {
@@ -56,7 +59,8 @@ export default CountView
 export const ArrayView = `import DLight, { View } from "@dlightjs/dlight"
 import WrapperView from "./wrapper"
 
-class ArrayView extends View {
+@View
+class ArrayView {
   apples = ["apple0", "apple1", "apple2"]
 
   Body() {
@@ -85,7 +89,8 @@ export default ArrayView
 export const ToggleView = `import DLight, { View } from "@dlightjs/dlight"
 import WrapperView from "./wrapper"
 
-class ToggleView extends View {
+@View
+class ToggleView {
   toggle = true
 
   Body() {
@@ -112,7 +117,8 @@ export default ToggleView
 
 export const WrapperView = `import DLight, { View, required } from "@dlightjs/dlight"
 
-class WrapperView extends View {
+@View
+class WrapperView {
   @Prop color = required
   Body() {
     div()
@@ -132,7 +138,8 @@ export default WrapperView
 
 export const codeTemplate = (tabName: string) => `import DLight, { View } from "@dlightjs/dlight"
 
-class ${tabName[0].toUpperCase() + tabName.slice(1)}View extends View {
+@View
+class ${tabName[0].toUpperCase() + tabName.slice(1)}View {
   Body() {
     "I am ${tabName} view"
   }

@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { css } from "@iandx/easy-css"
-import { Env, Pretty, Prop, required, Static, Typed, div } from "@dlightjs/types"
+import { Pretty, Static, Typed, div } from "@dlightjs/types"
 import * as monaco from "monaco-editor"
 import { Color, headerHeight } from "../../utils/const"
 
@@ -8,7 +8,8 @@ interface OutputProps {
   code: string
 }
 
-class Output extends View implements OutputProps {
+@View
+class Output implements OutputProps {
   /** @prop */
   @Prop code = required
   @Env theme: Color = required

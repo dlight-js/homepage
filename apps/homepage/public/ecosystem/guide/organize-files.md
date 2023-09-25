@@ -36,7 +36,8 @@ First thing first, DLight is not using template/functional components. It uses *
 // -> ./MyComp.jsx
 import {View} from "@dlightjs/dlight"
 
-export class MyComp extends View {
+export @View
+class MyComp {
   @State count = 0  // use @State to make the class member "count" reactive
   countPlus1 = this.count + 1  // "countPlus1" will automatically be reactive because it's derived from "count"
 
@@ -68,7 +69,8 @@ Dlight use @Prop to identify if this class member is a prop.
    ```jsx
    import {View, required} from "@dlightjs/dlight"
    
-   class MyOtherComp extends View {
+   @View
+class MyOtherComp {
        // "required" is just `const required = undefined as any`, we use this to identify that this prop must be passed
      @Prop countProp = required
    
@@ -77,7 +79,8 @@ Dlight use @Prop to identify if this class member is a prop.
      )
    }
    
-   export class MyComp extends View {
+   export @View
+class MyComp {
      @State count = 0
    
      Body = (
@@ -101,7 +104,8 @@ Dlight use @Prop to identify if this class member is a prop.
    ```jsx
    import {View, required} from "@dlightjs/dlight"
    
-   class MyOtherComp extends View {
+   @View
+class MyOtherComp {
      @PropState countPropState = required 
    
      Body = (
@@ -116,7 +120,8 @@ Dlight use @Prop to identify if this class member is a prop.
      )
    }
    
-   export class MyComp extends View {
+   export @View
+class MyComp {
      @State count = 0
    
      Body = (
@@ -154,7 +159,8 @@ In Dlight, reactivity is **simple and efficient**!
   ```jsx
   import {View} from "@dlightjs/dlight"
   
-  export class MyComp extends View {
+  export @View
+class MyComp {
     @State count = 0  
   
     Body = (
@@ -206,7 +212,8 @@ function ShowMeTheName() {
 🌟This is how we do this in dlight:
 
 ```jsx
-class ShowMeTheName extends View {
+@View
+class ShowMeTheName {
   @State firstName = 'John'
   @State lastName = 'Doe'
   fullName = `${this.firstName} ${this.lastName}`
@@ -230,7 +237,8 @@ Dep-chain examples:
    `flag => null`
    
    ```js
-   class DepChainExample1 extends View {
+   @View
+class DepChainExample1 {
      @State count = 0
      @State flag = true
    }
@@ -245,7 +253,8 @@ Dep-chain examples:
    `flag => noFlag => null`
    
    ```js
-   class DepChainExample2 extends View {
+   @View
+class DepChainExample2 {
      @State count = 0
      countPlus1 = this.count + 1
      countPlus2 = this.count + 2
@@ -261,7 +270,8 @@ Dep-chain examples:
    `count => null`
    
    ```js
-   class DepChainExample3 extends View {
+   @View
+class DepChainExample3 {
      @State count = 0
      // logCount will not be added into dep-chain because it's wrapped with an arrow function
      logCount = () => {
@@ -275,7 +285,8 @@ Dep-chain examples:
    `count => logCount => null`
    
    ```js
-   class DepChainExample4 extends View {
+   @View
+class DepChainExample4 {
      @State count = 0
      // logCount will be added into dep-chain because it's wrapped with a function
      logCount = function() {
@@ -289,7 +300,8 @@ Dep-chain examples:
    DLight won't have a lot of circumstances that require a "side effect" because **`derived` variable can solve most of the case**. However, if you still want to use it to listen changes or for other specific reason, you can try this:
    
    ```js
-   class DepChainExample5 extends View {
+   @View
+class DepChainExample5 {
      @State count = 0
      // watchCountChange will be added into dep-chain because it's wrapped with a function
      // and this function will re-called if "count" changes
@@ -306,7 +318,8 @@ Dep-chain examples:
    1. Just like how we implement `useEffect`
    
    ```js
-   class DepChainExample6_1 extends View {
+   @View
+class DepChainExample6_1 {
      @State count = 0
    
      countPlus1 = function() {
@@ -319,7 +332,8 @@ Dep-chain examples:
    2. Split the function out
    
    ```js
-   class DepChainExample6_1 extends View {
+   @View
+class DepChainExample6_1 {
      @State count = 0
      getCount = count => {
        // do other stuff.....
@@ -395,7 +409,8 @@ In DLight, we provide real lifecycles for both custom components and html elemen
 - Usage
   
   ```jsx
-  class MyComp extends View {
+  @View
+class MyComp {
     didMount() {
       console.log("I just mounted")
     }
@@ -414,7 +429,8 @@ You can get children in a custom component with a inner class member called `thi
 ```jsx
 import {View} from "@dlightjs/dlight"
 
-class MySubComp extends View {
+@View
+class MySubComp {
   // this._$children will be <div>hello</div> and <div>dlight</div> in this case
   // this._$childrenFunc will be () => <div>hello</div> and () => <div>dlight</div> in this case
 
@@ -427,7 +443,8 @@ class MySubComp extends View {
   )
 }
 
-export class MyComp extends View {
+export @View
+class MyComp {
   Body = (
     <MySubComp>
       <div>hello</div>
@@ -444,7 +461,8 @@ You can access your component or your children component's tag name by using `th
 ```jsx
 import {View} from "@dlightjs/dlight"
 
-class ThisIsMyComponentHah extends View {
+@View
+class ThisIsMyComponentHah {
   didMount() {
     console.log(this._$tag) // will log "ThisIsMyComponentHah"
   }
@@ -460,7 +478,8 @@ Sometimes, you need to access the html element in DOM and alter it manually.
 ```jsx
 import {View} from "@dlightjs/dlight"
 
-class MySubComp extends View {
+@View
+class MySubComp {
   Body = (
     <>
       <div>hello</div>
@@ -469,7 +488,8 @@ class MySubComp extends View {
   )
 }
 
-class MyComp extends View {
+@View
+class MyComp {
   myHTMLElement?
   myHTMLElements?
   didMount() {
@@ -576,7 +596,8 @@ class MyComp extends View {
 ```jsx
 import {View, required} from "@dlightjs/dlight"
 
-class MyNestComp extends View {
+@View
+class MyNestComp {
   @Env myMessage = "default value"
   // will show "use me anywhere inside this environment"
   Body = (
@@ -586,7 +607,8 @@ class MyNestComp extends View {
   )
 }
 
-class MySubComp2 extends View {
+@View
+class MySubComp2 {
   @Env myMessage = "default value"
   // will show "use me anywhere inside this environment"
   Body = (
@@ -596,7 +618,8 @@ class MySubComp2 extends View {
   )
 }
 
-class MySubComp1 extends View {
+@View
+class MySubComp1 {
   @Env myMessage = "default value"
   // call MySubComp
   // will show "use me anywhere inside this environment"
@@ -610,7 +633,8 @@ class MySubComp1 extends View {
   )
 }
 
-export class MyComp extends View {  
+export @View
+class MyComp {  
   Body = (
     <Env myMessage="use me anywhere inside this environment"> 
       <MySubComp1/>

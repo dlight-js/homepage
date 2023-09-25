@@ -1,5 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, div, Env, required, Prop, Pretty } from "@dlightjs/types"
+import { Env, Prop, View, required } from "@dlightjs/dlight"
+import { type Typed, div, Pretty } from "@dlightjs/types"
 import NavButton from "./NavButton.view"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
@@ -17,10 +17,13 @@ interface HeaderProps {
   handleChangeTitleStyle: (value: boolean) => void
 }
 
-class Header extends View implements HeaderProps {
+@View
+class Header implements HeaderProps {
   @Env navigator: Navigator = required
   @Env theme: any = required
   @Env updateThemeType: any = required
+  @Env updateStyle: (value: boolean) => void = required
+  @Env isShortView: boolean = required
   @Prop handleClickNav = required
   @Prop themeType = required
   @Prop isNeedAnimation = required
@@ -28,14 +31,12 @@ class Header extends View implements HeaderProps {
   navBtn = HeaderData
   style2 = !this.isNeedAnimation
   isShowShadow = !this.isNeedAnimation
-  isShortHeader = window.innerWidth < 818
   isShowMenu = false
 
   listenScroll() {
     // 为了保证兼容性，这里取两个值，哪个有值取哪一个
     // scrollTop就是触发滚轮事件时滚轮的高度
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-    // console.log("滚动距离" + scrollTop);
     if (scrollTop > 0) {
       this.style2 = true
       setTimeout(() => {
@@ -48,31 +49,16 @@ class Header extends View implements HeaderProps {
     }
   }
 
-  handleWindowResize() {
-    if (window.innerWidth < 818) {
-      this.isShortHeader = true
-    } else {
-      this.isShortHeader = false
-      this.isShowMenu = false
-    }
-    if (window.innerWidth < 1019) {
-      this.handleChangeTitleStyle(true)
-    } else {
-      this.handleChangeTitleStyle(false)
-    }
-  }
-
   handleClickShowMenu() {
     this.isShowMenu = !this.isShowMenu
   }
 
   didMount() {
     window.onscroll = this.isNeedAnimation ? this.listenScroll : null
-    window.addEventListener("resize", this.handleWindowResize)
   }
 
   willUnmount() {
-    window.removeEventListener("resize", this.handleWindowResize)
+    window.onscroll = null
   }
 
   Body() {
@@ -86,13 +72,13 @@ class Header extends View implements HeaderProps {
           .className(this.sectionNav)
         {
           ShortHeaderMenuIcon()
-            .isShortHeader(this.isShortHeader)
+            .isShortHeader(this.isShortView)
             .isShowMenu(this.isShowMenu)
             .handleClickShowMenu(this.handleClickShowMenu)
           AnimatedLogo()
             .isStyle2(this.style2)
-            .isShortHeader(this.isShortHeader)
-          if (!this.isShortHeader) {
+            .isShortHeader(this.isShortView)
+          if (!this.isShortView) {
             for (const { btnName, path, structureData } of this.navBtn) {
               NavButton(btnName)
                 .handleClickNav(() => { this.navigator.to(path) })
@@ -103,7 +89,7 @@ class Header extends View implements HeaderProps {
         RightSetting()
       }
     }
-    if (this.isShortHeader && this.isShowMenu) {
+    if (this.isShortView && this.isShowMenu) {
       ShortHeaderMenu()
     }
   }

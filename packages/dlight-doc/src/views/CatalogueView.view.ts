@@ -1,16 +1,17 @@
-import { View } from "@dlightjs/dlight"
-import { a, div, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { Content, Prop, required, View } from "@dlightjs/dlight"
+import { a, ContentProp, div, Pretty, Typed } from "@dlightjs/types"
 import { InlineRenderer } from "@dlightjs/markit"
 import { css } from "@iandx/easy-css"
 
 interface CatalogueViewProps {
-  _$content: any
+  content: ContentProp<any>
   currentIndex: number
   updateCurrentIndex: (index: number) => void
 }
 
-class CatalogueView extends View implements CatalogueViewProps {
-  @Prop _$content = required
+@View
+class CatalogueView implements CatalogueViewProps {
+  @Prop @Content content: any = required
   @Prop currentIndex = required
   @Prop updateCurrentIndex = required
 
@@ -18,7 +19,7 @@ class CatalogueView extends View implements CatalogueViewProps {
     div()
       .className(this.dlightDocCatalogueWrapCss)
     {
-      for (const [index, heading] of this._$content.entries()) {
+      for (const [index, heading] of this.content.entries()) {
         div()
           .className(heading.props.headingLevel > 1 ? this.dlightDocSecondaryHeadCss : this.dlightDocPrimaryHeadCss)
         {

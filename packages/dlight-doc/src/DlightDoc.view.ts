@@ -1,11 +1,22 @@
-import { View } from "@dlightjs/dlight"
+import { Content, Env, Prop, View, required } from "@dlightjs/dlight"
 import { MarkitView, addBlockRule } from "@dlightjs/markit"
-import { div, Env, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { ContentProp, div, Pretty, Typed } from "@dlightjs/types"
 import "highlight.js/styles/github.css"
 import { css } from "@iandx/easy-css"
 import { AdvantageBlock, HeadingBlock } from "./blocks"
 import { CatalogueView, NextPageNav } from "./views"
 
+/**
+ * @example
+ * ```js
+ * ```js[Hello World]
+ * div("Hello World")
+ * ```
+ * ```js[Goodbye World]
+ * div("Goodbye World"")
+ * ```
+ * ```
+ */
 addBlockRule({
   name: "CodeBlock",
   rule: {
@@ -28,17 +39,18 @@ addBlockRule({
 })
 
 interface DlightDocProps {
-  _$content: string
+  content: ContentProp<string>
 }
 
-class DlightDoc extends View implements DlightDocProps {
-  @Env path
-  @Prop _$content = required
+@View
+class DlightDoc implements DlightDocProps {
+  @Env path: any
+  @Prop @Content content: any = required
 
   docAst: any = []
   cata = []
   catalogueIndex = 0
-  markitViewEl
+  markitViewEl: any
   isShowCatalogue = window.innerWidth > 1135
 
   getAst = (ast: any) => {
@@ -108,7 +120,7 @@ class DlightDoc extends View implements DlightDocProps {
       div()
         .className(this.dlightContentWrap)
       {
-        MarkitView(this._$content)
+        MarkitView(this.content)
           .getAst(this.getAst)
         NextPageNav()
           .updateCurrentIndex(this.updateCatalogueIndex)

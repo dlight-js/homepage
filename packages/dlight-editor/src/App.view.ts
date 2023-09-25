@@ -3,7 +3,8 @@ import { div, Pretty, type Typed } from "@dlightjs/types"
 import { ArrayView, colors, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "./utils/const"
 import Playground from "./views/Playground.view"
 
-class App extends View {
+@View
+class App {
   toggle = true
   theme = colors[this.toggle ? "dark" : "light"]
 

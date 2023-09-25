@@ -10,7 +10,8 @@ interface ResizerProps {
   axis?: DragAxis
 }
 
-class Resizer extends View implements ResizerProps {
+@View
+class Resizer implements ResizerProps {
   /** @prop */
   @Prop onDrag?: OnDragFunc
   @Prop axis: DragAxis = "all"

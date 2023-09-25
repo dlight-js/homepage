@@ -1,9 +1,10 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, required, img, Env, Pretty, div } from "@dlightjs/types"
+import { Env, View, required } from "@dlightjs/dlight"
+import { type Typed, img, Pretty, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { getSize } from "../../utils/utilFunc"
 
-class Example extends View {
+@View
+class Example {
   @Env theme: any = required
   @Env isMobile: boolean = required
   count = 2
@@ -13,11 +14,11 @@ class Example extends View {
       .className(this.exampleWrapCss)
     {
       img()
-        .src("/code-example.png")
+        .src("/imgs/code-example.png")
         .alt("code-example")
         .className(this.codeExampleCss)
       img()
-        .src("/code-example-result.png")
+        .src("/imgs/code-example-result.png")
         .alt("code-example-result")
         .className(this.codeResultExampleCss)
       div(`Count: ${this.count}`)

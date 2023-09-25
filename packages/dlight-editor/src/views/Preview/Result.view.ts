@@ -1,12 +1,13 @@
 import { View } from "@dlightjs/dlight"
-import { div, Env, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { div, Pretty, Typed } from "@dlightjs/types"
 import { Color } from "../../utils/const"
 
 interface ResultProps {
   mountId: string
 }
 
-class Result extends View {
+@View
+class Result {
   /** @prop */
   @Prop mountId: string = required
   @Env theme: Color = required

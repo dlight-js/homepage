@@ -11,7 +11,8 @@ This is a well-maintained components library for DLight.
 ### usage
 
 ```js
-class MyComp extends View {
+@View
+class MyComp {
   Body() {
     HStack() 
     {
@@ -36,7 +37,8 @@ class MyComp extends View {
 ### usage
 
 ```js
-class MyComp extends View {
+@View
+class MyComp {
   Body() {
     VStack() 
     {
@@ -61,7 +63,8 @@ class MyComp extends View {
 ### usage
 
 ```js
-class MyComp extends View {
+@View
+class MyComp {
   Body() {
     ZStack() 
     {
@@ -88,7 +91,8 @@ Push elements away.
 ### usage
 
 ```js
-class MyComp extends View {
+@View
+class MyComp {
   Body() {
     HStack() 
     {
@@ -107,7 +111,8 @@ class MyComp extends View {
 It's too powerful and easy to use, try it out.
 
 ```js
-class Page extends View {
+@View
+class Page {
   // RouteParam will be passed through env. It has navigator and current path.
   @Env RouteParam = required 
   navigator = this.RouteParam.navigator
@@ -135,7 +140,8 @@ class Page extends View {
   
 }
 
-class MyComp extends View {
+@View
+class MyComp {
   navigator?
   
   Body() {
@@ -168,7 +174,8 @@ class MyComp extends View {
 Simple implemented switch-case expression.
 
 ```js
-class MyComp extends View {
+@View
+class MyComp {
   idx = 0
   
   Body() {
@@ -199,7 +206,8 @@ class MyComp extends View {
 ### usage
 
 ```js
-class MyComp extends View {
+@View
+class MyComp {
   @State width = 50
   
   Body() {
@@ -236,7 +244,8 @@ function getData(text) {
       text
     }
 }
-export class TransitionTest extends View {
+export @View
+class TransitionTest {
     @State list = [
         getData("First one"),
         getData("II 222"),
@@ -338,7 +347,8 @@ export class TransitionTest extends View {
 ```typescript
 import {css} from "@dlightjs/emotion"
 
-class MyComp extends View  {
+@View
+class MyComp  {
     Body() {
       div("hello")
         .className(css`
@@ -362,7 +372,8 @@ const MyCompColorCss = css`
    color: red;
 `
 
-class MyComp extends View  {
+@View
+class MyComp  {
     Body() {
       div("hello")
         .className(MyCompBoxCss)
@@ -386,7 +397,8 @@ const MyBeautifulDiv = styled.div`
   background-color: red;
 `
 
-class MyComp extends View  {
+@View
+class MyComp  {
     Body() {
       MyBeautifulDiv("hello")
     }
@@ -398,7 +410,8 @@ class MyComp extends View  {
 ```typescript
 import {styled} from "@dlightjs/emotion"
 
-class MyComp extends View  {
+@View
+class MyComp  {
     @Prop className = required
     Body() {
       div("hello")
@@ -411,7 +424,8 @@ const MyBeautifulWComp = styled(MyComp)`
   background-color: red;
 `
 
-class MyComp extends View  {
+@View
+class MyComp  {
     Body() {
       MyBeautifulWComp()
     }
@@ -431,7 +445,8 @@ const MyBeautifulWidthDiv = styled.div`
   background-color: red;
 `
 
-class MyComp extends View  {
+@View
+class MyComp  {
     Body() {
       MyBeautifulWidthDiv("hello")
         .width("200px")

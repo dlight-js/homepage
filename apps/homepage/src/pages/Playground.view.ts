@@ -1,5 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Env, required, img, div, Pretty } from "@dlightjs/types"
+import { Env, View, required } from "@dlightjs/dlight"
+import { type Typed, img, div, Pretty } from "@dlightjs/types"
 import { Navigator } from "@dlightjs/components"
 import { ArrayView, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "../utils/const"
 import DLightEditor from "dlight-editor"
@@ -28,7 +28,8 @@ const defaultModules = [{
 }
 ]
 
-class Playground extends View {
+@View
+class Playground {
   @Env navigator: Navigator = required
   toggle: boolean = false
   modules: any = (() => {
@@ -46,7 +47,7 @@ class Playground extends View {
       {
         img()
           .className(this.logoCss)
-          .src("./logo-png.svg")
+          .src("/imgs/logo-png.svg")
           .onclick(() => {
             this.navigator.to("..")
           })

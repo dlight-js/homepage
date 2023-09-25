@@ -1,5 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, div, Env, required, Prop, img, Pretty } from "@dlightjs/types"
+import { Env, Prop, View, required } from "@dlightjs/dlight"
+import { type Typed, div, img, Pretty } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { getSize } from "../../utils/utilFunc"
 import { Navigator } from "@dlightjs/components"
@@ -14,7 +14,8 @@ interface FeatureCardProps {
   data: FeatureDataType
 }
 
-class FeatureCard extends View implements FeatureCardProps {
+@View
+class FeatureCard implements FeatureCardProps {
   @Env navigator: Navigator = required
   @Env theme: any = required
   @Prop data = required

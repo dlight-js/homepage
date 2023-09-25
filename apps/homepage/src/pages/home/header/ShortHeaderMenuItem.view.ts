@@ -1,5 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
+import { Env, Prop, View, required } from "@dlightjs/dlight"
+import { Pretty, Typed, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
 
@@ -8,7 +8,8 @@ interface ShortHeaderMenuItemProps {
   path: string
 }
 
-class ShortHeaderMenuItem extends View {
+@View
+class ShortHeaderMenuItem {
   @Env theme: any = required
   @Env navigator: Navigator = required
   @Prop btnName = required

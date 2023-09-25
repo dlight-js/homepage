@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { div, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { div, Pretty, Typed } from "@dlightjs/types"
 import { DLightProject } from "../../project/dlightProject"
 import { VStack } from "@dlightjs/components"
 import CodeEditor, { EditorStore } from "./CodeEditor.view"
@@ -18,7 +18,8 @@ interface ProjectEditorProps {
   onSave?: (project: DLightProject) => void
 }
 
-class ProjectEditor extends View {
+@View
+class ProjectEditor {
   /** @prop */
   @Prop modules = required
   @Prop getCurrTransformedCode = required

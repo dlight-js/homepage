@@ -84,7 +84,8 @@ In many UI frameworks, managing derived or computed states can be a bit of a puz
 
 Want to declare a component?
 ```js
-class MyComp extends View {
+@View
+class MyComp {
   Body() {
     div("hello")
   }
@@ -92,7 +93,8 @@ class MyComp extends View {
 ```
 Want to declare a reactive variable?
 ```js
-class MyComp extends View {
+@View
+class MyComp {
   count = 0
   Body() {
     div("hello")
@@ -102,7 +104,8 @@ class MyComp extends View {
 ```
 Want to declare a computed state?
 ```js
-class MyComp extends View {
+@View
+class MyComp {
   count = 0
   doubleCount = this.count * 2
   Body() {

@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { div, Env, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { div, Pretty, Typed } from "@dlightjs/types"
 import Resizer, { OnDragFunc } from "./Resizer.view"
 import { Color, dividerWidth } from "../../utils/const"
 import { Spacer, VStack } from "@dlightjs/components"
@@ -10,7 +10,8 @@ interface HorizontalResizerProps {
   onDrag?: OnDragFunc
 }
 
-class HorizontalResizer extends View implements HorizontalResizerProps {
+@View
+class HorizontalResizer implements HorizontalResizerProps {
   /** @prop */
   @Env theme: Color = required
   @Prop height = "100%"

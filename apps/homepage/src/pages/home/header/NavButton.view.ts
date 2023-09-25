@@ -1,19 +1,20 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, button, Env, required, Prop, div, Pretty } from "@dlightjs/types"
+import { Content, Env, Prop, View, required } from "@dlightjs/dlight"
+import { type Typed, button, div, Pretty, ContentProp } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import MenuItem from "./MenuItem.view"
 import { Navigator } from "@dlightjs/components"
 
 interface NavButtonProps {
-  _$content: string
+  content: ContentProp<string>
   handleClickNav: () => void
   structureData: any
 }
 
-class NavButton extends View implements NavButtonProps {
+@View
+class NavButton implements NavButtonProps {
   @Env navigator: Navigator = required
   @Env theme: any = required
-  @Prop _$content = required
+  @Prop @Content content: any = required
   @Prop handleClickNav = required
   @Prop structureData = required
 
@@ -25,11 +26,11 @@ class NavButton extends View implements NavButtonProps {
     div()
       .className(this.wrapCss)
     {
-      button(this._$content)
+      button(this.content)
         .className(this.navBtnCss)
         .onclick(this.handleClickNav)
         .onmouseenter(() => { this.isHover = true })
-        .onmouseleave(() => { this.isHover = false })
+        .onmouseleave(() => { setTimeout(() => { this.isHover = false }, 100) })
       // if (this.isShowHoverMenu) {
       //   div()
       //     .className(this.iconCss)
@@ -75,6 +76,7 @@ class NavButton extends View implements NavButtonProps {
     /* padding-right: 6px; */
     border-width: 0;
     border-radius: 5px;
+    margin-bottom: 5px;
   `
 
   hoverMenuWrapCss = css`

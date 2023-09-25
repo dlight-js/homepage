@@ -1,6 +1,6 @@
-import { View } from "@dlightjs/dlight"
+import { Env, Prop, View, required } from "@dlightjs/dlight"
 import { MenuRound, CloseRound } from "@dlightjs/material-icons"
-import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
+import { Pretty, Typed, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 
 interface ShortHeaderMenuIconProps {
@@ -9,7 +9,8 @@ interface ShortHeaderMenuIconProps {
   handleClickShowMenu: () => void
 }
 
-class ShortHeaderMenuIcon extends View {
+@View
+class ShortHeaderMenuIcon {
   @Env theme: any = required
   @Env isMobile: boolean = required
   @Prop isShortHeader = required

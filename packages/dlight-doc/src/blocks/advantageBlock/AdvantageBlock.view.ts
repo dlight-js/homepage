@@ -1,30 +1,30 @@
-import { CustomNode, View } from "@dlightjs/dlight"
-import { code, div, pre, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { Content, CustomNode, Prop, View, required } from "@dlightjs/dlight"
+import { code, ContentProp, div, pre, Pretty, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import hljs from "highlight.js"
 import { ContentCopyFilled, DoneFilled } from "@dlightjs/material-icons"
 
 interface AdvantageBlockProps {
-  _$content: any
+  content: ContentProp<any>
   props: any
 }
 
-class AdvantageBlock extends View implements AdvantageBlockProps {
-  @Prop _$content = required
+@View
+class AdvantageBlock implements AdvantageBlockProps {
+  @Prop @Content content: any = required
   @Prop props = required
   language = this.props.language
   title = this.props.title
-  highlightedCode = hljs.highlight(this._$content, { language: this.language.trim() }).value
-  hoverState = true
+  highlightedCode = hljs.highlight(this.content, { language: this.language.trim() }).value
   hasCopied = false
 
   didMount(_els: HTMLElement[], _node: CustomNode): void {
-    console.log(this._$content)
+    console.log(this.content)
     console.log(this.props)
   }
 
   async handleCopy() {
-    await navigator.clipboard.writeText(this._$content)
+    await navigator.clipboard.writeText(this.content)
     this.hasCopied = true
   }
 
@@ -32,34 +32,48 @@ class AdvantageBlock extends View implements AdvantageBlockProps {
     div()
       .className(this.dlightMarkitCodeBlock)
     {
-      if (this.title) {
-        div(this.title)
-          .className(this.dlightMarkitCodeBlockHeader)
+      div()
+        .className(this.dlightMarkitCodeBlockHeader)
+      {
+        if (this.language) {
+          div()
+            .className(this.dlightMarkitCodeBlockTitleLanguage)
+          {
+            if (this.title) {
+              div(this.title)
+                .className(this.dlightMarkitCodeBlockTitle)
+            }
+            div(this.language)
+          }
+        }
+        div()
+        {
+          if (!this.hasCopied) {
+            ContentCopyFilled()
+              .color("#999999")
+              .width(18)
+              .height(18)
+              .className(this.copyIcon)
+              .onclick(this.handleCopy.bind(this))
+          } else if (this.hasCopied) {
+            DoneFilled()
+              .color("#999999")
+              .width(18)
+              .height(18)
+              .className(this.copyIcon)
+          }
+        }
       }
+
       div()
         .className(this.dlightHomepageMarkitCode)
-        .onmouseover(() => { this.hoverState = true })
-        .onmouseleave(() => { this.hoverState = false; this.hasCopied = false })
+        .onmouseleave(() => { this.hasCopied = false })
       {
         pre()
         {
           code()
             .className(this.code)
             .innerHTML(this.highlightedCode)
-        }
-        if (this.hoverState && !this.hasCopied) {
-          ContentCopyFilled()
-            .color("#999999")
-            .width(18)
-            .height(18)
-            .className(this.copyIcon)
-            .onclick(this.handleCopy.bind(this))
-        } else if (this.hoverState && this.hasCopied) {
-          DoneFilled()
-            .color("#999999")
-            .width(18)
-            .height(18)
-            .className(this.copyIcon)
         }
       }
     }
@@ -73,6 +87,18 @@ class AdvantageBlock extends View implements AdvantageBlockProps {
     color: #333333;
     font-family: system-ui;
     font-size: 85%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  `
+  dlightMarkitCodeBlockTitleLanguage = css`
+    display: flex;
+    flex-direction: row;
+  `
+  dlightMarkitCodeBlockTitle = css`
+    font-weight: 500;
+    margin-right: 10px;
   `
   dlightMarkitCodeBlock = css`
     background-color: rgba(242, 214, 159, 0.3);
@@ -93,16 +119,15 @@ class AdvantageBlock extends View implements AdvantageBlockProps {
     line-height: 1.25rem;
   `
   copyIcon = css`
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(250, 190, 142, 0.1);
-    border: 1px solid #DCDCDC;
-    border-radius: 6px;
+    /* background-color: rgba(250, 190, 142, 0.1); */
+    /* border: 1px solid #DCDCDC; */
+    /* border-radius: 6px; */
     cursor: pointer;
-    margin-top: 10px;
   `
 }
 

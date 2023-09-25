@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { css } from "@iandx/easy-css"
-import { Prop, Env, Static, type Typed, required, Pretty, div } from "@dlightjs/types"
+import { Prop, Static, type Typed, Pretty, div } from "@dlightjs/types"
 import * as monaco from "monaco-editor"
 
 export interface EditorStore {
@@ -15,7 +15,8 @@ interface CodeEditorProps {
   getSaveViewState?: (func: () => monaco.editor.ICodeEditorViewState | null) => void
 }
 
-class CodeEditor extends View implements CodeEditorProps {
+@View
+class CodeEditor implements CodeEditorProps {
   /** @prop */
   @Prop editorStore: EditorStore = required
   @Prop onCodeChange?: (code: string) => void

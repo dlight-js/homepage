@@ -1,5 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Env, required, Prop, div, Pretty } from "@dlightjs/types"
+import { Env, Prop, View, required } from "@dlightjs/dlight"
+import { type Typed, div, Pretty } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { DocsStructureMapType } from "../../utils/types"
 import { KeyboardArrowRightFilled, KeyboardArrowDownFilled } from "@dlightjs/material-icons"
@@ -13,7 +13,8 @@ interface FileNameProps {
   children: DocsStructureMapType | undefined
 }
 
-class FileName extends View implements FileNameProps {
+@View
+class FileName implements FileNameProps {
   @Env navigator: Navigator = required
   @Env theme: any = required
   @Env selectedName: string = required

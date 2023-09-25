@@ -11,7 +11,8 @@
     "noEmit": true,
     "noUnusedParameters": true,
     "skipLibCheck": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
   },
   "ts-node": {
     "esm": true

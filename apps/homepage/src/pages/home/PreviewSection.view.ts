@@ -1,12 +1,13 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, div, Env, required, Pretty } from "@dlightjs/types"
+import { Env, View, required } from "@dlightjs/dlight"
+import { type Typed, div, Pretty } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { PreviewCode } from "../../utils/const"
 import { KeyboardArrowRightFilled } from "@dlightjs/material-icons"
 import { lazy, Navigator } from "@dlightjs/components"
 
 const DLightEditor = lazy(async() => await import("dlight-editor"))
-class PreviewSection extends View {
+@View
+class PreviewSection {
   @Env navigator: Navigator = required
   @Env theme: any = required
 

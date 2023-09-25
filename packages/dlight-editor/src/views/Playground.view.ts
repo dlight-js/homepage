@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, Prop, required, env, div, Pretty } from "@dlightjs/types"
+import { type Typed, Prop, required, div, Pretty from "@dlightjs/types"
 import ProjectEditor from "./Editor/ProjectEditor.view"
 import PreviewView from "./Preview/Preview.view"
 import { HStack } from "@dlightjs/components"
@@ -19,7 +19,8 @@ interface PlaygroundProps {
   onSave?: (project: DLightProject) => void
 }
 
-class Playground extends View implements PlaygroundProps {
+@View
+class Playground implements PlaygroundProps {
   /** @project */
   @Prop modules: ToBeTransformedModule[] = required
   @Prop themeType: "light" | "dark" = "light" as any

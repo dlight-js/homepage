@@ -1,5 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Env, required, Pretty, div } from "@dlightjs/types"
+import { Env, View, required } from "@dlightjs/dlight"
+import { type Typed, Pretty, div } from "@dlightjs/types"
 import Header from "./header"
 import { css } from "@iandx/easy-css"
 import { featureData } from "../../utils/const"
@@ -9,17 +9,13 @@ import Example from "./Example.view"
 import { getSize } from "../../utils/utilFunc"
 import Title from "./Title.view"
 
-class Home extends View {
+@View
+class Home {
   @Env navigator = required
   @Env theme: any = required
   @Env isMobile: boolean = required
   featureData = featureData
   count = 2
-  isCenterTitle = false
-
-  handleChangeTitleStyle(value: boolean) {
-    this.isCenterTitle = value
-  }
 
   Body() {
     div()
@@ -27,7 +23,6 @@ class Home extends View {
     {
       Header()
         .isNeedAnimation(true)
-        .handleChangeTitleStyle(this.handleChangeTitleStyle)
       div()
         .className(this.titleExampleWrapCss)
       {

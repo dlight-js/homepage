@@ -1,9 +1,10 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, required, Env, Pretty, div } from "@dlightjs/types"
+import { Env, View, required } from "@dlightjs/dlight"
+import { type Typed, Pretty, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { getSize } from "../../utils/utilFunc"
 
-class Footer extends View {
+@View
+class Footer {
   @Env theme: any = required
 
   Body() {

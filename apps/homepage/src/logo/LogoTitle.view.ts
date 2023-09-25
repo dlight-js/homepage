@@ -1,5 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { Pretty, Prop, Typed, img, required } from "@dlightjs/types"
+import { Prop, View, required } from "@dlightjs/dlight"
+import { Pretty, Typed, img } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 
 interface LogoTitleProps {
@@ -7,14 +7,14 @@ interface LogoTitleProps {
   isShow: boolean
 }
 
-class LogoTitle extends View implements LogoTitleProps {
-  _$forwardProps = true
+@View
+class LogoTitle implements LogoTitleProps {
   @Prop onclick = required
   @Prop isShow = required
 
   Body() {
     img()
-      .src("/light.svg")
+      .src("/imgs/light.svg")
       .className(this.logoCss)
       .onclick(this.onclick)
   }
