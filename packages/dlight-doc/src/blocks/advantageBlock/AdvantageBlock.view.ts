@@ -26,6 +26,9 @@ class AdvantageBlock implements AdvantageBlockProps {
   async handleCopy() {
     await navigator.clipboard.writeText(this.content)
     this.hasCopied = true
+    setTimeout(() => {
+      this.hasCopied = false
+    }, 2000)
   }
 
   Body() {
@@ -39,22 +42,27 @@ class AdvantageBlock implements AdvantageBlockProps {
           div()
             .className(this.dlightMarkitCodeBlockTitleLanguage)
           {
+            div(this.language)
             if (this.title) {
               div(this.title)
                 .className(this.dlightMarkitCodeBlockTitle)
             }
-            div(this.language)
           }
         }
         div()
         {
           if (!this.hasCopied) {
-            ContentCopyFilled()
-              .color("#999999")
-              .width(18)
-              .height(18)
-              .className(this.copyIcon)
-              .onclick(this.handleCopy.bind(this))
+            div()
+              .onclick(async() => {
+                await this.handleCopy()
+              })
+            {
+              ContentCopyFilled()
+                .color("#999999")
+                .width(18)
+                .height(18)
+                .className(this.copyIcon)
+            }
           } else if (this.hasCopied) {
             DoneFilled()
               .color("#999999")
@@ -67,7 +75,6 @@ class AdvantageBlock implements AdvantageBlockProps {
 
       div()
         .className(this.dlightHomepageMarkitCode)
-        .onmouseleave(() => { this.hasCopied = false })
       {
         pre()
         {
@@ -99,6 +106,7 @@ class AdvantageBlock implements AdvantageBlockProps {
   dlightMarkitCodeBlockTitle = css`
     font-weight: 500;
     margin-right: 10px;
+    font-size: 90%;
   `
   dlightMarkitCodeBlock = css`
     background-color: rgba(242, 214, 159, 0.3);

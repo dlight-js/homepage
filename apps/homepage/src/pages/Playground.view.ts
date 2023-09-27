@@ -1,7 +1,7 @@
 import { Env, View, required } from "@dlightjs/dlight"
 import { type Typed, img, div, Pretty } from "@dlightjs/types"
 import { Navigator } from "@dlightjs/components"
-import { ArrayView, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "../utils/const"
+import { ArrayView, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "../const/playgroundCodeTemplate"
 import DLightEditor from "dlight-editor"
 import { DarkModeOutlined, LightModeOutlined } from "@dlightjs/material-icons"
 import { css } from "@iandx/easy-css"

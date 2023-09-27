@@ -46,12 +46,34 @@ interface DlightDocProps {
 class DlightDoc implements DlightDocProps {
   @Env path: any
   @Prop @Content content: any = required
+  @Prop title: string = required
+  @Prop isShowCatalogue: boolean = required
 
   docAst: any = []
   cata = []
   catalogueIndex = 0
   markitViewEl: any
-  isShowCatalogue = window.innerWidth > 1135
+  catalogueEl: any
+  isShowCatalogueInner = window.innerWidth > 1135
+
+  @Watch
+  watchShowCatalogue() {
+    console.log(this.isShowCatalogue, "isShowCatalogue")
+  }
+
+  closeCatalogue(e: any) {
+    if (e.target !== this.catalogueEl && this.isShowCatalogue) {
+      this.isShowCatalogue = false
+    }
+  }
+
+  willMount() {
+    document.addEventListener("click", this.closeCatalogue.bind(this))
+  }
+
+  willunMount() {
+    document.removeEventListener("click", this.closeCatalogue.bind(this))
+  }
 
   getAst = (ast: any) => {
     this.docAst = ast
@@ -96,9 +118,9 @@ class DlightDoc implements DlightDocProps {
 
   handleWindowResize() {
     if (window.innerWidth < 1140) {
-      this.isShowCatalogue = false
+      this.isShowCatalogueInner = false
     } else {
-      this.isShowCatalogue = true
+      this.isShowCatalogueInner = true
     }
   }
 
@@ -120,22 +142,39 @@ class DlightDoc implements DlightDocProps {
       div()
         .className(this.dlightContentWrap)
       {
+        div(this.title)
+          .className(this.dlightDocTitleCss)
         MarkitView(this.content)
           .getAst(this.getAst)
         NextPageNav()
           .updateCurrentIndex(this.updateCatalogueIndex)
       }
-      if (this.isShowCatalogue) {
+      if (this.isShowCatalogueInner || this.isShowCatalogue) {
         div()
-          .className(this.fixCatalogueCss)
+          .style({ width: "248px" })
         {
-          CatalogueView(this.docAst.filter(paragraph => paragraph.type === "Heading"))
-            .currentIndex(this.catalogueIndex)
-            .updateCurrentIndex(this.updateCatalogueIndex)
+          div()
+            .className(this.fixCatalogueCss)
+            .element(this.catalogueEl)
+          {
+            CatalogueView(this.docAst.filter(paragraph => paragraph.type === "Heading"))
+              .currentIndex(this.catalogueIndex)
+              .updateCurrentIndex(this.updateCatalogueIndex)
+              .isShowShadow(this.isShowCatalogue && !this.isShowCatalogueInner)
+          }
         }
       }
     }
   }
+
+  dlightDocTitleCss = css`
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin-top: 0;
+    color: rgb(51, 65, 85);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  `
 
   dlightContentWrap = css`
     flex-grow: 1;
@@ -158,14 +197,25 @@ class DlightDoc implements DlightDocProps {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    height: 82vh;
+    height: 100%;
     overflow: scroll;
     overflow-x: hidden;
     padding: 30px 25px;
   `
 
   fixCatalogueCss = css`
-    width: 268px;
+    right: 1;
+    position: fixed;
+    width: 248px;
+    max-width: 248px;
+    padding-bottom: 25px;
+    padding-right: 20px;
+    background-color: white;
+    height: 100%;
+    padding-top: ${this.isShowCatalogue && !this.isShowCatalogueInner ? "30px" : "0"};
+    box-shadow: ${this.isShowCatalogue && !this.isShowCatalogueInner ? "0 2px 8px 0 #A9A9A9" : ""};
+    z-index: ${this.isShowCatalogue && !this.isShowCatalogueInner ? 50 : ""};
+    margin-top: ${this.isShowCatalogue && !this.isShowCatalogueInner ? "-82px" : ""};
   `
 
   dlightMarkitDivider$ = css`

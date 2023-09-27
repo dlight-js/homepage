@@ -1,4 +1,4 @@
-import { Env, View, required, Prop } from "@dlightjs/dlight"
+import { Env, View, required } from "@dlightjs/dlight"
 import { div, button, Pretty, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { getSize } from "../../utils/utilFunc"
@@ -13,8 +13,17 @@ class Title implements TitleProps {
   @Env navigator: Navigator = required
   @Env theme: any = required
   @Env isMobile: boolean = required
-  @Prop isCenterTitle = required
+  @Env windowWidth: number = required
+  isCenterTitle = this.windowWidth < 1019
   isCenterStyle = this.isCenterTitle || this.isMobile
+
+  listenWindowWidth() {
+    if (this.windowWidth < 1019 && !this.isCenterTitle) {
+      this.isCenterTitle = true
+    } else {
+      this.isCenterTitle = false
+    }
+  }
 
   Body() {
     div()

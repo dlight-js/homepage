@@ -1,7 +1,7 @@
 import { View, env } from "@dlightjs/dlight"
 import { type Typed, Pretty } from "@dlightjs/types"
 import { Route, RouterSpace } from "@dlightjs/components"
-import { colors } from "./utils/const"
+import { colors } from "./const/themes"
 import Home from "./pages/home/Home.view"
 
 @View
@@ -11,6 +11,7 @@ class App {
   isMobile = /Android|iPhone/i.test(navigator.userAgent)
   isShortView = window.innerWidth < 818
   isCenterTitle = false
+  windowWidth = window.innerWidth
 
   didMount() {
     window.addEventListener("resize", this.handleWindowResize)
@@ -25,16 +26,11 @@ class App {
   }
 
   handleWindowResize() {
+    this.windowWidth = window.innerWidth
     if (window.innerWidth < 818) {
       this.isShortView = true
     } else {
       this.isShortView = false
-      this.isShowMenu = false
-    }
-    if (window.innerWidth < 1019) {
-      this.isCenterTitle = true
-    } else {
-      this.isCenterTitle = false
     }
   }
 
@@ -44,7 +40,6 @@ class App {
       .themeType(this.themeType)
       .theme(this.theme)
       .isMobile(this.isMobile)
-      .updateStyle(this.updateStyle)
       .isShortView(this.isShortView)
     {
       RouterSpace()

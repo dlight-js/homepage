@@ -6,6 +6,7 @@ import { css } from "@iandx/easy-css"
 interface CatalogueViewProps {
   content: ContentProp<any>
   currentIndex: number
+  isShowShadow: boolean
   updateCurrentIndex: (index: number) => void
 }
 
@@ -13,26 +14,23 @@ interface CatalogueViewProps {
 class CatalogueView implements CatalogueViewProps {
   @Prop @Content content: any = required
   @Prop currentIndex = required
+  @Prop isShowShadow = required
   @Prop updateCurrentIndex = required
 
   Body() {
-    div()
-      .className(this.dlightDocCatalogueWrapCss)
-    {
-      for (const [index, heading] of this.content.entries()) {
-        div()
+    for (const [index, heading] of this.content.entries()) {
+      for (const item of heading.content) {
+        a()
+          .href(`#${item.content}`)
+          .onclick((e) => {
+            e.stopPropagation()
+            this.updateCurrentIndex(index)
+          })
+          .className(this.dlightDocHeadingLinkCss(index))
           .className(heading.props.headingLevel > 1 ? this.dlightDocSecondaryHeadCss : this.dlightDocPrimaryHeadCss)
         {
-          for (const item of heading.content) {
-            a()
-              .href(`#${item.content}`)
-              .onclick(() => { this.updateCurrentIndex(index) })
-              .className(this.dlightDocHeadingLinkCss(index))
-            {
-              InlineRenderer[item.type](item.content)
-                .props(item.props)
-            }
-          }
+          InlineRenderer[item.type](item.content)
+            .props(item.props)
         }
       }
     }
@@ -45,9 +43,14 @@ class CatalogueView implements CatalogueViewProps {
       width: 248px;
       max-width: 248px;
       padding-bottom: 25px;
-      margin-right: 20px;
+      padding-right: 20px;
+      background-color: white;
+      padding-top: ${this.isShowShadow ? "30px" : "0"};
+      box-shadow: ${this.isShowShadow ? "0 2px 8px 0 #A9A9A9" : ""};
     `
+
   dlightDocHeadingLinkCss = (index: number) => css`
+    display: block;
     text-decoration: none;
     font-size: 0.875rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -55,6 +58,7 @@ class CatalogueView implements CatalogueViewProps {
     padding-left: 20px;
     color: ${index === this.currentIndex ? "#daa172" : "#445d2a"};
     border-left: ${index === this.currentIndex ? "solid 2px #daa172" : undefined};
+    width: 100%;
   `
 
   dlightDocSecondaryHeadCss = css`

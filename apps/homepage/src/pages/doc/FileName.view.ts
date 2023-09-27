@@ -42,7 +42,8 @@ class FileName implements FileNameProps {
     }
   }
 
-  handleClickFile() {
+  handleClickFile(e: any) {
+    e.stopPropagation()
     if (this.isChoose || !this.isOpen) {
       // update open status
       this.isOpen = !this.isOpen

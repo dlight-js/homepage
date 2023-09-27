@@ -2,7 +2,7 @@ import { Env, View, required } from "@dlightjs/dlight"
 import { type Typed, Pretty, div } from "@dlightjs/types"
 import Header from "./header"
 import { css } from "@iandx/easy-css"
-import { featureData } from "../../utils/const"
+import { FeatureData } from "../../const/homeData"
 import FeatureCardGroup from "./FeatureCardGroup.view"
 import Footer from "./Footer.view"
 import Example from "./Example.view"
@@ -14,7 +14,7 @@ class Home {
   @Env navigator = required
   @Env theme: any = required
   @Env isMobile: boolean = required
-  featureData = featureData
+  featureData = FeatureData
   count = 2
 
   Body() {
@@ -27,7 +27,6 @@ class Home {
         .className(this.titleExampleWrapCss)
       {
         Title()
-          .isCenterTitle(this.isCenterTitle)
         Example()
       }
       div()

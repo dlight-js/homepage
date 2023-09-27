@@ -21,25 +21,28 @@ class ShortHeaderMenuIcon {
       .className(this.menuBtnWrapCss)
     {
       if (this.isShortHeader && !this.isShowMenu) {
-        MenuRound()
-          .className(this.iconSizeCss)
-          .color(this.theme.green9)
-          .ontouchstart(() => {
-            if (this.isMobile) this.handleClickShowMenu()
-          })
+        div()
           .onclick(() => {
-            if (!this.isMobile) this.handleClickShowMenu()
+            this.handleClickShowMenu()
           })
+        {
+          MenuRound()
+            .className(this.iconSizeCss)
+            .color(this.theme.green9)
+        }
       } else if (this.isShortHeader && this.isShowMenu) {
-        CloseRound()
-          .className(this.iconSizeCss)
-          .color(this.theme.green9)
+        div()
           .ontouchstart(() => {
             if (this.isMobile) this.handleClickShowMenu()
           })
           .onclick(() => {
             if (!this.isMobile) this.handleClickShowMenu()
           })
+        {
+          CloseRound()
+            .className(this.iconSizeCss)
+            .color(this.theme.green9)
+        }
       }
     }
   }

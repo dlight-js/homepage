@@ -1,12 +1,13 @@
 import { View } from "@dlightjs/dlight"
 import { Pretty, Typed, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { HeaderData } from "../../../utils/const"
+import { HeaderData } from "../../../const/homeData"
 import ShortHeaderMenuItem from "./ShortHeaderMenuItem.view"
 
 @View
 class ShortHeaderMenu {
   navBtn = HeaderData
+
   Body() {
     div()
       .className(this.menuWarpCss)
@@ -14,7 +15,7 @@ class ShortHeaderMenu {
       for (const { btnName, path } of this.navBtn) {
         ShortHeaderMenuItem()
           .btnName(btnName)
-          .path(path)
+          .btnPath(path)
       }
     }
   }

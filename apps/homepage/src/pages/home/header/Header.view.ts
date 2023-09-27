@@ -3,7 +3,7 @@ import { type Typed, div, Pretty } from "@dlightjs/types"
 import NavButton from "./NavButton.view"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
-import { HeaderData } from "../../../utils/const"
+import { HeaderData } from "../../../const/homeData"
 import { getSize } from "../../../utils/utilFunc"
 import RightSetting from "./RightSetting.view"
 import ShortHeaderMenu from "./ShortHeaderMenu.view"
@@ -21,9 +21,8 @@ interface HeaderProps {
 class Header implements HeaderProps {
   @Env navigator: Navigator = required
   @Env theme: any = required
-  @Env updateThemeType: any = required
-  @Env updateStyle: (value: boolean) => void = required
   @Env isShortView: boolean = required
+  @Env windowWidth: number = required
   @Prop handleClickNav = required
   @Prop themeType = required
   @Prop isNeedAnimation = required
@@ -31,7 +30,17 @@ class Header implements HeaderProps {
   navBtn = HeaderData
   style2 = !this.isNeedAnimation
   isShowShadow = !this.isNeedAnimation
+  isCenterTitle = window.innerWidth < 1019
   isShowMenu = false
+
+  didMount() {
+    window.onscroll = this.isNeedAnimation ? this.listenScroll : null
+    console.log(this.isShortView)
+  }
+
+  willUnmount() {
+    window.onscroll = null
+  }
 
   listenScroll() {
     // 为了保证兼容性，这里取两个值，哪个有值取哪一个
@@ -53,12 +62,10 @@ class Header implements HeaderProps {
     this.isShowMenu = !this.isShowMenu
   }
 
-  didMount() {
-    window.onscroll = this.isNeedAnimation ? this.listenScroll : null
-  }
-
-  willUnmount() {
-    window.onscroll = null
+  listenWindowWidth() {
+    if (this.windowWidth > 818 && this.isShowMenu) {
+      this.isShowMenu = false
+    }
   }
 
   Body() {
