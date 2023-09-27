@@ -1,5 +1,18 @@
 
-DLight.js is all about rethinking how we build user interfaces, and we're exploring new things with a fresh perspective. Here's the lowdown on what makes DLight.js tick.
+DLight.js is all about rethinking how we build user interfaces, and we're exploring new things with a fresh perspective. 
+
+Why we're calling DLight a DX-first library is that you don't actually have to worry about anything in development. You don't need to care how to 
+* make a reactive state
+* make the view re-render
+* memorize computed states
+* listen to a specific dependency array changing
+* avoid dependency loops
+* avoid performance drop when the project is scaling
+* ... or anything that troubles you right now
+
+We want front-end developers to focus more on the product, pay attention to business attributes, data processing, and in-depth user interactions, rather than wasting time on building simple dynamic pages. In this way, front-end developers can better understand the business in their work and maintain their competitive edge. That's exactly why DLight is here, offering the best developing experience and allowing you to code delighted.
+
+Here's the lowdown on what makes DLight.js tick.
 
 
 # 🥳 Familiar JavaScript Syntax
@@ -71,7 +84,7 @@ And if we pause and think about it, isn't the whole deal with giving side effect
 
 Now, a quick side note: DLight’s class components aren’t even close to React's class componennts, which look like a functional components dress up for me. DLight's MVVM philosophy feels a bit closer to Angular's class component spirit. But here’s the kicker – DLight does it in a way that’s sleeker and way more developer-friendly.
 
-#  🤌🏻 Fine-grained re-renders
+#  🤌🏻 Fine-grained reactivity
 Now, let's take a look at how DLight.js handles updates.
 
 Instead of relying on a Virtual DOM, we've designed DLight.js to provide granular control over reative variable updates using a signal based reactivity. Here's how it works: each variable, if it is set to a new value or reference, will only result in the updates of its relevant elements' properties. 
