@@ -1,5 +1,4 @@
-# Basic
-In this section, we'll not walk you through how to build a custom component. Instead, a detailed DSL that shows you how to **access** a custom component will be presented.
+In this section, we'll not walk you through how to build a custom component. Instead, a detailed DSL that will give you an idea of how to **access** a custom component will be presented.
 
 Let's say that we've already build a `Counter` component like this:
 
@@ -16,7 +15,7 @@ class Counter {
   }
 }
 ```
-Then how can to use this component inside our other components? The answer is **function call** + **dot chaining** just like we did in html elements:
+Then how can we use this component inside our other components? The answer is **function call** + **dot chaining** just like we did in html elements:
 ```js
 Counter()
 ```

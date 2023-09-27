@@ -1,4 +1,3 @@
-# Basic
 In DLight's DSL, HTML elements are articulated as function calls:
 ```js
 div("hello")
