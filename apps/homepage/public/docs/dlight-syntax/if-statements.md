@@ -1,4 +1,4 @@
-We use conditional rendering in a daily basis. And let's take a glance at how other popular frameworks approach this. Credit [component party](https://component-party.dev/#conditional) for these examples)
+We use conditional rendering in a daily basis. And let's take a glance at how other popular frameworks approach this. Credit [component party](https://component-party.dev/#conditional) for these examples:
 ```js [react]
 return (
   <>

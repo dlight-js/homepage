@@ -38,10 +38,6 @@
         "path": "for-loops"
       },
       {
-        "name": "Environment Variables",
-        "path": "environment-variables"
-      },
-      {
         "name": "Expressions",
         "path": "expressions"
       }
