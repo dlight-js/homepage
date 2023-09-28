@@ -35,7 +35,6 @@ class Header implements HeaderProps {
 
   didMount() {
     window.onscroll = this.isNeedAnimation ? this.listenScroll : null
-    console.log(this.isShortView)
   }
 
   willUnmount() {
@@ -59,11 +58,13 @@ class Header implements HeaderProps {
   }
 
   handleClickShowMenu() {
+    console.log(this.isShowMenu, "难道是同一个？")
     this.isShowMenu = !this.isShowMenu
   }
 
   listenWindowWidth() {
     if (this.windowWidth > 818 && this.isShowMenu) {
+      console.log(this.isShowMenu, "listenWindowWidth")
       this.isShowMenu = false
     }
   }

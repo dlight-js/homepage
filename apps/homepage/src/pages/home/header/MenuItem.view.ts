@@ -23,7 +23,7 @@ class MenuItem implements MenuItemProps {
       .onmouseover(() => { this.isHover = true })
       .onmouseleave(() => { this.isHover = false })
       .onclick(() => {
-        this.navigator.to("/" + this.path)
+        this.navigator.to(this.path)
       })
   }
 

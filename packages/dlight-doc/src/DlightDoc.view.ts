@@ -5,17 +5,18 @@ import "highlight.js/styles/github.css"
 import { css } from "@iandx/easy-css"
 import { AdvantageBlock, HeadingBlock } from "./blocks"
 import { CatalogueView, NextPageNav } from "./views"
+import { PageNavType } from "./views/NextPageNav.view"
 
 /**
  * @example
- * ```js
+ * ````
  * ```js[Hello World]
  * div("Hello World")
  * ```
  * ```js[Goodbye World]
  * div("Goodbye World"")
  * ```
- * ```
+ * ````
  */
 addBlockRule({
   name: "CodeBlock",
@@ -39,15 +40,21 @@ addBlockRule({
 })
 
 interface DlightDocProps {
+  title: string
+  isShowCatalogue: boolean
   content: ContentProp<string>
+  nextPageNav: PageNavType
+  prePageNav: PageNavType
 }
 
 @View
 class DlightDoc implements DlightDocProps {
   @Env path: any
   @Prop @Content content: any = required
-  @Prop title: string = required
-  @Prop isShowCatalogue: boolean = required
+  @Prop title = required
+  @Prop isShowCatalogue = required
+  @Prop nextPageNav = required
+  @Prop prePageNav = required
 
   docAst: any = []
   cata = []
@@ -56,11 +63,6 @@ class DlightDoc implements DlightDocProps {
   catalogueEl: any
   isShowCatalogueInner = window.innerWidth > 1135
 
-  @Watch
-  watchShowCatalogue() {
-    console.log(this.isShowCatalogue, "isShowCatalogue")
-  }
-
   closeCatalogue(e: any) {
     if (e.target !== this.catalogueEl && this.isShowCatalogue) {
       this.isShowCatalogue = false
@@ -68,7 +70,7 @@ class DlightDoc implements DlightDocProps {
   }
 
   willMount() {
-    document.addEventListener("click", this.closeCatalogue.bind(this))
+    document.addEventListener("click", this.closeCatalogue.bind(this), { capture: true })
   }
 
   willunMount() {
@@ -116,6 +118,14 @@ class DlightDoc implements DlightDocProps {
     })
   }
 
+  scrollToTop(e) {
+    e.stopPropagation()
+    this.markitViewEl?.scrollTo({
+      top: 0
+    })
+    this.catalogueIndex = 0
+  }
+
   handleWindowResize() {
     if (window.innerWidth < 1140) {
       this.isShowCatalogueInner = false
@@ -136,8 +146,8 @@ class DlightDoc implements DlightDocProps {
 
   Body() {
     div()
-      .element(this.markitViewEl)
       .className(this.dlightDocWrap)
+      .element(this.markitViewEl)
     {
       div()
         .className(this.dlightContentWrap)
@@ -147,11 +157,12 @@ class DlightDoc implements DlightDocProps {
         MarkitView(this.content)
           .getAst(this.getAst)
         NextPageNav()
-          .updateCurrentIndex(this.updateCatalogueIndex)
+          .nextPage(this.nextPageNav)
+          .prePage(this.prePageNav)
       }
       if (this.isShowCatalogueInner || this.isShowCatalogue) {
         div()
-          .style({ width: "248px" })
+          .className(this.isShowCatalogue && !this.isShowCatalogueInner ? "" : this.dlightDocCatalogueWidthCss)
         {
           div()
             .className(this.fixCatalogueCss)
@@ -161,11 +172,17 @@ class DlightDoc implements DlightDocProps {
               .currentIndex(this.catalogueIndex)
               .updateCurrentIndex(this.updateCatalogueIndex)
               .isShowShadow(this.isShowCatalogue && !this.isShowCatalogueInner)
+              .scrollToTop(this.scrollToTop)
           }
         }
       }
     }
   }
+
+  /** @style */
+  dlightDocCatalogueWidthCss = css`
+    width: 248px;
+  `
 
   dlightDocTitleCss = css`
     font-size: 2.5rem;
@@ -197,19 +214,19 @@ class DlightDoc implements DlightDocProps {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    height: 100%;
+    height: calc(100% - 60px);
     overflow: scroll;
     overflow-x: hidden;
     padding: 30px 25px;
   `
 
   fixCatalogueCss = css`
-    right: 1;
+    right: ${this.isShowCatalogue && !this.isShowCatalogueInner ? "0" : "10px"};
     position: fixed;
     width: 248px;
     max-width: 248px;
     padding-bottom: 25px;
-    padding-right: 20px;
+    padding-right: 30px;
     background-color: white;
     height: 100%;
     padding-top: ${this.isShowCatalogue && !this.isShowCatalogueInner ? "30px" : "0"};

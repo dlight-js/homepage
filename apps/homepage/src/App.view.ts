@@ -41,6 +41,7 @@ class App {
       .theme(this.theme)
       .isMobile(this.isMobile)
       .isShortView(this.isShortView)
+      .windowWidth(this.windowWidth)
     {
       RouterSpace()
       {

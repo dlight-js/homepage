@@ -3,33 +3,24 @@ import { type Typed, div, Pretty } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { KeyboardArrowLeftFilled, KeyboardArrowRightFilled } from "@dlightjs/material-icons"
 
+export interface PageNavType {
+  name: string
+  path: string
+}
+
 interface NextPageNavProps {
-  navigator: any
-  nextPage: any
-  prePage: any
-  updateCurrentIndex: (index: number) => void
+  nextPage: PageNavType
+  prePage: PageNavType
 }
 
 @View
 class NextPageNav implements NextPageNavProps {
   @Env navigator: any = required
-  @Env nextPage = required
-  @Env prePage = required
-  @Prop updateCurrentIndex = required
+  @Prop nextPage = required
+  @Prop prePage = required
 
   hover1 = false
   hover2 = false
-  handleClickNext() {
-    this.navigator.to("/" + this.nextPage.path)
-    this.updateCurrentIndex(0)
-    this.hover2 = false
-  }
-
-  handleClickPre() {
-    this.navigator.to("/" + this.prePage.path)
-    this.updateCurrentIndex(0)
-    this.hover1 = false
-  }
 
   Body() {
     div()
@@ -39,7 +30,7 @@ class NextPageNav implements NextPageNavProps {
         div()
           .className(this.prePageBtnCss)
           .style({ color: this.hover1 ? "#daa172" : "#445d2a" })
-          .onclick(this.handleClickPre)
+          .onclick(() => { this.hover1 = false; this.navigator.to(this.prePage.path) })
           .onmouseenter(() => { this.hover1 = true })
           .onmouseleave(() => { this.hover1 = false })
         {
@@ -49,18 +40,27 @@ class NextPageNav implements NextPageNavProps {
             KeyboardArrowLeftFilled()
               .color(this.hover1 ? "#daa172" : "#445d2a")
           }
-          div(this.prePage.name)
+          div()
+            .className(this.pageNavTextBtnCss)
+          {
+            div(this.prePage.name)
+          }
         }
       }
       if (this.nextPage) {
         div()
           .className(this.nextPageBtnCss)
           .style({ color: this.hover2 ? "#daa172" : "#445d2a" })
-          .onclick(this.handleClickNext)
+          .onclick(() => { this.hover2 = false; this.navigator.to(this.nextPage.path) })
           .onmouseover(() => { this.hover2 = true })
           .onmouseleave(() => { this.hover2 = false })
         {
-          div(this.nextPage.name)
+          div()
+            .className(this.pageNavTextBtnCss)
+            .className(this.nextPageNavTextBtnCss)
+          {
+            div(this.nextPage.name)
+          }
           div()
             .className(this.iconCss("next"))
           {
@@ -77,6 +77,21 @@ class NextPageNav implements NextPageNavProps {
     ${type === "next" ? "margin-left: 10px" : "margin-right: 10px"};
   `
 
+  pageNavTextBtnCss = css`
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #445d2a;
+    border-radius: 10px;
+    padding: 10px;
+    width: calc(80% - 30px);
+    min-height: 40px;
+    flex-wrap: wrap;
+  `
+  nextPageNavTextBtnCss = css`
+    justify-content: flex-end;
+  `
+
   nextPageNavWrapCss = css`
     display: flex;
     flex-direction: row;
@@ -85,10 +100,10 @@ class NextPageNav implements NextPageNavProps {
     padding: 40px 0;
     border-top: solid 1px rgb(226 232 240);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 600;
   `
 
   prePageBtnCss = css`
+    width: 50%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -96,6 +111,7 @@ class NextPageNav implements NextPageNavProps {
     cursor: pointer;
   `
   nextPageBtnCss = css`
+    width: 50%;
     display: flex;
     flex-direction: row;
     align-items: center;

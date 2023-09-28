@@ -1,4 +1,4 @@
-import { Content, CustomNode, Prop, View, required } from "@dlightjs/dlight"
+import { Content, Prop, View, Watch, required } from "@dlightjs/dlight"
 import { code, ContentProp, div, pre, Pretty, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import hljs from "highlight.js"
@@ -15,13 +15,8 @@ class AdvantageBlock implements AdvantageBlockProps {
   @Prop props = required
   language = this.props.language
   title = this.props.title
-  highlightedCode = hljs.highlight(this.content, { language: this.language.trim() }).value
+  highlightedCode = hljs.highlight(this.content, { language: this.language.trim() === "codeTabs" ? "js" : this.language.trim() }).value
   hasCopied = false
-
-  didMount(_els: HTMLElement[], _node: CustomNode): void {
-    console.log(this.content)
-    console.log(this.props)
-  }
 
   async handleCopy() {
     await navigator.clipboard.writeText(this.content)
@@ -42,7 +37,6 @@ class AdvantageBlock implements AdvantageBlockProps {
           div()
             .className(this.dlightMarkitCodeBlockTitleLanguage)
           {
-            div(this.language)
             if (this.title) {
               div(this.title)
                 .className(this.dlightMarkitCodeBlockTitle)
@@ -56,35 +50,54 @@ class AdvantageBlock implements AdvantageBlockProps {
               .onclick(async() => {
                 await this.handleCopy()
               })
+              .className(this.dlightMarkitCopyBtnCss)
             {
               ContentCopyFilled()
-                .color("#999999")
+                .color("#333333")
                 .width(18)
                 .height(18)
                 .className(this.copyIcon)
+              div("Copy")
             }
           } else if (this.hasCopied) {
-            DoneFilled()
-              .color("#999999")
-              .width(18)
-              .height(18)
-              .className(this.copyIcon)
+            div()
+              .className(this.dlightMarkitCopyBtnCss)
+            {
+              DoneFilled()
+                .color("#333333")
+                .width(18)
+                .height(18)
+                .className(this.copyIcon)
+              div("Copied")
+            }
           }
         }
       }
-
       div()
-        .className(this.dlightHomepageMarkitCode)
+        .style({ position: "relative" })
       {
-        pre()
+        div(this.language)
+          .className(this.languageCss)
+        div()
+          .className(this.dlightHomepageMarkitCode)
         {
-          code()
-            .className(this.code)
-            .innerHTML(this.highlightedCode)
+          pre()
+          {
+            code()
+              .className(this.code)
+              .innerHTML(this.highlightedCode)
+          }
         }
       }
     }
   }
+
+  languageCss = css`
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    color: #999999;
+  `
 
   /** @style */
   dlightMarkitCodeBlockHeader = css`
@@ -93,7 +106,7 @@ class AdvantageBlock implements AdvantageBlockProps {
     border-radius: 12px 12px 0 0;
     color: #333333;
     font-family: system-ui;
-    font-size: 85%;
+    font-size: 14px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -102,16 +115,24 @@ class AdvantageBlock implements AdvantageBlockProps {
   dlightMarkitCodeBlockTitleLanguage = css`
     display: flex;
     flex-direction: row;
+    align-items: center;
   `
   dlightMarkitCodeBlockTitle = css`
     font-weight: 500;
     margin-right: 10px;
-    font-size: 90%;
+    font-size: 16px;
+    margin-left: 10px;
+  `
+  dlightMarkitCopyBtnCss = css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
   `
   dlightMarkitCodeBlock = css`
     background-color: rgba(242, 214, 159, 0.3);
     border-radius: 12px;
-    font-size: 90%;
+    font-size: 15px;
     margin: 10px 0;
   `
   dlightHomepageMarkitCode = css`
@@ -120,6 +141,7 @@ class AdvantageBlock implements AdvantageBlockProps {
     justify-content: space-between;
     padding: 10px 16px;
     font-size: 95%;
+    /* position: relative; */
     overflow-x: auto;
   `
   code = css`
@@ -127,7 +149,7 @@ class AdvantageBlock implements AdvantageBlockProps {
     line-height: 1.25rem;
   `
   copyIcon = css`
-    width: 20px;
+    width: 30px;
     height: 20px;
     display: flex;
     align-items: center;
@@ -135,7 +157,6 @@ class AdvantageBlock implements AdvantageBlockProps {
     /* background-color: rgba(250, 190, 142, 0.1); */
     /* border: 1px solid #DCDCDC; */
     /* border-radius: 6px; */
-    cursor: pointer;
   `
 }
 

@@ -1,4 +1,4 @@
-import { Env, View, required } from "@dlightjs/dlight"
+import { Env, View, Watch, required } from "@dlightjs/dlight"
 import { div, button, Pretty, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { getSize } from "../../utils/utilFunc"
@@ -53,7 +53,7 @@ class Title implements TitleProps {
     font-weight: bold;
     font-size: ${getSize(50)};
     margin-top: 10px;
-    text-align: ${this.isCenterStyle ? "center" : ""};;
+    text-align: ${this.isCenterStyle ? "center" : "left"};;
   `
 
   introDescriptionCss = css`
@@ -61,7 +61,7 @@ class Title implements TitleProps {
     line-height: ${getSize(35)};
     margin-top: 10px;
     color: ${this.theme.green12};
-    text-align: ${this.isCenterStyle ? "center" : ""};;
+    text-align: ${this.isCenterStyle ? "center" : "left"};;
   `
 
   homeStartBtnCss = css`
@@ -79,13 +79,12 @@ class Title implements TitleProps {
     margin: ${getSize(65)} 10% ${getSize(86)} 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    align-items: ${this.isCenterStyle ? "center" : ""};
+    align-items: ${this.isCenterStyle ? "center" : "flex-start"};
     justify-content: center;
     width: ${getSize(500)};
     min-width: ${getSize(430)};
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin-right: ${this.isMobile ? "0" : "10%"};
+    /* margin-right: ${this.isMobile ? "0" : "10%"}; */
     margin-left: ${this.isCenterTitle ? "10%" : "0"};
   `
 }

@@ -8,6 +8,7 @@ interface CatalogueViewProps {
   currentIndex: number
   isShowShadow: boolean
   updateCurrentIndex: (index: number) => void
+  scrollToTop: (e: any) => void
 }
 
 @View
@@ -16,8 +17,13 @@ class CatalogueView implements CatalogueViewProps {
   @Prop currentIndex = required
   @Prop isShowShadow = required
   @Prop updateCurrentIndex = required
+  @Prop scrollToTop = required
 
   Body() {
+    div("To Top")
+      .style({ textDecoration: "underline", fontWeight: 600, cursor: "pointer", width: "max-content" })
+      .className(this.dlightDocHeadingLinkCss(-1))
+      .onclick(this.scrollToTop)
     for (const [index, heading] of this.content.entries()) {
       for (const item of heading.content) {
         a()
@@ -58,7 +64,10 @@ class CatalogueView implements CatalogueViewProps {
     padding-left: 20px;
     color: ${index === this.currentIndex ? "#daa172" : "#445d2a"};
     border-left: ${index === this.currentIndex ? "solid 2px #daa172" : undefined};
-    width: 100%;
+    width: calc(100% - 30px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   `
 
   dlightDocSecondaryHeadCss = css`
@@ -66,6 +75,10 @@ class CatalogueView implements CatalogueViewProps {
   `
 
   dlightDocPrimaryHeadCss = css`
+    font-weight: 600;
+  `
+  dligthDocToTopCss = css`
+    text-decoration: underline;
     font-weight: 600;
   `
 }

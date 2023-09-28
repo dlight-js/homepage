@@ -23,7 +23,10 @@ class ShortHeaderMenuIcon {
       if (this.isShortHeader && !this.isShowMenu) {
         div()
           .onclick(() => {
-            this.handleClickShowMenu()
+            if (!this.isMobile) this.handleClickShowMenu()
+          })
+          .ontouchstart(() => {
+            if (this.isMobile) this.handleClickShowMenu()
           })
         {
           MenuRound()

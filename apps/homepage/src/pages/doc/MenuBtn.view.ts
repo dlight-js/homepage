@@ -6,6 +6,7 @@ import { css } from "@iandx/easy-css"
 interface MenuBtnProps {
   hanleClickOpenMenu: (value: boolean) => void
   hanleClickOpenOutline: (value: boolean) => void
+  setMenuOpenBtnEl: (el: HTMLElement) => void
 }
 
 @View
@@ -13,6 +14,12 @@ class MenuBtn implements MenuBtnProps {
   @Env isShortView: boolean = required
   @Prop hanleClickOpenMenu = required
   @Prop hanleClickOpenOutline = required
+  @Prop setMenuOpenBtnEl = required
+  el: HTMLElement
+  didMount() {
+    this.setMenuOpenBtnEl(this.el)
+  }
+
   Body() {
     if (this.isShortView) {
       div()
@@ -21,6 +28,7 @@ class MenuBtn implements MenuBtnProps {
         div()
           .className(this.btnCss)
           .onclick(this.hanleClickOpenMenu)
+          .element(this.el)
         {
           MenuRound()
             .className(this.iconCss)
@@ -32,7 +40,7 @@ class MenuBtn implements MenuBtnProps {
           .className(this.btnCss)
           .onclick(this.hanleClickOpenOutline)
         {
-          div("In this page")
+          div("Outline")
           AlignHorizontalLeftRound()
             .className(this.iconCss)
             .color("rgba(82,110,52,0.7)")
@@ -48,7 +56,8 @@ class MenuBtn implements MenuBtnProps {
     justify-content: space-between;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: rgba(82,110,52,0.7);
-    padding: 0 20px;
+    padding: 0 10px;
+    box-shadow: 0 1px 5px -3px #a9a9a9;
   `
 
   btnCss = css`

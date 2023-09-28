@@ -54,7 +54,7 @@ class FileName implements FileNameProps {
         unfoldAnimate(this.targetHeight, currentHeight, this.updateNextHeight)
       }
     }
-    this.navigator.to("/" + this.filePath)
+    this.navigator.to(this.filePath)
   }
 
   Body() {
