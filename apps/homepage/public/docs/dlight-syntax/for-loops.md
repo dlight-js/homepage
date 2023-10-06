@@ -72,9 +72,9 @@ for (const [idx, color] of Object.entries(colors)) {
 Contrary to react, a non-keyed loop is always faster than a keyed one in DLight. Here's a simple example that explains why this is the case. Imagine we have four elements displaying number `1, 2, 3, 4`, and we want to remove number 1.
 
 For keyed-update, it'll need to first remove number 1 and move other three elements up. In this case, we need to calculate the removed element idx and removed it from its parent node.
-![keyed-update](../imgs/keyed-update.png)
+![keyed-update](../imgs/keyed-update.png "keyed-update")
 For non-keyed-update, it'll just delete the last element and change the front elements accordingly. In implementation, we don't need to find the idx of the element to be removed. What we do here is to get the new array length(3) and cut there in our old array(1,3,4), then we do some element property altering operations, which are much cheaper.
-![non-keyed-update](../imgs/non-keyed-update.png)
+![non-keyed-update](../imgs/non-keyed-update.png "non-keyed-update")
 
 Non-keyed update works for 90% scenarios if there's no specific requirement to set a key. And this is how we do it in DLight:
 ```js
