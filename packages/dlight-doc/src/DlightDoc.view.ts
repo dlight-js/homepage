@@ -6,6 +6,7 @@ import { css } from "@iandx/easy-css"
 import { AdvantageBlock, HeadingBlock } from "./blocks"
 import { CatalogueView, NextPageNav } from "./views"
 import { PageNavType } from "./views/NextPageNav.view"
+import TableBlock from "./blocks/tableBlock/TableBlock.view"
 
 /**
  * @example
@@ -37,6 +38,12 @@ addBlockRule({
   name: "Heading",
   rule: "default",
   view: HeadingBlock
+})
+
+addBlockRule({
+  name: "Table",
+  rule: "default",
+  view: TableBlock
 })
 
 interface DlightDocProps {
