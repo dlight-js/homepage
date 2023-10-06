@@ -88,15 +88,17 @@ class ExamplesPage {
 
   exmaplesPageWrapCss = css`
     display: flex;
+    flex: 1;
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    padding: 10px 60px;
+    padding: 30px 60px;
     background-color: ${this.theme.orange1};
-    height: 89vh;
+    height: 100%;
   `
 
   dlightEditorWrapCss = css`
+    display: block;
     margin-left: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px -3px #A9A9A9;

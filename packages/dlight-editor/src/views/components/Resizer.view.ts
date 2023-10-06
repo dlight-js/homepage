@@ -26,6 +26,7 @@ class Resizer implements ResizerProps {
 
   /** @reactive */
   startDrag = false
+  startTouchDrag = false
 
   /** @member */
   draggableEl?: HTMLDivElement
@@ -42,6 +43,15 @@ class Resizer implements ResizerProps {
     this.onDrag?.(x, y)
   }
 
+  onTouchMove(e: TouchEvent) {
+    if (!this.startTouchDrag) return
+    // const x = this.axises.includes("x") ? e.clientX - this.offsetX : 0
+    // const y = this.axises.includes("y") ? e.clientY - this.offsetY : 0
+    // this.offsetX = e.clientX
+    // this.offsetY = e.clientY
+    // this.onDrag?.(x, y)
+  }
+
   onMouseUp = () => {
     this.startDrag = false
   }
@@ -55,9 +65,20 @@ class Resizer implements ResizerProps {
     draggableEl.focus()
   }
 
+  onTouchStart(e: TouchEvent) {
+    e.preventDefault()
+    const draggableEl = e.targetTouches[0]
+    this.offsetX = draggableEl.pageX
+    this.offsetY = draggableEl.pageY
+    console.log(draggableEl)
+    // draggableEl.focus()
+    this.startTouchDrag = true
+  }
+
   /** @lifecycle */
   didMount() {
     document.addEventListener("mousemove", this.onMouseMove)
+    document.addEventListener("touchmove", this.onTouchMove)
     document.addEventListener("mouseup", this.onMouseUp)
   }
 
