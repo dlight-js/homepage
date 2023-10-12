@@ -5,12 +5,12 @@ Why we're calling DLight a DX-first library is that you don't actually have to w
 * make a reactive state
 * make the view re-render
 * memorize computed states
-* listen to a specific dependency array changing
+* listen to a specific dependency array
 * avoid dependency loops
 * avoid performance drop when the project is scaling
 * ... or anything that troubles you right now
 
-We want front-end developers to focus more on the product, pay attention to business attributes, data processing, and in-depth user interactions, rather than wasting time on building simple dynamic pages. In this way, front-end developers can better understand the business in their work and maintain their competitive edge. That's exactly why DLight is here, offering the best developing experience and allowing you to code delighted.
+We want front-end developers to focus more on the product, pay attention to business attributes, data processing, and in-depth user interactions, rather than wasting time on building simple dynamic pages, in which way, front-end developers can better understand the product in their work. That's exactly why DLight is here, offering the best developing experience and allowing you to code delighted.
 
 Here's the lowdown on what makes DLight.js tick.
 
@@ -21,17 +21,17 @@ In recent years, thanks to React and other frameworks, JSX has become the go-to 
 So, how does DLight.js handle this problem -- making UI building more js? We've done three delicate designs to approach this problem.
 ## Function Called View Declarations
 We love to make everything a function and just call it. It can modular our code and simpler our life. So here in DLight, we're using a way of "function-call" to build ui views. Let's recall how we declare an element in jsx:
-```html
+```jsx [jsx]
 <div>Hello world</div>
 ```
 This is how we do it in DLight:
-```js
+```js [dlight DSL]
 div("hello world")
 ```
 It seems like we're calling a function called "div" with a string as its first paramerter. It looks very familiar because IT'S JS!
 ## Method Dot Chaining Properties
 To be honest, setting properties in jsx is not always pleasant. And since we've go down to use a function call to build views, why don't we take it one step further? In an old jsx way, we set properties like this:
-```html
+```jsx [jsx]
 <div 
   className="hello-view"
   onClick={showHello}
@@ -40,18 +40,18 @@ To be honest, setting properties in jsx is not always pleasant. And since we've 
   hello world
 </div>
 ```
-It's quite neat for a machine-oriented language to be honest, but here comes DLight:
-```js
+In jsx, we need to use a pair of `{}` to distinguish expression from string. So in DLight, we will do it in a more js way:
+```js [dlight DSL]
 div("hello world")
   .className("hello-view")
   .onClick(showHello)
   .otherProp(yourProp)
 ```
-That's the dot chaining of a function. You can just keep dotting and dotting and dotting and it never ends. It looks way better than our old jsx not only because you don't need to distinguish a js variable from a plain string to wrap it with "{}", but also because IT'S JS!
+That's the dot chaining of a function. You can just keep dotting and dotting and dotting and it never ends. It looks way better than our old jsx syntax because IT'S JS!
 
 ## JS Control Flows
 How long since the last time you used `for` or even `if` in js? Because in jsx, you don't get the chance to:
-```html
+```jsx [jsx]
 <>
   { showHello ? <div>hello</div> : null }
   {
@@ -62,8 +62,10 @@ How long since the last time you used `for` or even `if` in js? Because in jsx, 
   }
 </>
 ```
-In jsx, we have to use conditional statements and function maps, and say goodbye to our good friends "for" and "if". But things are different in DLight, we welcome our old friends back:
-```js
+In jsx, we have to use conditional statements and function maps, and say goodbye to our good friends "for" and "if". This is fine when there're only a few conditions. But when things get messy, your codes will do too. 
+
+And things are different in DLight, we welcome our old friends back:
+```js [dlight DSL]
 if (showHello) {
   div("hello")
 }
@@ -71,27 +73,27 @@ for (const fruit of ["apple", "orange", "banana"]) {
   div(fruit)
 }
 ```
-Yes, I know it's amazing. Because IT'S JS!
+Yup, I know. IT'S JS!
 
 # 🧐 Exploring Class Components
 React has had everyone buzzing about functional components in recent years. And honestly, it makes sense for React. Think about it: every time there's a re-render, it's like a cascading waterfall of function calls from top to bottom.
 
 But when we shift gears and talk about MVVM with that signal-based reactivity, class components start looking pretty appealing. Unlike templates, which can feel kind of boxed-in and don't play nice as standard JS files, class components have this cool object-oriented vibe.
 
-Now, I totally get why functional programming feels right at home with MVC frameworks. It’s like painting – you add layers one by one, all in order. And data? It’s like a one-way street, following the traffic lights strictly. But MVVM? Totally different ball game. Its essence is like this web that spreads out in every direction, representing views with view-models and exchanging info between views and data sources. It’s not a straight line; it's this intricate web that’s all over the place. And that's where the magic of object-oriented class structures shines. It's like having a chat between data and views through these neat properties and reactive connections.
+I totally get why functional programming feels right at home with MVC frameworks. It’s like painting – you add layers one by one, all in order. And data? It’s like a one-way street, following the traffic lights strictly. But MVVM? Totally different ball game. Its essence is like this web that spreads out in every direction, representing views with view-models and exchanging info between views and data sources. It’s not a straight line; it's this intricate web that’s all over the place. And that's where the magic of object-oriented class structures shines. It's like having a chat between data and views through these neat properties and reactive connections.
 
 And if we pause and think about it, isn't the whole deal with giving side effects to pure functional components just to achieve this spontaneous chit-chat between views and data?
 
-Now, a quick side note: DLight’s class components aren’t even close to React's class componennts, which look like a functional components dress up for me. DLight's MVVM philosophy feels a bit closer to Angular's class component spirit. But here’s the kicker – DLight does it in a way that’s sleeker and way more developer-friendly.
+A quick side note here: DLight’s class components aren’t even close to React's class components, which look like a functional components dress up because its `render` function. DLight's MVVM philosophy feels a bit closer to Angular's class component spirit. But here’s the kicker – DLight does it in a way that’s sleeker and way more developer-friendly.
 
-#  🤌🏻 Fine-grained reactivity
+#  🧂 Fine-grained reactivity
 Now, let's take a look at how DLight.js handles updates.
 
-Instead of relying on a Virtual DOM, we've designed DLight.js to provide granular control over reative variable updates using a signal based reactivity. Here's how it works: each variable, if it is set to a new value or reference, will only result in the updates of its relevant elements' properties. 
+Instead of relying on a Virtual DOM, we've designed DLight.js to provide granular control over reative variable updates using a signal based reactivity. Here's how it works: each variable, if it is set to a new value or reference, will only result in the updates of its relevant elements' **properties**. 
 
 Imagine a scenario where you have multiple variables tied to different elements in your UI. When one of these variables changes, DLight.js ensures that only the elements directly affected by that variable's update undergo changes. This approach minimizes unnecessary re-renders and keeps your UI responsive and efficient.
 
-In many UI frameworks, managing derived or computed states can be a bit of a puzzle. You may need to use a "$" in svelte to set a derived reactive variable, or call a "useMemo" in React or "createMemo" in SolidJS to avoid re-render or re-calculation. While in dlight, everything becomes so intuitive. Let's take a closer look at it.
+In many UI frameworks, managing derived or computed states can be a bit of a puzzle. For example, you may need to use a "$" in svelte to set a derived reactive variable, or call a "useMemo" in React or "createMemo" in SolidJS to avoid re-render or re-calculation. While in dlight, everything becomes so intuitive. Let's take a closer look at it.
 
 Want to declare a component?
 ```js
@@ -126,7 +128,7 @@ class MyComp {
 }
 ```
 
-The whole point in designing DLight.js is to make everything intuitive. When you want to get something done in DLight, you may think "how can I do this in DLight?", the first answer that pops into your mind has a 99% chance to be the right one.
+The whole point in designing DLight.js is to make everything intuitive. When you want to get something done in DLight, you may think "how can I do this in DLight?", and the first answer that pops into your mind has a 99% chance to be the right one.
 
 ---
 

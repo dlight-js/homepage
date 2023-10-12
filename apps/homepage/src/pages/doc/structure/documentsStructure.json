@@ -1,104 +1,105 @@
 [
   {
-    "name": "Getting Started",
+    "name": "🚀 Getting Started",
     "path": "getting-started",
     "children": [
       {
-        "name": "Introduction",
+        "name": "📘 Introduction",
         "path": "introduction"
       },
       {
-        "name": "Quick Start",
+        "name": "🤔 Rethinking Reactivity",
+        "path": "rethinking-reactivity"
+      },
+      {
+        "name": "⚡️ Quick Start",
         "path": "quick-start"
       }
     ]
   },
   {
-    "name": "DLight Syntax",
+    "name": "🧩 DLight Syntax",
     "path": "dlight-syntax",
     "children": [
       {
-        "name": "HTML Elements",
+        "name": "🏞️ HTML Elements",
         "path": "html-elements"
       },
       {
-        "name": "Text Nodes",
+        "name": "📝 Text Nodes",
         "path": "text-nodes"
       },
       {
-        "name": "Custom Components",
+        "name": "🧱 Custom Components",
         "path": "custom-components"
       },
       {
-        "name": "If Statements",
+        "name": "🔀 If Statements",
         "path": "if-statements"
       },
       {
-        "name": "For Loops",
+        "name": "🔁 For Loops",
         "path": "for-loops"
       },
       {
-        "name": "Expressions",
+        "name": "💡 Expressions",
         "path": "expressions"
       }
     ]
   },
   {
-    "name": "Basic Usages",
+    "name": "🛠 Basic Usages",
     "path": "basic-usages",
     "children": [
       {
-        "name": "Class Components",
+        "name": "🏫 Class Components",
         "path": "class-components"
       },
       {
-        "name": "State Management",
+        "name": "🌐 State Management",
         "path": "state-management"
       },
       {
-        "name": "Prop Passing",
+        "name": "🔗 Prop Passing",
         "path": "prop-passing"
       },
       {
-        "name": "Child Components",
+        "name": "👶 Child Components",
         "path": "child-components"
       },
       {
-        "name": "Environment Variables",
+        "name": "🌍 Environment Variables",
         "path": "environment-variables"
       },
       {
-        "name": "Lifecycle",
+        "name": "⏳ Lifecycle",
         "path": "lifecycle"
       }
     ]
   },
   {
-    "name": "Advanced Usages",
+    "name": "🧙‍♂️ Advanced Usages",
     "path": "advanced-usages",
     "children": [
       {
-        "name": "Assertion Tags",
+        "name": "🏷 Assertion Tags",
         "path": "assertion-tags"
       },
       {
-        "name": "Expressions",
+        "name": "💡 Expressions",
         "path": "expressions"
       },
       {
-        "name": "Forward Props",
+        "name": "⤵️ Forward Props",
         "path": "forward-props"
       },
       {
-        "name": "Reactivity Utils",
+        "name": "⚙️ Reactivity Utils",
         "path": "reactivity-utils"
       },
       {
-        "name": "DLNodes as Props",
+        "name": "📦 DLNodes as Props",
         "path": "dlnodes-as-props"
-      },
-      {
-
       }
     ]
   }
