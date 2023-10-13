@@ -65,13 +65,22 @@ el1.id = "first-el";
 bindView(el, "innerText", () => /*CHANGE*/doubleCount/*CHANGE*/);
 ```
 The reactivity graph would look like:
-```js
-[ count ] ---> [ doubleCount ] ---> [ first-el ]
-```
+
+![reactivity-graph1](../imgs/reactivity-graph1.jpeg "reactivity-graph1" 100%)
+
 Here's an illustration of the reactivity flow within our new graph:
 1. When `count` changes, `doubleCount` re-calculates **ONCE** 
 2. When `doubleCount` changes, `first-el` re-renders innerText **ONCE**
 
+And here's the table version:
+| state | target |
+| --- | --- |
+| count | doubleCount |
+| doubleCount | first-el |
+
+Animated version:
+![reactivity-graph1-count](../imgs/reactivity-graph1-count.gif "reactivity-graph1-count" 100%)
+![reactivity-graph0-count](../imgs/reactivity-graph1-dblCount.gif "reactivity-graph1-dblCount" 100%)
 
 
 ## More Complexity - Double Element Display
