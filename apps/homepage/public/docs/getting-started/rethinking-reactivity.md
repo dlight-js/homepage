@@ -39,15 +39,22 @@ Here's a simplified breakdown:
 * `bindView(el, "innerText", () => count)`: Binds the inner text of our el element to always display the current value of count.
 
 Now, let's transform this into a simple reactivity graph:
-```text
-[ count ] ---> [ doubleCount ]
-    |
-    V
-[ first-el ]
-```
+![reactivity-graph0](../imgs/reactivity-graph0.jpeg "reactivity-graph0" 100%)
+
 In this graph, nodes (`count`, `doubleCount`, and `div: first-el`) represent our states and UI element and edges signify the dependencies between them, which will be:
 1. When `count` changes, `doubleCount` re-calculates **ONCE** 
 2. When `count` changes, `first-el` re-renders innerText **ONCE**
+Put them in a table:
+
+| state | target |
+| --- | --- |
+| count | doubleCount |
+|       | first-el |
+
+Visualizing will be like:
+
+![reactivity-graph0-count](../imgs/reactivity-graph0-count.gif "reactivity-graph0-count" 100%)
+
 ## Adding a Layer of Complexity
 Let’s modify our example to make `first-el` display `doubleCount` instead of `count`. We'll also make some small changes to the JavaScript pseudo-code to reflect this:
 ```jsx
@@ -65,7 +72,6 @@ Here's an illustration of the reactivity flow within our new graph:
 1. When `count` changes, `doubleCount` re-calculates **ONCE** 
 2. When `doubleCount` changes, `first-el` re-renders innerText **ONCE**
 
-![keyed-update](../imgs/reactivity-graph0.gif "keyed-update" 50%)
 
 
 ## More Complexity - Double Element Display
