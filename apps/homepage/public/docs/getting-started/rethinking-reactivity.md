@@ -64,7 +64,8 @@ The reactivity graph would look like:
 Here's an illustration of the reactivity flow within our new graph:
 1. When `count` changes, `doubleCount` re-calculates **ONCE** 
 2. When `doubleCount` changes, `first-el` re-renders innerText **ONCE**
-![keyed-update](../imgs/reactivity-graph0.gif "keyed-update")
+
+![keyed-update](../imgs/reactivity-graph0.gif "keyed-update" 50%)
 
 
 ## More Complexity - Double Element Display
