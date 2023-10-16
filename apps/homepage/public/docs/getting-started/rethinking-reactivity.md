@@ -134,7 +134,7 @@ Inconsistent updates refer to the scenario where the UI does not accurately refl
 
 By adhering to the flow of the reactivity graph, the execution becomes inherently robust, safeguarding against inconsistencies in UI updates.
 
-And there's a big part of the updating scenario to be this "side effects" situation. In current frontend frameworks, developers often contend with "side effects," which refer to operations that influence or are influenced by states outside their local environment. These might encompass data fetching, subscriptions, or manual DOM manipulations. Essentially, they are operations that not only derive new data from existing values but also initiate changes that might indirectly affect other parts of the system. The introduction of side effects often complicates the data flow, occasionally leading to the dreaded inconsistent updates, where the UI does not accurately mirror the prevailing application state.
+And there's a big part of the updating scenario to be this "side effects" situation. In current frontend frameworks, developers often contend with "side effects," which refer to operations that influence or are influenced by states outside their local environment. These might encompass data fetching, subscriptions, or manual DOM manipulations. Essentially, they are operations that not only derive new data from existing values but also initiate changes that might indirectly affect other parts of the system. The introduction of side effects often complicates the data flow, occasionally leading to the dreaded inconsistent updates, where the UI does not accurately mirror the current application states.
  
 In contrast, the reactivity graph methodically extinguishes the concept of side effects, adopting a structure where:
 * Every operation, state, or view is encapsulated as a node.
@@ -161,8 +161,8 @@ let logCount = declareState((() => {
 })());
 ```
 Here:
-* `declareState(0)`: Declares a reactive state count, initialized with 0.
-* `declareEffect(() => console.log(count))`: This isn't setting up a "side effect" in the traditional sense. Instead, it establishes another state. However, because it's an immediately-invoked function expression (IIFE), it executes the logging operation instantly during its declaration. The act of logging here, similar to a "side effect", is performed before a value is returned and the state is finalized. However, within the context of a reactivity graph, this is not viewed or treated as a "side effect" but merely a state with an operation executed during its creation.
+* `declareState(1)`: Declares a reactive state count, initialized with 0.
+* `declareState((() => { console.log(count); return count; })())`: This isn't setting up a "side effect" in the traditional sense. Instead, it establishes another state. However, because it's an immediately-invoked function expression (IIFE), it executes the logging operation instantly during its declaration. The act of logging here, similar to a "side effect", is performed before a value is returned and the state is finalized. However, within the context of a reactivity graph, this is not viewed or treated as a "side effect" but merely a state with an operation executed during its creation.
 
 In the reactivity graph, it would be visualized as:
 ![reactivity-graph3](../imgs/reactivity-graph3.jpeg "reactivity-graph3")
@@ -184,7 +184,7 @@ In a typical reactive system, this can cause severe issues. However, the reactiv
 
 Consider the following pseudo-code example:
 ```js
-let count = declareState(2 / reverseDouble);
+let count = declareState(1);
 let incrementedDoubleCount = declareState((() => {
   count ++
   return count * 2
@@ -194,7 +194,7 @@ In this case:
 * The `incrementedDoubleCount` operation increments count and return its doubled value.
 * When `incrementedDoubleCount` is evaluated, it changes count, which in turn changes `incrementedDoubleCount` it self, affecting the value of count again and again and again, which causes a loop dependency.
 
-Reactivity Graph's approach to loop dependency can be descripted as follows:
+Reactivity Graph's approach to loop dependency can be depicted as follows:
 1. Identification of Loop Point: The reactivity graph identifies potential loop points by locating state nodes that contain both getter (dependencies) and setter (assign) methods.
 2. Segmentation into AssignDeps: Once a loop point is detected, all setter methods within the state are isolated and categorized as assignDeps.
 3. Filtering Dependencies: The next step involves filtering the dependencies of the node. The updated set of dependencies (deps) for the node becomes:
