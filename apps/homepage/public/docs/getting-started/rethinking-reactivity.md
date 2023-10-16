@@ -34,9 +34,8 @@ el1.innerText = declareState(count)
 ```
 Here's a simplified breakdown:
 * `declareState(0)`: Declares a reactive state count initialized with 0.
-* `declareState(() => count * 2)`: Declares a reactive derived state doubleCount that is always double the value of count.
-* `document.createElement("div")`: Creates a new `<div>` element and assigns it an ID of "first-el".
-* `bindView(el, "innerText", () => count)`: Binds the inner text of our el element to always display the current value of count.
+* `declareState(count * 2);`: Declares a reactive derived state doubleCount that is always double the value of count.
+* `declareState(count)`: Binds the inner text of our el element to always display the current value of count.
 
 Now, let's transform this into a simple reactivity graph:
 ![reactivity-graph0](../imgs/reactivity-graph0.jpeg "reactivity-graph0")
@@ -44,6 +43,7 @@ Now, let's transform this into a simple reactivity graph:
 In this graph, nodes (`count`, `doubleCount`, and `div: first-el`) represent our states and UI element and edges signify the dependencies between them, which will be:
 1. When `count` changes, `doubleCount` re-calculates **ONCE** 
 2. When `count` changes, `first-el` re-renders innerText **ONCE**
+
 Put them in a table:
 
 | state | target |
@@ -51,7 +51,7 @@ Put them in a table:
 | count | doubleCount |
 |       | first-el |
 
-Visualizing will be like:
+Visualization will be like:
 
 ![reactivity-graph0-count](../imgs/reactivity-graph0-count.gif "reactivity-graph0-count")
 
@@ -86,7 +86,7 @@ Animated version:
 
 A noteworthy point of discussion here is the direct alteration of derived states, such as `doubleCount` in our example.
 
-Under conventional logic, direct modification of doubleCount may be seen as a no-op since it’s computationally bound to `count` (specifically `count * 2`). However, a paradigm shift in thinking allows us to ponder: why should `doubleCount` be immutable? After all, it's a variable, and variables, by nature, are mutable.
+Under conventional logic, direct modification of doubleCount may be seen as a no-op since it’s computationally bound to `count` (specifically `count * 2`). However, a paradigm shift in thinking allows us to ponder: why should `doubleCount` be immutable? After all, it's a variable, and variables, by nature, are mutable. That's why I prefer to call it a `derived state` instead of a `computed state`.
 
 Let's assume we adjust `doubleCount` directly like `doubleCount ++`. In a reactivity graph that supports mutable derived states, the following sequence would unfold:
 1. `doubleCount` increments by 1 and thus, its new value is 3.
@@ -144,7 +144,7 @@ Let’s illustrate this with a concrete example to provide a better understandin
 
 In conventional front-end frameworks, developers might utilize side effects to, say, log the current state of a variable to the console whenever it alters. Note that the following syntax ISN'T specific to any framework but is written to convey the idea in an understandable manner.
 ```js
-const [count, setCount] = state(0)
+const [count, setCount] = state(1)
 
 effect(() => {
   console.log(count);
@@ -161,7 +161,7 @@ let logCount = declareState((() => {
 })());
 ```
 Here:
-* `declareState(1)`: Declares a reactive state count, initialized with 0.
+* `declareState(1)`: Declares a reactive state count, initialized with 1.
 * `declareState((() => { console.log(count); return count; })())`: This isn't setting up a "side effect" in the traditional sense. Instead, it establishes another state. However, because it's an immediately-invoked function expression (IIFE), it executes the logging operation instantly during its declaration. The act of logging here, similar to a "side effect", is performed before a value is returned and the state is finalized. However, within the context of a reactivity graph, this is not viewed or treated as a "side effect" but merely a state with an operation executed during its creation.
 
 In the reactivity graph, it would be visualized as:
