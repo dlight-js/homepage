@@ -1,12 +1,12 @@
-A Deep Dive into the Reactivity Graph
+深入探索Reactivity Graph
 
 # Introduction
-Reactivity, or the ability to update the UI in response to data changes, is pivotal in modern frontend frameworks. As frontend applications burgeon in complexity, managing the mutable states and their effects on the UI is vitally important. While the frontend community has devised various solutions for reactivity, a handful of common issues and challenges still linger:
-* Inconsistent Updates: Issues can sprout from inconsistencies between data changes and UI updates.
-* Over-rendering: An inability to precisely discern which UI parts need re-rendering can lead to unnecessary computations and DOM manipulations.
-* Dependency Management Challenges: Understanding and managing dependencies between various states becomes increasingly intricate in large applications.
-* Debugging Difficulties: Without clear data flow and update logic, troubleshooting can become a notably time-consuming task.
+Reactivity，也就是在数据变化时更新UI的能力，在现代前端框架中是至关重要的。随着前端应用程序在复杂性上的发展，管理可变状态及其对UI的影响变得重要。虽然前端社区为Reactivity设计了各种解决方案，但仍然存在一些常见的问题和挑战：
 
+* 不一致的更新：数据变化与UI更新之间的不一致性可能导致问题。
+* 过度渲染：无法精确判断哪些UI部分需要重新渲染可能会导致不必要的计算和DOM操作。
+* 依赖管理挑战：在大型应用中，理解和管理各种状态之间的依赖关系变得越来越复杂。
+* 调试困难：没有清晰的数据流和更新逻辑，故障排查可能会变得特别耗时。
 
 # Concept of Reactivity Graph
 Reflecting on these challenges, can we discern a pattern? Don’t these updates, dependencies, and data movements construct a graph? The data states serve as nodes and their dependencies as edges, weaving a network wherein changes propagate to trigger UI updates when data alters.
@@ -82,8 +82,6 @@ Animated version:
 
 ![reactivity-graph1-count](../imgs/reactivity-graph1-count.gif "reactivity-graph1-count")
 
-![reactivity-graph1-dblCount](../imgs/reactivity-graph1-dblCount.gif "reactivity-graph1-dblCount")
-
 A noteworthy point of discussion here is the direct alteration of derived states, such as `doubleCount` in our example.
 
 Under conventional logic, direct modification of doubleCount may be seen as a no-op since it’s computationally bound to `count` (specifically `count * 2`). However, a paradigm shift in thinking allows us to ponder: why should `doubleCount` be immutable? After all, it's a variable, and variables, by nature, are mutable.
@@ -97,7 +95,9 @@ Under this model, any subsequent alteration to count will yet again recalculate 
 2. `doubleCount` re-calculates, adhering to its defined logic `count * 2`, and updates its value to 4.
 3. The change in `doubleCount` prompts `first-el` to re-render, displaying the new value, 4.
 
-![reactivity-graph1](../imgs/reactivity-graph1.gif "reactivity-graph1")
+
+![reactivity-graph0-count](../imgs/reactivity-graph1-dblCount.gif "reactivity-graph1-dblCount")
+
 
 ## Section Wrap-up and More Complexity
 In the previous part, we've built some simple reactivity graphs, understanding how various states and their dependencies can be visualized and managed using this model. From simple to complex dependencies, the reactivity graph has demonstrated its ability to intuitively illustrate and guide state management and data flow within applications.
