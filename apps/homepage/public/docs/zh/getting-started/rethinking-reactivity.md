@@ -8,23 +8,24 @@ Reactivity，也就是在数据变化时更新UI的能力，在现代前端框�
 * 依赖管理挑战：在大型应用中，理解和管理各种状态之间的依赖关系变得越来越复杂。
 * 调试困难：没有清晰的数据流和更新逻辑，故障排查可能会变得特别耗时。
 
-# Concept of Reactivity Graph
-Reflecting on these challenges, can we discern a pattern? Don’t these updates, dependencies, and data movements construct a graph? The data states serve as nodes and their dependencies as edges, weaving a network wherein changes propagate to trigger UI updates when data alters.
+# Reactivity Graph的概念
+当我们思考这些问题时，我们能发现一些规律吗？这些更新、依赖和数据的流动是不是可以构成一个图(graph)？其中，数据状态是节点，而它们的依赖关系则是边，形成了一个网络，只要数据发生变化，就会触发UI的更新。
 
-This brings us to the crux of today's discussion — the “Reactivity Graph”. The Reactivity Graph is a directed acyclic graph and within this graphical model:
-* Nodes: Represent an observable and mutable state.
-* Edges: Depict dependencies between states.
-* Direction: Determines the propagation direction of data changes.
+这就引出了我们今天要深入探讨的主题——“Reactivity Graph”。Reactivity Graph是一个有向的无环图，在这个模型中：
+* 节点：代表了一个可以观察和更改的状态。
+* 边：表示状态之间的依赖关系。
+* 方向：指定数据变化的传播路径。
 
-Each state change in this model will propagate along the direction of the dependencies (edges), accurately updating all affected parts in the application and minimizing unnecessary renders and calculations.
+在这个模型里，每次状态发生变化都会顺着其依赖（也就是边）的方向传播，确保应用中受到影响的部分得到准确的更新，并避免了不必要的渲染和计算。
 
-While the concept of the `Reactivity Graph` has been explored and applied in various domains since the last century, its thorough and systematic implementation in frontend frameworks is notably lacking. This gap presents an opportunity to explore and adapt this robust model to address the unique challenges of managing reactivity and data flow in modern web development.
+尽管Reactivity Graph的概念在过去的许多年里已经在多个领域被探索和应用，但其在前端框架中的全面、系统化的实现却尚待完善。这为我们提供了一个机会，去进一步探索和适配这个强大的模型，来解决现代网络开发中关于reactivity和数据流动的问题。
 
-# Building Reactivity Graph
-## Basic count example
-Consider a simple application state where we have `count`, `doubleCount` (which is always twice the count), and a UI element `first-el` that displays the count value.
+# 构建Reactivity Graph
+## 基础的计数示例
+考虑一个简单的应用状态，其中我们有`count`，`doubleCount`（其值总是`count`的两倍），以及一个UI元素`first-el`，用来显示count的值。
 
-Before we visualize our Reactivity Graph, let’s take a moment to conceptualize our example through code. Note that the following syntax ISN'T specific to any framework but is written to convey the idea in an understandable manner.
+在我们可视化我们的Reactivity Graph之前，让我们先通过代码来概念化我们的示例。请注意，以下的语法并不特定于任何框架，只是为了以一种易于理解的方式来传达这个思想。
+
 ```js
 let count = declareState(1);
 let doubleCount = declareState(count * 2);
@@ -32,31 +33,32 @@ const el1 = document.createElement("div");
 el1.id = "first-el";
 el1.innerText = declareState(count)
 ```
-Here's a simplified breakdown:
-* `declareState(0)`: Declares a reactive state count initialized with 0.
-* `declareState(() => count * 2)`: Declares a reactive derived state doubleCount that is always double the value of count.
-* `document.createElement("div")`: Creates a new `<div>` element and assigns it an ID of "first-el".
-* `bindView(el, "innerText", () => count)`: Binds the inner text of our el element to always display the current value of count.
+一个简化的分解：
+* `declareState(0)`: 声明了一个初始值为0的响应式状态count。
+* `declareState(count * 2)`: 声明了一个响应式的派生状态doubleCount，其值总是count的两倍。
+* `declareState(count)`: 将我们的el元素的内部文本绑定，使其总是显示count的当前值。
 
-Now, let's transform this into a simple reactivity graph:
+现在，让我们将其转化为一个简单的reactivity graph：
+
 ![reactivity-graph0](../imgs/reactivity-graph0.jpeg "reactivity-graph0")
 
-In this graph, nodes (`count`, `doubleCount`, and `div: first-el`) represent our states and UI element and edges signify the dependencies between them, which will be:
-1. When `count` changes, `doubleCount` re-calculates **ONCE** 
-2. When `count` changes, `first-el` re-renders innerText **ONCE**
-Put them in a table:
+在这张图中，节点 (`count`, `doubleCount`, 和 `div: first-el`) 代表我们的状态和UI元素，而边代表它们之间的依赖关系，即：
+1. 当 `count` 发生变化时, `doubleCount` 重新计算 **一次** 
+2. 当 `count` 发生变化时, `first-el` 重新渲染innerText **一次**
+
+将它们放入一个表格中：
 
 | state | target |
 | --- | --- |
 | count | doubleCount |
 |       | first-el |
 
-Visualizing will be like:
+可视化是这样的：
 
 ![reactivity-graph0-count](../imgs/reactivity-graph0-count.gif "reactivity-graph0-count")
 
-## Adding a Layer of Complexity
-Let’s modify our example to make `first-el` display `doubleCount` instead of `count`. We'll also need to make some small changes to the JavaScript pseudo-code to reflect this:
+## 增加一层复杂性
+让我们修改我们的示例，使`first-el`显示`doubleCount`而不是`count`。我们还需要对JavaScript伪代码进行一些小的修改来反映这一点：
 ```jsx
 let count = declareState(1);
 let doubleCount = declareState(count * 2);
@@ -64,70 +66,71 @@ let el1 = document.createElement("div");
 el1.id = "first-el";
 el1.innerText = declareState(doubleCount)
 ```
-The reactivity graph would look like:
+Reactivity图会是这样:
 
 ![reactivity-graph1](../imgs/reactivity-graph1.jpeg "reactivity-graph1")
 
-Here's an illustration of the reactivity flow within our new graph:
-1. When `count` changes, `doubleCount` re-calculates **ONCE** 
-2. When `doubleCount` changes, `first-el` re-renders innerText **ONCE**
+这是我们新图中的Reactivity流的示意图：
+1. 当 `count` 发生变化时, `doubleCount` 重新计算 **一次** 
+2. 当 `doubleCount` 发生变化时, `first-el` 重新渲染innerText **一次**
 
-And here's the table version:
+这是表格版本：
 | state | target |
 | --- | --- |
 | count | doubleCount |
 | doubleCount | first-el |
 
-Animated version:
+动画版本：
 
 ![reactivity-graph1-count](../imgs/reactivity-graph1-count.gif "reactivity-graph1-count")
 
-A noteworthy point of discussion here is the direct alteration of derived states, such as `doubleCount` in our example.
+这里值得讨论的一个重要点是，直接修改派生状态，如我们示例中的`doubleCount`。
 
-Under conventional logic, direct modification of doubleCount may be seen as a no-op since it’s computationally bound to `count` (specifically `count * 2`). However, a paradigm shift in thinking allows us to ponder: why should `doubleCount` be immutable? After all, it's a variable, and variables, by nature, are mutable.
 
-Let's assume we adjust `doubleCount` directly like `doubleCount ++`. In a reactivity graph that supports mutable derived states, the following sequence would unfold:
-1. `doubleCount` increments by 1 and thus, its new value is 3.
-2. The change in `doubleCount` triggers `first-el` to re-render, updating its displayed value to 3.
+根据传统的逻辑，直接修改`doubleCount`可能不会被视为一个操作，因为它是计算上绑定到`count`的（具体是`count` * 2）。但是，让我们转变一下思维：为什么`doubleCount`应该是不可变的？毕竟，它是一个变量，而变量本质上是可变的。所以我更愿意将这类变量称为`derived state`而非`computed state`。
 
-Under this model, any subsequent alteration to count will yet again recalculate `doubleCount` and induce a fresh re-render of `first-el` with the new value. So if we do `count++`:
-1. `count` increments by 1, and its new value becomes 2.
-2. `doubleCount` re-calculates, adhering to its defined logic `count * 2`, and updates its value to 4.
-3. The change in `doubleCount` prompts `first-el` to re-render, displaying the new value, 4.
+假设我们直接改变`doubleCount`，如`doubleCount ++`。在支持mutable derived states的Reactivity graph中，以下顺序将展开：
+1. `doubleCount`增加1，因此，它的新值是3。
+2. `doubleCount`的变化触发了`first-el`的重新渲染，更新其显示的值为3。
 
+在这个模型下，任何后续的对`count`的修改都会再次重新计算`doubleCount`，并引发`first-el`的新值的重新渲染。所以如果我们`count++`：
+
+1. `count`增加1，其新值变为2。
+2. `doubleCount`重新计算，遵循其定义的逻辑`count * 2`，并更新其值为4。
+3. `doubleCount`的变化促使`first-el`重新渲染，显示新的值，4。
 
 ![reactivity-graph0-count](../imgs/reactivity-graph1-dblCount.gif "reactivity-graph1-dblCount")
 
+## 小节总结及更多复杂性
+在上一部分中，我们构建了一些简单的reactivity graph，了解了如何使用这个模型来可视化和管理各种状态及其依赖关系。从简单到复杂的依赖关系，反应性图表已经展示了它直观地描绘和指导应用程序中的状态管理和数据流的能力。
 
-## Section Wrap-up and More Complexity
-In the previous part, we've built some simple reactivity graphs, understanding how various states and their dependencies can be visualized and managed using this model. From simple to complex dependencies, the reactivity graph has demonstrated its ability to intuitively illustrate and guide state management and data flow within applications.
+现在，让我们来看一个更复杂的例子，其中包含多个状态和依赖关系，并置于数学逻辑操作的背景下。
 
-Let’s get a more complicated example, with multiple states and dependencies in a mathematical logic operation setting.
+想象一下，我们有四个状态：a、b、c、d：
 
-Imagine we have four states: a, b, c, d:
-* a: Base state, initial value 1.
-* b: Depends on `a` as `a * 2`.
-* c: Depends on `b` as `b + 1`.
-* d: Depends on `b` and `c` as `b * c`.
+* a: 基础状态，初始值为1。
+* b: 依赖于`a`，表示为 `a * 2`.
+* c: 依赖于`b`，表示为`b + 1`.
+* d: 依赖于`b`和`c`，表示为`b * c`.
 
-and two elements:
+以及两个元素：
 * el1 => display `a + b`
 * el2 => display `d`
 
-No we can get the reactivity graph:
+现在我们可以得到reactivity graph:
 
 ![reactivity-graph2](../imgs/reactivity-graph2.gif "reactivity-graph2")
 
-# Adapting Reactivity Graph to Frontend
-The adaptation of the reactivity graph in frontend development introduces a variety of scenarios that may require specific handling or modifications of the graph to ensure smooth and efficient reactivity management.
+# 将Reactivity Graph融合到前端
+将Reactivity Graph应用到前端开发中会引入多种场景，这可能需要对图表进行特定的处理或修改，以确保流畅和高效的反应性管理。
 
-We've mentioned four frontend challenges with reactivity graph before, which are:
-* Inconsistent Updates
-* Over-rendering
-* Dependency Management Challenges
-* Debugging Difficulties
+我们之前提到过与Reactivity Graph相关的四个前端问题，它们是：
+* 不一致更新
+* 过度渲染
+* 依赖管理挑战
+* 调试困难
 
-In this section, we'll go deeper into strategizing the reactivity graph model to navigate through complex frontend scenarios and deliver optimal user experiences.
+在本节中，我们将深入探讨如何策略性地使用Reactivity Graph模型，以应对复杂的前端场景并提供最佳的用户体验。
 
 ## Inconsistent Updates
 Inconsistent updates refer to the scenario where the UI does not accurately reflect the current application state, causing discrepancies and potentially leading to incorrect data being displayed or processed.
