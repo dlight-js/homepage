@@ -157,12 +157,12 @@ Doing this in a reactivity graph, the traditionally known side effect is essenti
 let count = declareState(1)
 let logCount = declareState((() => {
     console.log(count);
-    return count; // This value can be anything, as the main purpose is the execution of the IIFE.
+    return null; // This value can be anything, as the main purpose is the execution of the IIFE.
 })());
 ```
 Here:
 * `declareState(1)`: Declares a reactive state count, initialized with 1.
-* `declareState((() => { console.log(count); return count; })())`: This isn't setting up a "side effect" in the traditional sense. Instead, it establishes another state. However, because it's an immediately-invoked function expression (IIFE), it executes the logging operation instantly during its declaration. The act of logging here, similar to a "side effect", is performed before a value is returned and the state is finalized. However, within the context of a reactivity graph, this is not viewed or treated as a "side effect" but merely a state with an operation executed during its creation.
+* `declareState((() => { console.log(count); return null; })())`: This isn't setting up a "side effect" in the traditional sense. Instead, it establishes another state. However, because it's an immediately-invoked function expression (IIFE), it executes the logging operation instantly during its declaration. The act of logging here, similar to a "side effect", is performed before a value is returned and the state is finalized. However, within the context of a reactivity graph, this is not viewed or treated as a "side effect" but merely a state with an operation executed during its creation.
 
 In the reactivity graph, it would be visualized as:
 ![reactivity-graph3](../imgs/reactivity-graph3.jpeg "reactivity-graph3")
