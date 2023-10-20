@@ -57,11 +57,11 @@
       },
       {
         "name": "🌐 State Management",
-        "path": "state-management"
+        "path": "state-declaration"
       },
       {
         "name": "🔗 Prop Passing",
-        "path": "prop-passing"
+        "path": "passing-prop"
       },
       {
         "name": "👶 Child Components",
