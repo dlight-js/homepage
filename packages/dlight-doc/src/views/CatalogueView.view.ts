@@ -4,7 +4,7 @@ import { InlineRenderer } from "@dlightjs/markit"
 import { css } from "@iandx/easy-css"
 
 interface CatalogueViewProps {
-  content: ContentProp<any>
+  content: ContentProp
   currentIndex: number
   isShowShadow: boolean
   updateCurrentIndex: (index: number) => void
