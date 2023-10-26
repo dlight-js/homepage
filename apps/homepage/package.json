@@ -11,17 +11,17 @@
   "dependencies": {
     "@dlightjs/components": "0.10.2",
     "@dlightjs/decorators": "^0.10.1",
-    "@dlightjs/dlight": "0.10.1",
-    "@dlightjs/material-icons": "0.10.1",
-    "@iandx/easy-css": "0.10.14",
+    "@dlightjs/dlight": "^0.10.2",
+    "@dlightjs/material-icons": "^0.10.1",
+    "@iandx/easy-css": "^0.10.14",
     "dlight-doc": "workspace:*",
     "dlight-editor": "workspace:*"
   },
   "devDependencies": {
-    "@dlightjs/types": "^0.10.4",
-    "typescript": "^5.1.3",
-    "vite": "^4.3.9",
-    "vite-plugin-dlight": "0.10.3",
+    "@dlightjs/types": "^0.10.7",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0",
+    "vite-plugin-dlight": "^0.10.6",
     "vite-plugin-easy-css": "^0.10.14"
   },
   "keywords": [

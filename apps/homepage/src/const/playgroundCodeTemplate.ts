@@ -1,4 +1,4 @@
-export const indexCode = `import DLight, { View, render } from "@dlightjs/dlight"
+export const indexCode = `import { View, render } from "@dlightjs/dlight"
 import HelloView from "./hello.view"
 import CounterView from "./counter.view"
 import ArrayView from "./array.view"
@@ -15,7 +15,7 @@ class MyComp {
 render("app", MyComp)
 `
 
-export const HelloView = `import DLight, { View } from "@dlightjs/dlight"
+export const HelloView = `import { View } from "@dlightjs/dlight"
 @View
 class HelloView {
   Body() {
@@ -25,7 +25,7 @@ class HelloView {
 export default HelloView
 `
 
-export const CounterView = `import DLight, { View } from "@dlightjs/dlight"
+export const CounterView = `import { View } from "@dlightjs/dlight"
 import WrapperView from "./wrapper.view"
 @View
 class CountView {
@@ -49,7 +49,7 @@ class CountView {
 export default CountView
 `
 
-export const ArrayView = `import DLight, { View } from "@dlightjs/dlight"
+export const ArrayView = `import { View } from "@dlightjs/dlight"
 import WrapperView from "./wrapper.view"
 @View
 class ArrayView {
@@ -76,7 +76,7 @@ class ArrayView {
 export default ArrayView
 `
 
-export const ToggleView = `import DLight, { View } from "@dlightjs/dlight"
+export const ToggleView = `import { View } from "@dlightjs/dlight"
 import WrapperView from "./wrapper.view"
 @View
 class ToggleView {
@@ -102,18 +102,20 @@ class ToggleView {
 export default ToggleView
 `
 
-export const WrapperView = `import DLight, { View, required } from "@dlightjs/dlight"
+export const WrapperView = `import { View, required } from "@dlightjs/dlight"
 @View
 class WrapperView {
   @Prop color = required
   @Children children = required
   Body() {
     div()
-      ._border(\`1px solid \${this.color}\`)
-      ._padding("10px")
-      ._margin("10px")
+      .style({
+        border: \`1px solid \${this.color}\`,
+        padding: "10px",
+        margin: "10px"
+      })
     {
-      _(this.children)
+      this.children
     }
   }
 }
