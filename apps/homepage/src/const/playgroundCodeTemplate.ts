@@ -3,6 +3,7 @@ import HelloView from "./hello.view"
 import CounterView from "./counter.view"
 import ArrayView from "./array.view"
 import ToggleView from "./toggle.view"
+
 @View
 class MyComp {
   Body() {
@@ -12,24 +13,29 @@ class MyComp {
     ToggleView()
   }
 }
+
 render("app", MyComp)
 `
 
 export const HelloView = `import { View } from "@dlightjs/dlight"
+
 @View
 class HelloView {
   Body() {
     h1("hello, dlight js")
   }
 }
+
 export default HelloView
 `
 
 export const CounterView = `import { View } from "@dlightjs/dlight"
 import WrapperView from "./wrapper.view"
+
 @View
 class CountView {
   count = 1
+
   Body() {
     WrapperView()
       .color("gray")
@@ -46,6 +52,7 @@ class CountView {
     }
   }
 }
+
 export default CountView
 `
 
@@ -54,14 +61,14 @@ import WrapperView from "./wrapper.view"
 @View
 class ArrayView {
   apples = ["apple0", "apple1", "apple2"]
+  
   Body() {
     WrapperView()
       .color("blue")
     {
       button("add apple")
         .onclick(() => {
-          this.apples.push(\`apple\${this.apples.length}\`)
-          this.apples = [...this.apples]
+          this.apples = [...this.apples, \`apple\${this.apples.length}\`]
         })
       button("remove apple")
         .onclick(() => {
@@ -78,9 +85,11 @@ export default ArrayView
 
 export const ToggleView = `import { View } from "@dlightjs/dlight"
 import WrapperView from "./wrapper.view"
+
 @View
 class ToggleView {
   toggle = true
+
   Body() {
     WrapperView()
       .color(this.toggle ? "green" : "red")
@@ -99,10 +108,12 @@ class ToggleView {
     }
   }
 }
+
 export default ToggleView
 `
 
 export const WrapperView = `import { View, required } from "@dlightjs/dlight"
+
 @View
 class WrapperView {
   @Prop color = required
@@ -119,15 +130,18 @@ class WrapperView {
     }
   }
 }
+
 export default WrapperView
 `
 
 export const codeTemplate = (tabName: string) => `import DLight, { View } from "@dlightjs/dlight"
+
 @View
 class ${tabName[0].toUpperCase() + tabName.slice(1)}View {
   Body() {
     "I am ${tabName} view"
   }
 }
+
 export default ${tabName[0].toUpperCase() + tabName.slice(1)}View
 `
