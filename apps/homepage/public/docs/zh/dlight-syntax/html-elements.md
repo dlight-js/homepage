@@ -31,7 +31,7 @@ img()
 
 # 风格
 
-您可以像如上那样在 DLight 中设置任何属性。因此，您可以通过操作它们的 `className` 和 `style` 属性来为元素设置样式。
+你可以像如上那样在 DLight 中设置任何属性。因此，你可以通过操作它们的 `className` 和 `style` 属性来为元素设置样式。
 
 ```js
 div("hello")
@@ -41,7 +41,7 @@ div("hello")
   })
 ```
 
-值得一提的是在 DLight 中，属性 “className” 接受这些数据类型：`string | undefined | null | (string | undefined | null)[]`，因此您可以通过以下两种方式之一来设置多个类：
+值得一提的是在 DLight 中，属性 “className” 接受这些数据类型：`string | undefined | null | (string | undefined | null)[]`，因此你可以通过以下两种方式之一来设置多个类：
 
 ```js
 div(":D")
@@ -77,13 +77,13 @@ button("click")
   .onyourevent(yourCustomFunc)
 ```
 
-您也许想知道为什么不像 React 中的 `onClick` 这里用了 `onclick` 或者 `onevent` 。其实也可以是 `onClick`，我们目前使用全部小写的事件，因为这是纯 JavaScript 中的事件命名约定。
+你也许想知道为什么不像 React 中的 `onClick` 这里用了 `onclick` 或者 `onevent` 。其实也可以是 `onClick`，我们目前使用全部小写的事件，因为这是纯 JavaScript 中的事件命名约定。
 
 但我正在进行一个有关 [[🧐] onClick 还是 onclick 的投票，这是一个问题](https://github.com/dlight-js/dlight/issues/49)。随意选择你喜欢的方式！
 
 # 子元素
 
-我们使用块语句来嵌套子元素。例如，如果您想要获取以下的 HTML 结构：
+我们使用块语句来嵌套子元素。例如，如果你想要获取以下的 HTML 结构：
 
 ```html
 <div>
@@ -92,7 +92,7 @@ button("click")
 </div>
 ```
 
-在 DLight 中，您可以这么写：
+在 DLight 中，你可以这么写：
 
 ```js
 div()
@@ -105,9 +105,9 @@ div()
 }
 ```
 
-所以 `{}` 在 JavaScript 中是一个块语句，用于缩小作用域（实际上我们并不经常这样做，所以你可以将其视为函数体块）。在 DLight 中，我们使用这个符号来表示 **一组元素的作用域** 。在这种情况下，这组元素的作用域是最后声明的 DLight HTMLNode 的子元素作用域，即 `div0` 的子元素作用域。（🤨存疑）
+所以 `{}` 在 JavaScript 中是一个块语句，用于缩小作用域（实际上我们并不经常这样做，所以你可以将其视为函数体块）。在 DLight 中，我们使用这个符号来表示 **一组元素的作用域** 。在这种情况下，这组元素的作用域是最后声明的 DLight HTMLNode 的子元素作用域，即 `div0` 的子元素作用域。<!--（🤨存疑）-->
 
-请注意，因为已经设置了 `div0` 的子元素，所以函数 `div` 的第一个参数，即 `innerText`，将被自动丢弃，这意味着无论您是否像下面这样设置它，都不会有影响：
+请注意，因为已经设置了 `div0` 的子元素，所以函数 `div` 的第一个参数，即 `innerText`，将被自动丢弃，这意味着无论你是否像下面这样设置它，都不会有影响：
 
 ```js
 div("I want to show this")
@@ -123,16 +123,15 @@ div("But I can't")
 { ... }
 ```
 
-# 包裹
+# 小结
 
-嘿，在 DLight 中, 我怎样
+嗨，在 DLight 中, 我怎样
 
 * 创建一个 `<div>` 元素，其中的 `innerText` 为 "hi, dlight"？
 
   ```js
   div("hi, dlight")
   ```
-
 * 添加一个显示 `count` 带有蓝色的文本，以及增加 `count` 值的按钮？
 
   ```js
@@ -145,7 +144,6 @@ div("But I can't")
       this.count ++
     })
   ```
-
 * 向我的 `container` 元素添加子元素？
 
   ```js
@@ -156,7 +154,6 @@ div("But I can't")
     div("child2")
   }
   ```
-
 * 嵌套三层子元素？
 
   ```js

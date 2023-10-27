@@ -1,9 +1,11 @@
-# Creating a class component
-A class component in dlight presents itself as a minimal template, offering a unique blend of structure and flexibility, making the component creation process both intuitive and efficient for developers.
+# 创建一个类组件
 
-Read the [MDN class section](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) to recall what a class is in Javascript since we don't use it that often.
+DLight 中的类组件呈现为一个极小的模板，提供了一种对结构和灵活性独特的融合，使组件的创建过程对开发者来说既直观又高效。
 
-Consider the following representation:
+因为我们不经常使用类，你可能需要通过阅读 MDN（Mozilla Developer Network）上的 [JavaScript 类部分](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) 可以帮助你回顾 JavaScript 中的类是什么。
+
+思考以下的表示：
+
 ```js
 @View
 class MyComp {
@@ -12,20 +14,24 @@ class MyComp {
   }
 }
 ```
-Let's analyze the syntax:
-* `@View`: This leading decorator is a signal to dlight that the subsequent class is purpose-built for UI representation.
-* `class MyComp`: By declaring MyComp, we're stitching together the internal state, potential behaviors, and the eventual visual layout our component will exhibit.
-* `Body()`: This method is **central** to the visual articulation of the component. It's here that dlight finds the blueprint of how the component should manifest on screen. Inside this Body method, you can **only code in the DLight DSL syntax** that we've described in above sections. 
-* `div("hello")`: This is the DSL we've talking about.
 
-# Elements and Components
-In DLight, you work with two primary view building gadgets: Elements and Components.
+让我们来分析这里的语法：
 
-Elements are the basic building blocks of your user interface. They directly render HTML elements on the screen using DLight DSL syntax. For example, `div("hello")` creates a simple `<div>` element displaying "hello".
+* `@View`: 这个前导装饰器（leading decorator）是向 DLight 发出的信号，表明随后的类是专门用于 UI 表示的。
+* `class MyComp`: 通过声明 `MyComp`，我们将内部状态、潜在的行为以及我们的组件最终展示的视觉布局结合在一起。
+* `Body()`: 这个方法在组件的视觉呈现中起着 **核心** 作用。DLight 在这里找到组件在屏幕上应该呈现的蓝图。在这个 Body 方法中，你只能使用我们在前面的部分中描述的 **DLight DSL 语法** 编写代码。
+* `div("hello")`: 这正是我们讨论的 DSL。
 
-Components are higher-level abstractions that encapsulate UI and logic. You define them as classes with the @View decorator. Components have a special Body method where you define their visual structure using DLight DSL. Components offer modularity and reusability.
+# 元素和组件
 
-This is a simple example of how you combine elements and components:
+在 DLight 中， 你主要使用两种视图构建工具：元素（Elements）和组件（Components）。
+
+元素（Elements）是你的用户界面的基本构建块。它们直接使用 DLight DSL 语法在屏幕上渲染 HTML 元素。例如，`div("hello")` 创建了一个简单的显示文本 "hello" 的 `<div>` 元素，
+
+组件（Components）是更高级的抽象，它们封装了UI和逻辑。你可以将它们定义为带有 `@View` 装饰器的类。组件具有特殊的 `Body` 方法，你可以在其中使用 DLight DSL 定义它们的可视结构。组件提供了模块化和可重用性。
+
+这是一个你可以如何结合元素和组件的例子：
+
 ```js
 @View
 class MyComp1 {
@@ -66,10 +72,14 @@ class App {
 
 ```
 
-# Subviews
-Subviews within a class enable developers to create reusable components efficiently within a singular class, maintaining coherent internal states. For a substantial, standalone component that may be utilized across different parts of the application, crafting a new class component would be a better option. However, when dealing with smaller, reusable UI segments that are inherently dependent on the current component’s parameters and state, leveraging subviews becomes a sound choice. 
+# 子视图
 
-To create a subview in dlight, you can just declare a class method or a arrow function class property with a `View` decorator like this:
+一个类内部的子视图（subviews）使开发者能够在同一个类中高效地创建可重用组件，并保持一致的内部状态。
+
+因为对于一个庞大且独立的组件，该组件可能会在应用程序的不同部分中使用，所以创建一个新的类组件可能是更好的选择。然而，在处理较小、可重用的、依赖于当前组件的参数和状态的 UI 片段时，利用子视图可能就是一个明智的选择了。
+
+要在 DLight 中创建一个子视图（subview），你可以使用 `View` 装饰器来声明一个类方法或箭头函数类属性，就像这样：
+
 ```js
 @View
 class MyComp {
@@ -83,5 +93,5 @@ class MyComp {
   }
 }
 ```
-It's worth noting that same with the `Body` method, you can only code in the DSL syntax DLight provides, in a subview method.
 
+值得一提的是，和 `Body` 方法一样，你在子视图方法中只能用 DLight 提供的 DSL 语法编写代码。

@@ -1,9 +1,11 @@
-In modern web development, managing global or shared state efficiently is a paramount concern. Reactive variables alone inside a single component is not enough. We need a way to pass states across components and require global states. Containers of this type of state will often be called as `context` or `store`. And in DLight, we call them `environment`.
+在现代 Web 开发中，高效地管理全局或共享状态是一个至关重要的问题。仅仅使用单个组件内部的响应式变量是不够的。我们需要一种方式来在组件之间传递状态并引入全局状态。这种类型的状态容器通常被称为 `context` 或 `store` 。而在 DLight 中，我们将它们称为 `environment`。
 
-# Current Implementations
-A context or store can save a group of states, and when these states change, relative views will be re-rendered. This will often be done in a publisher-subscriber pattern. But not this time in DLight. Before we dive into our new `environment` strategy, let's first examine how other frameworks addressed this. (All these examples are from [Component Party](https://component-party.dev/#context))
+# 现行的实现
 
-In react:
+上下文或存储可以保存一组状态，当这些状态发生变化时，相关的视图将被重新渲染。通常，这将采用发布者-订阅者模式来实现。但在 DLight 中不是这样的。在深入了解我们新的 `environment` 策略之前，让我们首先看看其他框架是如何处理这个问题的。 （所有这些示例都来自 [Component Party](https://component-party.dev/#context)）。
+
+在 React 里：
+
 ```js [react/App.jsx]
 import { useState, createContext } from "react";
 import UserProfile from "./UserProfile";
@@ -32,6 +34,7 @@ export default function App() {
   );
 }
 ```
+
 ```js [react/UserProfile.jsx]
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
@@ -52,7 +55,8 @@ export default function UserProfile() {
 }
 ```
 
-In Vue3:
+在 Vue3 里：
+
 ```html [vue/App.vue]
 <script setup>
 import { ref, provide } from "vue";
@@ -77,6 +81,7 @@ provide("user", { user, updateUsername });
 </template>
 
 ```
+
 ```html [vue/UserProfile.vue]
 <script setup>
 import { inject } from "vue";
@@ -95,14 +100,18 @@ const { user, updateUsername } = inject("user");
 </template>
 ```
 
-Next, while the examples from React and Vue3 showcase ways of passing states and methods between components, they indeed introduce a level of complexity and new concepts, such as context, provide, and inject. For beginners, this might present a learning curve.
+接下来，虽然 React 和 Vue3 的示例展示了在组件之间如何传递状态和方法，但它们确实也引入了一定程度的复杂性和很多新概念，如上下文（context）、提供（provide）和注入（inject）。对于初学者来说，这可能会带来学习成本。
 
-# Environment in DLight
-One might ask: Why can't we manage the shared state across multiple components in a straightforward manner, similar to how we handle prop-passing between parent-child components? After all, shouldn't the principle of passing data between multiple components be the same as with just two components? We don't necessarily need to reinvent the wheel; we just need a method that's more intuitive, with fewer concepts to juggle and a seamless transition from the simple parent-child prop-passing paradigm to a more global state management scenario.
+# DLight 中的环境
 
-In DLight, an environment is like a shared space or a common ground where all participating components have access to the same state and methods. This space is defined explicitly in the code, making it unmistakably clear which components are part of this shared context. 
+有人可能会问：为什么我们不能以一种直接的方式来管理多个组件之间的共享状态，正如我们在父子组件之间传递属性的方式那样呢？毕竟，在多个组件之间传递数据的原则难道不应该与只有两个组件时的原则一样嘛？
 
-Now, integrating this understanding with the provided example:
+我们不一定需要重新发明轮子；我们只需要一种更直观的的方法，让我们在只需掌握更少的概念的同时，来实现从简单的父子组件属性传递范式到全局状态管理场景的无缝过渡。
+
+在 DLight 中，环境（environment）就像一个共享的空间或者说一个公共的地方。在“环境”里，所有组件都可以访问相同的状态和方法。这个空间在代码中明确定义，清晰地显示了哪些组件是这个共享上下文的一部分。
+
+现在，将我们上述的理解以下示例结合起来：
+
 ```js [DLight/App.js]
 // ~> App.js
 import { View } from "@dlightjs/dlight"
@@ -156,18 +165,23 @@ class UserProfile {
 export default UserProfile
 ```
 
-In the given DLight code:
-* The App component defines an environment using the `env` node. This node effectively creates a shared space for all enclosed components, which are wrapped up with a following "{}", in this case, `UserProfile`.
-* Inside the `UserProfile` component, the `@Env` decorator is then utilized to pull in the shared state and methods. Just like how you retrieve a prop using `@Prop`, this direct link showcases how intuitive and straightforward it is to access shared resources within an environment.
+在给出的 DLight 代码片段中：
 
-By consolidating state management into clear environments, DLight ensures developers can craft more maintainable, performant, and organized applications. This paradigm removes much of the confusion around shared state and offers a simplified and efficient way to manage global and shared states across components.
+* App 组件使用 `env` 节点来定义了一个环境（environment）。**这个节点** 有效地为所有其包含的组件创建了一个共享空间。这些组件被包裹在后面的 "{}" 中，比如上面代码的 `UserProfile`。
+* 在 `UserProfile` 组件里，`@Env` 装饰器被用来引入共享的状态和方法。
+  就像你使用 `@Prop` 来检索获取属性一样，这种直接链接展示了在环境中访问共享资源是多么直观和简单。
 
-# Nested Environment
-In DLight, you can have environments inside other environments. We call this a "nested environment". Here's what you need to know:
-* If you're inside a nested environment, you can access variables from both the outer and inner environment.
-* If the inner environment has a variable with the same name as the outer one, the inner one is used.
+通过将状态管理整合到清晰的环境中，DLight 确保了开发者可以构建更易维护、更高性能、更有组织性的应用程序。这一范式消除了围绕共享状态产生的许多困惑，并且为我们提供了一种简化和高效的方式来管理跨组件的全局和共享状态。
 
-Here's a simple example sorting this:
+# 嵌套环境
+
+在DLight中，你可以在其他环境内部拥有环境。我们称之为 “嵌套环境”。以下是你需要了解的内容：
+
+* 如果是在嵌套环境中，你可以访问来自外部环境和内部环境的变量。
+* 如果内部环境中有与外部环境中相同名称的变量，那么内部环境中的变量会被使用。
+
+以下是一个简单的示例来展示上述内容：
+
 ```js
 @View
 class MyComp {

@@ -1,17 +1,26 @@
-# Rethinking State Variables
-Imagine a world where managing state in your app is as easy as declaring a variable - no fanfare, no special treatment. Just declare it, use it in the view, and voilà, any changes to the variable automatically update the view. Sounds dreamy, doesn't it?
+# 对状态变量的重新思考
 
-Because at its core, what is state? It’s a variable that, when changed, should naturally cause the view to update. It's unique but not THAT unique, right? It should be as straightforward to use as any other variable in your code.
+想象一下，在你的应用程序中管理状态就像声明一个变量一样简单 —— 不喧闹，也不需要特殊处理。你只需声明它，在视图中使用它，然后，嘿！对变量的任何更改都会自动更新视图。听起来很梦幻，不是吗？
 
-Now, we’ve seen this story unfold in different ways in the realm of frontend frameworks. Most ask for a little too much ceremony like `useState()` or `ref()` or other forms of declaration, while others like Svelte made a bold step towards simplicity. But even with Svelte’s ease of use, there's a hiccup when dealing with computed states, needing that extra bit of special attention like this:
+因为在核心，什么是状态？它是一个在改变时，会自然地导致视图更新的变量。它是独特的，但却又并不是那么独特，对吧？它应该和代码中的任何其他变量一样易于使用。
+
+现在我们已经看到，这个故事在前端框架的领域中以不同的方式展开。大多数框架需要一些仪式感，比如使用 `useState()` 或 `ref()`，或者其他形式的声明，然而像 Svelte 这样的框架则朝着简单性迈出了大胆的一步。
+
+但即使使用 Svelte 时，在处理计算状态时也会出现一些小问题，它们需要额外的特殊关注，就像这样：
+
 ```js
 let count = 0;
 $: doubled = count * 2;
 ```
-That’s where dlight shines brightly, effortlessly merging simplicity and functionality in state management. But how does it achieve this and how can you make the most of it? Let’s dive into the details and get you up to speed with making the most of state in dlight!
 
-# Declare a State
-Declare a state in a DLight class component is straightforward:
+这部分也正是 DLight 的闪光点，它毫不费力地将简单性和功能性融合在状态管理中。
+
+但它是如何实现的，以及你能够怎样充分利用它呢？让我们深入了解细节，并让您了解如何充分利用 DLight 中的状态！
+
+# 声明一个状态
+
+在一个 DLight 类组件中声明状态很简单直接: <!--（🤔疑惑）-->
+
 ```js
 @View
 class Counter {
@@ -26,10 +35,15 @@ class Counter {
   }
 }
 ```
-You just declare a regular class property, and it's done! You don't need to distinguish it from other non-ui-rendering variables. Because the core of DLight's state management is that every property is and is not a state! You've used it in the view? Then yes it is. You don't use it in the view? Okay it's not.
 
-# Computed State
-Declare a computed state in a DLight class component is again as straightforward as hell:
+你只需声明一个普通的类属性，就完成了！你不需要将其与其他非 UI 渲染的变量区分开来。
+
+因为 DLight 状态管理的核心思想便是每个属性既是状态，又不是状态：你在视图中使用它吗？那它就是状态。你没有在视图中使用它吗？好，那它就不是状态。
+
+# 计算状态
+
+在一个 DLight 类组件中声明一个计算状态也同样很简单：
+
 ```js
 @View
 class Counter {
@@ -44,4 +58,7 @@ class Counter {
   }
 }
 ```
-The whole point of DLight being a DX-first library is that you don't feel a thing. You don't need to add extra steps to accomplish what you should've accomplished from the beginning. So you also don't need a `useMemo()` or `createMemo()` to reduce re-render or re-calculation. Intuitive is the key.
+
+DLight 作为一个以开发体验为主的库的整体理念是，你不会感到挣扎。你不需要额外的步骤来完成本应从一开始就已经完成的任务。因此，你也不需要使用 `useMemo()` 或 `createMemo()` 来减少重新渲染或减少重新计算。凭着你的直觉是一切的关键。
+
+不需要使用 `useMemo()` 或 `createMemo()` 来减少重新渲染或减少重新计算。 <!--（🤔疑惑）-->

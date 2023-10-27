@@ -49,7 +49,7 @@ ui(); {
 }
 ```
 
-在 DLight 中，您能看到的是 JavaScript 的原始且令人熟悉的强大功能。
+在 DLight 中，你能看到的是 JavaScript 的原始且令人熟悉的强大功能。
 
 # 键控 vs. 非键控
 
@@ -64,7 +64,7 @@ for (const color of colors) {
 // -> key = color
 ```
 
-您可以通过在 `for` 循环体后面添加一个包含您的键的长度为 1 的数组来设置自己的特定键：
+你可以通过在 `for` 循环体后面添加一个包含你的键的长度为 1 的数组来设置自己的特定键：
 
 ```js
 for (const [idx, color] of Object.entries(colors)) { 

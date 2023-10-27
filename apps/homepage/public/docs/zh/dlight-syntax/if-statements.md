@@ -92,4 +92,4 @@ p()
 DLight 支持所有的 `if`/`if-else`/`if-else if` 语句。当条件语句的条件改变时所有的 UI 视图将会自动渲染。这种方法不仅促进了最优实践，还确保了开发人员可以专注于逻辑和功能，而不必分心去适应新的语法规则。
 
 
-（spa mpa，lazy loading）
+<!-- （spa mpa，lazy loading） -->
