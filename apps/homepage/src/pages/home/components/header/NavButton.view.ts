@@ -67,8 +67,8 @@ class NavButton implements NavButtonProps {
 
   navBtnCss = css`
     cursor: pointer;
-    background-color: ${this.isHover ? this.theme.orange4 : this.theme.orange1};
-    color: ${this.isHover ? this.theme.text : this.theme.green11};
+    background-color: ${this.isHover ? this.theme.orange4 : this.theme.primaryBgColor};
+    color: ${this.isHover ? this.theme.text : this.theme.primaryTextColor};
     font-size: 0.875rem;
     font-weight: 600;
     padding: 8px 12px;

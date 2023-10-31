@@ -13,6 +13,15 @@ class App {
   isCenterTitle = false
   windowWidth = window.innerWidth
 
+  language: "en" | "zh" = "en"
+  toogleLanguage() {
+    this.language = this.language === "en" ? "zh" : "en"
+  }
+
+  i18n = (enContent: string, zhContent: string) => (
+    this.language === "en" ? enContent : zhContent
+  )
+
   didMount() {
     window.addEventListener("resize", this.handleWindowResize)
   }
@@ -42,6 +51,8 @@ class App {
       .isMobile(this.isMobile)
       .isShortView(this.isShortView)
       .windowWidth(this.windowWidth)
+      .i18n(this.i18n)
+      .toogleLanguage(this.toogleLanguage)
     {
       RouterSpace()
       {

@@ -1,7 +1,7 @@
 import { Env, Prop, View, required } from "@dlightjs/dlight"
 import { css } from "@iandx/easy-css"
 import { type Typed, div, Pretty } from "@dlightjs/types"
-import Header from "../home/header/Header.view"
+import Header from "../home/components/header/Header.view"
 import DLightEditor from "dlight-editor"
 import { ExamplesCodeData } from "../../const/examplesCodeData"
 import { CodeModuleType, ExmaplesCodeDataType } from "../../utils/types"

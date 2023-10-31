@@ -1,7 +1,7 @@
-import { Env, View, Watch, required } from "@dlightjs/dlight"
+import { Env, View, required } from "@dlightjs/dlight"
 import { div, button, Pretty, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { getSize } from "../../utils/utilFunc"
+import { getSize } from "../../../utils/utilFunc"
 import { Navigator } from "@dlightjs/components"
 
 interface TitleProps {
@@ -14,6 +14,7 @@ class Title implements TitleProps {
   @Env theme: any = required
   @Env isMobile: boolean = required
   @Env windowWidth: number = required
+  @Env i18n: any = required
   isCenterTitle = this.windowWidth < 1019
   isCenterStyle = this.isCenterTitle || this.isMobile
 
@@ -29,27 +30,18 @@ class Title implements TitleProps {
     div()
       .className(this.titleWrapCss)
     {
-      div("DLight.js")
-        .className(this.homeTitleCss)
-      div("DX-first UI Rendering Library")
+      div(this.i18n("DX-first UI Rendering Library", "开发者优先的UI渲染库"))
         .className(this.titleDescriptionCss)
-      div("Unlocking View Building in Familiar JS Syntax with an Intuitive API")
+      div(this.i18n("Unlocking View Building in Familiar JS Syntax with an Intuitive API", "用熟悉的JS语法解锁视图构建，提供直观的API"))
         .className(this.introDescriptionCss)
-      button("Get Started")
+      button(this.i18n("Get Started", "快速上手"))
         .className(this.homeStartBtnCss)
         .onclick(() => { this.navigator.to("./docs/getting-started") })
     }
   }
 
-  homeTitleCss = css`
-    color: ${this.theme.orange10};
-    font-weight: bold;
-    font-size: ${getSize(60)};
-    text-shadow: 0 1px 5px;
-  `
-
   titleDescriptionCss = css`
-    color: ${this.theme.green12};
+    color: ${this.theme.primaryTextColor};
     font-weight: bold;
     font-size: ${getSize(50)};
     margin-top: 10px;
@@ -57,16 +49,16 @@ class Title implements TitleProps {
   `
 
   introDescriptionCss = css`
-    font-size: ${getSize(25)};
-    line-height: ${getSize(35)};
+    font-size: ${getSize(20)};
+    line-height: ${getSize(30)};
     margin-top: 10px;
-    color: ${this.theme.green12};
+    color: ${this.theme.primaryTextColor};
     text-align: ${this.isCenterStyle ? "center" : "left"};;
   `
 
   homeStartBtnCss = css`
-    color: ${this.theme.green12};
-    background-color: ${this.theme.orange6};
+    color: ${this.theme.btnTextColor};
+    background-color: ${this.theme.btnColor};
     padding: 12px 12px;
     border-radius: 5px;
     box-shadow: 1px 1px 2px ${this.theme.green10};
@@ -76,12 +68,13 @@ class Title implements TitleProps {
   `
 
   titleWrapCss = css`
-    margin: ${getSize(65)} 10% ${getSize(86)} 0;
+    margin: ${getSize(65)} 0 0 0;
     display: flex;
     flex-direction: column;
-    align-items: ${this.isCenterStyle ? "center" : "flex-start"};
+    /* align-items: ${this.isCenterStyle ? "center" : "flex-start"}; */
+    align-items: center;
     justify-content: center;
-    width: ${getSize(500)};
+    /* width: ${getSize(500)}; */
     min-width: ${getSize(430)};
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     /* margin-right: ${this.isMobile ? "0" : "10%"}; */

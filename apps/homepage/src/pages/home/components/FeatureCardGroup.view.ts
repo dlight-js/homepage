@@ -2,7 +2,7 @@ import { Prop, View, required } from "@dlightjs/dlight"
 import { type Typed, Pretty, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import FeatureCard, { FeatureDataType } from "./FeatureCard.view"
-import { getSize } from "../../utils/utilFunc"
+import { getSize } from "../../../utils/utilFunc"
 
 interface FeatureCardGroupProps {
   data: FeatureDataType[]

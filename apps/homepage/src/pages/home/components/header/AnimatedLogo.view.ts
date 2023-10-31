@@ -2,7 +2,7 @@
 import { Navigator, Transition } from "@dlightjs/components"
 import { View, Env, Prop, required } from "@dlightjs/dlight"
 import { Pretty, Typed, div } from "@dlightjs/types"
-import { Logo, LogoTitle } from "../../../logo"
+import { Logo, LogoTitle } from "../../../../logo"
 import { css } from "@iandx/easy-css"
 
 interface AnimatedLogoProps {

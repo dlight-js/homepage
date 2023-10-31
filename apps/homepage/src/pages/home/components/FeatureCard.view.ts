@@ -1,13 +1,15 @@
 import { Env, Prop, View, required } from "@dlightjs/dlight"
 import { type Typed, div, img, Pretty } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { getSize } from "../../utils/utilFunc"
+import { getSize } from "../../../utils/utilFunc"
 import { Navigator } from "@dlightjs/components"
 
 export interface FeatureDataType {
   title: string
   imgUrl: string
+  darkImgUrl: string
   content: string
+  zhContent: string
 }
 
 interface FeatureCardProps {
@@ -17,7 +19,9 @@ interface FeatureCardProps {
 @View
 class FeatureCard implements FeatureCardProps {
   @Env navigator: Navigator = required
+  @Env themeType: "light" | "dark" = required
   @Env theme: any = required
+  @Env i18n: any = required
   @Prop data = required
 
   Body() {
@@ -25,11 +29,11 @@ class FeatureCard implements FeatureCardProps {
       .className(this.featureCardWrapCss)
     {
       img()
-        .src(this.data.imgUrl)
+        .src(this.themeType === "dark" ? this.data.darkImgUrl : this.data.imgUrl)
         .className(this.featureCardIconCss)
-      div(this.data.title)
+      div(this.i18n(this.data.title, this.data.zhTitle))
         .className(this.featureCardTitleCss)
-      div(this.data.content)
+      div(this.i18n(this.data.content, this.data.zhContent))
         .className(this.featureCardContentCss)
     }
   }
@@ -46,8 +50,10 @@ class FeatureCard implements FeatureCardProps {
     justify-content: center;
     height: ${getSize(350)};
     border-radius: 15px;
-    background-color: ${this.theme.orange4};
-    color: ${this.theme.green12};
+    background-color: ${this.theme.secondaryBgColor};
+    ${this.themeType === "dark" ? "box-shadow: 0 0 15px -3px #ABA0C0;" : ""}
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: ${this.theme.primaryTextColor};
   `
 
   featureCardIconCss = css`
@@ -65,6 +71,7 @@ class FeatureCard implements FeatureCardProps {
     font-size: ${getSize(17)};
     font-weight: light;
     width: 60%;
+    color: ${this.theme.secondaryTextColor};
     display: flex;
     flex-wrap: wrap;
   `

@@ -1,17 +1,18 @@
 import { Env, View, required } from "@dlightjs/dlight"
 import { type Typed, Pretty, div } from "@dlightjs/types"
-import Header from "./header"
+import Header from "./components/header"
 import { css } from "@iandx/easy-css"
 import { FeatureData } from "../../const/homeData"
-import FeatureCardGroup from "./FeatureCardGroup.view"
-import Footer from "./Footer.view"
-import Example from "./Example.view"
+import FeatureCardGroup from "./components/FeatureCardGroup.view"
+import Footer from "./components/Footer.view"
+import Example from "./components/Example.view"
 import { getSize } from "../../utils/utilFunc"
-import Title from "./Title.view"
+import Title from "./components/Title.view"
 
 @View
 class Home {
   @Env navigator = required
+  @Env themeType: "light" | "dark" = required
   @Env theme: any = required
   @Env isMobile: boolean = required
   featureData = FeatureData
@@ -42,7 +43,7 @@ class Home {
   }
 
   bgCss = css`
-    background-color: ${this.theme.orange1};
+    background: ${this.themeType === "dark" ? "linear-gradient(#330172, #000000)" : "linear-gradient(#fff9f4, #fff9f4)"};
     overflow-x: hidden;
   `
 
@@ -50,8 +51,9 @@ class Home {
     padding: 0 ${getSize(10)};
     margin-top: ${getSize(30)};
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
+    /* align-items: flex-start; */
     justify-content: center;
     flex-wrap: wrap;
   `
@@ -63,7 +65,7 @@ class Home {
     align-items: center;
     justify-content: center;
     padding: 0 30px;
-    margin-top: -120px;
+    /* margin-top: -120px; */
   `
 }
 

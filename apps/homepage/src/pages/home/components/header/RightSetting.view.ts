@@ -2,11 +2,12 @@ import { Env, View, required } from "@dlightjs/dlight"
 import { Pretty, Typed, a, div, img } from "@dlightjs/types"
 import { LightModeOutlined, TranslateOutlined } from "@dlightjs/material-icons"
 import { css } from "@iandx/easy-css"
-import { getSize } from "../../../utils/utilFunc"
+import { getSize } from "../../../../utils/utilFunc"
 
 @View
 class RightSetting {
   @Env theme: any = required
+  @Env toogleLanguage: any = required
   @Env updateThemeType: any = required
 
   @View
@@ -24,14 +25,20 @@ class RightSetting {
     div()
       .className(this.sectionNav)
     {
-      LightModeOutlined()
-        .className(this.iconSizeCss)
-        .color(this.theme.green9)
+      div()
         .onclick(this.updateThemeType)
-      TranslateOutlined()
-        .className(this.iconSizeCss)
-        .color(this.theme.green9)
-        .onclick(() => {})
+      {
+        LightModeOutlined()
+          .className(this.iconSizeCss)
+          .color(this.theme.green9)
+      }
+      div()
+        .onclick(this.toogleLanguage)
+      {
+        TranslateOutlined()
+          .className(this.iconSizeCss)
+          .color(this.theme.green9)
+      }
       this.NavForwardIcon({})
         .src("/imgs/github.svg")
         .href("https://github.com/dlight-js/dlight")

@@ -6,7 +6,7 @@ import FileStructure from "./FileStructure.view"
 import { findCertainFile, flatFileStructureData } from "../../utils/utilFunc"
 import { FileMap } from "../../const/docsData"
 import { DocsStructureMapType } from "../../utils/types"
-import Header from "../home/header/Header.view"
+import Header from "../home/components/header/Header.view"
 import MenuBtn from "./MenuBtn.view"
 import { PageNavType } from "./types"
 
@@ -105,6 +105,7 @@ class DocPage {
           div()
             .className(this.fileStructureWrapCss)
             .element(this.menuEl)
+            // .style({ display: this.isOpenMenu ? "block" : "none" })
           {
             FileStructure()
               .structureData(FileMap[this.fileType])

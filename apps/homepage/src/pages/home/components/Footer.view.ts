@@ -1,11 +1,12 @@
-import { Env, View, required } from "@dlightjs/dlight"
+import { Env, View, Watch, required } from "@dlightjs/dlight"
 import { type Typed, Pretty, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { getSize } from "../../utils/utilFunc"
+import { getSize } from "../../../utils/utilFunc"
 
 @View
 class Footer {
   @Env theme: any = required
+  @Env i18n: any = required
 
   Body() {
     div()
@@ -14,7 +15,7 @@ class Footer {
       div()
         .className(this.textWrapCss)
       {
-        div("Built with DLight and ❤️")
+        div(this.i18n("Built with DLight and ❤️", "使用 DLight 构建 ❤️"))
         div("by @iandx and @orange04")
       }
     }
@@ -36,7 +37,7 @@ class Footer {
     padding: ${getSize(30)} 0;
     border-top: solid 1px rgba(82,110,52,0.2);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: rgba(82,110,52,0.7);
+    color: ${this.theme.tertiaryTextColor};
     cursor: default;
   `
 }

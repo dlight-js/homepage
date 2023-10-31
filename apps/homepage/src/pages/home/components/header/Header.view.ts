@@ -3,8 +3,8 @@ import { type Typed, div, Pretty } from "@dlightjs/types"
 import NavButton from "./NavButton.view"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
-import { HeaderData } from "../../../const/homeData"
-import { getSize } from "../../../utils/utilFunc"
+import { HeaderData } from "../../../../const/homeData"
+import { getSize } from "../../../../utils/utilFunc"
 import RightSetting from "./RightSetting.view"
 import ShortHeaderMenu from "./ShortHeaderMenu.view"
 import AnimatedLogo from "./AnimatedLogo.view"
@@ -23,6 +23,7 @@ class Header implements HeaderProps {
   @Env theme: any = required
   @Env isShortView: boolean = required
   @Env windowWidth: number = required
+  @Env i18n: any = required
   @Prop handleClickNav = required
   @Prop themeType = required
   @Prop isNeedAnimation = required
@@ -58,7 +59,6 @@ class Header implements HeaderProps {
   }
 
   handleClickShowMenu() {
-    console.log(this.isShowMenu, "难道是同一个？")
     this.isShowMenu = !this.isShowMenu
   }
 
@@ -87,8 +87,8 @@ class Header implements HeaderProps {
             .isStyle2(this.style2)
             .isShortHeader(this.isShortView)
           if (!this.isShortView) {
-            for (const { btnName, path, structureData } of this.navBtn) {
-              NavButton(btnName)
+            for (const { btnName, zhBtnName, path, structureData } of this.navBtn) {
+              NavButton(this.i18n(btnName, zhBtnName))
                 .handleClickNav(() => { this.navigator.to(path) })
                 .structureData(structureData)
             }
@@ -109,8 +109,8 @@ class Header implements HeaderProps {
   `
 
   headerWrapCss = css`
-    box-shadow: ${this.isShowShadow ? "0 1px 5px -3px #A9A9A9" : ""};
-    background-color: ${this.theme.orange1};
+    box-shadow: ${this.isShowShadow ? `0 1px 5px -3px ${this.theme.shadowColor}` : ""};
+    background-color: ${this.theme.primaryBgColor};
     position: fixed;
     top: 0;
     display: flex;
