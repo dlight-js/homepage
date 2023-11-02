@@ -7,6 +7,7 @@ import { ExamplesCodeData } from "../../const/examplesCodeData"
 import { CodeModuleType, ExmaplesCodeDataType } from "../../utils/types"
 import SubExampleItem from "./SubExampleItem.view"
 import { Navigator } from "@dlightjs/components"
+import { Loading } from "../../common"
 
 interface NewPlayGroundProps {
   modules: any
@@ -45,9 +46,15 @@ class ExamplesPage {
   @Env navigator: Navigator = required
   @Env theme: any = required
   @Env themeType: "light" | "dark" = required
+  isLoading = true
   examples: ExmaplesCodeDataType[] = ExamplesCodeData
   modules: any = this.examples[0].children[0].modules
   selectedTitle: string = this.examples[0].children[0].title
+  endLoading = (() => {
+    setTimeout(() => {
+      this.isLoading = false
+    }, 500)
+  })()
 
   updateModules(modules: CodeModuleType[], title: string) {
     this.modules = modules
@@ -58,30 +65,34 @@ class ExamplesPage {
   Body() {
     Header()
       .isNeedAnimation(false)
-    div()
-      .className(this.exmaplesPageWrapCss)
-    {
+    if (this.isLoading) {
+      Loading()
+    } else {
       div()
-        .className(this.examplesListWrapCss)
+        .className(this.exmaplesPageWrapCss)
       {
-        for (const example of this.examples) {
-          div(example.title)
-            .className(this.exmapleTitleCss)
-          for (const { title, description, modules } of example.children) {
-            SubExampleItem()
-              .title(title)
-              .description(description)
-              .modules(modules)
-              .updateModules(this.updateModules)
-              .selectedTitle(this.selectedTitle)
+        div()
+          .className(this.examplesListWrapCss)
+        {
+          for (const example of this.examples) {
+            div(example.title)
+              .className(this.exmapleTitleCss)
+            for (const { title, description, modules } of example.children) {
+              SubExampleItem()
+                .title(title)
+                .description(description)
+                .modules(modules)
+                .updateModules(this.updateModules)
+                .selectedTitle(this.selectedTitle)
+            }
           }
         }
-      }
-      div()
-        .className(this.dlightEditorWrapCss)
-      {
-        NewPlayGround()
-          .modules(this.modules)
+        div()
+          .className(this.dlightEditorWrapCss)
+        {
+          NewPlayGround()
+            .modules(this.modules)
+        }
       }
     }
   }

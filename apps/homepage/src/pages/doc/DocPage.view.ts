@@ -9,6 +9,7 @@ import { DocsStructureMapType } from "../../utils/types"
 import Header from "../home/components/header/Header.view"
 import MenuBtn from "./MenuBtn.view"
 import { PageNavType } from "./types"
+import { Loading } from "../../common"
 
 @View
 class DocPage {
@@ -16,6 +17,7 @@ class DocPage {
   @Env isMobile: boolean = required
   @Env isShortView: boolean = required
   @Env navigator: any = required
+  isLoading = true
   mdString: string = ""
   selectedName: string = ""
   prevFile: DocsStructureMapType | undefined
@@ -51,6 +53,7 @@ class DocPage {
   // pathWatcher is a function that will be executed when the path changes
   @Watch
     pathWatcher = (() => {
+      this.isLoading = true
       const [fileData, fileIndex] = findCertainFile({ mapData: this.flatfileData, filePath: "/" + this.path })
       const filePath = `/${this.path}${fileData?.children ? "/index.md" : ".md"}`
       this.nextPageNav = fileIndex < this.flatfileData.length - 1
@@ -76,6 +79,7 @@ class DocPage {
         .then(text => { this.mdString = text })
         .catch(err => { console.log(err) })
       this.selectedName = fileData?.name ?? ""
+      this.isLoading = false
     })()
 
   hanleClickOpenMenu(e) {
@@ -94,32 +98,36 @@ class DocPage {
       .prePage(this.prevFile)
       .nextPage(this.nextFile)
     {
-      MenuBtn()
-        .hanleClickOpenMenu(this.hanleClickOpenMenu)
-        .hanleClickOpenOutline(this.hanleClickOpenOutline)
-        .setMenuOpenBtnEl(this.setMenuOpenBtnEl)
-      div()
-        .className(this.rowFlexCss)
-      {
-        if ((!this.isMobile && !this.isShortView) || (this.isShortView && this.isOpenMenu) || (this.isMobile && this.isOpenMenu)) {
-          div()
-            .className(this.fileStructureWrapCss)
-            .element(this.menuEl)
-            // .style({ display: this.isOpenMenu ? "block" : "none" })
-          {
-            FileStructure()
-              .structureData(FileMap[this.fileType])
-          }
-        }
+      if (this.isLoading) {
+        Loading()
+      } else {
+        MenuBtn()
+          .hanleClickOpenMenu(this.hanleClickOpenMenu)
+          .hanleClickOpenOutline(this.hanleClickOpenOutline)
+          .setMenuOpenBtnEl(this.setMenuOpenBtnEl)
         div()
-          .element(this.scrollView)
-          .className(this.docWrapCss)
+          .className(this.rowFlexCss)
         {
-          DlightDoc(this.mdString)
-            .title(this.selectedName)
-            .isShowCatalogue(this.isOpenOutline.value)
-            .nextPageNav(this.nextPageNav)
-            .prePageNav(this.prePageNav)
+          if ((!this.isMobile && !this.isShortView) || (this.isShortView && this.isOpenMenu) || (this.isMobile && this.isOpenMenu)) {
+            div()
+              .className(this.fileStructureWrapCss)
+              .element(this.menuEl)
+            // .style({ display: this.isOpenMenu ? "block" : "none" })
+            {
+              FileStructure()
+                .structureData(FileMap[this.fileType])
+            }
+          }
+          div()
+            .element(this.scrollView)
+            .className(this.docWrapCss)
+          {
+            DlightDoc(this.mdString)
+              .title(this.selectedName)
+              .isShowCatalogue(this.isOpenOutline.value)
+              .nextPageNav(this.nextPageNav)
+              .prePageNav(this.prePageNav)
+          }
         }
       }
     }

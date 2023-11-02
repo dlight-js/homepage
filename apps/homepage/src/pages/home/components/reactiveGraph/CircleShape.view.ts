@@ -1,7 +1,6 @@
-import { Content, Env, Prop, View, Watch, required } from "@dlightjs/dlight"
+import { Content, Env, Prop, View, required } from "@dlightjs/dlight"
 import { type Typed, Pretty, div, ContentProp } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { getSize } from "../../../../utils/utilFunc"
 
 interface CircleShapeProps {
   content: ContentProp<string>

@@ -5,6 +5,7 @@ import { ArrayView, CounterView, HelloView, indexCode, ToggleView, WrapperView }
 import DLightEditor from "dlight-editor"
 import { DarkModeOutlined, LightModeOutlined } from "@dlightjs/material-icons"
 import { css } from "@iandx/easy-css"
+import { Loading } from "../common"
 
 const defaultModules = [{
   code: indexCode,
@@ -31,10 +32,17 @@ const defaultModules = [{
 @View
 class Playground {
   @Env navigator: Navigator = required
+  isLoading = true
   toggle: boolean = false
   modules: any = (() => {
     const code = localStorage.getItem("dlight_playground_code")
     return code ? JSON.parse(code).modules : defaultModules
+  })()
+
+  endLoading = (() => {
+    setTimeout(() => {
+      this.isLoading = false
+    }, 1500)
   })()
 
   @View
@@ -69,16 +77,20 @@ class Playground {
 
   Body() {
     this.PlayGroundHeader()
-    div()
-      .className(this.dlightEditorCss)
-    {
-      DLightEditor()
-        .modules(this.modules)
-        .height("93vh")
-        .onSave((newCode: any) => {
-          localStorage.setItem("dlight_playground_code", JSON.stringify(newCode))
-        })
-        .themeType(this.toggle ? "dark" : "light")
+    if (this.isLoading) {
+      Loading()
+    } else {
+      div()
+        .className(this.dlightEditorCss)
+      {
+        DLightEditor()
+          .modules(this.modules)
+          .height("93vh")
+          .onSave((newCode: any) => {
+            localStorage.setItem("dlight_playground_code", JSON.stringify(newCode))
+          })
+          .themeType(this.toggle ? "dark" : "light")
+      }
     }
   }
 

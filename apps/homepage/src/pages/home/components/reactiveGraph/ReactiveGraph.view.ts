@@ -4,6 +4,7 @@ import { css } from "@iandx/easy-css"
 import { getSize } from "../../../../utils/utilFunc"
 import CircleShape from "./CircleShape.view"
 import LineShape from "./LineShape.view"
+import Loading from "../../../../common/loading/Loading.view"
 
 interface ReactiveGraphProps {
   count: number

@@ -1,0 +1,104 @@
+import { Env, Prop, View, required } from "@dlightjs/dlight"
+import { type Typed, div, Pretty, img } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
+import { Navigator } from "@dlightjs/components"
+
+// interface LoadingProps {
+//   data: FeatureDataType
+// }
+
+@View
+class Loading {
+  @Env navigator: Navigator = required
+  @Env themeType: "light" | "dark" = required
+  @Env theme: any = required
+  @Env i18n: any = required
+  @Prop data = required
+
+  Body() {
+    div()
+      .className(this.loadingWrapCss)
+    {
+      div()
+        .className(this.ballWrapCss)
+      {
+        div()
+          .className(this.ballCss)
+          .className(this.ballLeftCss)
+        div()
+          .className(this.ballCss)
+          .className(this.ballRightCss)
+      }
+      img()
+        .src("/imgs/D.svg")
+        .className(this.imgCss)
+    }
+  }
+
+  loadingWrapCss = css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+  `
+
+  ballWrapCss = css`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  `
+
+  imgCss = css`
+        width: 50px;
+        height: 50px;
+  `
+
+  ballCss = css`
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: relative;
+  `
+
+  ballLeftCss = css`
+    background-color: #BAE291;
+    animation: leftBall 2s infinite;
+  `
+
+  ballRightCss = css`
+    background-color: #F1D6A0;
+    animation: rightBall 2s infinite;
+  `
+
+  leftBall = css`
+    @keyframes leftBall {
+            0%, 100% {
+                transform: translateX(-12px);
+            }
+            25% {
+                transform: translateX(-25px);
+            }
+            50% {
+                transform: translateX(-12px);
+            }
+        }
+  `
+
+  rightBall = css`
+    @keyframes rightBall {
+            0%, 50% {
+                transform: translateX(2px);
+            }
+            75% {
+                transform: translateX(15px);
+            }
+            100% {
+                transform: translateX(2px);
+            }
+        }
+  `
+}
+
+export default Loading as Pretty as Typed
