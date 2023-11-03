@@ -13,31 +13,51 @@ class Example {
   isDark = this.themeType === "dark"
   count = 0
   doubleCount = this.count * 2
+  isChangedblCount = false
+  isChangeCount = false
 
   incrementCount() {
-    this.count++
+    if (!this.isChangeCount && !this.isChangedblCount) {
+      this.count++
+      this.isChangeCount = true
+      setTimeout(() => {
+        this.isChangeCount = false
+      }, 4000)
+    }
   }
 
   incrementDoubleCount() {
-    this.doubleCount++
+    if (!this.isChangedblCount && !this.isChangeCount) {
+      this.doubleCount++
+      this.isChangedblCount = true
+      setTimeout(() => {
+        this.isChangedblCount = false
+      }, 3000)
+    }
   }
 
   Body() {
     div()
       .className(this.exampleWrapCss)
     {
-      img()
-        .src(this.isDark ? "/imgs/code-example-dark.png" : "/imgs/code-example-light.png")
-        .alt("code-example")
-        .className(this.codeExampleCss)
-      ExampleResult()
-        .count(this.count)
-        .doubleCount(this.doubleCount)
-        .incrementCount(this.incrementCount)
-        .incrementDoubleCount(this.incrementDoubleCount)
+      div()
+        .className(this.overlapCss)
+      {
+        img()
+          // .src(this.isDark ? "/imgs/code-example-dark.png" : "/imgs/code-example-light.png")
+          .src("/imgs/code-example-light.png")
+          .alt("code-example")
+          .className(this.codeExampleCss)
+        ExampleResult()
+          .count(this.count)
+          .doubleCount(this.doubleCount)
+          .incrementCount(this.incrementCount)
+          .incrementDoubleCount(this.incrementDoubleCount)
+      }
       ReactiveGraph()
         .count(this.count)
         .dblCount(this.doubleCount)
+        .isChangedblCount(this.isChangedblCount)
     }
   }
 
@@ -45,10 +65,20 @@ class Example {
     display: flex;
     flex-direction: row;
     align-items: center;
+    transform: translateX(100px);
   `
 
   codeExampleCss = css`
     width: ${getSize(400)};
+    opacity: 0.9;
+    position: absolute;
+  `
+
+  overlapCss = css`
+    width: 400px;
+    height: 480px;
+    margin: 50px 0;
+    position: relative;
   `
 }
 

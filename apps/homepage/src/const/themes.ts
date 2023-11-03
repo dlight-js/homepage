@@ -1,6 +1,7 @@
 export interface Color {
   text: string
   primaryBgColor: string
+  pulseColor: string
   secondaryBgColor: string
   primaryTextColor: string
   secondaryTextColor: string
@@ -42,6 +43,7 @@ export const colors: Record<string, Color> = {
   light: {
     text: "fff",
     primaryBgColor: "#fff9f4",
+    pulseColor: "#fde5d2",
     secondaryBgColor: "#fde5d2",
     primaryTextColor: "#445d2a",
     secondaryTextColor: "#445d2a",
@@ -81,13 +83,14 @@ export const colors: Record<string, Color> = {
   dark: {
     text: "#000",
     primaryBgColor: "#330172",
+    pulseColor: "#330172",
     secondaryBgColor: "#0C0119",
     primaryTextColor: "#fff",
     secondaryTextColor: "#AEAEAE",
     tertiaryTextColor: "#AEAEAE",
     shadowColor: "#1a1a1a",
     btnColor: "#fff",
-    btnTextColor: "#000",
+    btnTextColor: "#445d2a",
     orange1: "#5c2b04",
     orange2: "#6c3a12",
     orange3: "#7c4820",
