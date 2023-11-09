@@ -57,11 +57,11 @@ class Title implements TitleProps {
   `
 
   homeStartBtnCss = css`
-    color: ${this.theme.btnTextColor};
+    color: ${this.theme.secondaryTextColor};
     background-color: ${this.theme.btnColor};
     padding: 12px 12px;
     border-radius: 5px;
-    box-shadow: 1px 1px 2px ${this.theme.green10};
+    box-shadow: 1px 1px 2px ${this.theme.shadowColor};
     border-width: 0;
     margin-top: 25px;
     cursor: pointer;

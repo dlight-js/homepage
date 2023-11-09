@@ -131,7 +131,7 @@ class ReactiveGraph implements ReactiveGraphProps {
     padding: ${getSize(30)} 0;
     margin-bottom: ${getSize(30)};
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: ${this.theme.btnTextColor};
+    color: ${this.theme.primaryTextColor};
     font-size: 17px;
     font-weight: 500;
     transform: translateX(-80px);

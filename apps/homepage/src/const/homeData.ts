@@ -16,7 +16,7 @@ export const FeatureData = [
     imgUrl: "/imgs/performant.svg",
     darkImgUrl: "/imgs/performant-dark.svg",
     content: "With a minuscule file size of just 4KB, Dlight is lightning-fast and ultra-lightweight, delivering optimal performance without the need for manual optimization.",
-    zhContent: "Dlight文件大小只有4KB，轻量至极。并且速度像闪电一样快，无需手动优化就可以提供最佳性能。"
+    zhContent: "Dlight文件大小只有4KB，轻量至极。其速度像闪电一样快，无需手动优化就可以提供最佳性能。"
   },
   {
     title: "DX-first",

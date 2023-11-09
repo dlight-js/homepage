@@ -30,13 +30,14 @@ class ExampleResult implements ExampleResultProps {
         img()
           .src("/imgs/logo-leading-png.svg")
           .alt("DLight Logo")
-          .width(30)
+          .width(Number(getSize(30).replace("px", "")))
           .style({ transform: "rotate(-90deg)" })
         h2("Hi, DLight~")
           .style({
-            margin: "5px",
+            fontSize: getSize(20),
+            margin: getSize(5),
             fontFamily: "Comic Sans MS",
-            color: "#445d2a"
+            color: this.theme.primaryTextColor
           })
       }
       button("Count++")
@@ -47,9 +48,9 @@ class ExampleResult implements ExampleResultProps {
         .className(this.beautifulBtn$)
       div(`DoubleCount: ${this.doubleCount}`)
         .style({
-          fontSize: "20px",
+          fontSize: getSize(20),
           fontFamily: "Comic Sans MS",
-          color: "#445d2a"
+          color: this.theme.primaryTextColor
         })
         .id("double-count-display")
     }
@@ -62,13 +63,14 @@ class ExampleResult implements ExampleResultProps {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    bottom: 50px;
+    bottom: ${getSize(50)};
     right: 0;
-    padding: 15px 15px;
+    padding: ${getSize(15)} ${getSize(15)};
     transform: ${`translateX(${getSize(80)})`};
-    background-color: ${this.isDark ? "#F5F5F5" : "white"};
+    /* background-color: ${this.isDark ? "#F5F5F5" : "white"}; */
+    background-color: ${this.theme.codeBgColor};
     border-radius: 15px;
-    box-shadow: 0 0 10px 0px ${this.isDark ? "#A9A9A9" : "#A9A9A9"};
+    box-shadow: 0 0 10px 0px ${this.theme.shadowColor};
     z-index: 5;
   `
 
@@ -79,13 +81,13 @@ class ExampleResult implements ExampleResultProps {
   `
 
   doubleCountCss$ = css`
-    font-size: 20px;
+    font-size: ${getSize(20)};
     margin: 10px 5px 0px 5px;
     font-family: "Comic Sans MS";
   `
 
   beautifulBtn$ = css`
-    margin: 5px;
+    margin: ${getSize(5)};
     align-items: center;
     background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
     border: 0;
@@ -96,7 +98,7 @@ class ExampleResult implements ExampleResultProps {
     color: #FFFFFF;
     display: flex;
     font-family: Phantomsans, sans-serif;
-    font-size: 18px;
+    font-size: ${getSize(18)};
     justify-content: center;
     line-height: 1em;
     max-width: 100%;

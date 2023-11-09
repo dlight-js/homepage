@@ -1,5 +1,6 @@
 export interface DocsStructureMapType {
   name: string
+  zhName: string
   path: string
   children?: DocsStructureMapType[]
 }

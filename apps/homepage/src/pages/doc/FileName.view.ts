@@ -9,6 +9,7 @@ import { Navigator } from "@dlightjs/components"
 
 interface FileNameProps {
   name: string
+  zhName: string
   filePath: string
   children: DocsStructureMapType | undefined
 }
@@ -19,7 +20,9 @@ class FileName implements FileNameProps {
   @Env theme: any = required
   @Env selectedName: string = required
   @Env path: string = required
+  @Env i18n: any = required
   @Prop name = required
+  @Prop zhName = required
   @Prop filePath = required
   @Prop children = required
 
@@ -67,7 +70,7 @@ class FileName implements FileNameProps {
         .onmouseover(() => { this.isHover = true })
         .onmouseout(() => { this.isHover = false })
       {
-        div(this.name)
+        div(this.i18n(this.name, this.zhName))
         if (this.children) {
           div()
             .className(this.iconCss)

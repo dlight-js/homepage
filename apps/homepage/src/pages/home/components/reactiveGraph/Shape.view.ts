@@ -12,11 +12,13 @@ interface ShapeProps {
 @View
 class Shape implements ShapeProps {
   @Env theme: any = required
+  @Env themeType: "light" | "dark" = required
   @Env i18n: any = required
   @Prop @Content content = required
   @Prop onclick?: (() => void) | undefined
   @Prop shape: "circle" | "square" = "circle"
   @Prop isStartPulse = false
+  isLight = this.themeType === "light"
 
   Body() {
     div()
@@ -35,9 +37,9 @@ class Shape implements ShapeProps {
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-shadow: 0 0 10px 0 #A9A9A9;
+    box-shadow: ${this.isStartPulse || this.isLight ? "0 0 10px 0 #A9A9A9" : "0 0 10px 0 #1a1a1a"};
     z-index: 10;
-    background-color: ${this.isStartPulse ? this.theme.pulseColor : "white"};
+    background-color: ${this.isStartPulse && this.isLight ? this.theme.pulseColor : this.theme.codeBgColor};
     transition: background-color 0.3s;
   `
 
@@ -48,14 +50,12 @@ class Shape implements ShapeProps {
   circleShapeCss = css`
     width: 110px;
     height: 110px;
-    background-color: white;
     border-radius: 50%;
   `
 
   squareShapeCss = css`
     width: 130px;
     height: 100px;
-    background-color: white;
     border-radius: 15px;
 
   `

@@ -36,6 +36,7 @@ class Header implements HeaderProps {
 
   didMount() {
     window.onscroll = this.isNeedAnimation ? this.listenScroll : null
+    console.log(this.navBtn)
   }
 
   willUnmount() {

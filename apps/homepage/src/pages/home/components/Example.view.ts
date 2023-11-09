@@ -44,8 +44,8 @@ class Example {
         .className(this.overlapCss)
       {
         img()
-          // .src(this.isDark ? "/imgs/code-example-dark.png" : "/imgs/code-example-light.png")
-          .src("/imgs/code-example-light.png")
+          .src(this.isDark ? "/imgs/code-example-dark.png" : "/imgs/code-example-light.png")
+          // .src("/imgs/code-example-light.png")
           .alt("code-example")
           .className(this.codeExampleCss)
         ExampleResult()
@@ -65,7 +65,7 @@ class Example {
     display: flex;
     flex-direction: row;
     align-items: center;
-    transform: translateX(100px);
+    transform: translateX(${getSize(100)});
   `
 
   codeExampleCss = css`
@@ -75,9 +75,9 @@ class Example {
   `
 
   overlapCss = css`
-    width: 400px;
-    height: 480px;
-    margin: 50px 0;
+    width: ${getSize(400)};
+    height: ${getSize(480)};
+    margin: ${getSize(50)} 0;
     position: relative;
   `
 }

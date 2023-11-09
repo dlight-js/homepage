@@ -12,9 +12,10 @@ class FileStructure implements FileStructureProps {
   @Prop structureData = required
 
   Body() {
-    for (const { name, path, children } of this.structureData) {
+    for (const { name, zhName, path, children } of this.structureData) {
       FileName()
         .name(name)
+        .zhName(zhName)
         .filePath(path)
         .children(children)
     }

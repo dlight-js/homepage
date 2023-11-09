@@ -1,104 +1,128 @@
 [
   {
     "name": "🚀 Getting Started",
+    "zhName": "🚀 快速上手",
     "path": "getting-started",
     "children": [
       {
         "name": "📘 Introduction",
+        "zhName": "📘 介绍",
         "path": "introduction"
       },
       {
         "name": "🤔 Rethinking Reactivity",
+        "zhName": "🤔 重新思考响应式",
         "path": "rethinking-reactivity"
       },
       {
         "name": "⚡️ Quick Start",
+        "zhName": "⚡️ 快速上手",
         "path": "quick-start"
       }
     ]
   },
   {
     "name": "🧩 DLight Syntax",
+    "zhName": "🧩 DLight 语法",
     "path": "dlight-syntax",
     "children": [
       {
         "name": "🏞️ HTML Elements",
+        "zhName": "🏞️ HTML 元素",
         "path": "html-elements"
       },
       {
         "name": "📝 Text Nodes",
+        "zhName": "📝 文本节点",
         "path": "text-nodes"
       },
       {
         "name": "🧱 Custom Components",
+        "zhName": "🧱 自定义组件",
         "path": "custom-components"
       },
       {
         "name": "🔀 If Statements",
+        "zhName": "🔀 条件语句",
         "path": "if-statements"
       },
       {
         "name": "🔁 For Loops",
+        "zhName": "🔁 循环语句",
         "path": "for-loops"
       },
       {
         "name": "💡 Expressions",
+        "zhName": "💡 表达式",
         "path": "expressions"
       }
     ]
   },
   {
     "name": "🛠 Basic Usages",
+    "zhName": "🛠 基础用法",
     "path": "basic-usages",
     "children": [
       {
         "name": "🏫 Class Components",
+        "zhName": "🏫 类组件",
         "path": "class-components"
       },
       {
         "name": "🌐 State Management",
+        "zhName": "🌐 状态管理",
         "path": "state-declaration"
       },
       {
         "name": "🔗 Prop Passing",
+        "zhName": "🔗 属性传递",
         "path": "passing-prop"
       },
       {
         "name": "👶 Child Components",
+        "zhName": "👶 子组件",
         "path": "child-components"
       },
       {
         "name": "🌍 Environment Variables",
+        "zhName": "🌍 环境变量",
         "path": "environment-variables"
       },
       {
         "name": "⏳ Lifecycle",
+        "zhName": "⏳ 生命周期",
         "path": "lifecycle"
       }
     ]
   },
   {
     "name": "🧙‍♂️ Advanced Usages",
+    "zhName": "🧙‍♂️ 进阶用法",
     "path": "advanced-usages",
     "children": [
       {
         "name": "🏷 Assertion Tags",
+        "zhName": "🏷 断言标签",
         "path": "assertion-tags"
       },
       {
         "name": "💡 Expressions",
+        "zhName": "💡 表达式",
         "path": "expressions"
       },
       {
         "name": "⤵️ Forward Props",
+        "zhName": "⤵️ 向下传递属性",
         "path": "forward-props"
       },
       {
         "name": "⚙️ Reactivity Utils",
+        "zhName": "⚙️ 响应式工具",
         "path": "reactivity-utils"
       },
       {
         "name": "📦 DLNodes as Props",
+        "zhName": "📦 DLNodes 作为属性",
         "path": "dlnodes-as-props"
       }
     ]

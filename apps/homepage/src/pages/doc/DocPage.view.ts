@@ -17,6 +17,7 @@ class DocPage {
   @Env isMobile: boolean = required
   @Env isShortView: boolean = required
   @Env navigator: any = required
+  @Env language: any = required
   isLoading = true
   mdString: string = ""
   selectedName: string = ""
@@ -68,7 +69,8 @@ class DocPage {
             path: this.flatfileData[fileIndex - 1].path
           }
         : undefined
-      fetch(filePath)
+        console.log(this.language === "en" ? filePath : filePath.split("docs")[0] + "docs/zh" + filePath.split("docs")[1])
+      fetch(this.language === "en" ? filePath : filePath.split("docs")[0] + "docs/zh" + filePath.split("docs")[1])
         .then(async data => {
           if (!data.ok) {
             throw new Error("not found")

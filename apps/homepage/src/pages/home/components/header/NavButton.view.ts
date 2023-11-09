@@ -3,15 +3,17 @@ import { type Typed, button, div, Pretty, ContentProp } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import MenuItem from "./MenuItem.view"
 import { Navigator } from "@dlightjs/components"
+import { DocsStructureMapType, ExmaplesCodeDataType } from "../../../../utils/types"
 
 interface NavButtonProps {
   content: ContentProp<string>
   handleClickNav: () => void
-  structureData: any
+  structureData: ExmaplesCodeDataType[] | DocsStructureMapType[] | undefined
 }
 
 @View
 class NavButton implements NavButtonProps {
+  @Env i18n: any = required
   @Env navigator: Navigator = required
   @Env theme: any = required
   @Prop @Content content: any = required
@@ -44,9 +46,9 @@ class NavButton implements NavButtonProps {
           .onmouseenter(() => { this.isMenuHover = true; this.isHover = true })
           .onmouseleave(() => { this.isMenuHover = false; this.isHover = false })
         {
-          for (const { name, title, path } of this.structureData) {
+          for (const { name, zhName, title, path } of this.structureData) {
             MenuItem()
-              .name(name || title)
+              .name(this.i18n(name || title, zhName))
               .path(path)
           }
         }

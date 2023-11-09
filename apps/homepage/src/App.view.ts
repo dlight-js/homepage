@@ -52,6 +52,7 @@ class App {
       .isShortView(this.isShortView)
       .windowWidth(this.windowWidth)
       .i18n(this.i18n)
+      .language(this.language)
       .toogleLanguage(this.toogleLanguage)
     {
       RouterSpace()

@@ -1,17 +1,18 @@
 import { DocsStructureMapType } from "./types"
 
 export function initMap(mapData: any, basePath: string) {
-  const newMapData = mapData.map(({ name, path, children }: any) => {
-    if (children) {
+  const newMapData = mapData.map((item: any) => {
+    if (item.children) {
       return {
-        name,
-        path: `${basePath}/${path}`,
-        children: initMap(children, `${basePath}/${path}`)
+        ...item,
+        ...item,
+        path: `${basePath}/${item.path}`,
+        children: initMap(item.children, `${basePath}/${item.path}`)
       }
     } else {
       return {
-        name,
-        path: `${basePath}/${path}`
+        ...item,
+        path: `${basePath}/${item.path}`
       }
     }
   }
@@ -21,10 +22,10 @@ export function initMap(mapData: any, basePath: string) {
 
 export function flatFileStructureData(mapData: any) {
   const flatMapData: DocsStructureMapType[] = []
-  mapData.forEach(({ name, path, children }: any) => {
-    flatMapData.push({ name, path, children })
-    if (children) {
-      flatMapData.push(...flatFileStructureData(children))
+  mapData.forEach((item: any) => {
+    flatMapData.push(item)
+    if (item.children) {
+      flatMapData.push(...flatFileStructureData(item.children))
     }
   }
   )

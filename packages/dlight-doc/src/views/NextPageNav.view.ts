@@ -16,6 +16,7 @@ interface NextPageNavProps {
 @View
 class NextPageNav implements NextPageNavProps {
   @Env navigator: any = required
+  @Env i18n: any = required
   @Prop nextPage = required
   @Prop prePage = required
 
@@ -43,7 +44,7 @@ class NextPageNav implements NextPageNavProps {
           div()
             .className(this.pageNavTextBtnCss)
           {
-            div(this.prePage.name)
+            div(this.i18n(this.prePage.name, this.prePage.zhName))
           }
         }
       }
@@ -59,7 +60,7 @@ class NextPageNav implements NextPageNavProps {
             .className(this.pageNavTextBtnCss)
             .className(this.nextPageNavTextBtnCss)
           {
-            div(this.nextPage.name)
+            div(this.i18n(this.nextPage.name, this.nextPage.zhName))
           }
           div()
             .className(this.iconCss("next"))
