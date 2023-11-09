@@ -20,7 +20,7 @@ class Resizer implements ResizerProps {
   axises = (() => {
     const axises: Array<"x" | "y"> = []
     if (["x", "all"].includes(this.axis)) axises.push("x")
-    if (["Y", "all"].includes(this.axis)) axises.push("y")
+    if (["y", "all"].includes(this.axis)) axises.push("y")
     return axises
   })()
 

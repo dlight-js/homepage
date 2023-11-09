@@ -83,7 +83,7 @@ class CodeEditor implements CodeEditorProps {
 
   editorCss = css`
     width: 100%;
-    height: calc(${this.height} - 45px)
+    height: calc(${this.height} - 45px);
   `
 }
 

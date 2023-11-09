@@ -8,6 +8,11 @@ class App {
   toggle = true
   theme = colors[this.toggle ? "dark" : "light"]
 
+  toggleTheme() {
+    this.toggle = !this.toggle
+    this.theme = colors[this.toggle ? "dark" : "light"]
+  }
+
   Body() {
     div()
     {

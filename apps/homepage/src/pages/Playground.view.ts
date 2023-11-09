@@ -32,8 +32,12 @@ const defaultModules = [{
 @View
 class Playground {
   @Env navigator: Navigator = required
+  @Env themeType: "light" | "dark" = required
+  @Env updateThemeType: () => void = required
+  @Env isMobile: boolean = required
+  @Env isShortView: boolean = required
   isLoading = true
-  toggle: boolean = false
+  isDark: boolean = this.themeType === "dark"
   modules: any = (() => {
     const code = localStorage.getItem("dlight_playground_code")
     return code ? JSON.parse(code).modules : defaultModules
@@ -62,34 +66,44 @@ class Playground {
         div("Playground")
           .className(this.ml10)
       }
-      if (this.toggle) {
-        LightModeOutlined()
-          .color("#ddd")
-          .className(this.iconCss)
-          .onclick(() => { this.toggle = !this.toggle })
+      if (this.isDark) {
+        div()
+          .onclick(this.updateThemeType)
+        {
+          LightModeOutlined()
+            .color("#ddd")
+            .className(this.iconCss)
+        }
       } else {
-        DarkModeOutlined()
-          .className(this.iconCss)
-          .onclick(() => { this.toggle = !this.toggle })
+        div()
+          .onclick(this.updateThemeType)
+        {
+          DarkModeOutlined()
+            .className(this.iconCss)
+        }
       }
     }
   }
 
   Body() {
-    this.PlayGroundHeader()
-    if (this.isLoading) {
-      Loading()
-    } else {
-      div()
-        .className(this.dlightEditorCss)
-      {
+    div()
+      .style({
+        height: "max-content",
+        overflow: "hidden"
+      })
+    {
+      this.PlayGroundHeader()
+      if (this.isLoading) {
+        Loading()
+      } else {
         DLightEditor()
           .modules(this.modules)
-          .height("93vh")
+          .height("calc(100vh - 42px)")
           .onSave((newCode: any) => {
             localStorage.setItem("dlight_playground_code", JSON.stringify(newCode))
           })
-          .themeType(this.toggle ? "dark" : "light")
+          .themeType(this.themeType)
+          .isVertical(this.isMobile || this.isShortView)
       }
     }
   }
@@ -109,7 +123,7 @@ class Playground {
     align-items: center;
     font-size: 20px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: ${this.toggle ? "#ddd" : "#333333"};
+    color: ${this.isDark ? "#ddd" : "#333333"};
     font-weight: 500;
     cursor: default;
   `
@@ -121,11 +135,11 @@ class Playground {
     padding: 5px 30px;
     border-bottom: solid 2px rgba(53,77,29,0.2);
     z-index: 100;
-    background-color: ${this.toggle ? "#1C1C1E" : "#FFF"};
+    background-color: ${this.isDark ? "#1C1C1E" : "#FFF"};
   `
 
   dlightEditorCss = css`
-    height: 500px;
+    /* height: 500px; */
   `
 
   logoCss = css`

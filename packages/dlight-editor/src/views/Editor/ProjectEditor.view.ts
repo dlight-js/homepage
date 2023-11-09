@@ -15,6 +15,7 @@ interface ProjectEditorProps {
   getMountId: (id: string) => void
   language?: string
   width?: string
+  height?: string
   onSave?: (project: DLightProject) => void
 }
 
@@ -27,6 +28,7 @@ class ProjectEditor {
   @Prop getMountId = required
   @Prop language = "typescript"
   @Prop width = "100%"
+  @Prop height = "100%"
   @Prop onSave?: (project: DLightProject) => void
 
   /** @reactive */
@@ -113,7 +115,9 @@ class ProjectEditor {
   Body() {
     div()
       .style({
-        width: this.width
+        width: this.width,
+        height: this.height,
+        overflow: "hidden"
       })
     {
       VStack()

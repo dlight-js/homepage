@@ -60,16 +60,17 @@ class DocPage {
       this.nextPageNav = fileIndex < this.flatfileData.length - 1
         ? {
             name: this.flatfileData[fileIndex + 1].name,
+            zhName: this.flatfileData[fileIndex + 1].zhName,
             path: this.flatfileData[fileIndex + 1].path
           }
         : undefined
       this.prePageNav = fileIndex > 0
         ? {
             name: this.flatfileData[fileIndex - 1].name,
+            zhName: this.flatfileData[fileIndex - 1].zhName,
             path: this.flatfileData[fileIndex - 1].path
           }
         : undefined
-        console.log(this.language === "en" ? filePath : filePath.split("docs")[0] + "docs/zh" + filePath.split("docs")[1])
       fetch(this.language === "en" ? filePath : filePath.split("docs")[0] + "docs/zh" + filePath.split("docs")[1])
         .then(async data => {
           if (!data.ok) {
@@ -97,8 +98,8 @@ class DocPage {
     Header()
     env()
       .selectedName(this.selectedName)
-      .prePage(this.prevFile)
-      .nextPage(this.nextFile)
+      // .prePage(this.prevFile)
+      // .nextPage(this.nextFile)
     {
       if (this.isLoading) {
         Loading()

@@ -12,6 +12,7 @@ interface PreviewProps {
   currTransformedCode: string
   refreshFunc: () => void
   width: string
+  verticalHeight: string
 }
 
 @View
@@ -21,6 +22,7 @@ class Preview implements PreviewProps {
   @Prop currTransformedCode: string = required
   @Prop refreshFunc: () => void = required
   @Prop width: string = required
+  @Prop verticalHeight: string = required
   @Env theme: Color = required
   @Env height: string = required
 
@@ -51,10 +53,14 @@ class Preview implements PreviewProps {
         .spacing(0)
         .alignment("center")
       {
-        RefreshFilled()
+        div()
           .onclick(this.refreshFunc)
-          .className(this.refreshIconCss)
-          .color(this.theme.primary)
+        {
+          RefreshFilled()
+            .className(this.refreshIconCss)
+            .color(this.theme.primary)
+        }
+
         this.Head("result")
         this.Head("output")
       }
@@ -72,19 +78,26 @@ class Preview implements PreviewProps {
       this.Header()
       div()
         .style({
-          display: this.tab === "result" ? "block" : "none"
+          height: `calc(100% - ${headerHeight}px)`,
+          overflow: "scroll"
         })
       {
-        ResultView()
-          .mountId(this.mountId)
-      }
-      div()
-        .style({
-          display: this.tab === "output" ? "block" : "none"
-        })
-      {
-        OutputView()
-          .code(this.currTransformedCode)
+        div()
+          .style({
+            display: this.tab === "result" ? "block" : "none"
+          })
+        {
+          ResultView()
+            .mountId(this.mountId)
+        }
+        div()
+          .style({
+            display: this.tab === "output" ? "block" : "none"
+          })
+        {
+          OutputView()
+            .code(this.currTransformedCode)
+        }
       }
     }
   }
@@ -92,7 +105,8 @@ class Preview implements PreviewProps {
   /** @style */
   wrapperCss = css`
     flex-grow: 1;
-    height: ${this.height};
+    height: ${this.verticalHeight ?? this.height};
+    overflow: hidden;
   `
 
   headerBGCss = css`

@@ -6,16 +6,17 @@ import Home from "./pages/home/Home.view"
 
 @View
 class App {
-  themeType = "light"
+  themeType = localStorage.getItem("DlightThemeType") ?? "light"
   theme = colors[this.themeType]
   isMobile = /Android|iPhone/i.test(navigator.userAgent)
   isShortView = window.innerWidth < 818
   isCenterTitle = false
   windowWidth = window.innerWidth
 
-  language: "en" | "zh" = "en"
+  language: "en" | "zh" | string = localStorage.getItem("DlightLanguage") ?? "en"
   toogleLanguage() {
     this.language = this.language === "en" ? "zh" : "en"
+    localStorage.setItem("DlightLanguage", this.language)
   }
 
   i18n = (enContent: string, zhContent: string) => (
@@ -32,6 +33,7 @@ class App {
 
   updateThemeType() {
     this.themeType = this.themeType === "light" ? "dark" : "light"
+    localStorage.setItem("DlightThemeType", this.themeType)
   }
 
   handleWindowResize() {

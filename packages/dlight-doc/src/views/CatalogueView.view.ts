@@ -1,4 +1,4 @@
-import { Content, Prop, required, View } from "@dlightjs/dlight"
+import { Content, Env, Prop, required, View } from "@dlightjs/dlight"
 import { a, ContentProp, div, Pretty, Typed } from "@dlightjs/types"
 import { InlineRenderer } from "@dlightjs/markit"
 import { css } from "@iandx/easy-css"
@@ -13,6 +13,7 @@ interface CatalogueViewProps {
 
 @View
 class CatalogueView implements CatalogueViewProps {
+  @Env i18n: any = required
   @Prop @Content content: any = required
   @Prop currentIndex = required
   @Prop isShowShadow = required
@@ -20,7 +21,7 @@ class CatalogueView implements CatalogueViewProps {
   @Prop scrollToTop = required
 
   Body() {
-    div("To Top")
+    div(this.i18n("To Top", "置顶"))
       .style({ textDecoration: "underline", fontWeight: 600, cursor: "pointer", width: "max-content" })
       .className(this.dlightDocHeadingLinkCss(-1))
       .onclick(this.scrollToTop)

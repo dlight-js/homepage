@@ -5,6 +5,7 @@ import { KeyboardArrowLeftFilled, KeyboardArrowRightFilled } from "@dlightjs/mat
 
 export interface PageNavType {
   name: string
+  zhName: string
   path: string
 }
 
