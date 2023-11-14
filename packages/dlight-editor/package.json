@@ -15,9 +15,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.23.0",
-    "@babel/preset-env": "^7.23.2",
-    "@babel/standalone": "^7.23.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.23.3",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/standalone": "^7.23.3",
     "@dlightjs/components": "^0.10.2",
     "@dlightjs/dlight": "^0.10.2",
     "@dlightjs/material-icons": "^0.10.1",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.23.0",
-    "@babel/core": "^7.23.2",
+    "@babel/core": "^7.23.3",
     "@dlightjs/types": "^0.10.9",
     "babel-preset-dlight": "^0.10.6",
     "babel-preset-easy-css": "^0.10.14",

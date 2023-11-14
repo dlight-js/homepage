@@ -60,7 +60,7 @@ class Playground implements PlaygroundProps {
   verticalEditorHeight = "50%"
   horizontalEditorHeight = "100%"
 
-  verticalPreviewHeight = "50%"
+  verticalPreviewHeight = `calc(50% - ${dividerWidth}px)`
   horizontalPreviewHeight = "100%"
 
   editorHeight = this.isVertical ? this.verticalEditorHeight : this.horizontalEditorHeight

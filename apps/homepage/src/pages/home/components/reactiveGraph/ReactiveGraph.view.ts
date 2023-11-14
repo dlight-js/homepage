@@ -36,7 +36,6 @@ class ReactiveGraph implements ReactiveGraphProps {
 
   @Watch
     startCountAnimate = (() => {
-      console.log(this.count)
       if (this.isFirstCountAnimate) {
         this.isFirstCountAnimate = false
         return
@@ -61,7 +60,6 @@ class ReactiveGraph implements ReactiveGraphProps {
 
   @Watch
     startDblCountAnimate = (() => {
-      console.log(this.isChangedblCount)
       if (this.isChangedblCount) {
         let i = 3
         this.animationSeq = i

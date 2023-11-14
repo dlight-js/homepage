@@ -1,50 +1,72 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
+import { Env, Prop, View, Watch, required } from "@dlightjs/dlight"
 import { MenuRound, AlignHorizontalLeftRound } from "@dlightjs/material-icons"
 import { Pretty, Typed, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
+import { shortViewWidth } from "../../const/pageSetting"
 
 interface MenuBtnProps {
-  hanleClickOpenMenu: (value: boolean) => void
-  hanleClickOpenOutline: (value: boolean) => void
-  setMenuOpenBtnEl: (el: HTMLElement) => void
+  hanleClickOpenMenu?: (value: boolean) => void
+  hanleClickOpenOutline?: (value: boolean) => void
+  setMenuOpenBtnEl?: (el: HTMLElement) => void
+  backgroundColor?: string
+  limitWidth?: number
 }
 
 @View
 class MenuBtn implements MenuBtnProps {
-  @Env isShortView: boolean = required
+  @Env windowWidth: number = required
   @Prop hanleClickOpenMenu = required
   @Prop hanleClickOpenOutline = required
   @Prop setMenuOpenBtnEl = required
+  @Prop backgroundColor = required
+  @Prop limitWidth = shortViewWidth
   el: HTMLElement
+  isShow: boolean = this.windowWidth < this.limitWidth
+
   didMount() {
-    this.setMenuOpenBtnEl(this.el)
+    if (this.setMenuOpenBtnEl) {
+      this.setMenuOpenBtnEl(this.el)
+    }
+  }
+
+  @Watch
+  handleWindowResize() {
+    if (this.windowWidth < this.limitWidth) {
+      this.isShow = true
+    } else {
+      this.isShow = false
+    }
   }
 
   Body() {
-    if (this.isShortView) {
+    if (this.isShow) {
       div()
         .className(this.shortViewSubHeaderWrapCss)
       {
-        div()
-          .className(this.btnCss)
-          .onclick(this.hanleClickOpenMenu)
-          .element(this.el)
-        {
-          MenuRound()
-            .className(this.iconCss)
-            .color("rgba(82,110,52,0.7)")
-            .width(16)
-          div("Menu")
+        if (this.hanleClickOpenMenu) {
+          div()
+            .className(this.btnCss)
+            .onclick(this.hanleClickOpenMenu)
+            .element(this.el)
+          {
+            MenuRound()
+              .className(this.iconCss)
+              .color("rgba(82,110,52,0.7)")
+              .width(16)
+            div("Menu")
+          }
         }
-        div()
-          .className(this.btnCss)
-          .onclick(this.hanleClickOpenOutline)
-        {
-          div("Outline")
-          AlignHorizontalLeftRound()
-            .className(this.iconCss)
-            .color("rgba(82,110,52,0.7)")
-            .width(16)
+        if (this.hanleClickOpenOutline) {
+          div()
+            .className(this.btnCss)
+            .onclick(this.hanleClickOpenOutline)
+          {
+            div("Outline")
+            AlignHorizontalLeftRound()
+              .className(this.iconCss)
+              .color("rgba(82,110,52,0.7)")
+              .width(16)
+          }
         }
       }
     }
@@ -58,6 +80,7 @@ class MenuBtn implements MenuBtnProps {
     color: rgba(82,110,52,0.7);
     padding: 0 10px;
     box-shadow: 0 1px 5px -3px #a9a9a9;
+    background-color: ${this.backgroundColor};
   `
 
   btnCss = css`

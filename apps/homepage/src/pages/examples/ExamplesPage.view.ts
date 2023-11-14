@@ -5,17 +5,21 @@ import Header from "../home/components/header/Header.view"
 import DLightEditor from "dlight-editor"
 import { ExamplesCodeData } from "../../const/examplesCodeData"
 import { CodeModuleType, ExmaplesCodeDataType } from "../../utils/types"
-import SubExampleItem from "./SubExampleItem.view"
 import { Navigator } from "@dlightjs/components"
 import { Loading } from "../../common"
+import ExampleMenu from "./ExampleMenu.view"
+import MenuBtn from "../doc/MenuBtn.view"
+import SideMenu from "../../common/sideMenu/SideMenu.view"
 
 interface NewPlayGroundProps {
   modules: any
+  isVertical: boolean
 }
 
 @View
 class NewPlayGround implements NewPlayGroundProps {
   @Prop modules: any
+  @Prop isVertical: boolean = false
   @Env themeType: "light" | "dark" = required
   a = true
   onChange = (() => {
@@ -28,15 +32,17 @@ class NewPlayGround implements NewPlayGroundProps {
     if (this.a) {
       DLightEditor()
         .modules(this.modules)
-        .height("75vh")
-        .width("70vw")
+        .height(this.isVertical ? "calc(100vh - 113px)" : "calc(100vh - 60px)")
+        .width("100%")
         .themeType(this.themeType)
+        .isVertical(this.isVertical)
     } else {
       DLightEditor()
         .modules(this.modules)
-        .height("75vh")
-        .width("70vw")
+        .height(this.isVertical ? "calc(100vh - 113px)" : "calc(100vh - 60px)")
+        .width("100%")
         .themeType(this.themeType)
+        .isVertical(this.isVertical)
     }
   }
 }
@@ -46,10 +52,13 @@ class ExamplesPage {
   @Env navigator: Navigator = required
   @Env theme: any = required
   @Env themeType: "light" | "dark" = required
+  @Env isShortView: boolean = required
   isLoading = true
+  isMenuOpen = false // only true when isShortView is true and menu is in open status
   examples: ExmaplesCodeDataType[] = ExamplesCodeData
-  modules: any = this.examples[0].children[0].modules
-  selectedTitle: string = this.examples[0].children[0].title
+  modules: any = this.examples[0].children![0].modules
+  selectedTitle: string = this.examples[0].children![0].title
+  menuOpenBtnEl: any
   endLoading = (() => {
     setTimeout(() => {
       this.isLoading = false
@@ -62,86 +71,70 @@ class ExamplesPage {
     this.navigator.to(`/examples/${title.toLocaleLowerCase().replaceAll(" ", "-")}`)
   }
 
+  setMenuOpenBtnEl(el: any) {
+    this.menuOpenBtnEl = el
+  }
+
+  updateOpenMenuStatus() {
+    this.isMenuOpen = !this.isMenuOpen
+  }
+
   Body() {
-    Header()
-      .isNeedAnimation(false)
-    if (this.isLoading) {
-      Loading()
-    } else {
-      div()
-        .className(this.exmaplesPageWrapCss)
-      {
+    div()
+      .className(this.exampleBgCss)
+    {
+      Header()
+        .isNeedAnimation(false)
+      MenuBtn()
+        .hanleClickOpenMenu(this.updateOpenMenuStatus)
+        .hanleClickOpenOutline(undefined)
+        .setMenuOpenBtnEl(this.setMenuOpenBtnEl)
+        .backgroundColor(this.theme.orange1)
+      if (this.isLoading) {
+        Loading()
+      } else {
         div()
-          .className(this.examplesListWrapCss)
+          .className(this.exmaplesPageWrapCss)
         {
-          for (const example of this.examples) {
-            div(example.title)
-              .className(this.exmapleTitleCss)
-            for (const { title, description, modules } of example.children) {
-              SubExampleItem()
-                .title(title)
-                .description(description)
-                .modules(modules)
-                .updateModules(this.updateModules)
-                .selectedTitle(this.selectedTitle)
-            }
+          SideMenu()
+            .menuOpenBtnEl(this.menuOpenBtnEl)
+            .isOpen(this.isMenuOpen)
+            .updateOpenMenuStatus(this.updateOpenMenuStatus)
+          {
+            ExampleMenu()
+              .isOpen(this.isMenuOpen)
+              .examples(this.examples)
+              .selectedTitle(this.selectedTitle)
+              .updateModules(this.updateModules)
           }
-        }
-        div()
-          .className(this.dlightEditorWrapCss)
-        {
-          NewPlayGround()
-            .modules(this.modules)
+          div()
+            .className(this.dlightEditorWrapCss)
+          {
+            NewPlayGround()
+              .modules(this.modules)
+              .isVertical(this.isShortView)
+          }
         }
       }
     }
   }
 
-  exmaplesPageWrapCss = css`
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 30px 60px;
+  exampleBgCss = css`
     background-color: ${this.theme.orange1};
-    height: 100%;
+    height: 100vh;
+  `
+
+  exmaplesPageWrapCss = css`
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: ${this.isMenuOpen ? "" : "center"};
+    background-color: ${this.theme.orange1};
   `
 
   dlightEditorWrapCss = css`
     display: block;
-    margin-left: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px -3px #A9A9A9;
-    overflow: hidden;
-  `
-
-  examplesListWrapCss = css`
-    width: 30%;
-    max-width: 240px;
-    min-width: 180px;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: flex-start;
-    /* border: solid 1px rgba(97,126,68, 0.3); */
-    border-radius: 4px;
-    padding: 20px 10px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    line-height: 30px;
-    height: 70vh;
-    overflow: scroll;
-    box-shadow: 0 0 6px -3px #A9A9A9;
-    background-color: ${this.theme.orange2};
-  `
-
-  exmapleTitleCss = css`
-    font-size: 28px;
-    color: ${this.theme.green10};
-    cursor: default;
-    padding-bottom: 15px;
-    border-bottom: solid 1px rgba(97,126,68, 0.3);
-    margin-bottom: 10px;
+    width: ${this.isShortView ? "100%" : "calc(100% - 240px)"};
   `
 }
 

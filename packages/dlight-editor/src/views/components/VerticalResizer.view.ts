@@ -65,13 +65,20 @@ class VerticalResizer implements VerticalResizerProps {
         {
           Spacer()
           div(".")
+            .className(this.dotCss)
           div(".")
+            .className(this.dotCss)
           div(".")
+            .className(this.dotCss)
           Spacer()
         }
       }
     }
   }
+
+  dotCss = css`
+    margin-top: -18px;
+  `
 
   resizerCss = css`
     color: ${this.theme.secondaryText};

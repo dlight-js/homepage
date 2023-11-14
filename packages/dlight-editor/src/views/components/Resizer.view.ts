@@ -70,7 +70,6 @@ class Resizer implements ResizerProps {
     const draggableEl = e.targetTouches[0]
     this.offsetX = draggableEl.pageX
     this.offsetY = draggableEl.pageY
-    console.log(draggableEl)
     // draggableEl.focus()
     this.startTouchDrag = true
   }

@@ -2,7 +2,6 @@ export function observe(el: HTMLElement, styleKeyMap: Record<string, string>) {
   const callback = () => {
     for (const [key, value] of Object.entries(styleKeyMap)) {
       if (!(value in this)) continue
-      console.log(getComputedStyle(el).getPropertyValue(key))
       this[value] = getComputedStyle(el).getPropertyValue(key)
     }
   }

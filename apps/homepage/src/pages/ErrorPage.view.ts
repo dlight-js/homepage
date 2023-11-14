@@ -1,10 +1,21 @@
 import { VStack, Spacer, Navigator } from "@dlightjs/components"
-import { Env, View, required } from "@dlightjs/dlight"
+import { Env, Prop, View, required } from "@dlightjs/dlight"
 import { type Typed, div, button, Pretty } from "@dlightjs/types"
 
+interface ErrorPageProps {
+  errorInfo: string
+  btnText: string
+  btnEvent: () => void
+}
+
 @View
-class ErrorPage {
+class ErrorPage implements ErrorPageProps {
   @Env navigator: Navigator = required
+  @Prop errorInfo: string = "🥲 Sorry, there is no content here."
+  @Prop btnText: string = "back to home"
+  @Prop btnEvent = () => {
+    this.navigator.to("/")
+  }
 
   Body() {
     VStack()
@@ -13,17 +24,13 @@ class ErrorPage {
       .alignment("center")
     {
       Spacer()
-      div("🥲 Sorry, there is no content here.")
+      div(this.errorInfo)
         .className("text-2xl py-8")
-      button("back to home")
-        .className("text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900")
-        .onclick(() => {
-          console.log(this.navigator)
-          this.navigator.to("/")
-        })
+      button(this.btnText)
+        .onclick(this.btnEvent)
       Spacer()
     }
   }
 }
 
-export default ErrorPage as Pretty as Typed
+export default ErrorPage as Pretty as Typed<ErrorPageProps>

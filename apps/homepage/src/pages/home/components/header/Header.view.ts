@@ -13,7 +13,7 @@ import ShortHeaderMenuIcon from "./ShortHeaderMenuIcon.view"
 interface HeaderProps {
   handleClickNav: (tabKey: string) => void
   themeType: string
-  isNeedAnimation: boolean
+  isNeedAnimation?: boolean
   handleChangeTitleStyle: (value: boolean) => void
 }
 
@@ -26,7 +26,7 @@ class Header implements HeaderProps {
   @Env i18n: any = required
   @Prop handleClickNav = required
   @Prop themeType = required
-  @Prop isNeedAnimation = required
+  @Prop isNeedAnimation = false
   @Prop handleChangeTitleStyle = required
   navBtn = HeaderData
   style2 = !this.isNeedAnimation
@@ -36,7 +36,6 @@ class Header implements HeaderProps {
 
   didMount() {
     window.onscroll = this.isNeedAnimation ? this.listenScroll : null
-    console.log(this.navBtn)
   }
 
   willUnmount() {
@@ -65,7 +64,6 @@ class Header implements HeaderProps {
 
   listenWindowWidth() {
     if (this.windowWidth > 818 && this.isShowMenu) {
-      console.log(this.isShowMenu, "listenWindowWidth")
       this.isShowMenu = false
     }
   }
