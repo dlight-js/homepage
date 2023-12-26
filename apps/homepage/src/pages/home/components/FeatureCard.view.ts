@@ -50,7 +50,7 @@ class FeatureCard implements FeatureCardProps {
     justify-content: center;
     height: ${getSize(350)};
     border-radius: 15px;
-    background-color: ${this.theme.secondaryBgColor};
+    background-color: ${this.theme.featureCardColor};
     ${this.themeType === "dark" ? "box-shadow: 0 0 15px -3px #ABA0C0;" : ""}
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: ${this.theme.primaryTextColor};

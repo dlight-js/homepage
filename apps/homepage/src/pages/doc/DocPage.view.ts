@@ -2,7 +2,6 @@ import { View, Env, required, env, Watch } from "@dlightjs/dlight"
 import { Pretty, Typed, div } from "@dlightjs/types"
 import DlightDoc from "dlight-doc"
 import { css } from "@iandx/easy-css"
-import FileStructure from "./FileStructure.view"
 import { findCertainFile, flatFileStructureData } from "../../utils/utilFunc"
 import { FileMap } from "../../const/docsData"
 import { DocsStructureMapType } from "../../utils/types"
@@ -12,6 +11,7 @@ import { PageNavType } from "./types"
 import SideMenu from "../../common/sideMenu/SideMenu.view"
 import Skeleton from "../../common/loading/Skeleton.view"
 import ErrorPage from "../ErrorPage.view"
+import FileMenu from "./FileMenu.view"
 
 @View
 class DocPage {
@@ -20,6 +20,8 @@ class DocPage {
   @Env isShortView: boolean = required
   @Env navigator: any = required
   @Env language: any = required
+  @Env themeType: string = required
+  @Env theme: any = required
   isLoading = true
   isFail = false
   mdString: string = ""
@@ -40,19 +42,9 @@ class DocPage {
     this.menuOpenBtnEl = el
   }
 
-  closeMenu(e: any) {
-    if (e.target !== this.menuEl && e.target !== this.menuOpenBtnEl && this.isOpenMenu) {
-      this.isOpenMenu = false
-    }
+  closeMenu() {
+    this.isOpenMenu = false
   }
-
-  // willMount() {
-  //   document.addEventListener("click", this.closeMenu.bind(this))
-  // }
-
-  // willunMount() {
-  //   document.removeEventListener("click", this.closeMenu.bind(this))
-  // }
 
   // pathWatcher is a function that will be executed when the path changes
   @Watch
@@ -89,13 +81,16 @@ class DocPage {
       this.isLoading = false
     })()
 
+  @Watch
+  watchIsShortView() {
+    if (!this.isShortView) {
+      this.isOpenOutline = { value: false }
+    }
+  }
+
   hanleClickOpenMenu(e: any) {
     e.stopPropagation()
     this.isOpenMenu = true
-  }
-
-  updateOpenMenuStatus() {
-    this.isOpenMenu = !this.isOpenMenu
   }
 
   hanleClickOpenOutline() {
@@ -106,12 +101,7 @@ class DocPage {
     Header()
     env()
       .selectedName(this.selectedName)
-      // .prePage(this.prevFile)
-      // .nextPage(this.nextFile)
     {
-      // if (this.isLoading) {
-      //   Skeleton()
-      // } else {
       MenuBtn()
         .hanleClickOpenMenu(this.hanleClickOpenMenu)
         .hanleClickOpenOutline(this.hanleClickOpenOutline)
@@ -121,15 +111,15 @@ class DocPage {
       {
         if ((!this.isMobile && !this.isShortView) || (this.isShortView && this.isOpenMenu) || (this.isMobile && this.isOpenMenu)) {
           SideMenu()
-            .menuOpenBtnEl(this.menuOpenBtnEl)
             .isOpen(this.isOpenMenu)
-            .updateOpenMenuStatus(this.updateOpenMenuStatus)
+            .closeMenu(this.closeMenu)
+            .menuElement("#file-structure-wrap")
           {
             div()
+              .id("file-structure-wrap")
               .className(this.fileStructureWrapCss)
-              .element(this.menuEl)
             {
-              FileStructure()
+              FileMenu()
                 .structureData(FileMap[this.fileType])
             }
           }
@@ -157,11 +147,11 @@ class DocPage {
                 .isShowCatalogue(this.isOpenOutline.value)
                 .nextPageNav(this.nextPageNav)
                 .prePageNav(this.prePageNav)
+                .themeType(this.themeType)
             }
           }
         }
       }
-      // }
     }
   }
 
@@ -169,13 +159,14 @@ class DocPage {
     padding: 1rem;
     width: 212px;
     height: calc(100vh - 92px);
-    background-color: white;
+    background-color: ${this.theme.primaryBgColor};
     box-shadow: ${this.isOpenMenu ? "0 2px 8px 0 #A9A9A9" : ""};
     margin-top: ${this.isMobile || this.isShortView ? "-52px" : ""};
     overflow: scroll;
   `
 
   docWrapCss = css`
+    background-color: ${this.theme.primaryBgColor};
     width: ${this.isMobile || this.isShortView ? "100%" : "calc(100% - 212px)"};
     overflow-x: hidden;
     padding-left: 5%;
@@ -187,6 +178,7 @@ class DocPage {
     display: flex;
     flex-direction: row;
     overflow-x: hidden;
+    background-color: ${this.theme.primaryBgColor};
   `
 }
 

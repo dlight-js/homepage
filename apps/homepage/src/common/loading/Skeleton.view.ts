@@ -1,5 +1,5 @@
 import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, img } from "@dlightjs/types"
+import { type Typed, div, Pretty } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
 
@@ -50,17 +50,18 @@ class Skeleton implements SkeletonProps {
     animation: pulse 1s ease-in-out infinite;
   `
   pulseAnimation = css`
-        @keyframes pulse {
-    0% {
-        background-color: #CCCCCC;
+    @keyframes pulse {
+      0% {
+          background-color: #CCCCCC;
+      }
+      50% {
+          background-color: #F5F5F5;
+      }
+      100% {
+          background-color: #CCCCCC;
+      }
     }
-    50% {
-        background-color: #F5F5F5;
-    }
-    100% {
-        background-color: #CCCCCC;
-    }
-    `
+  `
 }
 
 export default Skeleton as Pretty as Typed<SkeletonProps>

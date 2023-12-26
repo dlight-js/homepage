@@ -1,4 +1,4 @@
-import { Content, Prop, View, Watch, required } from "@dlightjs/dlight"
+import { Content, Prop, View, required } from "@dlightjs/dlight"
 import { code, ContentProp, div, pre, Pretty, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import hljs from "highlight.js"

@@ -1,8 +1,20 @@
-import { View, env } from "@dlightjs/dlight"
-import { type Typed, Pretty } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, env } from "@dlightjs/types"
 import { Route, RouterSpace } from "@dlightjs/components"
-import { colors } from "./const/themes"
+import { Color, colors } from "./const/themes"
 import Home from "./pages/home/Home.view"
+
+export interface EnvType {
+  updateThemeType?: () => void
+  themeType?: string
+  theme?: Color
+  isMobile?: boolean
+  isShortView?: boolean
+  windowWidth?: number
+  i18n?: (enContent: string, zhContent: string) => string
+  language?: string
+  toogleLanguage?: () => void
+}
 
 @View
 class App {
@@ -46,7 +58,7 @@ class App {
   }
 
   Body() {
-    env()
+    env<EnvType>()
       .updateThemeType(this.updateThemeType)
       .themeType(this.themeType)
       .theme(this.theme)

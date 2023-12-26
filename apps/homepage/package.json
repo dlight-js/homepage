@@ -19,8 +19,8 @@
     "dlight-editor": "workspace:*"
   },
   "devDependencies": {
-    "@dlightjs/types": "^0.10.9",
-    "typescript": "^5.2.2",
+    "@dlightjs/types": "^0.10.10",
+    "typescript": "^5.3.2",
     "vite": "^4.5.0",
     "vite-plugin-dlight": "^0.10.6",
     "vite-plugin-easy-css": "^0.10.14"

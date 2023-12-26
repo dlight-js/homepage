@@ -3,6 +3,7 @@ import { Env, Prop, View, required } from "@dlightjs/dlight"
 import { type Typed, div, button, Pretty } from "@dlightjs/types"
 
 interface ErrorPageProps {
+  navigator: Navigator
   errorInfo: string
   btnText: string
   btnEvent: () => void

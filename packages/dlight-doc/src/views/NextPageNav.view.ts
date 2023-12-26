@@ -17,6 +17,7 @@ interface NextPageNavProps {
 @View
 class NextPageNav implements NextPageNavProps {
   @Env navigator: any = required
+  @Env theme: any = required
   @Env i18n: any = required
   @Prop nextPage = required
   @Prop prePage = required
@@ -31,7 +32,7 @@ class NextPageNav implements NextPageNavProps {
       if (this.prePage) {
         div()
           .className(this.prePageBtnCss)
-          .style({ color: this.hover1 ? "#daa172" : "#445d2a" })
+          .style({ color: this.hover1 ? "#daa172" : this.theme.primaryText })
           .onclick(() => { this.hover1 = false; this.navigator.to(this.prePage.path) })
           .onmouseenter(() => { this.hover1 = true })
           .onmouseleave(() => { this.hover1 = false })
@@ -40,7 +41,7 @@ class NextPageNav implements NextPageNavProps {
             .className(this.iconCss("prev"))
           {
             KeyboardArrowLeftFilled()
-              .color(this.hover1 ? "#daa172" : "#445d2a")
+              .color(this.hover1 ? "#daa172" : this.theme.primaryText)
           }
           div()
             .className(this.pageNavTextBtnCss)
@@ -52,7 +53,7 @@ class NextPageNav implements NextPageNavProps {
       if (this.nextPage) {
         div()
           .className(this.nextPageBtnCss)
-          .style({ color: this.hover2 ? "#daa172" : "#445d2a" })
+          .style({ color: this.hover2 ? "#daa172" : this.theme.primaryText })
           .onclick(() => { this.hover2 = false; this.navigator.to(this.nextPage.path) })
           .onmouseover(() => { this.hover2 = true })
           .onmouseleave(() => { this.hover2 = false })
@@ -67,7 +68,7 @@ class NextPageNav implements NextPageNavProps {
             .className(this.iconCss("next"))
           {
             KeyboardArrowRightFilled()
-              .color(this.hover2 ? "#daa172" : "#445d2a")
+              .color(this.hover2 ? "#daa172" : this.theme.primaryText)
           }
         }
       }
@@ -83,15 +84,17 @@ class NextPageNav implements NextPageNavProps {
     font-size: 16px;
     display: flex;
     align-items: center;
-    border: 1px solid #445d2a;
+    border: 1px solid ${this.hover1 ? "#daa172" : this.theme.primaryText};
     border-radius: 10px;
     padding: 10px;
     width: calc(80% - 30px);
     min-height: 40px;
     flex-wrap: wrap;
   `
+
   nextPageNavTextBtnCss = css`
     justify-content: flex-end;
+    border: 1px solid ${this.hover2 ? "#daa172" : this.theme.primaryText};
   `
 
   nextPageNavWrapCss = css`

@@ -3,7 +3,9 @@ import { ExmaplesCodeDataType } from "../utils/types"
 export const ExamplesCodeData: ExmaplesCodeDataType[] = [
   {
     title: "Reactivity",
+    zhName: "响应式",
     description: "",
+    path: "/examples/declare-state",
     children: [
       {
         title: "Declare State",
@@ -116,7 +118,9 @@ export default DoubleCount`,
   },
   {
     title: "Templating",
+    zhName: "模板",
     description: "",
+    path: "/examples/minimal-template",
     children: [
       {
         title: "Minimal template",
@@ -282,7 +286,9 @@ render("app", TrafficLight)`,
   },
   {
     title: "Lifecycle",
+    zhName: "生命周期",
     description: "",
+    path: "/examples/on-mount",
     children: [
       {
         title: "On mount",
@@ -346,7 +352,9 @@ render("app", Time)`,
   },
   {
     title: "Component Composition",
+    zhName: "组件组合",
     description: "",
+    path: "/examples/props",
     children: [
       {
         title: "Props",
@@ -635,7 +643,9 @@ export default UserProfile`,
   },
   {
     title: "Form Input",
+    zhName: "表单输入",
     description: "",
+    path: "/examples/input-text",
     children: [
       {
         title: "Input Text",
@@ -776,168 +786,7 @@ render("app", ColorSelect)`,
             path: "/index.ts"
           }
         ]
-      },
+      }
     ]
-  },
-  {
-    title: "Webapp Features",
-    description: "",
-    children: [
-      {
-        title: "Fetch Data",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-import fetchUser from "./fetchUser"
-
-@View
-class App {
-  isLoading
-  error
-  users
-
-  willMount() {
-    fetchUser("users")
   }
-
-  Body() {
-    if (this.isLoading) {
-      p("Fetching users...")
-    } else if (this.error) {
-      p("An error occured while fetching users")
-    } else if (this.users) {
-      ul()
-      {
-        for (const { name, picture } of this.users) {
-          li()
-          {
-            img()
-              .src(picture.thumbnail)
-              .alt("user")
-            p(name.first + " " + name.last)
-          }
-        }
-      }
-    }
-  }
-}
-render("app", App)`,
-            path: "/index.ts"
-          },
-          {
-            code: `export default async function fetchUsers(dataKey = "data", errorKey = "error", isLoadingKey = "isLoading") {
-this[isLoadingKey] = true
-try {
-  const response = await fetch("https://randomuser.me/api/?results=3")
-  const { results: users } = await response.json()
-  this[dataKey] = users
-  this[errorKey] = null
-} catch (err) {
-  this[dataKey] = null
-  this[errorKey] = err
-}
-this[isLoadingKey] = false
-}`,
-            path: "/fetchUser.ts"
-          }
-        ]
-      },
-      {
-        title: "Router Link",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-
-@View
-class Router {
-  @Env navigator
-
-  Body() {
-    ul()
-    {
-      li()
-      {
-        a("Home")
-          .onclick(() => {
-            this.navigator.to("/")
-          })
-      }
-      li()
-      {
-        a("About us")
-          .onclick(() => {
-            this.navigator.to("/about")
-          })
-      }
-    }
-  }
-}
-
-render("app", Router)`,
-            path: "/index.ts"
-          }
-        ]
-      },
-      {
-        title: "Routing",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-import { RouterSpace, Route } from "@dlightjs/components"
-import HomeView from "./Home.view"
-import AboutUsView from "./AboutUs.view"
-
-@View
-class Routing {
-  Body() {
-    RouterSpace()
-    {
-      Route("/")
-      {
-        HomeView()
-      }
-      Route("/about")
-      {
-        AboutUsView()
-      }
-    }
-  }
-}
-
-render("app", Routing)`,
-            path: "/index.ts"
-          },
-          {
-            code: `import DLight, { View } from "@dlightjs/dlight"
-
-@View
-class HomeView {
-  Body() {
-    h1("Home")
-  }
-}
-
-export default HomeView`,
-            path: "/Home.view.ts"
-          },
-          {
-            code: `import DLight, { View } from "@dlightjs/dlight"
-
-@View
-class AboutUsView {
-  Body() {
-    h1("About us")
-  }
-}
-
-export default AboutUsView`,
-            path: "/AboutUsView.view.ts"
-          }
-        ]
-      },
-    ]
-  },
 ]

@@ -2,13 +2,14 @@ import { Env, Prop, View, required } from "@dlightjs/dlight"
 import { type Typed, div, Pretty, img } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
+import { EnvType } from "../../App.view"
 
 // interface LoadingProps {
 //   data: FeatureDataType
 // }
 
 @View
-class Loading {
+class Loading implements EnvType {
   @Env navigator: Navigator = required
   @Env themeType: "light" | "dark" = required
   @Env theme: any = required

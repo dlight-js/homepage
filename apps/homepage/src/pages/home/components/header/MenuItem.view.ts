@@ -29,7 +29,7 @@ class MenuItem implements MenuItemProps {
 
   menuItemCss = css`
     color: ${this.isHover ? this.theme.green8 : this.theme.green11};
-    background-color: ${this.isHover ? this.theme.orange2 : this.theme.orange4};
+    background-color: ${this.isHover ? this.theme.homeBtnColorHover : this.theme.homeBtnColor};
     border-radius: 8px;
     padding: 10px;
     width: 150px;

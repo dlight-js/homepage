@@ -6,10 +6,18 @@ export interface Color {
   primaryTextColor: string
   secondaryTextColor: string
   tertiaryTextColor: string
+  docTextColor: string
   shadowColor: string
-  btnColor: string
+  startBtnColor: string
+  homeBtnColor: string
+  homeBtnColorHover: string
   btnTextColor: string
   codeBgColor: string
+  exampleMenuBtnColor: string
+  exampleMenuBtnHover: string
+  exampleMenuBtnTextColor: string
+  featureCardColor: string
+  introColor: string
   orange1: string
   orange2: string
   orange3: string
@@ -49,10 +57,18 @@ export const colors: Record<string, Color> = {
     primaryTextColor: "#445d2a",
     secondaryTextColor: "#445d2a",
     tertiaryTextColor: "rgba(82,110,52,0.7)",
+    docTextColor: "#445d2a",
     shadowColor: "#A9A9A9",
-    btnColor: "#fbcba5",
+    startBtnColor: "#fbcba5",
+    homeBtnColor: "#fde5d2",
+    homeBtnColorHover: "#fef2e8",
     btnTextColor: "#445d2a",
     codeBgColor: "#FAFAFA",
+    exampleMenuBtnColor: "#fef2e8",
+    exampleMenuBtnHover: "#9cc177",
+    exampleMenuBtnTextColor: "#445d2a",
+    featureCardColor: "#fde5d2",
+    introColor: "#7fa05d",
     orange1: "#fff9f4", // primaryBgColor
     orange2: "#fef2e8",
     orange3: "#feecdd",
@@ -84,16 +100,25 @@ export const colors: Record<string, Color> = {
   },
   dark: {
     text: "#000",
-    primaryBgColor: "#330172",
+    // primaryBgColor: "#330172",
+    primaryBgColor: "#1B1D24",
     pulseColor: "#330172",
-    secondaryBgColor: "#0C0119",
-    primaryTextColor: "#fff",
+    secondaryBgColor: "#1a1a1a",
+    primaryTextColor: "#ddd",
     secondaryTextColor: "#AEAEAE",
     tertiaryTextColor: "#AEAEAE",
+    docTextColor: "#ddd",
     shadowColor: "#1a1a1a",
-    btnColor: "#fff",
+    startBtnColor: "#445d2a",
+    homeBtnColor: "#daa172",
+    homeBtnColorHover: "#bb8357",
     btnTextColor: "#445d2a",
     codeBgColor: "#2B2B2B",
+    featureCardColor: "#1a1a1a",
+    exampleMenuBtnColor: "#1a1a1a",
+    exampleMenuBtnHover: "#daa172",
+    exampleMenuBtnTextColor: "#ddd",
+    introColor: "#9cc177",
     orange1: "#5c2b04",
     orange2: "#6c3a12",
     orange3: "#7c4820",

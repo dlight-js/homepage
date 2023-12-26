@@ -1,19 +1,19 @@
 import { Prop, View, required } from "@dlightjs/dlight"
 import { type Typed, Pretty } from "@dlightjs/types"
 import { DocsStructureMapType } from "../../utils/types"
-import FileName from "./FileName.view"
+import FileMenuItem from "./FileMenuItem.view"
 
-interface FileStructureProps {
+interface FileMenuProps {
   structureData: DocsStructureMapType[]
 }
 
 @View
-class FileStructure implements FileStructureProps {
+class FileMenu implements FileMenuProps {
   @Prop structureData = required
 
   Body() {
     for (const { name, zhName, path, children } of this.structureData) {
-      FileName()
+      FileMenuItem()
         .name(name)
         .zhName(zhName)
         .filePath(path)
@@ -22,4 +22,4 @@ class FileStructure implements FileStructureProps {
   }
 }
 
-export default FileStructure as Pretty as Typed<FileStructureProps>
+export default FileMenu as Pretty as Typed<FileMenuProps>

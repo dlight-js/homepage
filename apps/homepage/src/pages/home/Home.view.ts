@@ -43,17 +43,17 @@ class Home {
   }
 
   bgCss = css`
-    background: ${this.themeType === "dark" ? "linear-gradient(#330172, #000000)" : "linear-gradient(#fff9f4, #fff9f4)"};
+    /* background: ${this.themeType === "dark" ? "linear-gradient(#330172, #000000)" : "linear-gradient(#fff9f4, #fff9f4)"}; */
+    background-color: ${this.theme.primaryBgColor};
     overflow-x: hidden;
   `
 
   titleExampleWrapCss = css`
     padding: 0 ${getSize(10)};
     margin-top: ${getSize(30)};
-    display: flex;
+    display: ${this.isMobile ? "block" : "flex"};
     flex-direction: column;
     align-items: center;
-    /* align-items: flex-start; */
     justify-content: center;
     flex-wrap: wrap;
   `
@@ -65,7 +65,6 @@ class Home {
     align-items: center;
     justify-content: center;
     padding: 0 30px;
-    /* margin-top: -120px; */
   `
 }
 

@@ -10,17 +10,20 @@ interface MenuBtnProps {
   setMenuOpenBtnEl?: (el: HTMLElement) => void
   backgroundColor?: string
   limitWidth?: number
+  title?: string
 }
 
 @View
 class MenuBtn implements MenuBtnProps {
   @Env windowWidth: number = required
+  @Env i18n: any = required
   @Prop hanleClickOpenMenu = required
   @Prop hanleClickOpenOutline = required
   @Prop setMenuOpenBtnEl = required
   @Prop backgroundColor = required
   @Prop limitWidth = shortViewWidth
-  el: HTMLElement
+  @Prop title = ""
+  el: HTMLElement = null as any
   isShow: boolean = this.windowWidth < this.limitWidth
 
   didMount() {
@@ -53,7 +56,14 @@ class MenuBtn implements MenuBtnProps {
               .className(this.iconCss)
               .color("rgba(82,110,52,0.7)")
               .width(16)
-            div("Menu")
+            div(this.i18n("Menu", "菜单"))
+          }
+        }
+        if (this.title) {
+          div()
+            .className(this.titleCss)
+          {
+            div(this.title)
           }
         }
         if (this.hanleClickOpenOutline) {
@@ -61,7 +71,7 @@ class MenuBtn implements MenuBtnProps {
             .className(this.btnCss)
             .onclick(this.hanleClickOpenOutline)
           {
-            div("Outline")
+            div(this.i18n("Outline", "大纲"))
             AlignHorizontalLeftRound()
               .className(this.iconCss)
               .color("rgba(82,110,52,0.7)")
@@ -81,6 +91,12 @@ class MenuBtn implements MenuBtnProps {
     padding: 0 10px;
     box-shadow: 0 1px 5px -3px #a9a9a9;
     background-color: ${this.backgroundColor};
+  `
+
+  titleCss = css`
+    flex: 1;
+    margin: auto 10px;
+    font-weight: 600;
   `
 
   btnCss = css`

@@ -41,7 +41,8 @@ class Title implements TitleProps {
   }
 
   titleDescriptionCss = css`
-    color: ${this.theme.primaryTextColor};
+    /* color: ${this.theme.primaryTextColor}; */
+    color: ${this.theme.green9};
     font-weight: bold;
     font-size: ${getSize(50)};
     margin-top: 10px;
@@ -52,23 +53,24 @@ class Title implements TitleProps {
     font-size: ${getSize(20)};
     line-height: ${getSize(30)};
     margin-top: 10px;
-    color: ${this.theme.primaryTextColor};
+    /* color: ${this.theme.primaryTextColor}; */
+    color: ${this.theme.introColor};
     text-align: ${this.isCenterStyle ? "center" : "left"};;
   `
 
   homeStartBtnCss = css`
-    color: ${this.theme.secondaryTextColor};
-    background-color: ${this.theme.btnColor};
+    color: ${this.theme.primaryTextColor};
+    background-color: ${this.theme.startBtnColor};
     padding: 12px 12px;
     border-radius: 5px;
-    box-shadow: 1px 1px 2px ${this.theme.shadowColor};
+    box-shadow: 1px 1px 10px ${this.theme.shadowColor};
     border-width: 0;
     margin-top: 25px;
     cursor: pointer;
   `
 
   titleWrapCss = css`
-    margin: ${getSize(65)} 0 0 0;
+    margin: ${getSize(65)} 10% 0 10%;
     display: flex;
     flex-direction: column;
     /* align-items: ${this.isCenterStyle ? "center" : "flex-start"}; */
@@ -77,8 +79,6 @@ class Title implements TitleProps {
     /* width: ${getSize(500)}; */
     min-width: ${getSize(430)};
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    /* margin-right: ${this.isMobile ? "0" : "10%"}; */
-    margin-left: ${this.isCenterTitle ? "10%" : "0"};
   `
 }
 

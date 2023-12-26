@@ -9,7 +9,7 @@ interface ExampleMenuProps {
   isOpen: boolean
   selectedTitle: string
   examples: ExmaplesCodeDataType[]
-  updateModules: (modules: CodeModuleType[], title: string) => void
+  updateModules: (modules: CodeModuleType[], title: string, header: string) => void
 }
 
 @View
@@ -24,13 +24,14 @@ class ExampleMenu implements ExampleMenuProps {
 
   Body() {
     div()
-      .className(this.examplesListWrapCss)
+      .className(this.examplesListWrapCss$)
     {
       for (const example of this.examples) {
         div(example.title)
           .className(this.exmapleTitleCss)
         for (const { title, description, modules } of example.children) {
           SubExampleItem()
+            .header(example.title)
             .title(title)
             .description(description)
             .modules(modules)
@@ -41,7 +42,7 @@ class ExampleMenu implements ExampleMenuProps {
     }
   }
 
-  examplesListWrapCss = css`
+  examplesListWrapCss$ = css`
     width: 240px;
     height: calc(100vh - 100px);
     display: flex;
@@ -54,12 +55,13 @@ class ExampleMenu implements ExampleMenuProps {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     line-height: 30px;
     overflow: scroll;
-    background-color: ${this.theme.orange2};
+    background-color: ${this.theme.exampleMenuBtnColor};
+    box-shadow: ${this.isOpen ? "0 2px 8px 0 #A9A9A9" : ""};
   `
 
   exmapleTitleCss = css`
     font-size: 28px;
-    color: ${this.theme.green10};
+    color: ${this.theme.exampleMenuBtnTextColor};
     cursor: default;
     padding-bottom: 15px;
     border-bottom: solid 1px rgba(97,126,68, 0.3);

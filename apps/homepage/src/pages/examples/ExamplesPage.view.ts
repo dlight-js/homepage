@@ -59,15 +59,17 @@ class ExamplesPage {
   modules: any = this.examples[0].children![0].modules
   selectedTitle: string = this.examples[0].children![0].title
   menuOpenBtnEl: any
+  header: string = "Reactivity / " + this.selectedTitle
   endLoading = (() => {
     setTimeout(() => {
       this.isLoading = false
     }, 500)
   })()
 
-  updateModules(modules: CodeModuleType[], title: string) {
+  updateModules(modules: CodeModuleType[], title: string, header: string) {
     this.modules = modules
     this.selectedTitle = title
+    this.header = `${header} / ${title}`
     this.navigator.to(`/examples/${title.toLocaleLowerCase().replaceAll(" ", "-")}`)
   }
 
@@ -75,8 +77,13 @@ class ExamplesPage {
     this.menuOpenBtnEl = el
   }
 
-  updateOpenMenuStatus() {
-    this.isMenuOpen = !this.isMenuOpen
+  openMenu(e: any) {
+    e.stopPropagation()
+    this.isMenuOpen = true
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false
   }
 
   Body() {
@@ -86,10 +93,11 @@ class ExamplesPage {
       Header()
         .isNeedAnimation(false)
       MenuBtn()
-        .hanleClickOpenMenu(this.updateOpenMenuStatus)
+        .hanleClickOpenMenu(this.openMenu)
         .hanleClickOpenOutline(undefined)
         .setMenuOpenBtnEl(this.setMenuOpenBtnEl)
         .backgroundColor(this.theme.orange1)
+        .title(this.header)
       if (this.isLoading) {
         Loading()
       } else {
@@ -97,9 +105,9 @@ class ExamplesPage {
           .className(this.exmaplesPageWrapCss)
         {
           SideMenu()
-            .menuOpenBtnEl(this.menuOpenBtnEl)
             .isOpen(this.isMenuOpen)
-            .updateOpenMenuStatus(this.updateOpenMenuStatus)
+            .closeMenu(this.closeMenu)
+            .menuElement(".examples-list-wrap-css")
           {
             ExampleMenu()
               .isOpen(this.isMenuOpen)
@@ -110,7 +118,7 @@ class ExamplesPage {
           div()
             .className(this.dlightEditorWrapCss)
           {
-            NewPlayGround()
+            (NewPlayGround as Pretty as Typed<NewPlayGroundProps>)()
               .modules(this.modules)
               .isVertical(this.isShortView)
           }
@@ -120,7 +128,7 @@ class ExamplesPage {
   }
 
   exampleBgCss = css`
-    background-color: ${this.theme.orange1};
+    background-color: ${this.theme.primaryBgColor};
     height: 100vh;
   `
 
