@@ -1,8 +1,7 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { div, Pretty, Typed } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { div, Env, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import Resizer, { OnDragFunc } from "./Resizer.view"
 import { Color, dividerWidth } from "../../utils/const"
-import { HStack, Spacer } from "@dlightjs/components"
 import { css } from "@iandx/easy-css"
 
 interface VerticalResizerProps {
@@ -49,28 +48,26 @@ class VerticalResizer implements VerticalResizerProps {
   }
 
   /** @func */
-  Body() {
+  View() {
     Resizer()
       .onDrag(this.handleDrag)
       .axis("y")
     {
       div()
-        .className(this.resizerCss)
-        .onmouseover(this.onMouseOver)
-        .onmousedown(this.onMouseDown)
-        .onmouseout(this.onMouseOut)
+        .class(this.resizerCss)
+        .onMouseOver(this.onMouseOver)
+        .onMouseDown(this.onMouseDown)
+        .onMouseOut(this.onMouseOut)
       {
-        HStack()
-          .alignment("top")
+        div()
+          .class(this.rowDisplayCss)
         {
-          Spacer()
           div(".")
-            .className(this.dotCss)
+            .class(this.dotCss)
           div(".")
-            .className(this.dotCss)
+            .class(this.dotCss)
           div(".")
-            .className(this.dotCss)
-          Spacer()
+            .class(this.dotCss)
         }
       }
     }
@@ -90,6 +87,14 @@ class VerticalResizer implements VerticalResizerProps {
     background-color: ${this.hover !== 0 ? "#0077be" : this.theme.secondary};
     text-align: center;
     overflow: auto;
+  `
+
+  rowDisplayCss = css`
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
   `
 }
 

@@ -1,6 +1,6 @@
-import { Content, Env, Prop, View, required, Watch, env } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { MarkitView, addBlockRule } from "@dlightjs/markit"
-import { ContentProp, div, Pretty, Typed } from "@dlightjs/types"
+import { Content, ContentProp, div, Env, env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
 import "highlight.js/styles/github.css"
 import { css } from "@iandx/easy-css"
 import { AdvantageBlock, HeadingBlock } from "./blocks"
@@ -59,7 +59,7 @@ interface DlightDocProps {
 @View
 class DlightDoc implements DlightDocProps {
   @Env path: any
-  @Prop @Content content: any = required
+  @Content content: any = required
   @Prop title = required
   @Prop isShowCatalogue = required
   @Prop nextPageNav = required
@@ -87,10 +87,6 @@ class DlightDoc implements DlightDocProps {
 
   willMount() {
     document.addEventListener("click", this.closeCatalogue.bind(this), { capture: true })
-  }
-
-  willunMount() {
-    document.removeEventListener("click", this.closeCatalogue.bind(this))
   }
 
   getAst = (ast: any) => {
@@ -163,22 +159,23 @@ class DlightDoc implements DlightDocProps {
   willUnmount() {
     this.markitViewEl.removeEventListener("scroll", this.handleScroll)
     window.removeEventListener("resize", this.handleWindowResize)
+    document.removeEventListener("click", this.closeCatalogue.bind(this))
   }
 
-  Body() {
+  View() {
     env()
       .theme(this.theme)
     {
       div()
-        .className(this.dlightDocWrap)
+        .class(this.dlightDocWrap)
         .element(this.markitViewEl)
       {
         div()
-          .className(this.dlightContentWrap)
+          .class(this.dlightContentWrap)
         {
           div(this.title)
-            .className(this.dlightDocTitleCss)
-          MarkitView(this.content)
+            .class(this.dlightDocTitleCss)
+          MarkitView(this.content ?? "")
             .getAst(this.getAst)
           NextPageNav()
             .nextPage(this.nextPageNav)
@@ -186,10 +183,10 @@ class DlightDoc implements DlightDocProps {
         }
         if (this.isShowCatalogueInner || this.isShowCatalogue) {
           div()
-            .className(this.isShowCatalogue && !this.isShowCatalogueInner ? "" : this.dlightDocCatalogueWidthCss)
+            .class(this.isShowCatalogue && !this.isShowCatalogueInner ? "" : this.dlightDocCatalogueWidthCss)
           {
             div()
-              .className(this.fixCatalogueCss)
+              .class(this.fixCatalogueCss)
               .element(this.catalogueEl)
             {
               CatalogueView(this.docAst.filter(paragraph => paragraph.type === "Heading"))

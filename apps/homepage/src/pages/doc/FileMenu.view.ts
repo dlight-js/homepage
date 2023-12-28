@@ -1,5 +1,5 @@
-import { Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, Pretty } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, Prop, required } from "@dlightjs/types"
 import { DocsStructureMapType } from "../../utils/types"
 import FileMenuItem from "./FileMenuItem.view"
 
@@ -11,13 +11,15 @@ interface FileMenuProps {
 class FileMenu implements FileMenuProps {
   @Prop structureData = required
 
-  Body() {
-    for (const { name, zhName, path, children } of this.structureData) {
-      FileMenuItem()
-        .name(name)
-        .zhName(zhName)
-        .filePath(path)
-        .children(children)
+  View() {
+    if (this.structureData) {
+      for (const { name, zhName, path, children } of this.structureData) {
+        FileMenuItem()
+          .name(name)
+          .zhName(zhName)
+          .filePath(path)
+          .children(children)
+      }
     }
   }
 }

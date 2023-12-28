@@ -1,5 +1,5 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, img, Pretty, div, button, h2 } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, img, Pretty, div, button, h2, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 
 interface ExampleResultProps {
@@ -19,12 +19,12 @@ class ExampleResult implements ExampleResultProps {
   @Prop incrementDoubleCount: () => void = required
   isDark = this.themeType === "dark"
 
-  Body() {
+  View() {
     div()
-      .className(this.exampleResultWrapCss)
+      .class(this.exampleResultWrapCss)
     {
       div()
-        .className(this.horizontalCss)
+        .class(this.horizontalCss)
       {
         img()
           .src("/imgs/logo-leading-png.svg")
@@ -40,11 +40,11 @@ class ExampleResult implements ExampleResultProps {
           })
       }
       button("Count++")
-        .onclick(this.incrementCount)
-        .className(this.beautifulBtn$)
+        .onClick(this.incrementCount)
+        .class(this.beautifulBtn$)
       button("DoubleCount++")
-        .onclick(this.incrementDoubleCount)
-        .className(this.beautifulBtn$)
+        .onClick(this.incrementDoubleCount)
+        .class(this.beautifulBtn$)
       div(`DoubleCount: ${this.doubleCount}`)
         .style({
           fontSize: "20px",

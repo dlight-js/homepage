@@ -1,5 +1,5 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { div, Pretty, Typed } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { div, Env, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import { Color } from "../../utils/const"
 
 interface ResultProps {
@@ -13,7 +13,7 @@ class Result {
   @Env theme: Color = required
 
   /** @view */
-  Body() {
+  View() {
     div()
       .id(`app-${this.mountId}`)
       .style({

@@ -1,5 +1,5 @@
-import { View, Env, required, env, Watch } from "@dlightjs/dlight"
-import { Pretty, Typed, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { Env, Pretty, Typed, Watch, div, env, required, tr } from "@dlightjs/types"
 import DlightDoc from "dlight-doc"
 import { css } from "@iandx/easy-css"
 import { findCertainFile, flatFileStructureData } from "../../utils/utilFunc"
@@ -48,38 +48,39 @@ class DocPage {
 
   // pathWatcher is a function that will be executed when the path changes
   @Watch
-    pathWatcher = (() => {
-      this.isLoading = true
-      this.isFail = false
-      const [fileData, fileIndex] = findCertainFile({ mapData: this.flatfileData, filePath: "/" + this.path })
-      const filePath = `/${this.path}${fileData?.children ? "/index.md" : ".md"}`
-      this.nextPageNav = fileIndex < this.flatfileData.length - 1
-        ? {
-            name: this.flatfileData[fileIndex + 1].name,
-            zhName: this.flatfileData[fileIndex + 1].zhName,
-            path: this.flatfileData[fileIndex + 1].path
-          }
-        : undefined
-      this.prePageNav = fileIndex > 0
-        ? {
-            name: this.flatfileData[fileIndex - 1].name,
-            zhName: this.flatfileData[fileIndex - 1].zhName,
-            path: this.flatfileData[fileIndex - 1].path
-          }
-        : undefined
+  pathWatcher() {
+    this.isLoading = true
+    this.isFail = false
+    const [fileData, fileIndex] = findCertainFile({ mapData: this.flatfileData, filePath: "/" + this.path })
+    const filePath = this.path.startsWith("docs/") ? `/${this.path}${fileData?.children ? "/index.md" : ".md"}` : ""
+    this.nextPageNav = fileIndex < this.flatfileData.length - 1
+      ? {
+          name: this.flatfileData[fileIndex + 1].name,
+          zhName: this.flatfileData[fileIndex + 1].zhName,
+          path: this.flatfileData[fileIndex + 1].path
+        }
+      : undefined
+    this.prePageNav = fileIndex > 0
+      ? {
+          name: this.flatfileData[fileIndex - 1].name,
+          zhName: this.flatfileData[fileIndex - 1].zhName,
+          path: this.flatfileData[fileIndex - 1].path
+        }
+      : undefined
+    if (filePath !== "") {
       fetch(this.language === "en" ? filePath : filePath.split("docs")[0] + "docs/zh" + filePath.split("docs")[1])
         .then(async data => {
-          if (!data.ok) {
-            throw new Error("not found")
-          } else {
+          if (data.ok) {
             return await data.text()
           }
+          return ""
         })
         .then(text => { this.mdString = text })
-        .catch(err => { console.log(err); this.isFail = true })
-      this.selectedName = fileData?.name ?? ""
-      this.isLoading = false
-    })()
+        .catch(() => { this.isFail = true })
+    }
+    this.selectedName = fileData?.name ?? ""
+    this.isLoading = false
+  }
 
   @Watch
   watchIsShortView() {
@@ -97,7 +98,7 @@ class DocPage {
     this.isOpenOutline = { value: true }
   }
 
-  Body() {
+  View() {
     Header()
     env()
       .selectedName(this.selectedName)
@@ -107,7 +108,7 @@ class DocPage {
         .hanleClickOpenOutline(this.hanleClickOpenOutline)
         .setMenuOpenBtnEl(this.setMenuOpenBtnEl)
       div()
-        .className(this.rowFlexCss)
+        .class(this.rowFlexCss)
       {
         if ((!this.isMobile && !this.isShortView) || (this.isShortView && this.isOpenMenu) || (this.isMobile && this.isOpenMenu)) {
           SideMenu()
@@ -117,7 +118,7 @@ class DocPage {
           {
             div()
               .id("file-structure-wrap")
-              .className(this.fileStructureWrapCss)
+              .class(this.fileStructureWrapCss)
             {
               FileMenu()
                 .structureData(FileMap[this.fileType])
@@ -126,7 +127,7 @@ class DocPage {
         }
         div()
           .element(this.scrollView)
-          .className(this.docWrapCss)
+          .class(this.docWrapCss)
         {
           if (this.isFail) {
             ErrorPage()
@@ -160,7 +161,7 @@ class DocPage {
     width: 212px;
     height: calc(100vh - 92px);
     background-color: ${this.theme.primaryBgColor};
-    box-shadow: ${this.isOpenMenu ? "0 2px 8px 0 #A9A9A9" : ""};
+    box-shadow: ${this.isOpenMenu ? `0 2px 8px 0 ${this.theme.exampleMenuShadowColor}` : ""};
     margin-top: ${this.isMobile || this.isShortView ? "-52px" : ""};
     overflow: scroll;
   `

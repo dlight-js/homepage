@@ -1,5 +1,5 @@
-import { Content, Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, button, div, Pretty, ContentProp } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, button, div, Pretty, ContentProp, Content, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import MenuItem from "./MenuItem.view"
 import { Navigator } from "@dlightjs/components"
@@ -16,7 +16,7 @@ class NavButton implements NavButtonProps {
   @Env i18n: any = required
   @Env navigator: Navigator = required
   @Env theme: any = required
-  @Prop @Content content: any = required
+  @Content content: any = required
   @Prop handleClickNav = required
   @Prop structureData = required
 
@@ -24,27 +24,27 @@ class NavButton implements NavButtonProps {
   isMenuHover = false
   isShowHoverMenu = !!this.structureData
 
-  Body() {
+  View() {
     div()
-      .className(this.wrapCss)
+      .class(this.wrapCss)
     {
       button(this.content)
-        .className(this.navBtnCss)
-        .onclick(this.handleClickNav)
-        .onmouseenter(() => { this.isHover = true })
-        .onmouseleave(() => { setTimeout(() => { this.isHover = false }, 100) })
+        .class(this.navBtnCss)
+        .onClick(this.handleClickNav)
+        .onMouseEnter(() => { this.isHover = true })
+        .onMouseLeave(() => { setTimeout(() => { this.isHover = false }, 100) })
       // if (this.isShowHoverMenu) {
       //   div()
-      //     .className(this.iconCss)
+      //     .class(this.iconCss)
       //   {
       //     KeyboardArrowDownRound()
       //   }
       // }
       if (this.isShowHoverMenu && (this.isMenuHover || this.isHover)) {
         div()
-          .className(this.hoverMenuWrapCss)
-          .onmouseenter(() => { this.isMenuHover = true; this.isHover = true })
-          .onmouseleave(() => { this.isMenuHover = false; this.isHover = false })
+          .class(this.hoverMenuWrapCss)
+          .onMouseEnter(() => { this.isMenuHover = true; this.isHover = true })
+          .onMouseLeave(() => { this.isMenuHover = false; this.isHover = false })
         {
           for (const { name, zhName, title, path } of this.structureData) {
             MenuItem()

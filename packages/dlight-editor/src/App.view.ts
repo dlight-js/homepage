@@ -13,7 +13,7 @@ class App {
     this.theme = colors[this.toggle ? "dark" : "light"]
   }
 
-  Body() {
+  View() {
     div()
     {
       Playground()
@@ -37,8 +37,8 @@ class App {
           path: "/wrapper.ts"
         }
         ])
-        // .height("700px")
-        // .width("900px")
+      // .height("700px")
+      // .width("900px")
         .themeType(this.toggle ? "dark" : "light")
     }
   }

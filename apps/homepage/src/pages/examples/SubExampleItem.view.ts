@@ -1,5 +1,5 @@
-import { Env, Prop, View, Watch, required } from "@dlightjs/dlight"
-import { type Typed, Pretty, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, div, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { CodeModuleType } from "../../utils/types"
 import { Navigator } from "@dlightjs/components"
@@ -29,32 +29,20 @@ class SubExampleItem implements SubExampleItemProps {
   isHover = false
   isSelected = this.selectedTitle === this.title
 
-  @Watch
-  pathWatcher() {
-    if (this.path.includes(this.mutatedTitle) && !this.isSelected) {
-      this.isSelected = true
-      this.updateModules(this.modules, this.title, this.header)
-      const el = document.getElementById(this.mutatedTitle)
-      if (el) {
-        el.scrollIntoView()
-      }
-    }
-  }
-
-  Body() {
+  View() {
     div()
       .id(this.mutatedTitle)
-      .className(this.subExampleWrapCss)
-      .onmouseenter(() => { this.isHover = true })
-      .onmouseleave(() => { this.isHover = false })
-      .onclick(() => {
+      .class(this.subExampleWrapCss)
+      .onMouseEnter(() => { this.isHover = true })
+      .onMouseLeave(() => { this.isHover = false })
+      .onClick(() => {
         this.updateModules(this.modules, this.title, this.header)
       })
     {
       div(this.title)
-        .className(this.exmapleSubTitleCss)
+        .class(this.exmapleSubTitleCss)
       div(this.description)
-        .className(this.exmapleSubDecriptionCss)
+        .class(this.exmapleSubDecriptionCss)
     }
   }
 

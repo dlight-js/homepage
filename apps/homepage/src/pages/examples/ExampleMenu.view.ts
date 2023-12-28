@@ -1,5 +1,5 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, Pretty, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, div, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import SubExampleItem from "./SubExampleItem.view"
 import { Navigator } from "@dlightjs/components"
@@ -22,13 +22,13 @@ class ExampleMenu implements ExampleMenuProps {
   @Prop updateModules = required
   @Prop selectedTitle = required
 
-  Body() {
+  View() {
     div()
-      .className(this.examplesListWrapCss$)
+      .class(this.examplesListWrapCss$)
     {
       for (const example of this.examples) {
         div(example.title)
-          .className(this.exmapleTitleCss)
+          .class(this.exmapleTitleCss)
         for (const { title, description, modules } of example.children) {
           SubExampleItem()
             .header(example.title)
@@ -51,7 +51,7 @@ class ExampleMenu implements ExampleMenuProps {
     justify-content: flex-start;
     border-radius: 4px;
     padding: 20px 10px;
-    margin-top: ${this.isOpen ? "-52px" : ""};
+    margin-top: ${this.isOpen ? "-52px" : "0px"};
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     line-height: 30px;
     overflow: scroll;

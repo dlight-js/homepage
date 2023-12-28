@@ -18,6 +18,7 @@ export interface Color {
   exampleMenuBtnTextColor: string
   featureCardColor: string
   introColor: string
+  exampleMenuShadowColor: string
   orange1: string
   orange2: string
   orange3: string
@@ -69,6 +70,7 @@ export const colors: Record<string, Color> = {
     exampleMenuBtnTextColor: "#445d2a",
     featureCardColor: "#fde5d2",
     introColor: "#7fa05d",
+    exampleMenuShadowColor: "#A9A9A9",
     orange1: "#fff9f4", // primaryBgColor
     orange2: "#fef2e8",
     orange3: "#feecdd",
@@ -118,6 +120,7 @@ export const colors: Record<string, Color> = {
     exampleMenuBtnColor: "#1a1a1a",
     exampleMenuBtnHover: "#daa172",
     exampleMenuBtnTextColor: "#ddd",
+    exampleMenuShadowColor: "#aeaeae",
     introColor: "#9cc177",
     orange1: "#5c2b04",
     orange2: "#6c3a12",

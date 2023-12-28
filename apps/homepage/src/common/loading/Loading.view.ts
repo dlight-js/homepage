@@ -1,9 +1,9 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, img } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, div, Pretty, img, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
 import { EnvType } from "../../App.view"
-
+import clsx from "clsx"
 // interface LoadingProps {
 //   data: FeatureDataType
 // }
@@ -16,23 +16,21 @@ class Loading implements EnvType {
   @Env i18n: any = required
   @Prop data = required
 
-  Body() {
+  View() {
     div()
-      .className(this.loadingWrapCss)
+      .class(this.loadingWrapCss)
     {
       div()
-        .className(this.ballWrapCss)
+        .class(this.ballWrapCss)
       {
         div()
-          .className(this.ballCss)
-          .className(this.ballLeftCss)
+          .class(clsx(this.ballCss, this.ballLeftCss))
         div()
-          .className(this.ballCss)
-          .className(this.ballRightCss)
+          .class(clsx(this.ballCss, this.ballRightCss))
       }
       img()
         .src("/imgs/D.svg")
-        .className(this.imgCss)
+        .class(this.imgCss)
     }
   }
 

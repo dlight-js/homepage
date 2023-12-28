@@ -1,5 +1,5 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, Pretty, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, div, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
 
@@ -17,12 +17,12 @@ class MenuItem implements MenuItemProps {
 
   isHover = false
 
-  Body() {
+  View() {
     div(this.name)
-      .className(this.menuItemCss)
-      .onmouseover(() => { this.isHover = true })
-      .onmouseleave(() => { this.isHover = false })
-      .onclick(() => {
+      .class(this.menuItemCss)
+      .onMouseOver(() => { this.isHover = true })
+      .onMouseLeave(() => { this.isHover = false })
+      .onClick(() => {
         this.navigator.to(this.path)
       })
   }

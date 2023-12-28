@@ -17,7 +17,7 @@ import Name from "./Name.view"
 
 @View
 class MyComp {
-  Body() {
+  View() {
     Name()
   }
 }
@@ -31,7 +31,7 @@ render("app", MyComp)`,
 class Name {
   name = "John"
 
-  Body() {
+  View() {
     h1(this.name)
   }
 }
@@ -51,7 +51,7 @@ import Name from "./Name.view"
 
 @View
 class MyComp {
-  Body() {
+  View() {
     Name()
   }
 }
@@ -69,7 +69,7 @@ class Name {
     this.name = "Jane"
   }
 
-  Body() {
+  View() {
     h1(this.name)
   }
 }
@@ -89,7 +89,7 @@ import DoubleCount from "./DoubleCount.view"
 
 @View
 class MyComp {
-  Body() {
+  View() {
     DoubleCount()
   }
 }
@@ -104,7 +104,7 @@ class DoubleCount {
   count = 10
   doubleCount = this.count * 2
 
-  Body() {
+  View() {
     div(this.doubleCount)
   }
 }
@@ -123,7 +123,7 @@ export default DoubleCount`,
     path: "/examples/minimal-template",
     children: [
       {
-        title: "Minimal template",
+        title: "Minimal Template",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
@@ -131,7 +131,7 @@ export default DoubleCount`,
 
 @View
 class HelloWorld {
-  Body() {
+  View() {
     h1("hello world")
   }
 }
@@ -149,7 +149,7 @@ render("app", HelloWorld)`,
 
 @View
 class CssStyle {
-  Body() {
+  View() {
     button("I am a button")
   }
 }
@@ -170,7 +170,7 @@ render("app", CssStyle)`,
 class Colors {
   colors = ["red", "green", "blue"]
 
-  Body() {
+  View() {
     ul()
     {
       for (const color of this.colors) {
@@ -186,7 +186,7 @@ render("app", Colors)`,
         ]
       },
       {
-        title: "Event click",
+        title: "Event Click",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
@@ -196,10 +196,10 @@ render("app", Colors)`,
 class Counter {
   count = 0
 
-  Body() {
+  View() {
     p(this.count)
     button("+1")
-      .onclick(() => {
+      .onClick(() => {
         this.count++
       })
   }
@@ -211,7 +211,7 @@ render("app", Counter)`,
         ]
       },
       {
-        title: "Dom ref",
+        title: "Dom Ref",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
@@ -225,7 +225,7 @@ class InputFocused {
     this.inputElement.value = 500
   }
 
-  Body() {
+  View() {
     input()
       .type("text")
       .element(this.inputElement)
@@ -259,9 +259,9 @@ class TrafficLight {
     }
   }
 
-  Body() {
+  View() {
     button("Next light")
-      .onclick(this.nextLight)
+      .onClick(this.nextLight)
     p(this.light)
     p()
     {
@@ -291,7 +291,7 @@ render("app", TrafficLight)`,
     path: "/examples/on-mount",
     children: [
       {
-        title: "On mount",
+        title: "On Mount",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
@@ -305,7 +305,7 @@ class PageTitle {
     this.pageTitle = document.title
   }
 
-  Body() {
+  View() {
     p(this.pageTitle)
   }
 }
@@ -316,7 +316,7 @@ render("app", PageTitle)`,
         ]
       },
       {
-        title: "On unmount",
+        title: "On Unmount",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
@@ -337,7 +337,7 @@ class Time {
     clearInterval(this.timer)
   }
 
-  Body() {
+  View() {
     span("Current time: ")
     span(this.time)
   }
@@ -366,7 +366,7 @@ import UserProfile from "./UserProfile.view"
 
 @View
 class App {
-  Body() {
+  View() {
     UserProfile()
       .name("John")
       .age(20)
@@ -387,7 +387,7 @@ class UserProfile {
   @Prop favouriteColors = []
   @Prop isAvailable = false
 
-  Body() {
+  View() {
     div()
     {
       span("My name is ")
@@ -417,7 +417,7 @@ export default UserProfile`,
         ]
       },
       {
-        title: "Emit to Parent",
+        title: "Emit To Parent",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
@@ -436,7 +436,7 @@ class App {
     this.canCome = true
   }
 
-  Body() {
+  View() {
     p("Are you happy?")
     AnswerButton()
       .onYes(this.onAnswerYes)
@@ -456,11 +456,11 @@ class AnswerButton {
   @Prop onYes
   @Prop onNo
 
-  Body() {
+  View() {
     button("yes")
-      .onclick(this.onYes)
+      .onClick(this.onYes)
     button("NO")
-      .onclick(this.onNo)
+      .onClick(this.onNo)
   }
 }
 
@@ -479,7 +479,7 @@ import FunnyButton from "./FunnyButton.view"
 
 @View
 class App {
-  Body() {
+  View() {
     FunnyButton()
     {
       "Click me!"
@@ -497,7 +497,7 @@ render("app", App)`,
 @View
 class FunnyButton {
   @Children children
-  Body() {
+  View() {
     button()
       .style({
         background: "rgba(0, 0, 0, 0.4)",
@@ -532,7 +532,7 @@ import FunnyButton from "./FunnyButton.view"
 
 @View
 class App {
-  Body() {
+  View() {
     FunnyButton()
     {
       "I got content!"
@@ -551,7 +551,7 @@ render("app", App)`,
 @View
 class FunnyButton {
   @Children children
-  Body() {
+  View() {
     button()
       .style({
         background: "rgba(0, 0, 0, 0.4)",
@@ -600,7 +600,7 @@ class App {
     this.user = { ...this.user, userName: newUserName }
   }
 
-  Body() {
+  View() {
     h1("Welcome back, " + this.user.userName)
     env()
       .user(this.user)
@@ -622,14 +622,14 @@ class UserProfile {
   @Env user
   @Env updateUsername
 
-  Body() {
+  View() {
     div()
     {
       h2("My Profile")
       p("Username: " + this.user.username)
       p("Email: " + this.user.email)
       button("Update username to Jane")
-        .onclick(() => this.updateUsername("Jane"))
+        .onClick(() => this.updateUsername("Jane"))
     }
   }
 }
@@ -658,7 +658,7 @@ export default UserProfile`,
 class InputHello {
   text = "Hello world"
 
-  Body() {
+  View() {
     input()
       .value(this.text)
       .oninput(e => {
@@ -684,7 +684,7 @@ render("app", InputHello)`,
 class IsAvailable {
   isAvailable = false
 
-  Body() {
+  View() {
     input(this.text)
       .type("checkbox")
       .id("is-available")
@@ -715,7 +715,7 @@ class PickPill {
     this.picked = event.target.value
   }
 
-  Body() {
+  View() {
     div()
     {
       span("Picked: ")
@@ -768,7 +768,7 @@ class ColorSelect {
     { id: 4, text: "gray", isDisabled: true }
   ]
 
-  Body() {
+  View() {
     select()
       .value(this.selectedColorId)
       .onchange(e => { this.selectedColorId = e.target.value })

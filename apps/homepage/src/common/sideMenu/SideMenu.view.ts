@@ -1,5 +1,5 @@
-import { Env, Prop, View, required, Children, Watch } from "@dlightjs/dlight"
-import { type Typed, div, Pretty } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, div, Pretty, Children, Env, Prop, Watch, required } from "@dlightjs/types"
 import { Navigator } from "@dlightjs/components"
 import { css } from "@iandx/easy-css"
 import { shortViewWidth } from "../../const/pageSetting"
@@ -13,7 +13,6 @@ interface SideMenuProps {
 
 @View
 class SideMenu implements SideMenuProps {
-  @Children children: any
   @Env navigator: Navigator = required
   @Env themeType: "light" | "dark" = required
   @Env isShortView: boolean = required
@@ -24,6 +23,7 @@ class SideMenu implements SideMenuProps {
   @Prop isOpen = false
   @Prop closeMenu = required
   @Prop menuElement = ""
+  @Children children: any
   isShortStyle = false
 
   closeMenuWhenClickOutside(e: any) {
@@ -53,9 +53,9 @@ class SideMenu implements SideMenuProps {
     window.removeEventListener("click", this.closeMenuWhenClickOutside.bind(this))
   }
 
-  Body() {
+  View() {
     div()
-      .className(this.sideMenuWrapCss)
+      .class(this.sideMenuWrapCss)
     {
       if (!this.isShortStyle || this.isOpen) {
         this.children

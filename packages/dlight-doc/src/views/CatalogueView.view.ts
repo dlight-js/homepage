@@ -1,7 +1,8 @@
-import { Content, Env, Prop, required, View } from "@dlightjs/dlight"
-import { a, ContentProp, div, Pretty, Typed } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { a, Content, ContentProp, div, Env, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import { InlineRenderer } from "@dlightjs/markit"
 import { css } from "@iandx/easy-css"
+import clsx from "clsx"
 
 interface CatalogueViewProps {
   content: ContentProp
@@ -15,27 +16,26 @@ interface CatalogueViewProps {
 class CatalogueView implements CatalogueViewProps {
   @Env i18n: any = required
   @Env theme: any = required
-  @Prop @Content content: any = required
+  @Content content: any = required
   @Prop currentIndex = required
   @Prop isShowShadow = required
   @Prop updateCurrentIndex = required
   @Prop scrollToTop = required
 
-  Body() {
+  View() {
     div(this.i18n("To Top", "置顶"))
       .style({ textDecoration: "underline", fontWeight: 600, cursor: "pointer", width: "max-content" })
-      .className(this.dlightDocHeadingLinkCss(-1))
-      .onclick(this.scrollToTop)
+      .class(this.dlightDocHeadingLinkCss(-1))
+      .onClick(this.scrollToTop)
     for (const [index, heading] of this.content.entries()) {
       for (const item of heading.content) {
         a()
           .href(`#${item.content}`)
-          .onclick((e) => {
+          .onClick((e) => {
             e.stopPropagation()
             this.updateCurrentIndex(index)
           })
-          .className(this.dlightDocHeadingLinkCss(index))
-          .className(heading.props.headingLevel > 1 ? this.dlightDocSecondaryHeadCss : this.dlightDocPrimaryHeadCss)
+          .class(clsx(this.dlightDocHeadingLinkCss(index), heading.props.headingLevel > 1 ? this.dlightDocSecondaryHeadCss : this.dlightDocPrimaryHeadCss))
         {
           InlineRenderer[item.type](item.content)
             .props(item.props)

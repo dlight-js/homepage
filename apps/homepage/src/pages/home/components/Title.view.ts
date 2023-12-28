@@ -1,5 +1,5 @@
-import { Env, View, required } from "@dlightjs/dlight"
-import { div, button, Pretty, Typed } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { div, button, Pretty, Typed, Env, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { getSize } from "../../../utils/utilFunc"
 import { Navigator } from "@dlightjs/components"
@@ -26,17 +26,17 @@ class Title implements TitleProps {
     }
   }
 
-  Body() {
+  View() {
     div()
-      .className(this.titleWrapCss)
+      .class(this.titleWrapCss)
     {
       div(this.i18n("DX-first UI Rendering Library", "开发者优先的UI渲染库"))
-        .className(this.titleDescriptionCss)
+        .class(this.titleDescriptionCss)
       div(this.i18n("Unlocking View Building in Familiar JS Syntax with an Intuitive API", "用熟悉的JS语法解锁视图构建，提供直观的API"))
-        .className(this.introDescriptionCss)
+        .class(this.introDescriptionCss)
       button(this.i18n("Get Started", "快速上手"))
-        .className(this.homeStartBtnCss)
-        .onclick(() => { this.navigator.to("./docs/getting-started") })
+        .class(this.homeStartBtnCss)
+        .onClick(() => { this.navigator.to("./docs/getting-started") })
     }
   }
 

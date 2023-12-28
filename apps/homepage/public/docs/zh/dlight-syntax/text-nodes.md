@@ -2,6 +2,6 @@
 
 ```js
 "This is a Text node"
-'This is also a Text Node"
+'This is also a Text Node'
 `Count me in ${ok}`
 ```

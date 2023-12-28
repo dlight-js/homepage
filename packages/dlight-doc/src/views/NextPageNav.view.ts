@@ -1,7 +1,8 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, div, Pretty } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, div, Pretty, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { KeyboardArrowLeftFilled, KeyboardArrowRightFilled } from "@dlightjs/material-icons"
+import clsx from "clsx"
 
 export interface PageNavType {
   name: string
@@ -25,26 +26,26 @@ class NextPageNav implements NextPageNavProps {
   hover1 = false
   hover2 = false
 
-  Body() {
+  View() {
     div()
-      .className(this.nextPageNavWrapCss)
+      .class(this.nextPageNavWrapCss)
     {
       if (this.prePage) {
         div()
-          .className(this.prePageBtnCss)
+          .class(this.prePageBtnCss)
           .style({ color: this.hover1 ? "#daa172" : this.theme.primaryText })
-          .onclick(() => { this.hover1 = false; this.navigator.to(this.prePage.path) })
-          .onmouseenter(() => { this.hover1 = true })
-          .onmouseleave(() => { this.hover1 = false })
+          .onClick(() => { this.hover1 = false; this.navigator.to(this.prePage.path) })
+          .onMouseEnter(() => { this.hover1 = true })
+          .onMouseLeave(() => { this.hover1 = false })
         {
           div()
-            .className(this.iconCss("prev"))
+            .class(this.iconCss("prev"))
           {
             KeyboardArrowLeftFilled()
               .color(this.hover1 ? "#daa172" : this.theme.primaryText)
           }
           div()
-            .className(this.pageNavTextBtnCss)
+            .class(this.pageNavTextBtnCss)
           {
             div(this.i18n(this.prePage.name, this.prePage.zhName))
           }
@@ -52,20 +53,19 @@ class NextPageNav implements NextPageNavProps {
       }
       if (this.nextPage) {
         div()
-          .className(this.nextPageBtnCss)
+          .class(this.nextPageBtnCss)
           .style({ color: this.hover2 ? "#daa172" : this.theme.primaryText })
-          .onclick(() => { this.hover2 = false; this.navigator.to(this.nextPage.path) })
-          .onmouseover(() => { this.hover2 = true })
-          .onmouseleave(() => { this.hover2 = false })
+          .onClick(() => { this.hover2 = false; this.navigator.to(this.nextPage.path) })
+          .onMouseOver(() => { this.hover2 = true })
+          .onMouseLeave(() => { this.hover2 = false })
         {
           div()
-            .className(this.pageNavTextBtnCss)
-            .className(this.nextPageNavTextBtnCss)
+            .class(clsx(this.pageNavTextBtnCss, this.nextPageNavTextBtnCss))
           {
             div(this.i18n(this.nextPage.name, this.nextPage.zhName))
           }
           div()
-            .className(this.iconCss("next"))
+            .class(this.iconCss("next"))
           {
             KeyboardArrowRightFilled()
               .color(this.hover2 ? "#daa172" : this.theme.primaryText)

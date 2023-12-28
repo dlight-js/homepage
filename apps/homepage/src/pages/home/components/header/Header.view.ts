@@ -1,5 +1,5 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, div, Pretty } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, div, Pretty, Env, Prop, required } from "@dlightjs/types"
 import NavButton from "./NavButton.view"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
@@ -66,15 +66,15 @@ class Header implements HeaderProps {
     }
   }
 
-  Body() {
+  View() {
     div()
-      .className(this.headerHeightCss)
+      .class(this.headerHeightCss)
     {
       div()
-        .className(this.headerWrapCss)
+        .class(this.headerWrapCss)
       {
         div()
-          .className(this.sectionNav)
+          .class(this.sectionNav)
         {
           ShortHeaderMenuIcon()
             .isShortHeader(this.isShortView)

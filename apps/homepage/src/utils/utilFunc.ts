@@ -21,8 +21,9 @@ export function initMap(mapData: any, basePath: string) {
 }
 
 export function flatFileStructureData(mapData: any) {
+  if (!mapData) return []
   const flatMapData: DocsStructureMapType[] = []
-  mapData.forEach((item: any) => {
+  mapData?.forEach((item: any) => {
     flatMapData.push(item)
     if (item.children) {
       flatMapData.push(...flatFileStructureData(item.children))

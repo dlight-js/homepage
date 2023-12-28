@@ -1,9 +1,10 @@
-import { Env, Prop, View, Watch, required } from "@dlightjs/dlight"
-import { type Typed, Pretty, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, div, Env, Prop, Watch, required } from "@dlightjs/types"
 import { DocsStructureMapType } from "../../utils/types"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
 import { KeyboardArrowRightFilled } from "@dlightjs/material-icons"
+import clsx from "clsx"
 
 interface FileMenuItemProps {
   name: string
@@ -45,25 +46,23 @@ class FileMenuItem implements FileMenuItemProps {
     this.navigator.to(this.filePath)
   }
 
-  Body() {
+  View() {
     div()
     {
       div()
-        .className(this.fileNameCss)
-        .onclick(this.handleClickFile)
-        .onmouseover(() => { this.isHover = true })
-        .onmouseout(() => { this.isHover = false })
+        .class(this.fileNameCss)
+        .onClick(this.handleClickFile)
+        .onMouseOver(() => { this.isHover = true })
+        .onMouseOut(() => { this.isHover = false })
       {
         div(this.i18n(this.name, this.zhName))
-          .className(this.textCss)
+          .class(this.textCss)
         if (this.children) {
           div()
-            .className(this.iconCss)
-            .className(this.iconAnimationCss)
-            .className(this.isOpen || this.isPathActive ? this.arrowDownCss : "")
+            .class(clsx(this.iconCss, this.iconAnimationCss, this.isOpen || this.isPathActive ? this.arrowDownCss : ""))
           {
             KeyboardArrowRightFilled()
-              .className(this.iconCss)
+              .class(this.iconCss)
               .height(20)
               .width(20)
               .color(this.theme.green12)
@@ -75,7 +74,7 @@ class FileMenuItem implements FileMenuItemProps {
         if (this.children) {
           for (const subItem of this.children) {
             div()
-              .className(this.subMenuCss)
+              .class(this.subMenuCss)
             {
               (FileMenuItem as Pretty as Typed<FileMenuItemProps>)()
                 .name(subItem.name)

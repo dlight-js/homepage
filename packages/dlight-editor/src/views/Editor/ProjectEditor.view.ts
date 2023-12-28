@@ -1,12 +1,12 @@
-import { Prop, required, View } from "@dlightjs/dlight"
-import { div, Pretty, Typed } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { div, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
 import { DLightProject } from "../../project/dlightProject"
-import { VStack } from "@dlightjs/components"
 import CodeEditor, { EditorStore } from "./CodeEditor.view"
 import * as monaco from "monaco-editor"
 import { codeTemplate } from "../../utils/const"
 import { ToBeTransformedModule, TransformedProjectModule } from "../../project/types"
 import Tabs from "./Tabs.view"
+import { css } from "@iandx/easy-css"
 
 interface ProjectEditorProps {
   modules: ToBeTransformedModule[]
@@ -46,17 +46,19 @@ class ProjectEditor {
     this.tabKey = tabKey
   }
 
-  onTabKeyChange = (() => {
+  @Watch
+  onTabKeyChange() {
     this.getCurrTransformedCode(this.dlightProject.transformedModules.find(
       (module: TransformedProjectModule) => {
         return module.path === this.tabToPath(this.tabKey)
       }
     )?.dlightCode ?? "" as any)
-  })()
+  }
 
-  onDlightProjectChange = (() => {
+  @Watch
+  onDlightProjectChange() {
     this.getMountId(this.dlightProject.moduleId)
-  })()
+  }
 
   getSaveViewState(saveState: any) {
     this.saveViewState = saveState
@@ -112,7 +114,7 @@ class ProjectEditor {
     })
   }
 
-  Body() {
+  View() {
     div()
       .style({
         width: this.width,
@@ -120,8 +122,8 @@ class ProjectEditor {
         overflow: "hidden"
       })
     {
-      VStack()
-        .width("100%")
+      div()
+        .class(this.columnDisplayCss)
       {
         Tabs()
           .modules(this.dlightProject.modules)
@@ -140,6 +142,14 @@ class ProjectEditor {
       }
     }
   }
+
+  columnDisplayCss = css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  `
 }
 
 export default ProjectEditor as Pretty as Typed<ProjectEditorProps>

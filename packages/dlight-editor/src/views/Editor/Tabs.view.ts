@@ -1,7 +1,7 @@
-import { View, Static, Env, Prop, required } from "@dlightjs/dlight"
-import { div, Pretty, span, Typed } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { div, Env, Pretty, Prop, required, span, Static, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { HStack } from "@dlightjs/components"
+import clsx from "clsx"
 import { CloseFilled, AddFilled } from "@dlightjs/material-icons"
 import { EditorStore } from "./CodeEditor.view"
 import * as monaco from "monaco-editor"
@@ -112,39 +112,37 @@ class Tabs implements TabsProps {
   /** @view */
   @View
   Tab({ tabName }: any): any {
-    HStack()
-      .alignment("center")
-      .spacing(0)
+    div()
+      .class(this.rowDisplayCss)
     {
       div()
-        .className(this.tabNameCss)
+        .class(this.tabNameCss)
       {
         span(tabName)
-          .className(this.tabNameSpanCss)
-          .className(tabName === "index" ? this.preventSelectCss : undefined)
+          .class(clsx(this.tabNameSpanCss, tabName === "index" ? this.preventSelectCss : undefined))
           .element((el: any) => {
             if (this.tabKey === tabName && this.isTabEdit) {
               this.editingElement = el
             }
           })
           .contentEditable(`${this.tabKey === tabName && this.isTabEdit && tabName !== "index"}`)
-          .oninput((e: any) => {
+          .onInput((e: any) => {
             this.updateModulePath(tabName, `/${e.target.innerText}.ts`)
           })
-          .ondblclick((e: any) => {
+          .onDblClick((e: any) => {
             this.isTabEdit = true
             e.target.focus()
           })
         span(".ts")
-          .className(this.preventSelectCss)
+          .class(this.preventSelectCss)
       }
 
       if (tabName !== "index") {
         CloseFilled()
           .height(16)
-          .className(this.deleteIconCss)
+          .class(this.deleteIconCss)
           .color(this.theme.primary)
-          .onclick(e => {
+          .onClick(e => {
             e.stopPropagation()
             this.handleDeleteTab(tabName)
           })
@@ -152,17 +150,17 @@ class Tabs implements TabsProps {
     }
   }
 
-  Body() {
+  View() {
     div()
-      .className(this.tabBarCss)
+      .class(this.tabBarCss)
     {
-      HStack()
-        .alignment("center")
+      div()
+        .class(this.rowDisplayCss)
       {
         for (const { path } of this.modules) {
           div()
-            .className(this.tabWrapCss(this.pathToTab(path)))
-            .onclick(() => {
+            .class(this.tabWrapCss(this.pathToTab(path)))
+            .onClick(() => {
               this.swithTab(this.pathToTab(path))
             })
           {
@@ -172,9 +170,9 @@ class Tabs implements TabsProps {
         }
         AddFilled()
           .height(18)
-          .className(this.addIconCss)
+          .class(this.addIconCss)
           .color(this.theme.primary)
-          .onclick(() => {
+          .onClick(() => {
             this.hanleAddTab()
           })
       }
@@ -238,6 +236,14 @@ class Tabs implements TabsProps {
   addIconCss = css`
     height: 18px;
     cursor: pointer;
+  `
+
+  rowDisplayCss = css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
   `
 }
 

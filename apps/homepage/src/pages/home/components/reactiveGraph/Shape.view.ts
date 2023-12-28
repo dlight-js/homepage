@@ -1,10 +1,11 @@
-import { Content, Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, Pretty, div, ContentProp } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, div, ContentProp, Content, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
+import clsx from "clsx"
 
 interface ShapeProps {
   content: ContentProp<string>
-  onclick?: () => void
+  onClick?: () => void
   shape?: "circle" | "square"
   isStartPulse?: boolean
 }
@@ -14,19 +15,17 @@ class Shape implements ShapeProps {
   @Env theme: any = required
   @Env themeType: "light" | "dark" = required
   @Env i18n: any = required
-  @Prop @Content content = required
-  @Prop onclick?: (() => void) | undefined
+  @Content content = required
+  @Prop onClick?: (() => void) | undefined
   @Prop shape: "circle" | "square" = "circle"
   @Prop isStartPulse = false
   isLight = this.themeType === "light"
 
-  Body() {
+  View() {
     div()
     {
       div(this.content)
-        .className(this.shapeCss)
-        .className(this.shape === "circle" ? this.circleShapeCss : this.squareShapeCss)
-        .className(this.isStartPulse ? this.pulseCss : "")
+        .class(clsx(this.shapeCss, this.shape === "circle" ? this.circleShapeCss : this.squareShapeCss, this.isStartPulse ? this.pulseCss : ""))
     }
   }
 

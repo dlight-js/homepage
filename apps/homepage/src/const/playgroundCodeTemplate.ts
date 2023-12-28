@@ -6,7 +6,7 @@ import ToggleView from "./toggle.view"
 
 @View
 class MyComp {
-  Body() {
+  View() {
     HelloView()
     CounterView()
     ArrayView()
@@ -21,7 +21,7 @@ export const HelloView = `import { View } from "@dlightjs/dlight"
 
 @View
 class HelloView {
-  Body() {
+  View() {
     h1("hello, dlight js")
   }
 }
@@ -36,17 +36,17 @@ import WrapperView from "./wrapper.view"
 class CountView {
   count = 1
 
-  Body() {
+  View() {
     WrapperView()
       .color("gray")
     {
       div(this.count)
       button("+")
-        .onclick(() => {
+        .onClick(() => {
           this.count ++
         })
       button("-")
-        .onclick(() => {
+        .onClick(() => {
           this.count --
         })
     }
@@ -62,16 +62,16 @@ import WrapperView from "./wrapper.view"
 class ArrayView {
   apples = ["apple0", "apple1", "apple2"]
   
-  Body() {
+  View() {
     WrapperView()
       .color("blue")
     {
       button("add apple")
-        .onclick(() => {
+        .onClick(() => {
           this.apples = [...this.apples, \`apple\${this.apples.length}\`]
         })
       button("remove apple")
-        .onclick(() => {
+        .onClick(() => {
           this.apples = [...this.apples.slice(0, -1)]
         })
       for (let apple of this.apples) {
@@ -90,12 +90,12 @@ import WrapperView from "./wrapper.view"
 class ToggleView {
   toggle = true
 
-  Body() {
+  View() {
     WrapperView()
       .color(this.toggle ? "green" : "red")
     {
       button("toggle")
-        .onclick(() => {
+        .onClick(() => {
           this.toggle = !this.toggle
         })
       if (this.toggle) {
@@ -118,7 +118,7 @@ export const WrapperView = `import { View, required } from "@dlightjs/dlight"
 class WrapperView {
   @Prop color = required
   @Children children = required
-  Body() {
+  View() {
     div()
       .style({
         border: \`1px solid \${this.color}\`,
@@ -138,7 +138,7 @@ export const codeTemplate = (tabName: string) => `import DLight, { View } from "
 
 @View
 class ${tabName[0].toUpperCase() + tabName.slice(1)}View {
-  Body() {
+  View() {
     "I am ${tabName} view"
   }
 }

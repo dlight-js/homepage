@@ -1,12 +1,12 @@
-DLight.js is a DX-first UI rendering library.
+DLight.js 是一个以开发者体验为先的 UI 渲染库。
 
-* 🥳 Delightful
-  * With an API designed to be intuitive and user-friendly, web development becomes effortless with Dlight, whether you're building a simple website or a complex web application.Dlight enhances code performance at compile time and directly manipulates the DOM, which makes the execution speed of the code as close to vanilla JavaScript as possible, even with limited optimization knowledge.
-* 🚀 Performant
-  * With a minuscule file size of just 4KB, Dlight is lightning-fast and ultra-lightweight, delivering optimal performance without the need for manual optimization.
-* ✨ DX-first
-  * Dlight uses the syntax of function calls and dot notation to make development more enjoyable, without the need to write outdated and hard-to-read XML code.
-* 🪶 Intuitively Simple
-  * Dlight is born reactive and is designed to be intuitively simple, with a minimalistic API that requires no memorization of complex functions or libraries.
+* 🥳 愉悦的体验
+  * 凭借直观、用户友好的 API，无论是构建简单网站还是复杂的网络应用程序，使用 Dlight 都变得轻而易举。Dlight 在编译时增强代码性能，并直接操作 DOM，使代码的执行速度尽可能接近原生 JavaScript，即使在有限的优化知识下也是如此。
+* 🚀 高性能
+  * Dlight 文件极小，仅有 4KB。因此运行速度快、极其轻量，无需手动优化即可提供最佳性能。
+* ✨ 开发者体验优先
+  * Dlight 使用函数调用和点语法，使开发更加愉快，无需编写过时且难以阅读的 XML 代码。
+* 🪶 直观简单
+  * Dlight 天生具有响应性，并设计得直观简单，拥有简约的 API，无需记住复杂的函数或库。
 
-In this section, we'll quickly walk you through the core idea of DLight.js and help you get started with a simple DLight project. Here we go then!
+在这一节中，我们将快速带您了解 DLight.js 的核心理念，并帮助您开始一个简单的 DLight 项目。那我们开始吧！

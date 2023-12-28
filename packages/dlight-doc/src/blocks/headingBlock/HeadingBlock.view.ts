@@ -1,5 +1,5 @@
-import { Content, Prop, required, View } from "@dlightjs/dlight"
-import { ContentProp, div, htmlTag, Pretty, Typed } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { ContentProp, div, tag, Pretty, Typed, Content, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { InlineRenderer } from "@dlightjs/markit"
 
@@ -10,15 +10,15 @@ interface HeadingBlockProps {
 
 @View
 class HeadingBlock implements HeadingBlockProps {
-  @Prop @Content content: any = required
+  @Content content: any = required
   @Prop props = required
 
   headdingName = `h${this.props.headingLevel}`
 
-  Body() {
-    htmlTag(this.headdingName)()
+  View() {
+    tag(this.headdingName)()
       .id(this.content[0].content)
-      .className(this.dlightMarkitHeading)
+      .class(this.dlightMarkitHeading)
     {
       for (const content of this.content) {
         InlineRenderer[content.type](content.content)
@@ -27,7 +27,7 @@ class HeadingBlock implements HeadingBlockProps {
     }
     if (this.props.headingLevel === 1) {
       div()
-        .className(this.dlightMarkitHeading1UnderLineCss)
+        .class(this.dlightMarkitHeading1UnderLineCss)
     }
   }
 

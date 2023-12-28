@@ -1,5 +1,5 @@
-import { Env, View, required } from "@dlightjs/dlight"
-import { type Typed, Pretty, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, div, Env, required, Watch } from "@dlightjs/types"
 import Header from "./components/header"
 import { css } from "@iandx/easy-css"
 import { FeatureData } from "../../const/homeData"
@@ -18,20 +18,20 @@ class Home {
   featureData = FeatureData
   count = 2
 
-  Body() {
+  View() {
     div()
-      .className(this.bgCss)
+      .class(this.bgCss)
     {
       Header()
         .isNeedAnimation(true)
       div()
-        .className(this.titleExampleWrapCss)
+        .class(this.titleExampleWrapCss)
       {
         Title()
         Example()
       }
       div()
-        .className(this.featureCardWrap)
+        .class(this.featureCardWrap)
       {
         FeatureCardGroup()
           .data(this.featureData.slice(0, 2))

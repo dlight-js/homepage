@@ -1,5 +1,5 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, div, Pretty } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, div, Pretty, required, Env, Prop } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
 
@@ -21,13 +21,13 @@ class Skeleton implements SkeletonProps {
   // 80 for title, 180 for large content, 120 for small content, 30 for one signle line
   @Prop data = [80, 30, 30, 180, 30, 120, 30, 150, 30, 120]
 
-  Body() {
+  View() {
     div()
-      .className(this.skeletonCss)
+      .class(this.skeletonCss)
     {
       for (const item of this.data) {
         div()
-          .className(this.itemCss)
+          .class(this.itemCss)
           .style({ height: `${item}px` })
       }
     }

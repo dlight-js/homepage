@@ -1,6 +1,6 @@
-import { Env, Prop, View, Watch, required } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { MenuRound, AlignHorizontalLeftRound } from "@dlightjs/material-icons"
-import { Pretty, Typed, div } from "@dlightjs/types"
+import { Env, Pretty, Prop, Typed, Watch, div, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { shortViewWidth } from "../../const/pageSetting"
 
@@ -8,7 +8,6 @@ interface MenuBtnProps {
   hanleClickOpenMenu?: (value: boolean) => void
   hanleClickOpenOutline?: (value: boolean) => void
   setMenuOpenBtnEl?: (el: HTMLElement) => void
-  backgroundColor?: string
   limitWidth?: number
   title?: string
 }
@@ -16,11 +15,11 @@ interface MenuBtnProps {
 @View
 class MenuBtn implements MenuBtnProps {
   @Env windowWidth: number = required
+  @Env theme: any = required
   @Env i18n: any = required
   @Prop hanleClickOpenMenu = required
   @Prop hanleClickOpenOutline = required
   @Prop setMenuOpenBtnEl = required
-  @Prop backgroundColor = required
   @Prop limitWidth = shortViewWidth
   @Prop title = ""
   el: HTMLElement = null as any
@@ -34,47 +33,47 @@ class MenuBtn implements MenuBtnProps {
 
   @Watch
   handleWindowResize() {
-    if (this.windowWidth < this.limitWidth) {
+    if (this.windowWidth < this.limitWidth && !this.isShow) {
       this.isShow = true
-    } else {
+    } else if (this.isShow && this.windowWidth >= this.limitWidth) {
       this.isShow = false
     }
   }
 
-  Body() {
+  View() {
     if (this.isShow) {
       div()
-        .className(this.shortViewSubHeaderWrapCss)
+        .class(this.shortViewSubHeaderWrapCss)
       {
         if (this.hanleClickOpenMenu) {
           div()
-            .className(this.btnCss)
-            .onclick(this.hanleClickOpenMenu)
+            .class(this.btnCss)
+            .onClick(this.hanleClickOpenMenu)
             .element(this.el)
           {
             MenuRound()
-              .className(this.iconCss)
-              .color("rgba(82,110,52,0.7)")
+              .class(this.iconCss)
+              .color(this.theme.green9)
               .width(16)
             div(this.i18n("Menu", "菜单"))
           }
         }
         if (this.title) {
           div()
-            .className(this.titleCss)
+            .class(this.titleCss)
           {
             div(this.title)
           }
         }
         if (this.hanleClickOpenOutline) {
           div()
-            .className(this.btnCss)
-            .onclick(this.hanleClickOpenOutline)
+            .class(this.btnCss)
+            .onClick(this.hanleClickOpenOutline)
           {
             div(this.i18n("Outline", "大纲"))
             AlignHorizontalLeftRound()
-              .className(this.iconCss)
-              .color("rgba(82,110,52,0.7)")
+              .class(this.iconCss)
+              .color(this.theme.green9)
               .width(16)
           }
         }
@@ -87,10 +86,11 @@ class MenuBtn implements MenuBtnProps {
     flex-direction: row;
     justify-content: space-between;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: rgba(82,110,52,0.7);
+    /* color: rgba(82,110,52,0.7); */
+    color: ${this.theme.green9};
     padding: 0 10px;
-    box-shadow: 0 1px 5px -3px #a9a9a9;
-    background-color: ${this.backgroundColor};
+    box-shadow: 0 1px 5px -3px ${this.theme.shadowColor};
+    background-color: ${this.theme.primaryBgColor};
   `
 
   titleCss = css`

@@ -1,7 +1,6 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, Pretty, div, img } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, div, img, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { ZStack } from "@dlightjs/components"
 
 interface LineShapeProps {
   start: boolean
@@ -15,25 +14,21 @@ class LineShape implements LineShapeProps {
   @Prop start = required
   @Prop type: "straight" | "downCorner" | "upCorner" = "straight"
 
-  Body() {
+  View() {
     div()
     {
-      ZStack()
-        .hAlignment("leading")
-      {
-        if (this.type === "straight") {
-          img()
-            .className(this.lineShapeCss)
-            .src("/imgs/line.svg")
-        } else if (this.type === "downCorner") {
-          img()
-            .className(this.downCornerShapeCss)
-            .src("/imgs/corner.svg")
-        } else if (this.type === "upCorner") {
-          img()
-            .className(this.upCornerShapeCss)
-            .src("/imgs/corner.svg")
-        }
+      if (this.type === "straight") {
+        img()
+          .class(this.lineShapeCss)
+          .src("/imgs/line.svg")
+      } else if (this.type === "downCorner") {
+        img()
+          .class(this.downCornerShapeCss)
+          .src("/imgs/corner.svg")
+      } else if (this.type === "upCorner") {
+        img()
+          .class(this.upCornerShapeCss)
+          .src("/imgs/corner.svg")
       }
     }
   }

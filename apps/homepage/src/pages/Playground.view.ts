@@ -1,5 +1,5 @@
-import { Env, View, required } from "@dlightjs/dlight"
-import { type Typed, img, div, Pretty } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, img, div, Pretty, Env, required } from "@dlightjs/types"
 import { Navigator } from "@dlightjs/components"
 import { ArrayView, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "../const/playgroundCodeTemplate"
 import DLightEditor from "dlight-editor"
@@ -52,40 +52,40 @@ class Playground {
   @View
   PlayGroundHeader() {
     div()
-      .className(this.playGroundHeaderCss)
+      .class(this.playGroundHeaderCss)
     {
       div()
-        .className(this.playGroundTitleCss)
+        .class(this.playGroundTitleCss)
       {
         img()
-          .className(this.logoCss)
+          .class(this.logoCss)
           .src("/imgs/logo-png.svg")
-          .onclick(() => {
+          .onClick(() => {
             this.navigator.to("..")
           })
         div("Playground")
-          .className(this.ml10)
+          .class(this.ml10)
       }
       if (this.isDark) {
         div()
-          .onclick(this.updateThemeType)
+          .onClick(this.updateThemeType)
         {
           LightModeOutlined()
             .color("#ddd")
-            .className(this.iconCss)
+            .class(this.iconCss)
         }
       } else {
         div()
-          .onclick(this.updateThemeType)
+          .onClick(this.updateThemeType)
         {
           DarkModeOutlined()
-            .className(this.iconCss)
+            .class(this.iconCss)
         }
       }
     }
   }
 
-  Body() {
+  View() {
     div()
       .style({
         height: "max-content",

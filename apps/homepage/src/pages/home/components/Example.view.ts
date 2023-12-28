@@ -1,5 +1,5 @@
-import { Env, View, Watch, required } from "@dlightjs/dlight"
-import { type Typed, img, Pretty, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, img, Pretty, div, Env, Watch, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import ExampleResult from "./ExampleResult.view"
 import ReactiveGraph from "./reactiveGraph/ReactiveGraph.view"
@@ -48,22 +48,22 @@ class Example {
     }
   }
 
-  Body() {
+  View() {
     if (this.isShowCode) {
       div()
-        .className(this.codeWrapCss)
+        .class(this.codeWrapCss)
       {
         img()
           .src(this.isDark ? "/imgs/code-example-dark.png" : "/imgs/code-example-light.png")
           .alt("code-example")
-          .className(this.codeExampleCss)
+          .class(this.codeExampleCss)
       }
     } else {
       div()
-        .className(this.exampleWrapCss)
+        .class(this.exampleWrapCss)
       {
         div()
-          .className(this.overlapCss)
+          .class(this.overlapCss)
         {
           ExampleResult()
             .count(this.count)
@@ -78,8 +78,8 @@ class Example {
       }
     }
     div(this.isShowCode ? "Show Example" : "Show Code")
-      .className(this.showCodeCss)
-      .onclick(() => {
+      .class(this.showCodeCss)
+      .onClick(() => {
         this.isShowCode = !this.isShowCode
       })
   }
