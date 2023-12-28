@@ -1,5 +1,5 @@
-import { Env, View, required } from "@dlightjs/dlight"
-import { type Typed, Pretty, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, div, Env, required, Watch } from "@dlightjs/types"
 import Header from "./components/header"
 import { css } from "@iandx/easy-css"
 import { FeatureData } from "../../const/homeData"
@@ -18,20 +18,20 @@ class Home {
   featureData = FeatureData
   count = 2
 
-  Body() {
+  View() {
     div()
-      .className(this.bgCss)
+      .class(this.bgCss)
     {
       Header()
         .isNeedAnimation(true)
       div()
-        .className(this.titleExampleWrapCss)
+        .class(this.titleExampleWrapCss)
       {
         Title()
         Example()
       }
       div()
-        .className(this.featureCardWrap)
+        .class(this.featureCardWrap)
       {
         FeatureCardGroup()
           .data(this.featureData.slice(0, 2))
@@ -43,17 +43,17 @@ class Home {
   }
 
   bgCss = css`
-    background: ${this.themeType === "dark" ? "linear-gradient(#330172, #000000)" : "linear-gradient(#fff9f4, #fff9f4)"};
+    /* background: ${this.themeType === "dark" ? "linear-gradient(#330172, #000000)" : "linear-gradient(#fff9f4, #fff9f4)"}; */
+    background-color: ${this.theme.primaryBgColor};
     overflow-x: hidden;
   `
 
   titleExampleWrapCss = css`
     padding: 0 ${getSize(10)};
     margin-top: ${getSize(30)};
-    display: flex;
+    display: ${this.isMobile ? "block" : "flex"};
     flex-direction: column;
     align-items: center;
-    /* align-items: flex-start; */
     justify-content: center;
     flex-wrap: wrap;
   `
@@ -65,7 +65,6 @@ class Home {
     align-items: center;
     justify-content: center;
     padding: 0 30px;
-    /* margin-top: -120px; */
   `
 }
 

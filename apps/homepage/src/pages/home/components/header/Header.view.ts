@@ -1,5 +1,5 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, div, Pretty } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, div, Pretty, Env, Prop, required } from "@dlightjs/types"
 import NavButton from "./NavButton.view"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
@@ -43,8 +43,6 @@ class Header implements HeaderProps {
   }
 
   listenScroll() {
-    // 为了保证兼容性，这里取两个值，哪个有值取哪一个
-    // scrollTop就是触发滚轮事件时滚轮的高度
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
     if (scrollTop > 0) {
       this.style2 = true
@@ -68,15 +66,15 @@ class Header implements HeaderProps {
     }
   }
 
-  Body() {
+  View() {
     div()
-      .className(this.headerHeightCss)
+      .class(this.headerHeightCss)
     {
       div()
-        .className(this.headerWrapCss)
+        .class(this.headerWrapCss)
       {
         div()
-          .className(this.sectionNav)
+          .class(this.sectionNav)
         {
           ShortHeaderMenuIcon()
             .isShortHeader(this.isShortView)

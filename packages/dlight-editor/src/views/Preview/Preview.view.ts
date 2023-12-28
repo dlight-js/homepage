@@ -1,8 +1,7 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { div, button, Typed, Pretty } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { div, button, Typed, Pretty, Env, Prop, required } from "@dlightjs/types"
 import ResultView from "./Result.view"
 import OutputView from "./Output.view"
-import { HStack } from "@dlightjs/components"
 import { RefreshFilled } from "@dlightjs/material-icons"
 import { css } from "@iandx/easy-css"
 import { Color, headerHeight } from "../../utils/const"
@@ -35,11 +34,11 @@ class Preview implements PreviewProps {
   @View
   Head({ content }: any): any {
     button(content)
-      .className(this.headerCss)
+      .class(this.headerCss)
       .style({
         borderBottom: content === this.tab ? `3px solid ${this.theme.text}` : ""
       })
-      .onclick(() => {
+      .onClick(() => {
         this.tab = content
       })
   }
@@ -47,17 +46,17 @@ class Preview implements PreviewProps {
   @View
   Header() {
     div()
-      .className(this.headerBGCss)
+      .class(this.headerBGCss)
     {
-      HStack()
-        .spacing(0)
-        .alignment("center")
+      div()
+        .class(this.rowDisplayCss)
       {
         div()
-          .onclick(this.refreshFunc)
+          .onClick(this.refreshFunc)
+          .class(this.refreshIconCss)
         {
           RefreshFilled()
-            .className(this.refreshIconCss)
+            .class(this.refreshIconCss)
             .color(this.theme.primary)
         }
 
@@ -67,10 +66,10 @@ class Preview implements PreviewProps {
     }
   }
 
-  Body() {
+  View() {
     div()
       .id("dlight-playground-preview")
-      .className(this.wrapperCss)
+      .class(this.wrapperCss)
       .style({
         width: this.width
       })
@@ -129,6 +128,13 @@ class Preview implements PreviewProps {
   refreshIconCss = css`
     padding: 5px 5px 0 5px;
     cursor: pointer;
+  `
+
+  rowDisplayCss = css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   `
 }
 

@@ -79,7 +79,7 @@ button("click")
 
 你也许想知道为什么不像 React 中的 `onClick` 这里用了 `onclick` 或者 `onevent` 。其实也可以是 `onClick`，我们目前使用全部小写的事件，因为这是纯 JavaScript 中的事件命名约定。
 
-但我正在进行一个有关 [[🧐] onClick 还是 onclick 的投票，这是一个问题](https://github.com/dlight-js/dlight/issues/49)。随意选择你喜欢的方式！
+但我正在进行一个有关 [🧐 onClick 还是 onclick 的投票，这是一个问题](https://github.com/dlight-js/dlight/issues/49)。随意选择你喜欢的方式！
 
 # 子元素
 

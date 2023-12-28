@@ -1,5 +1,5 @@
-import { Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, Pretty, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, div, required, Prop } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import FeatureCard, { FeatureDataType } from "./FeatureCard.view"
 import { getSize } from "../../../utils/utilFunc"
@@ -12,9 +12,9 @@ interface FeatureCardGroupProps {
 class FeatureCardGroup implements FeatureCardGroupProps {
   @Prop data = required
 
-  Body() {
+  View() {
     div()
-      .className(this.featureGroupWrapCss)
+      .class(this.featureGroupWrapCss)
     {
       for (const feature of this.data) {
         FeatureCard()

@@ -1,8 +1,19 @@
-import { View, env } from "@dlightjs/dlight"
-import { type Typed, Pretty } from "@dlightjs/types"
-import { Route, RouterSpace } from "@dlightjs/components"
-import { colors } from "./const/themes"
-import Home from "./pages/home/Home.view"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, env } from "@dlightjs/types"
+import { Routes } from "@dlightjs/components"
+import { Color, colors } from "./const/themes"
+
+export interface EnvType {
+  updateThemeType?: () => void
+  themeType?: string
+  theme?: Color
+  isMobile?: boolean
+  isShortView?: boolean
+  windowWidth?: number
+  i18n?: (enContent: string, zhContent: string) => string
+  language?: string
+  toogleLanguage?: () => void
+}
 
 @View
 class App {
@@ -45,8 +56,8 @@ class App {
     }
   }
 
-  Body() {
-    env()
+  View() {
+    env<EnvType>()
       .updateThemeType(this.updateThemeType)
       .themeType(this.themeType)
       .theme(this.theme)
@@ -57,23 +68,14 @@ class App {
       .language(this.language)
       .toogleLanguage(this.toogleLanguage)
     {
-      RouterSpace()
-      {
-        Route("docs")
-          .lazyLoad(async() => await import("./pages/doc/DocPage.view"))
-        Route("playground")
-          .lazyLoad(async() => await import("./pages/Playground.view"))
-        Route("examples")
-          .lazyLoad(async() => await import("./pages/examples/ExamplesPage.view"))
-        Route("ecosystem")
-          .lazyLoad(async() => await import("./pages/doc/DocPage.view"))
-        Route(".")
-        {
-          Home()
-        }
-        Route()
-          .lazyLoad(async() => await import("./pages/ErrorPage.view"))
-      }
+      Routes({
+        docs: async() => await import("./pages/doc/DocPage.view"),
+        playground: async() => await import("./pages/Playground.view"),
+        examples: async() => await import("./pages/examples/ExamplesPage.view"),
+        ecosystem: async() => await import("./pages/doc/DocPage.view"),
+        ".": async() => await import("./pages/home/Home.view"),
+        "": async() => await import("./pages/ErrorPage.view")
+      })
     }
   }
 }

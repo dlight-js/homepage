@@ -1,36 +1,37 @@
 
-DLight.js is all about rethinking how we build user interfaces, and we're exploring new things with a fresh perspective. 
+DLight.js 全部关于重新思考我们如何构建用户界面，我们正以全新的视角探索新事物。
 
-Why we're calling DLight a DX-first library is that you don't actually have to worry about anything in development. You don't need to care how to 
-* make a reactive state
-* make the view re-render
-* memorize computed states
-* listen to a specific dependency array
-* avoid dependency loops
-* avoid performance drop when the project is scaling
-* ... or anything that troubles you right now
+我们之所以称 DLight 为以开发者体验为先的库，是因为您实际上不必担心开发中的任何事情。您不需要关心如何
+* 创建反应式状态
+* 使视图重新渲染
+* 记住计算状态
+* 监听特定的依赖数组
+* 避免依赖循环
+* 当项目扩展时避免性能下降
+* ...或任何目前困扰您的事情
 
-We want front-end developers to focus more on the product, pay attention to business attributes, data processing, and in-depth user interactions, rather than wasting time on building simple dynamic pages, in which way, front-end developers can better understand the product in their work. That's exactly why DLight is here, offering the best developing experience and allowing you to code delighted.
+我们希望前端开发者更多地关注产品，关注业务属性、数据处理和深入的用户交互，而不是浪费时间在构建简单的动态页面上，这样，前端开发者可以在工作中更好地理解产品。这正是 DLight 存在的原因，它提供了最佳的开发体验，让您愉快地编码。
 
-Here's the lowdown on what makes DLight.js tick.
+以下是 DLight.js 的核心特点。
 
 
-# 🥳 Familiar JavaScript Syntax
-In recent years, thanks to React and other frameworks, JSX has become the go-to way to build user interfaces. But here's the catch – JSX is not a silver bullet. JSX and all HTML/XML, are primarily designed for machines, not humans. The opening tag paired with a closing tag makes your code quite bulky. And we like jsx because IT'S JS, right? But the whole syntax -- to create an element, or to set a property -- isn't that JS, is it?
+# 🥳 熟悉的 JavaScript 语法
+近年来，得益于 React 和其他框架，JSX 已成为构建用户界面的首选方式。但这里有一个问题 - JSX 并非万能。JSX 和所有 HTML/XML，主要是为机器设计的，而不是为人类设计的。开标签配对闭标签使您的代码相当庞大。我们喜欢 jsx 因为它是 JS，对吧？但整个语法 - 创建元素或设置属性 - 那不是 JS，对吗？
 
-So, how does DLight.js handle this problem -- making UI building more js? We've done three delicate designs to approach this problem.
-## Function Called View Declarations
-We love to make everything a function and just call it. It can modular our code and simpler our life. So here in DLight, we're using a way of "function-call" to build ui views. Let's recall how we declare an element in jsx:
+那么，DLight.js 是如何处理这个问题 - 使 UI 构建更加符合 js 的呢？我们进行了三种精巧的设计来解决这个问题。
+## 函数调用视图声明
+我们喜欢将一切变成函数并调用它。这可以模块化我们的代码，简化我们的生活。因此，在 DLight 中，我们使用“函数调用”的方式来构建 UI 视图。让我们回顾一下在 jsx 中如何声明一个元素：
+
 ```jsx [jsx]
 <div>Hello world</div>
 ```
-This is how we do it in DLight:
+这是我们在 DLight 中的做法：
 ```js [dlight DSL]
 div("hello world")
 ```
-It seems like we're calling a function called "div" with a string as its first paramerter. It looks very familiar because IT'S JS!
-## Method Dot Chaining Properties
-To be honest, setting properties in jsx is not always pleasant. And since we've go down to use a function call to build views, why don't we take it one step further? In an old jsx way, we set properties like this:
+看起来像我们正在调用一个名为“div”的函数，其第一个参数是一个字符串。这看起来很熟悉，因为它是 JS！
+## 方法点链接属性
+老实说，在 jsx 中设置属性并不总是愉快的。既然我们已经使用函数调用来构建视图，为什么不更进一步呢？在老式的 jsx 方法中，我们这样设置属性：
 ```jsx [jsx]
 <div 
   className="hello-view"
@@ -40,17 +41,17 @@ To be honest, setting properties in jsx is not always pleasant. And since we've 
   hello world
 </div>
 ```
-In jsx, we need to use a pair of `{}` to distinguish expression from string. So in DLight, we will do it in a more js way:
+在 jsx 中，我们需要使用一对 {} 来区分表达式和字符串。因此在 DLight 中，我们会以更符合 js 的方式来做：
 ```js [dlight DSL]
 div("hello world")
   .className("hello-view")
   .onClick(showHello)
   .otherProp(yourProp)
 ```
-That's the dot chaining of a function. You can just keep dotting and dotting and dotting and it never ends. It looks way better than our old jsx syntax because IT'S JS!
+这就是函数的点语法。你可以不断地点，点，点，它永远不会结束。它看起来比我们旧的 jsx 语法好多了，因为它是 JS！
 
-## JS Control Flows
-How long since the last time you used `for` or even `if` in js? Because in jsx, you don't get the chance to:
+## JS 控制流
+自从上次使用 for 或甚至 if 在 js 中是多久以前了？因为在 jsx 中，你没有机会：
 ```jsx [jsx]
 <>
   { showHello ? <div>hello</div> : null }
@@ -62,9 +63,9 @@ How long since the last time you used `for` or even `if` in js? Because in jsx, 
   }
 </>
 ```
-In jsx, we have to use conditional statements and function maps, and say goodbye to our good friends "for" and "if". This is fine when there're only a few conditions. But when things get messy, your codes will do too. 
+在 JSX 中，我们必须使用条件语句和函数映射，并告别我们的老朋友“for”和“if”。当只有几个条件时，这是可以接受的。但当事情变得混乱时，你的代码也会变得混乱。
 
-And things are different in DLight, we welcome our old friends back:
+但在 DLight 中，情况就不同了，我们欢迎我们的老朋友回来：
 ```js [dlight DSL]
 if (showHello) {
   div("hello")
@@ -73,29 +74,29 @@ for (const fruit of ["apple", "orange", "banana"]) {
   div(fruit)
 }
 ```
-Yup, I know. IT'S JS!
+这就是JS!
 
-# 🧐 Exploring Class Components
-React has had everyone buzzing about functional components in recent years. And honestly, it makes sense for React. Think about it: every time there's a re-render, it's like a cascading waterfall of function calls from top to bottom.
+# 🧐 探索类组件
+近年来，React 让大家对函数组件兴趣浓厚。老实说，对于 React 来说这是有意义的。想想看：每次重新渲染，就像是自上而下的一连串函数调用的瀑布。
 
-But when we shift gears and talk about MVVM with that signal-based reactivity, class components start looking pretty appealing. Unlike templates, which can feel kind of boxed-in and don't play nice as standard JS files, class components have this cool object-oriented vibe.
+但当我们转换思路，谈论基于信号的反应性的 MVVM 时，类组件开始显得非常吸引人。不像模板，感觉有点受限并且不太适合作为标准 JS 文件使用，类组件具有很酷的面向对象的氛围。
 
-I totally get why functional programming feels right at home with MVC frameworks. It’s like painting – you add layers one by one, all in order. And data? It’s like a one-way street, following the traffic lights strictly. But MVVM? Totally different ball game. Its essence is like this web that spreads out in every direction, representing views with view-models and exchanging info between views and data sources. It’s not a straight line; it's this intricate web that’s all over the place. And that's where the magic of object-oriented class structures shines. It's like having a chat between data and views through these neat properties and reactive connections.
+我完全理解为什么函数式编程与 MVC 框架很契合。这就像绘画 - 一层层地添加，全部按顺序。数据呢？就像单行道，严格遵守交通灯。但 MVVM 呢？完全不同的游戏。其本质就像这个向各个方向扩散的网络，用视图模型代表视图并在视图和数据源之间交换信息。这不是一条直线；而是遍布各处的复杂网络。这就是面向对象类结构的魔力所在。它就像通过这些整洁的属性和反应性连接，数据和视图之间的对话。
 
-And if we pause and think about it, isn't the whole deal with giving side effects to pure functional components just to achieve this spontaneous chit-chat between views and data?
+如果我们暂停一下思考，纯函数组件赋予副作用不就是为了实现视图和数据之间的这种自发对话吗？
 
-A quick side note here: DLight’s class components aren’t even close to React's class components, which look like a functional components dress up because its `render` function. DLight's MVVM philosophy feels a bit closer to Angular's class component spirit. But here’s the kicker – DLight does it in a way that’s sleeker and way more developer-friendly.
+这里需要快速说明一下：DLight 的类组件与 React 的类组件完全不同，后者看起来像是因为其`render`函数而装扮成函数组件。DLight 的 MVVM 理念感觉更接近 Angular 的类组件精神。但关键点在于 - DLight 以一种更加优雅、对开发者更友好的方式做到了这一点。
 
-#  🧂 Fine-grained reactivity
-Now, let's take a look at how DLight.js handles updates.
+#  🧂 细粒度反应性
+现在，让我们看看 DLight.js 如何处理更新。
 
-Instead of relying on a Virtual DOM, we've designed DLight.js to provide granular control over reative variable updates using a signal based reactivity. Here's how it works: each variable, if it is set to a new value or reference, will only result in the updates of its relevant elements' **properties**. 
+与其依赖虚拟 DOM，我们设计了 DLight.js 来提供基于信号的反应性，对反应性变量更新进行精细控制。它是这样工作的：每个变量，如果被设置为新的值或引用，只会导致其相关元素的**属性**更新。
 
-Imagine a scenario where you have multiple variables tied to different elements in your UI. When one of these variables changes, DLight.js ensures that only the elements directly affected by that variable's update undergo changes. This approach minimizes unnecessary re-renders and keeps your UI responsive and efficient.
+想象一个场景，你的 UI 中有多个变量绑定到不同的元素。当其中一个变量变化时，DLight.js 确保只有直接受该变量更新影响的元素发生变化。这种方法最小化了不必要的重新渲染，保持了 UI 的响应性和高效性。
 
-In many UI frameworks, managing derived or computed states can be a bit of a puzzle. For example, you may need to use a "$" in svelte to set a derived reactive variable, or call a "useMemo" in React or "createMemo" in SolidJS to avoid re-render or re-calculation. While in dlight, everything becomes so intuitive. Let's take a closer look at it.
+在许多 UI 框架中，管理派生或计算状态可能有点像拼图。例如，您可能需要在 svelte 中使用 "$" 来设置派生的反应性变量，或者在 React 中调用 "useMemo" 或在 SolidJS 中调用 "createMemo" 来避免重新渲染或重新计算。而在 dlight 中，一切都变得非常直观。让我们更仔细地看看。
 
-Want to declare a component?
+想要声明一个组件？
 ```js
 @View
 class MyComp {
@@ -104,7 +105,7 @@ class MyComp {
   }
 }
 ```
-Want to declare a reactive variable?
+想要声明一个reactive的变量？
 ```js
 @View
 class MyComp {
@@ -115,7 +116,7 @@ class MyComp {
   }
 }
 ```
-Want to declare a computed state?
+想要声明一个计算的状态？
 ```js
 @View
 class MyComp {
@@ -128,8 +129,8 @@ class MyComp {
 }
 ```
 
-The whole point in designing DLight.js is to make everything intuitive. When you want to get something done in DLight, you may think "how can I do this in DLight?", and the first answer that pops into your mind has a 99% chance to be the right one.
+设计 DLight.js 的全部要点是让一切变得直观。当您想在 DLight 中完成某件事时，您可能会想“我该如何在 DLight 中做到这一点？”，而您脑中首先浮现的答案有 99% 的几率是正确的。
 
 ---
 
-Now that we've given you a taste of what DLight.js brings to the table, it's time to dive deeper. Up next, we'll walk you through the ins and outs of using DLight, making your frontend journey smoother and more enjoyable. Stay tuned, it's about to get even more exciting!
+既然我们已经让您体验了 DLight.js 带来的特色，现在是时候更深入地了解了。接下来，我们将带您了解使用 DLight 的方方面面，使您的前端旅程更加顺畅和愉快。敬请期待，它将变得更加激动人心！

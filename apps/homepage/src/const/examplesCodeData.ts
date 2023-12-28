@@ -3,7 +3,9 @@ import { ExmaplesCodeDataType } from "../utils/types"
 export const ExamplesCodeData: ExmaplesCodeDataType[] = [
   {
     title: "Reactivity",
+    zhName: "响应式",
     description: "",
+    path: "/examples/declare-state",
     children: [
       {
         title: "Declare State",
@@ -15,7 +17,7 @@ import Name from "./Name.view"
 
 @View
 class MyComp {
-  Body() {
+  View() {
     Name()
   }
 }
@@ -29,7 +31,7 @@ render("app", MyComp)`,
 class Name {
   name = "John"
 
-  Body() {
+  View() {
     h1(this.name)
   }
 }
@@ -49,7 +51,7 @@ import Name from "./Name.view"
 
 @View
 class MyComp {
-  Body() {
+  View() {
     Name()
   }
 }
@@ -67,7 +69,7 @@ class Name {
     this.name = "Jane"
   }
 
-  Body() {
+  View() {
     h1(this.name)
   }
 }
@@ -87,7 +89,7 @@ import DoubleCount from "./DoubleCount.view"
 
 @View
 class MyComp {
-  Body() {
+  View() {
     DoubleCount()
   }
 }
@@ -102,7 +104,7 @@ class DoubleCount {
   count = 10
   doubleCount = this.count * 2
 
-  Body() {
+  View() {
     div(this.doubleCount)
   }
 }
@@ -116,10 +118,12 @@ export default DoubleCount`,
   },
   {
     title: "Templating",
+    zhName: "模板",
     description: "",
+    path: "/examples/minimal-template",
     children: [
       {
-        title: "Minimal template",
+        title: "Minimal Template",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
@@ -127,7 +131,7 @@ export default DoubleCount`,
 
 @View
 class HelloWorld {
-  Body() {
+  View() {
     h1("hello world")
   }
 }
@@ -145,7 +149,7 @@ render("app", HelloWorld)`,
 
 @View
 class CssStyle {
-  Body() {
+  View() {
     button("I am a button")
   }
 }
@@ -166,7 +170,7 @@ render("app", CssStyle)`,
 class Colors {
   colors = ["red", "green", "blue"]
 
-  Body() {
+  View() {
     ul()
     {
       for (const color of this.colors) {
@@ -182,7 +186,7 @@ render("app", Colors)`,
         ]
       },
       {
-        title: "Event click",
+        title: "Event Click",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
@@ -192,10 +196,10 @@ render("app", Colors)`,
 class Counter {
   count = 0
 
-  Body() {
+  View() {
     p(this.count)
     button("+1")
-      .onclick(() => {
+      .onClick(() => {
         this.count++
       })
   }
@@ -207,7 +211,7 @@ render("app", Counter)`,
         ]
       },
       {
-        title: "Dom ref",
+        title: "Dom Ref",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
@@ -221,7 +225,7 @@ class InputFocused {
     this.inputElement.value = 500
   }
 
-  Body() {
+  View() {
     input()
       .type("text")
       .element(this.inputElement)
@@ -255,9 +259,9 @@ class TrafficLight {
     }
   }
 
-  Body() {
+  View() {
     button("Next light")
-      .onclick(this.nextLight)
+      .onClick(this.nextLight)
     p(this.light)
     p()
     {
@@ -282,10 +286,12 @@ render("app", TrafficLight)`,
   },
   {
     title: "Lifecycle",
+    zhName: "生命周期",
     description: "",
+    path: "/examples/on-mount",
     children: [
       {
-        title: "On mount",
+        title: "On Mount",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
@@ -299,7 +305,7 @@ class PageTitle {
     this.pageTitle = document.title
   }
 
-  Body() {
+  View() {
     p(this.pageTitle)
   }
 }
@@ -310,7 +316,7 @@ render("app", PageTitle)`,
         ]
       },
       {
-        title: "On unmount",
+        title: "On Unmount",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
@@ -331,7 +337,7 @@ class Time {
     clearInterval(this.timer)
   }
 
-  Body() {
+  View() {
     span("Current time: ")
     span(this.time)
   }
@@ -346,7 +352,9 @@ render("app", Time)`,
   },
   {
     title: "Component Composition",
+    zhName: "组件组合",
     description: "",
+    path: "/examples/props",
     children: [
       {
         title: "Props",
@@ -358,7 +366,7 @@ import UserProfile from "./UserProfile.view"
 
 @View
 class App {
-  Body() {
+  View() {
     UserProfile()
       .name("John")
       .age(20)
@@ -379,7 +387,7 @@ class UserProfile {
   @Prop favouriteColors = []
   @Prop isAvailable = false
 
-  Body() {
+  View() {
     div()
     {
       span("My name is ")
@@ -409,7 +417,7 @@ export default UserProfile`,
         ]
       },
       {
-        title: "Emit to Parent",
+        title: "Emit To Parent",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
@@ -428,7 +436,7 @@ class App {
     this.canCome = true
   }
 
-  Body() {
+  View() {
     p("Are you happy?")
     AnswerButton()
       .onYes(this.onAnswerYes)
@@ -448,11 +456,11 @@ class AnswerButton {
   @Prop onYes
   @Prop onNo
 
-  Body() {
+  View() {
     button("yes")
-      .onclick(this.onYes)
+      .onClick(this.onYes)
     button("NO")
-      .onclick(this.onNo)
+      .onClick(this.onNo)
   }
 }
 
@@ -471,7 +479,7 @@ import FunnyButton from "./FunnyButton.view"
 
 @View
 class App {
-  Body() {
+  View() {
     FunnyButton()
     {
       "Click me!"
@@ -489,7 +497,7 @@ render("app", App)`,
 @View
 class FunnyButton {
   @Children children
-  Body() {
+  View() {
     button()
       .style({
         background: "rgba(0, 0, 0, 0.4)",
@@ -524,7 +532,7 @@ import FunnyButton from "./FunnyButton.view"
 
 @View
 class App {
-  Body() {
+  View() {
     FunnyButton()
     {
       "I got content!"
@@ -543,7 +551,7 @@ render("app", App)`,
 @View
 class FunnyButton {
   @Children children
-  Body() {
+  View() {
     button()
       .style({
         background: "rgba(0, 0, 0, 0.4)",
@@ -592,7 +600,7 @@ class App {
     this.user = { ...this.user, userName: newUserName }
   }
 
-  Body() {
+  View() {
     h1("Welcome back, " + this.user.userName)
     env()
       .user(this.user)
@@ -614,14 +622,14 @@ class UserProfile {
   @Env user
   @Env updateUsername
 
-  Body() {
+  View() {
     div()
     {
       h2("My Profile")
       p("Username: " + this.user.username)
       p("Email: " + this.user.email)
       button("Update username to Jane")
-        .onclick(() => this.updateUsername("Jane"))
+        .onClick(() => this.updateUsername("Jane"))
     }
   }
 }
@@ -635,7 +643,9 @@ export default UserProfile`,
   },
   {
     title: "Form Input",
+    zhName: "表单输入",
     description: "",
+    path: "/examples/input-text",
     children: [
       {
         title: "Input Text",
@@ -648,7 +658,7 @@ export default UserProfile`,
 class InputHello {
   text = "Hello world"
 
-  Body() {
+  View() {
     input()
       .value(this.text)
       .oninput(e => {
@@ -674,7 +684,7 @@ render("app", InputHello)`,
 class IsAvailable {
   isAvailable = false
 
-  Body() {
+  View() {
     input(this.text)
       .type("checkbox")
       .id("is-available")
@@ -705,7 +715,7 @@ class PickPill {
     this.picked = event.target.value
   }
 
-  Body() {
+  View() {
     div()
     {
       span("Picked: ")
@@ -758,7 +768,7 @@ class ColorSelect {
     { id: 4, text: "gray", isDisabled: true }
   ]
 
-  Body() {
+  View() {
     select()
       .value(this.selectedColorId)
       .onchange(e => { this.selectedColorId = e.target.value })
@@ -776,168 +786,7 @@ render("app", ColorSelect)`,
             path: "/index.ts"
           }
         ]
-      },
+      }
     ]
-  },
-  {
-    title: "Webapp Features",
-    description: "",
-    children: [
-      {
-        title: "Fetch Data",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-import fetchUser from "./fetchUser"
-
-@View
-class App {
-  isLoading
-  error
-  users
-
-  willMount() {
-    fetchUser("users")
   }
-
-  Body() {
-    if (this.isLoading) {
-      p("Fetching users...")
-    } else if (this.error) {
-      p("An error occured while fetching users")
-    } else if (this.users) {
-      ul()
-      {
-        for (const { name, picture } of this.users) {
-          li()
-          {
-            img()
-              .src(picture.thumbnail)
-              .alt("user")
-            p(name.first + " " + name.last)
-          }
-        }
-      }
-    }
-  }
-}
-render("app", App)`,
-            path: "/index.ts"
-          },
-          {
-            code: `export default async function fetchUsers(dataKey = "data", errorKey = "error", isLoadingKey = "isLoading") {
-this[isLoadingKey] = true
-try {
-  const response = await fetch("https://randomuser.me/api/?results=3")
-  const { results: users } = await response.json()
-  this[dataKey] = users
-  this[errorKey] = null
-} catch (err) {
-  this[dataKey] = null
-  this[errorKey] = err
-}
-this[isLoadingKey] = false
-}`,
-            path: "/fetchUser.ts"
-          }
-        ]
-      },
-      {
-        title: "Router Link",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-
-@View
-class Router {
-  @Env navigator
-
-  Body() {
-    ul()
-    {
-      li()
-      {
-        a("Home")
-          .onclick(() => {
-            this.navigator.to("/")
-          })
-      }
-      li()
-      {
-        a("About us")
-          .onclick(() => {
-            this.navigator.to("/about")
-          })
-      }
-    }
-  }
-}
-
-render("app", Router)`,
-            path: "/index.ts"
-          }
-        ]
-      },
-      {
-        title: "Routing",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-import { RouterSpace, Route } from "@dlightjs/components"
-import HomeView from "./Home.view"
-import AboutUsView from "./AboutUs.view"
-
-@View
-class Routing {
-  Body() {
-    RouterSpace()
-    {
-      Route("/")
-      {
-        HomeView()
-      }
-      Route("/about")
-      {
-        AboutUsView()
-      }
-    }
-  }
-}
-
-render("app", Routing)`,
-            path: "/index.ts"
-          },
-          {
-            code: `import DLight, { View } from "@dlightjs/dlight"
-
-@View
-class HomeView {
-  Body() {
-    h1("Home")
-  }
-}
-
-export default HomeView`,
-            path: "/Home.view.ts"
-          },
-          {
-            code: `import DLight, { View } from "@dlightjs/dlight"
-
-@View
-class AboutUsView {
-  Body() {
-    h1("About us")
-  }
-}
-
-export default AboutUsView`,
-            path: "/AboutUsView.view.ts"
-          }
-        ]
-      },
-    ]
-  },
 ]

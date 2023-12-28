@@ -1,5 +1,5 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { Pretty, Typed, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
 
@@ -17,12 +17,12 @@ class ShortHeaderMenuItem {
   @Prop btnPath = required
   isSelected = this.btnName === "Documents" ? this.path.includes("docs") : this.path.includes(this.btnPath.replace("/", ""))
   isHover = false
-  Body() {
+  View() {
     div(this.btnName)
-      .className(this.menuBtnCss)
-      .onclick(() => { this.navigator.to(this.btnPath) })
-      .onmouseenter(() => { this.isHover = true })
-      .onmouseleave(() => { this.isHover = false })
+      .class(this.menuBtnCss)
+      .onClick(() => { this.navigator.to(this.btnPath) })
+      .onMouseEnter(() => { this.isHover = true })
+      .onMouseLeave(() => { this.isHover = false })
   }
 
   menuBtnCss = css`

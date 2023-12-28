@@ -1,7 +1,6 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, img, Pretty, div, button, h2 } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, img, Pretty, div, button, h2, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { getSize } from "../../../utils/utilFunc"
 
 interface ExampleResultProps {
   count: number
@@ -20,35 +19,35 @@ class ExampleResult implements ExampleResultProps {
   @Prop incrementDoubleCount: () => void = required
   isDark = this.themeType === "dark"
 
-  Body() {
+  View() {
     div()
-      .className(this.exampleResultWrapCss)
+      .class(this.exampleResultWrapCss)
     {
       div()
-        .className(this.horizontalCss)
+        .class(this.horizontalCss)
       {
         img()
           .src("/imgs/logo-leading-png.svg")
           .alt("DLight Logo")
-          .width(Number(getSize(30).replace("px", "")))
+          .width(30)
           .style({ transform: "rotate(-90deg)" })
         h2("Hi, DLight~")
           .style({
-            fontSize: getSize(20),
-            margin: getSize(5),
+            fontSize: "20px",
+            margin: "5px",
             fontFamily: "Comic Sans MS",
             color: this.theme.primaryTextColor
           })
       }
       button("Count++")
-        .onclick(this.incrementCount)
-        .className(this.beautifulBtn$)
+        .onClick(this.incrementCount)
+        .class(this.beautifulBtn$)
       button("DoubleCount++")
-        .onclick(this.incrementDoubleCount)
-        .className(this.beautifulBtn$)
+        .onClick(this.incrementDoubleCount)
+        .class(this.beautifulBtn$)
       div(`DoubleCount: ${this.doubleCount}`)
         .style({
-          fontSize: getSize(20),
+          fontSize: "20px",
           fontFamily: "Comic Sans MS",
           color: this.theme.primaryTextColor
         })
@@ -63,15 +62,15 @@ class ExampleResult implements ExampleResultProps {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    bottom: ${getSize(50)};
-    right: 0;
-    padding: ${getSize(15)} ${getSize(15)};
-    transform: ${`translateX(${getSize(80)})`};
+    bottom: 50px;
+    left: 0;
+    padding: 15px;
     /* background-color: ${this.isDark ? "#F5F5F5" : "white"}; */
     background-color: ${this.theme.codeBgColor};
     border-radius: 15px;
     box-shadow: 0 0 10px 0px ${this.theme.shadowColor};
     z-index: 5;
+    transform: translateY(60px);
   `
 
   horizontalCss = css`
@@ -81,29 +80,29 @@ class ExampleResult implements ExampleResultProps {
   `
 
   doubleCountCss$ = css`
-    font-size: ${getSize(20)};
+    font-size: 20px;
     margin: 10px 5px 0px 5px;
     font-family: "Comic Sans MS";
   `
 
   beautifulBtn$ = css`
-    margin: ${getSize(5)};
+    margin: 5px;
     align-items: center;
     background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
     border: 0;
-    width: ${getSize(38)};
+    width: 38px;
     border-radius: 8px;
     box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
     box-sizing: border-box;
     color: #FFFFFF;
     display: flex;
     font-family: Phantomsans, sans-serif;
-    font-size: ${getSize(18)};
+    font-size: 18px;
     justify-content: center;
     line-height: 1em;
     max-width: 100%;
-    min-width: ${getSize(140)};
-    padding: ${getSize(16)} ${getSize(24)};
+    min-width: 140px;
+    padding: 16px 24px;
     text-decoration: none;
     user-select: none;
     -webkit-user-select: none;

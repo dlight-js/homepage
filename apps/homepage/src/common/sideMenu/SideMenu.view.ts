@@ -1,42 +1,36 @@
-import { Env, Prop, View, required, Children, Watch, _ } from "@dlightjs/dlight"
-import { type Typed, div, Pretty } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, div, Pretty, Children, Env, Prop, Watch, required } from "@dlightjs/types"
 import { Navigator } from "@dlightjs/components"
 import { css } from "@iandx/easy-css"
 import { shortViewWidth } from "../../const/pageSetting"
 
 interface SideMenuProps {
   isOpen: boolean
-  updateOpenMenuStatus: () => void
+  closeMenu: () => void
   limitWidth?: number
-  menuOpenBtnEl?: HTMLElement
+  menuElement?: string
 }
 
 @View
 class SideMenu implements SideMenuProps {
-  @Children children: any
   @Env navigator: Navigator = required
   @Env themeType: "light" | "dark" = required
+  @Env isShortView: boolean = required
   @Env theme: any = required
   @Env i18n: any = required
   @Env windowWidth: number = required
-  @Prop menuOpenBtnEl = undefined
   @Prop limitWidth = shortViewWidth
   @Prop isOpen = false
-  @Prop updateOpenMenuStatus = required
+  @Prop closeMenu = required
+  @Prop menuElement = ""
+  @Children children: any
   isShortStyle = false
 
-  closeMenu(e: any) {
-    if (this.isOpen && e.target !== this.menuOpenBtnEl) {
-      this.updateOpenMenuStatus()
+  closeMenuWhenClickOutside(e: any) {
+    const specificParent = e.target.closest(this.menuElement)
+    if (!specificParent) {
+      this.closeMenu()
     }
-  }
-
-  willMount() {
-    document.addEventListener("click", this.closeMenu.bind(this), true)
-  }
-
-  willunMount() {
-    document.removeEventListener("click", this.closeMenu.bind(this))
   }
 
   @Watch
@@ -45,15 +39,23 @@ class SideMenu implements SideMenuProps {
       this.isShortStyle = true
     } else {
       if (this.isOpen) {
-        this.updateOpenMenuStatus()
+        this.closeMenu()
       }
       this.isShortStyle = false
     }
   }
 
-  Body() {
+  willMount() {
+    window.addEventListener("click", this.closeMenuWhenClickOutside.bind(this))
+  }
+
+  willUnmount() {
+    window.removeEventListener("click", this.closeMenuWhenClickOutside.bind(this))
+  }
+
+  View() {
     div()
-      .className(this.sideMenuWrapCss)
+      .class(this.sideMenuWrapCss)
     {
       if (!this.isShortStyle || this.isOpen) {
         this.children

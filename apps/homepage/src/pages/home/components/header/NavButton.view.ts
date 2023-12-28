@@ -1,5 +1,5 @@
-import { Content, Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, button, div, Pretty, ContentProp } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, button, div, Pretty, ContentProp, Content, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import MenuItem from "./MenuItem.view"
 import { Navigator } from "@dlightjs/components"
@@ -16,7 +16,7 @@ class NavButton implements NavButtonProps {
   @Env i18n: any = required
   @Env navigator: Navigator = required
   @Env theme: any = required
-  @Prop @Content content: any = required
+  @Content content: any = required
   @Prop handleClickNav = required
   @Prop structureData = required
 
@@ -24,27 +24,27 @@ class NavButton implements NavButtonProps {
   isMenuHover = false
   isShowHoverMenu = !!this.structureData
 
-  Body() {
+  View() {
     div()
-      .className(this.wrapCss)
+      .class(this.wrapCss)
     {
       button(this.content)
-        .className(this.navBtnCss)
-        .onclick(this.handleClickNav)
-        .onmouseenter(() => { this.isHover = true })
-        .onmouseleave(() => { setTimeout(() => { this.isHover = false }, 100) })
+        .class(this.navBtnCss)
+        .onClick(this.handleClickNav)
+        .onMouseEnter(() => { this.isHover = true })
+        .onMouseLeave(() => { setTimeout(() => { this.isHover = false }, 100) })
       // if (this.isShowHoverMenu) {
       //   div()
-      //     .className(this.iconCss)
+      //     .class(this.iconCss)
       //   {
       //     KeyboardArrowDownRound()
       //   }
       // }
       if (this.isShowHoverMenu && (this.isMenuHover || this.isHover)) {
         div()
-          .className(this.hoverMenuWrapCss)
-          .onmouseenter(() => { this.isMenuHover = true; this.isHover = true })
-          .onmouseleave(() => { this.isMenuHover = false; this.isHover = false })
+          .class(this.hoverMenuWrapCss)
+          .onMouseEnter(() => { this.isMenuHover = true; this.isHover = true })
+          .onMouseLeave(() => { this.isMenuHover = false; this.isHover = false })
         {
           for (const { name, zhName, title, path } of this.structureData) {
             MenuItem()
@@ -69,8 +69,8 @@ class NavButton implements NavButtonProps {
 
   navBtnCss = css`
     cursor: pointer;
-    background-color: ${this.isHover ? this.theme.orange4 : this.theme.primaryBgColor};
-    color: ${this.isHover ? this.theme.text : this.theme.primaryTextColor};
+    background-color: ${this.isHover ? this.theme.homeBtnColor : this.theme.primaryBgColor};
+    color: ${this.isHover ? this.theme.primaryTextColor : this.theme.primaryTextColor};
     font-size: 0.875rem;
     font-weight: 600;
     padding: 8px 12px;
@@ -87,7 +87,7 @@ class NavButton implements NavButtonProps {
     position: absolute;
     top: 102%;
     left: 0;
-    background-color: ${this.theme.orange4};
+    background-color: ${this.theme.homeBtnColor};
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     padding: 10px;
     border-radius: 8px;

@@ -1,5 +1,5 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, div, img, Pretty } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, div, img, Pretty, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { getSize } from "../../../utils/utilFunc"
 import { Navigator } from "@dlightjs/components"
@@ -24,17 +24,17 @@ class FeatureCard implements FeatureCardProps {
   @Env i18n: any = required
   @Prop data = required
 
-  Body() {
+  View() {
     div()
-      .className(this.featureCardWrapCss)
+      .class(this.featureCardWrapCss)
     {
       img()
         .src(this.themeType === "dark" ? this.data.darkImgUrl : this.data.imgUrl)
-        .className(this.featureCardIconCss)
+        .class(this.featureCardIconCss)
       div(this.i18n(this.data.title, this.data.zhTitle))
-        .className(this.featureCardTitleCss)
+        .class(this.featureCardTitleCss)
       div(this.i18n(this.data.content, this.data.zhContent))
-        .className(this.featureCardContentCss)
+        .class(this.featureCardContentCss)
     }
   }
 
@@ -50,7 +50,7 @@ class FeatureCard implements FeatureCardProps {
     justify-content: center;
     height: ${getSize(350)};
     border-radius: 15px;
-    background-color: ${this.theme.secondaryBgColor};
+    background-color: ${this.theme.featureCardColor};
     ${this.themeType === "dark" ? "box-shadow: 0 0 15px -3px #ABA0C0;" : ""}
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: ${this.theme.primaryTextColor};

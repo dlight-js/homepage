@@ -1,5 +1,5 @@
-import { Content, Prop, View, Watch, required } from "@dlightjs/dlight"
-import { code, ContentProp, div, pre, Pretty, Typed } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { code, Content, ContentProp, div, pre, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import hljs from "highlight.js"
 import { ContentCopyFilled, DoneFilled } from "@dlightjs/material-icons"
@@ -11,7 +11,7 @@ interface AdvantageBlockProps {
 
 @View
 class AdvantageBlock implements AdvantageBlockProps {
-  @Prop @Content content: any = required
+  @Content content: any = required
   @Prop props = required
   language = this.props.language
   title = this.props.title
@@ -26,20 +26,20 @@ class AdvantageBlock implements AdvantageBlockProps {
     }, 2000)
   }
 
-  Body() {
+  View() {
     div()
-      .className(this.dlightMarkitCodeBlock)
+      .class(this.dlightMarkitCodeBlock)
     {
       div()
-        .className(this.dlightMarkitCodeBlockHeader)
+        .class(this.dlightMarkitCodeBlockHeader)
       {
         if (this.language) {
           div()
-            .className(this.dlightMarkitCodeBlockTitleLanguage)
+            .class(this.dlightMarkitCodeBlockTitleLanguage)
           {
             if (this.title) {
               div(this.title)
-                .className(this.dlightMarkitCodeBlockTitle)
+                .class(this.dlightMarkitCodeBlockTitle)
             }
           }
         }
@@ -47,27 +47,27 @@ class AdvantageBlock implements AdvantageBlockProps {
         {
           if (!this.hasCopied) {
             div()
-              .onclick(async() => {
+              .onClick(async() => {
                 await this.handleCopy()
               })
-              .className(this.dlightMarkitCopyBtnCss)
+              .class(this.dlightMarkitCopyBtnCss)
             {
               ContentCopyFilled()
                 .color("#333333")
                 .width(18)
                 .height(18)
-                .className(this.copyIcon)
+                .class(this.copyIcon)
               div("Copy")
             }
           } else if (this.hasCopied) {
             div()
-              .className(this.dlightMarkitCopyBtnCss)
+              .class(this.dlightMarkitCopyBtnCss)
             {
               DoneFilled()
                 .color("#333333")
                 .width(18)
                 .height(18)
-                .className(this.copyIcon)
+                .class(this.copyIcon)
               div("Copied")
             }
           }
@@ -77,14 +77,14 @@ class AdvantageBlock implements AdvantageBlockProps {
         .style({ position: "relative" })
       {
         div(this.language)
-          .className(this.languageCss)
+          .class(this.languageCss)
         div()
-          .className(this.dlightHomepageMarkitCode)
+          .class(this.dlightHomepageMarkitCode)
         {
           pre()
           {
             code()
-              .className(this.code)
+              .class(this.code)
               .innerHTML(this.highlightedCode)
           }
         }

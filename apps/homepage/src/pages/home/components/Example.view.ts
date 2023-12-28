@@ -1,20 +1,23 @@
-import { Env, View, required } from "@dlightjs/dlight"
-import { type Typed, img, Pretty, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, img, Pretty, div, Env, Watch, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { getSize } from "../../../utils/utilFunc"
 import ExampleResult from "./ExampleResult.view"
 import ReactiveGraph from "./reactiveGraph/ReactiveGraph.view"
+import { getSize } from "../../../utils/utilFunc"
 
 @View
 class Example {
   @Env themeType: "light" | "dark" = required
   @Env theme: any = required
   @Env isMobile: boolean = required
+  @Env windowWidth: number = required
   isDark = this.themeType === "dark"
   count = 0
   doubleCount = this.count * 2
   isChangedblCount = false
   isChangeCount = false
+  scale = this.windowWidth / 1200 < 0.7 ? 0.7 : this.windowWidth / 1200
+  isShowCode = false
 
   incrementCount() {
     if (!this.isChangeCount && !this.isChangedblCount) {
@@ -36,49 +39,81 @@ class Example {
     }
   }
 
-  Body() {
-    div()
-      .className(this.exampleWrapCss)
-    {
+  @Watch
+  getScale() {
+    if (this.isMobile) {
+      this.scale = 0.5
+    } else {
+      this.scale = this.windowWidth / 1200 < 0.7 ? 0.7 : this.windowWidth / 1200
+    }
+  }
+
+  View() {
+    if (this.isShowCode) {
       div()
-        .className(this.overlapCss)
+        .class(this.codeWrapCss)
       {
         img()
           .src(this.isDark ? "/imgs/code-example-dark.png" : "/imgs/code-example-light.png")
-          // .src("/imgs/code-example-light.png")
           .alt("code-example")
-          .className(this.codeExampleCss)
-        ExampleResult()
-          .count(this.count)
-          .doubleCount(this.doubleCount)
-          .incrementCount(this.incrementCount)
-          .incrementDoubleCount(this.incrementDoubleCount)
+          .class(this.codeExampleCss)
       }
-      ReactiveGraph()
-        .count(this.count)
-        .dblCount(this.doubleCount)
-        .isChangedblCount(this.isChangedblCount)
+    } else {
+      div()
+        .class(this.exampleWrapCss)
+      {
+        div()
+          .class(this.overlapCss)
+        {
+          ExampleResult()
+            .count(this.count)
+            .doubleCount(this.doubleCount)
+            .incrementCount(this.incrementCount)
+            .incrementDoubleCount(this.incrementDoubleCount)
+          ReactiveGraph()
+            .count(this.count)
+            .dblCount(this.doubleCount)
+            .isChangedblCount(this.isChangedblCount)
+        }
+      }
     }
+    div(this.isShowCode ? "Show Example" : "Show Code")
+      .class(this.showCodeCss)
+      .onClick(() => {
+        this.isShowCode = !this.isShowCode
+      })
   }
 
   exampleWrapCss = css`
     display: flex;
     flex-direction: row;
     align-items: center;
-    transform: translateX(${getSize(100)});
+    margin-top: ${this.scale * 60}px;
+    transform: ${`translateX(${this.isMobile ? -80 : 20 * this.scale}px)`} scale(${this.scale});
   `
 
   codeExampleCss = css`
     width: ${getSize(400)};
-    opacity: 0.9;
     position: absolute;
   `
 
-  overlapCss = css`
+  codeWrapCss = css`
+    margin: 0 auto;
+    margin-top: ${this.scale * 60}px;
     width: ${getSize(400)};
     height: ${getSize(480)};
-    margin: ${getSize(50)} 0;
+  `
+
+  overlapCss = css`
     position: relative;
+  `
+  showCodeCss = css`
+    margin-bottom: ${this.scale * 60}px;
+    cursor: pointer;
+    font-size: 18px;
+    width: max-content;
+    color: ${this.theme.tertiaryTextColor};
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   `
 }
 

@@ -21,8 +21,9 @@ export function initMap(mapData: any, basePath: string) {
 }
 
 export function flatFileStructureData(mapData: any) {
+  if (!mapData) return []
   const flatMapData: DocsStructureMapType[] = []
-  mapData.forEach((item: any) => {
+  mapData?.forEach((item: any) => {
     flatMapData.push(item)
     if (item.children) {
       flatMapData.push(...flatFileStructureData(item.children))
@@ -55,9 +56,9 @@ export function findCertainFile({ mapData, filePath, fileName }: { mapData: Docs
 
 const isMobile = /Android|iPhone/i.test(window.navigator.userAgent)
 
-export function getSize(value: number) {
+export function getSize(value: number, scale = 1100) {
   if (isMobile) {
-    return Math.ceil(value / 1100 * window.innerWidth * 2) + "px"
+    return Math.ceil(value / scale * window.innerWidth * 2) + "px"
   }
   return value + "px"
 }

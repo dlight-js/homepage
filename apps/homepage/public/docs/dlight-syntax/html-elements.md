@@ -57,7 +57,7 @@ button("click")
   })
   .onyourevent(yourCustomFunc)
 ```
-You might wonder why it's `onclick` or `onevent` unlike React using `onClick`. Well, it could be, we're currently using all lower cased events because it's the event naming convention in vanilla js. But I'm doing a poll on [[🧐] onClick or onclick, that's a question](https://github.com/dlight-js/dlight/issues/49). Feel free to choose the one you like!
+You might wonder why it's `onclick` or `onevent` unlike React using `onClick`. Well, it could be, we're currently using all lower cased events because it's the event naming convention in vanilla js. But I'm doing a poll on [🧐 onClick or onclick, that's a question](https://github.com/dlight-js/dlight/issues/49). Feel free to choose the one you like!
 
 
 # Children

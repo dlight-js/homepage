@@ -1,6 +1,6 @@
-import { Env, Prop, Static, View, required } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { css } from "@iandx/easy-css"
-import { type Typed, Pretty, div } from "@dlightjs/types"
+import { type Typed, Pretty, div, Env, Prop, Static, required } from "@dlightjs/types"
 import * as monaco from "monaco-editor"
 
 export interface EditorStore {
@@ -75,10 +75,10 @@ class CodeEditor implements CodeEditorProps {
   }
 
   /** @view */
-  Body() {
+  View() {
     div()
       .element(this.editorEl)
-      .className(this.editorCss)
+      .class(this.editorCss)
   }
 
   editorCss = css`

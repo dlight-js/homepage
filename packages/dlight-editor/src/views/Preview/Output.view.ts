@@ -1,6 +1,6 @@
-import { Env, Prop, Static, View, required } from "@dlightjs/dlight"
+import { View } from "@dlightjs/dlight"
 import { css } from "@iandx/easy-css"
-import { Pretty, Typed, div } from "@dlightjs/types"
+import { Env, Pretty, Prop, Static, Typed, div, required } from "@dlightjs/types"
 import * as monaco from "monaco-editor"
 import { Color, headerHeight } from "../../utils/const"
 
@@ -41,10 +41,10 @@ class Output implements OutputProps {
   }
 
   /** @view */
-  Body() {
+  View() {
     div()
       .element(this.editorEl)
-      .className(this.outputCss)
+      .class(this.outputCss)
   }
 
   outputCss = css`

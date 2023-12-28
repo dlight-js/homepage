@@ -40,7 +40,7 @@ el1.innerText = declareState(count)
 
 现在，让我们将其转化为一个简单的reactivity graph：
 
-![reactivity-graph0](../../imgs/reactivity-graph0.jpeg "reactivity-graph0")
+![reactivity-graph0](../../../imgs/reactivity-graph0.jpeg "reactivity-graph0")
 
 在这张图中，节点 (`count`, `doubleCount`, 和 `div: first-el`) 代表我们的状态和UI元素，而边代表它们之间的依赖关系，即：
 1. 当 `count` 发生变化时, `doubleCount` 重新计算 **一次** 
@@ -55,7 +55,7 @@ el1.innerText = declareState(count)
 
 可视化是这样的：
 
-![reactivity-graph0-count](../../imgs/reactivity-graph0-count.gif "reactivity-graph0-count")
+![reactivity-graph0-count](../../../imgs/reactivity-graph0-count.gif "reactivity-graph0-count")
 
 ## 增加一层复杂性
 让我们修改我们的示例，使`first-el`显示`doubleCount`而不是`count`。我们还需要对JavaScript伪代码进行一些小的修改来反映这一点：
@@ -68,7 +68,7 @@ el1.innerText = declareState(doubleCount)
 ```
 Reactivity图是这样的:
 
-![reactivity-graph1](../../imgs/reactivity-graph1.jpeg "reactivity-graph1")
+![reactivity-graph1](../../../imgs/reactivity-graph1.jpeg "reactivity-graph1")
 
 这是我们新图中的Reactivity流的示意图：
 1. 当 `count` 发生变化时, `doubleCount` 重新计算 **一次** 
@@ -82,7 +82,7 @@ Reactivity图是这样的:
 
 动画版本：
 
-![reactivity-graph1-count](../../imgs/reactivity-graph1-count.gif "reactivity-graph1-count")
+![reactivity-graph1-count](../../../imgs/reactivity-graph1-count.gif "reactivity-graph1-count")
 
 这里值得讨论的一个重要点是，直接修改派生状态，如我们示例中的`doubleCount`。
 
@@ -99,7 +99,7 @@ Reactivity图是这样的:
 2. `doubleCount`重新计算，根据其定义的逻辑`count * 2`，更新其值为4。
 3. `doubleCount`的变化促使`first-el`重新渲染，显示新的值，4。
 
-![reactivity-graph0-count](../../imgs/reactivity-graph1-dblCount.gif "reactivity-graph1-dblCount")
+![reactivity-graph0-count](../../../imgs/reactivity-graph1-dblCount.gif "reactivity-graph1-dblCount")
 
 ## 小节总结及更多复杂性
 在上一部分中，我们构建了一些简单的reactivity graph，了解了如何使用这个模型来可视化和管理各种状态及其依赖关系。从简单到复杂的依赖关系，reactivity graph直观地展示了它描绘和指导应用程序中的状态管理和数据流的能力。
@@ -119,7 +119,7 @@ Reactivity图是这样的:
 
 现在我们可以得到reactivity graph:
 
-![reactivity-graph2](../../imgs/reactivity-graph2.gif "reactivity-graph2")
+![reactivity-graph2](../../../imgs/reactivity-graph2.gif "reactivity-graph2")
 
 # 将Reactivity Graph融合到前端
 将Reactivity Graph应用到前端开发中会引入多种场景，这可能需要对图表进行特定的处理或修改，以确保流畅和高效的Reactivity管理。
@@ -169,7 +169,7 @@ let logCount = declareState((() => {
 * `declareState((() => { console.log(count); return null;)());`: 这不是一个传统意义上的“副作用”。相反，它建立了另一个状态。但是，因为它是一个立即调用的函数表达式（IIFE），所以它在声明期间立即执行console操作。这里的`console.log(count)`，类似于一个“副作用”，是在返回一个值并确定状态之前执行的。然而，在Reactivity Graph的上下文中，这并不被视为一个“副作用”，而仅仅是在其创建过程中执行了操作的一个状态。
 
 在Reactivity Graph中，它可以被可视化为：
-![reactivity-graph3](../../imgs/reactivity-graph3.jpeg "reactivity-graph3")
+![reactivity-graph3](../../../imgs/reactivity-graph3.jpeg "reactivity-graph3")
 
 在Reactivity Graph中，一切状态包括传统框架中被视为副作用的，都被视为节点。这意味着没有明确的“效果”或“副作用”的概念；每个节点都有平等的地位，行为基于它们与其他节点形成的关系（边）。 这种设计选择简化了依赖管理，由于每个操作都是明确的并包含在节点内，数据流有了清晰性，减少了不一致的可能性。
 
@@ -208,8 +208,8 @@ resolvedDeps = { x | x ∈ deps & x ∉ assignDeps }
 通过使用这个公式，响应系统确保了所有 setter 方法的依赖（可能引入循环）都从状态的响应依赖中移除。
 
 我们可以用下图来说明这种方法：
-![reactivity-graph4-0](../../imgs/reactivity-graph4-0.jpeg "reactivity-graph4-0")
-![reactivity-graph4-1](../../imgs/reactivity-graph4-1.jpeg "reactivity-graph4-1")
+![reactivity-graph4-0](../../../imgs/reactivity-graph4-0.jpeg "reactivity-graph4-0")
+![reactivity-graph4-1](../../../imgs/reactivity-graph4-1.jpeg "reactivity-graph4-1")
 
 值得注意的是，loop dependencies与circular dependencies不同。circular dependencies意味着 A 依赖于 B，而 B 同时依赖于 A，这种情况永远不会发生，因为：
 1. 从设计上讲，Reactivity Graph是一个有向无环图（DAG），这意味着它本质上没有循环。

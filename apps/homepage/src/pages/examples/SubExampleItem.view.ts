@@ -1,5 +1,5 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, Pretty, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, div, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { CodeModuleType } from "../../utils/types"
 import { Navigator } from "@dlightjs/components"
@@ -8,36 +8,41 @@ interface SubExampleItemProps {
   title: string
   description: string
   modules: CodeModuleType[]
-  updateModules: (modules: CodeModuleType[], title: string) => void
+  updateModules: (modules: CodeModuleType[], title: string, header: string) => void
   selectedTitle: string
+  header: string
 }
 
 @View
 class SubExampleItem implements SubExampleItemProps {
   @Env navigator: Navigator = required
   @Env theme: any = required
+  @Env path: string = required
   @Prop title = required
   @Prop description = required
   @Prop modules = required
   @Prop updateModules = required
   @Prop selectedTitle = required
+  @Prop header = ""
+  mutatedTitle = this.title.toLocaleLowerCase().replaceAll(" ", "-")
 
   isHover = false
   isSelected = this.selectedTitle === this.title
 
-  Body() {
+  View() {
     div()
-      .className(this.subExampleWrapCss)
-      .onmouseenter(() => { this.isHover = true })
-      .onmouseleave(() => { this.isHover = false })
-      .onclick(() => {
-        this.updateModules(this.modules, this.title)
+      .id(this.mutatedTitle)
+      .class(this.subExampleWrapCss)
+      .onMouseEnter(() => { this.isHover = true })
+      .onMouseLeave(() => { this.isHover = false })
+      .onClick(() => {
+        this.updateModules(this.modules, this.title, this.header)
       })
     {
       div(this.title)
-        .className(this.exmapleSubTitleCss)
+        .class(this.exmapleSubTitleCss)
       div(this.description)
-        .className(this.exmapleSubDecriptionCss)
+        .class(this.exmapleSubDecriptionCss)
     }
   }
 
@@ -47,7 +52,7 @@ class SubExampleItem implements SubExampleItemProps {
     padding-bottom: 10px;
     border-bottom: solid 1px rgba(97,126,68, 0.1);
     margin-bottom: 10px;
-    color: ${this.isHover || this.isSelected ? this.theme.green9 : this.theme.green12};
+    color: ${this.isHover || this.isSelected ? this.theme.exampleMenuBtnHover : this.theme.exampleMenuBtnTextColor};
   `
 
   exmapleSubTitleCss = css`

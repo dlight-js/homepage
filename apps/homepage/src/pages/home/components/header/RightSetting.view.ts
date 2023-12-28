@@ -1,5 +1,5 @@
-import { Env, View, required } from "@dlightjs/dlight"
-import { Pretty, Typed, a, div, img } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { Env, Pretty, Typed, a, div, img, required } from "@dlightjs/types"
 import { LightModeOutlined, TranslateOutlined } from "@dlightjs/material-icons"
 import { css } from "@iandx/easy-css"
 import { getSize } from "../../../../utils/utilFunc"
@@ -16,29 +16,25 @@ class RightSetting {
       .href(href)
     {
       img()
-        .className(this.iconSizeCss)
+        .class(this.iconSizeCss)
         .src(src)
     }
   }
 
-  Body() {
+  View() {
     div()
-      .className(this.sectionNav)
+      .class(this.sectionNav)
     {
-      div()
-        .onclick(this.updateThemeType)
-      {
-        LightModeOutlined()
-          .className(this.iconSizeCss)
-          .color(this.theme.green9)
-      }
-      div()
-        .onclick(this.toogleLanguage)
-      {
-        TranslateOutlined()
-          .className(this.iconSizeCss)
-          .color(this.theme.green9)
-      }
+      LightModeOutlined()
+        .class(this.iconSizeCss)
+        .color(this.theme.green9)
+        .onClick(this.updateThemeType)
+        // .onDblClick(() => { console.log("double click") })
+      TranslateOutlined()
+        .class(this.iconSizeCss)
+        .color(this.theme.green9)
+        .onClick(this.toogleLanguage)
+        .onDblClick(() => { console.log("double click") })
       this.NavForwardIcon({})
         .src("/imgs/github.svg")
         .href("https://github.com/dlight-js/dlight")

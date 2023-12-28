@@ -1,7 +1,7 @@
 
-import { Navigator, Transition } from "@dlightjs/components"
-import { View, Env, Prop, required } from "@dlightjs/dlight"
-import { Pretty, Typed, div } from "@dlightjs/types"
+import { Navigator } from "@dlightjs/components"
+import { View } from "@dlightjs/dlight"
+import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
 import { Logo, LogoTitle } from "../../../../logo"
 import { css } from "@iandx/easy-css"
 
@@ -16,12 +16,13 @@ class AnimatedLogo implements AnimatedLogoProps {
   @Prop isStyle2 = required
   @Prop isShortHeader = required
 
-  Body() {
+  View() {
     div()
-      .onclick(() => { this.navigator.to("/") })
-      .className(this.logoWrapCss)
+      .onClick(() => { this.navigator.to("/") })
+      .class(this.logoWrapCss)
     {
-      Transition()
+      div()
+        .class(this.transitionCss)
       {
         Logo()
           .isRotate(this.isStyle2)
@@ -34,6 +35,10 @@ class AnimatedLogo implements AnimatedLogoProps {
   logoWrapCss = css`
     cursor: pointer;
     margin-left: ${this.isShortHeader ? "5px" : "30px"};
+  `
+
+  transitionCss = css`
+    transition: all 0.5s;
   `
 }
 

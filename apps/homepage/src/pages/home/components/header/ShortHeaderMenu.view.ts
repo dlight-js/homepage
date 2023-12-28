@@ -1,5 +1,5 @@
-import { Env, View, required } from "@dlightjs/dlight"
-import { Pretty, Typed, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { Env, Pretty, Typed, div, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { HeaderData } from "../../../../const/homeData"
 import ShortHeaderMenuItem from "./ShortHeaderMenuItem.view"
@@ -7,11 +7,12 @@ import ShortHeaderMenuItem from "./ShortHeaderMenuItem.view"
 @View
 class ShortHeaderMenu {
   @Env i18n: any = required
+  @Env theme: any = required
   navBtn = HeaderData
 
-  Body() {
+  View() {
     div()
-      .className(this.menuWarpCss)
+      .class(this.menuWarpCss)
     {
       for (const { btnName, zhBtnName, path } of this.navBtn) {
         ShortHeaderMenuItem()
@@ -23,7 +24,7 @@ class ShortHeaderMenu {
 
   menuWarpCss = css`
     position: fixed;
-    background-color: white;
+    background-color: ${this.theme.primaryBgColor};
     padding: 20px 10px;
     width: calc(100% - 20px);
     height: 100%;

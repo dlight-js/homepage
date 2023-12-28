@@ -1,14 +1,14 @@
-import { Prop, View, env, required } from "@dlightjs/dlight"
-import { type Typed, div, Pretty } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, div, Pretty, Prop, env, required } from "@dlightjs/types"
 import ProjectEditor from "./Editor/ProjectEditor.view"
 import PreviewView from "./Preview/Preview.view"
-import { HStack, VStack } from "@dlightjs/components"
 import { ToBeTransformedModule } from "../project/types"
 import { colors, dividerWidth } from "../utils/const"
 import HorizontalResizer from "./components/HorizontalResizer.view"
 import { DLightProject } from "../project/dlightProject"
 import { loadMonacoWorker } from "../utils/loader"
 import VerticalResizer from "./components/VerticalResizer.view"
+import { css } from "@iandx/easy-css"
 
 loadMonacoWorker()
 
@@ -95,7 +95,7 @@ class Playground implements PlaygroundProps {
   wrapperEl?: HTMLDivElement
   // stack = this.isVertical ? VStack : HStack
 
-  Body() {
+  View() {
     env()
       .theme(this.theme)
       .themeType(this.themeType)
@@ -108,10 +108,8 @@ class Playground implements PlaygroundProps {
         .element(this.wrapperEl)
       {
         if (this.isVertical) {
-          VStack()
-            .width(this.width)
-            .height(this.height)
-            .spacing(0)
+          div()
+            .class(this.columnDisplayCss)
           {
             ProjectEditor()
               .width(this.editorWidth)
@@ -132,10 +130,8 @@ class Playground implements PlaygroundProps {
               .refreshFunc(this.refreshFunc)
           }
         } else {
-          HStack()
-            .width(this.width)
-            .height(this.height)
-            .spacing(0)
+          div()
+            .class(this.rowDisplayCss)
           {
             ProjectEditor()
               .width(this.editorWidth)
@@ -159,6 +155,24 @@ class Playground implements PlaygroundProps {
       }
     }
   }
+
+  columnDisplayCss = css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: ${this.width};
+    height: ${this.height};
+  `
+
+  rowDisplayCss = css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: ${this.width};
+    height: ${this.height};
+  `
 }
 
 export default Playground as Pretty as Typed<PlaygroundProps>

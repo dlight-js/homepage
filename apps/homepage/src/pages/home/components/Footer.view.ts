@@ -1,5 +1,5 @@
-import { Env, View, Watch, required } from "@dlightjs/dlight"
-import { type Typed, Pretty, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, div, Env, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { getSize } from "../../../utils/utilFunc"
 
@@ -8,12 +8,12 @@ class Footer {
   @Env theme: any = required
   @Env i18n: any = required
 
-  Body() {
+  View() {
     div()
-      .className(this.footerWrapCss)
+      .class(this.footerWrapCss)
     {
       div()
-        .className(this.textWrapCss)
+        .class(this.textWrapCss)
       {
         div(this.i18n("Built with DLight and ❤️", "使用 DLight 构建 ❤️"))
         div("by @iandx and @orange04")

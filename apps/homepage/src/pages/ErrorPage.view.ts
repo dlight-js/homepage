@@ -1,8 +1,10 @@
-import { VStack, Spacer, Navigator } from "@dlightjs/components"
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { type Typed, div, button, Pretty } from "@dlightjs/types"
+import { Navigator } from "@dlightjs/components"
+import { View } from "@dlightjs/dlight"
+import { type Typed, div, button, Pretty, Env, Prop, required } from "@dlightjs/types"
+import { css } from "@iandx/easy-css"
 
 interface ErrorPageProps {
+  navigator: Navigator
   errorInfo: string
   btnText: string
   btnEvent: () => void
@@ -17,20 +19,25 @@ class ErrorPage implements ErrorPageProps {
     this.navigator.to("/")
   }
 
-  Body() {
-    VStack()
-      .height("100vh")
-      .width("100%")
-      .alignment("center")
+  View() {
+    div()
+      .class(this.columnDisplayCss)
     {
-      Spacer()
       div(this.errorInfo)
-        .className("text-2xl py-8")
+        .class("text-2xl py-8")
       button(this.btnText)
-        .onclick(this.btnEvent)
-      Spacer()
+        .onClick(this.btnEvent)
     }
   }
+
+  columnDisplayCss = css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+  `
 }
 
 export default ErrorPage as Pretty as Typed<ErrorPageProps>

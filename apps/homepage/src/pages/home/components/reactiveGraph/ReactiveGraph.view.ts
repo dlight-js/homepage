@@ -1,9 +1,9 @@
-import { Env, Prop, View, Watch, required } from "@dlightjs/dlight"
-import { type Typed, Pretty, div } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { type Typed, Pretty, div, Env, Prop, Watch, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { getSize } from "../../../../utils/utilFunc"
 import Shape from "./Shape.view"
 import LineShape from "./LineShape.view"
+import clsx from "clsx"
 
 interface ReactiveGraphProps {
   count: number
@@ -77,19 +77,18 @@ class ReactiveGraph implements ReactiveGraphProps {
       }
     })()
 
-  Body() {
+  View() {
     div()
-      .className(this.graphWrapCss)
+      .class(this.graphWrapCss)
     {
       div()
-        .className(this.verticalCss)
+        .class(this.verticalCss)
       {
         div()
-          .className(this.horizontalCss)
+          .class(this.horizontalCss)
         {
           div()
-            .className(this.horizontalCss)
-            .className(this.translateCss)
+            .class(clsx(this.horizontalCss, this.translateCss))
           {
             Shape("count++")
               .shape("square")
@@ -104,7 +103,7 @@ class ReactiveGraph implements ReactiveGraphProps {
             .type("downCorner")
         }
         div()
-          .className(this.horizontalCss)
+          .class(this.horizontalCss)
         {
           Shape("dblCount++")
             .shape("square")
@@ -126,13 +125,12 @@ class ReactiveGraph implements ReactiveGraphProps {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: ${getSize(30)} 0;
-    margin-bottom: ${getSize(30)};
+    padding: 30px 0;
+    margin-bottom: 30px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: ${this.theme.primaryTextColor};
     font-size: 17px;
     font-weight: 500;
-    transform: translateX(-80px);
     cursor: default;
   `
 

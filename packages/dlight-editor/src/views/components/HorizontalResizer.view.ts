@@ -1,8 +1,7 @@
-import { Env, Prop, View, required } from "@dlightjs/dlight"
-import { div, Pretty, Typed } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { div, Env, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import Resizer, { OnDragFunc } from "./Resizer.view"
 import { Color, dividerWidth } from "../../utils/const"
-import { Spacer, VStack } from "@dlightjs/components"
 import { css } from "@iandx/easy-css"
 
 interface HorizontalResizerProps {
@@ -49,24 +48,23 @@ class HorizontalResizer implements HorizontalResizerProps {
   }
 
   /** @func */
-  Body() {
+  View() {
     Resizer()
       .onDrag(this.handleDrag)
       .axis("x")
     {
       div()
-        .className(this.resizerCss)
-        .onmouseover(this.onMouseOver)
-        .onmousedown(this.onMouseDown)
-        .onmouseout(this.onMouseOut)
+        .class(this.resizerCss)
+        .onMouseOver(this.onMouseOver)
+        .onMouseDown(this.onMouseDown)
+        .onMouseOut(this.onMouseOut)
       {
-        VStack()
+        div()
+          .class(this.columnDisplayCss)
         {
-          Spacer()
           div(".")
           div(".")
           div(".")
-          Spacer()
         }
       }
     }
@@ -82,6 +80,14 @@ class HorizontalResizer implements HorizontalResizerProps {
     background-color: ${this.hover !== 0 ? "#0077be" : this.theme.secondary};
     text-align: center;
     overflow: auto;
+  `
+
+  columnDisplayCss = css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
   `
 }
 

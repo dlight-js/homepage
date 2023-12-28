@@ -1,22 +1,22 @@
-import { Prop, View, required } from "@dlightjs/dlight"
-import { Pretty, Typed, img } from "@dlightjs/types"
+import { View } from "@dlightjs/dlight"
+import { Pretty, Prop, Typed, img, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 
 interface LogoTitleProps {
-  onclick: () => void
+  onClick: () => void
   isShow: boolean
 }
 
 @View
 class LogoTitle implements LogoTitleProps {
-  @Prop onclick = required
+  @Prop onClick = required
   @Prop isShow = required
 
-  Body() {
+  View() {
     img()
       .src("/imgs/light.svg")
-      .className(this.logoCss)
-      .onclick(this.onclick)
+      .class(this.logoCss)
+      .onClick(this.onClick)
   }
 
   logoCss = css`

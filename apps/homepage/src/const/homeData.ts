@@ -51,12 +51,12 @@ export const HeaderData = [
   {
     btnName: "Examples",
     zhBtnName: "示例",
-    path: "/examples",
+    path: "/examples/declare-state",
     structureData: ExamplesCodeData
-  },
-  {
-    btnName: "Ecosystem",
-    zhBtnName: "生态",
-    path: "/ecosystem"
   }
+  // {
+  //   btnName: "Ecosystem",
+  //   zhBtnName: "生态",
+  //   path: "/ecosystem"
+  // }
 ]
