@@ -1,6 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, div, Env, required, Watch } from "@dlightjs/types"
-import Header from "./components/header"
+import { type Typed, Pretty, div, Env, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { FeatureData } from "../../const/homeData"
 import FeatureCardGroup from "./components/FeatureCardGroup.view"
@@ -11,7 +10,6 @@ import Title from "./components/Title.view"
 
 @View
 class Home {
-  @Env navigator = required
   @Env themeType: "light" | "dark" = required
   @Env theme: any = required
   @Env isMobile: boolean = required
@@ -22,8 +20,6 @@ class Home {
     div()
       .class(this.bgCss)
     {
-      Header()
-        .isNeedAnimation(true)
       div()
         .class(this.titleExampleWrapCss)
       {

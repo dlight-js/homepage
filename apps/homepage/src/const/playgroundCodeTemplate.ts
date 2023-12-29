@@ -100,10 +100,10 @@ class ToggleView {
         })
       if (this.toggle) {
         div("now toggle is true")
-          ._color("green")
+          .style({ color: "green" })
       } else {
         div("xxxxx")
-          ._color("red")
+          .style({ color: "red" })
       }
     }
   }

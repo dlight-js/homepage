@@ -92,7 +92,7 @@ class Playground {
         overflow: "hidden"
       })
     {
-      this.PlayGroundHeader()
+      // this.PlayGroundHeader()
       if (this.isLoading) {
         Loading()
       } else {

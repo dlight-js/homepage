@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, Env, Prop, required } from "@dlightjs/types"
+import { type Typed, div, Pretty, Env, Prop, required, Watch } from "@dlightjs/types"
 import NavButton from "./NavButton.view"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
@@ -13,22 +13,22 @@ import ShortHeaderMenuIcon from "./ShortHeaderMenuIcon.view"
 interface HeaderProps {
   handleClickNav: (tabKey: string) => void
   themeType: string
-  isNeedAnimation?: boolean
   handleChangeTitleStyle: (value: boolean) => void
 }
 
 @View
 class Header implements HeaderProps {
   @Env navigator: Navigator = required
+  @Env path = required
   @Env theme: any = required
   @Env isShortView: boolean = required
   @Env windowWidth: number = required
   @Env i18n: any = required
   @Prop handleClickNav = required
   @Prop themeType = required
-  @Prop isNeedAnimation = false
   @Prop handleChangeTitleStyle = required
   navBtn = HeaderData
+  isNeedAnimation = this.path !== undefined && this.path.trim() === ""
   style2 = !this.isNeedAnimation
   isShowShadow = !this.isNeedAnimation
   isCenterTitle = window.innerWidth < 1019

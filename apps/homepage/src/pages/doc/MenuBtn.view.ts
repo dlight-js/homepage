@@ -5,8 +5,8 @@ import { css } from "@iandx/easy-css"
 import { shortViewWidth } from "../../const/pageSetting"
 
 interface MenuBtnProps {
-  hanleClickOpenMenu?: (value: boolean) => void
-  hanleClickOpenOutline?: (value: boolean) => void
+  handleClickOpenMenu?: (value: boolean) => void
+  handleClickOpenOutline?: (value: boolean) => void
   setMenuOpenBtnEl?: (el: HTMLElement) => void
   limitWidth?: number
   title?: string
@@ -17,8 +17,8 @@ class MenuBtn implements MenuBtnProps {
   @Env windowWidth: number = required
   @Env theme: any = required
   @Env i18n: any = required
-  @Prop hanleClickOpenMenu = required
-  @Prop hanleClickOpenOutline = required
+  @Prop handleClickOpenMenu = required
+  @Prop handleClickOpenOutline = required
   @Prop setMenuOpenBtnEl = required
   @Prop limitWidth = shortViewWidth
   @Prop title = ""
@@ -45,10 +45,10 @@ class MenuBtn implements MenuBtnProps {
       div()
         .class(this.shortViewSubHeaderWrapCss)
       {
-        if (this.hanleClickOpenMenu) {
+        if (this.handleClickOpenMenu) {
           div()
             .class(this.btnCss)
-            .onClick(this.hanleClickOpenMenu)
+            .onClick(this.handleClickOpenMenu)
             .element(this.el)
           {
             MenuRound()
@@ -65,10 +65,10 @@ class MenuBtn implements MenuBtnProps {
             div(this.title)
           }
         }
-        if (this.hanleClickOpenOutline) {
+        if (this.handleClickOpenOutline) {
           div()
             .class(this.btnCss)
-            .onClick(this.hanleClickOpenOutline)
+            .onClick(this.handleClickOpenOutline)
           {
             div(this.i18n("Outline", "大纲"))
             AlignHorizontalLeftRound()

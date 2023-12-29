@@ -19,6 +19,8 @@ export interface Color {
   featureCardColor: string
   introColor: string
   exampleMenuShadowColor: string
+  docHoverColor: string
+  docActiveColor: string
   orange1: string
   orange2: string
   orange3: string
@@ -59,6 +61,8 @@ export const colors: Record<string, Color> = {
     secondaryTextColor: "#445d2a",
     tertiaryTextColor: "rgba(82,110,52,0.7)",
     docTextColor: "#445d2a",
+    docHoverColor: "#ffd666",
+    docActiveColor: "#faad14",
     shadowColor: "#A9A9A9",
     startBtnColor: "#fbcba5",
     homeBtnColor: "#fde5d2",
@@ -110,7 +114,9 @@ export const colors: Record<string, Color> = {
     secondaryTextColor: "#AEAEAE",
     tertiaryTextColor: "#AEAEAE",
     docTextColor: "#ddd",
+    docActiveColor: "#faad14",
     shadowColor: "#1a1a1a",
+    docHoverColor: "#7c5914",
     startBtnColor: "#445d2a",
     homeBtnColor: "#daa172",
     homeBtnColorHover: "#bb8357",

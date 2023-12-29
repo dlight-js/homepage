@@ -1,7 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { css } from "@iandx/easy-css"
 import { type Typed, div, Pretty, Env, Prop, required, Watch } from "@dlightjs/types"
-import Header from "../home/components/header/Header.view"
 import DLightEditor from "dlight-editor"
 import { ExamplesCodeData } from "../../const/examplesCodeData"
 import { CodeModuleType, ExmaplesCodeDataType } from "../../utils/types"
@@ -101,18 +100,16 @@ class ExamplesPage implements RoutesEnv {
     div()
       .class(this.exampleBgCss)
     {
-      Header()
-        .isNeedAnimation(false)
       MenuBtn()
-        .hanleClickOpenMenu(this.openMenu)
-        .hanleClickOpenOutline(undefined)
+        .handleClickOpenMenu(this.openMenu)
+        .handleClickOpenOutline(undefined)
         .setMenuOpenBtnEl(this.setMenuOpenBtnEl)
         .title(this.header)
       if (this.isLoading) {
         Loading()
       } else {
         div()
-          .class(this.exmaplesPageWrapCss)
+          .class(this.examplesPageWrapCss)
         {
           SideMenu()
             .isOpen(this.isMenuOpen)
@@ -142,7 +139,7 @@ class ExamplesPage implements RoutesEnv {
     height: 100vh;
   `
 
-  exmaplesPageWrapCss = css`
+  examplesPageWrapCss = css`
     width: 100vw;
     display: flex;
     flex-direction: row;

@@ -40,9 +40,9 @@ class SubExampleItem implements SubExampleItemProps {
       })
     {
       div(this.title)
-        .class(this.exmapleSubTitleCss)
+        .class(this.exampleSubTitleCss)
       div(this.description)
-        .class(this.exmapleSubDecriptionCss)
+        .class(this.exampleSubDescriptionCss)
     }
   }
 
@@ -55,12 +55,12 @@ class SubExampleItem implements SubExampleItemProps {
     color: ${this.isHover || this.isSelected ? this.theme.exampleMenuBtnHover : this.theme.exampleMenuBtnTextColor};
   `
 
-  exmapleSubTitleCss = css`
+  exampleSubTitleCss = css`
     padding-bottom: 10px;
     font-weight: ${this.isHover || this.isSelected ? 500 : ""};
   `
 
-  exmapleSubDecriptionCss = css`
+  exampleSubDescriptionCss = css`
     font-size: 12px;
     line-height: 20px;
   `

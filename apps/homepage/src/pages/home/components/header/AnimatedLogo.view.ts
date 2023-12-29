@@ -38,7 +38,9 @@ class AnimatedLogo implements AnimatedLogoProps {
   `
 
   transitionCss = css`
-    transition: all 0.5s;
+    img {
+      transition: all 0.5s;
+    }
   `
 }
 

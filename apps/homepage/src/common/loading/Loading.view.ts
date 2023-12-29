@@ -39,7 +39,7 @@ class Loading implements EnvType {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 85vh;
+    height: 100vh;
   `
 
   ballWrapCss = css`

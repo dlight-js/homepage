@@ -2,6 +2,7 @@ import { View } from "@dlightjs/dlight"
 import { div, button, Typed, Pretty, Env, Prop, required } from "@dlightjs/types"
 import ResultView from "./Result.view"
 import OutputView from "./Output.view"
+import ConsoleView from "./Console.view"
 import { RefreshFilled } from "@dlightjs/material-icons"
 import { css } from "@iandx/easy-css"
 import { Color, headerHeight } from "../../utils/const"
@@ -12,6 +13,7 @@ interface PreviewProps {
   refreshFunc: () => void
   width: string
   verticalHeight: string
+  consoleInfo: any
 }
 
 @View
@@ -22,6 +24,7 @@ class Preview implements PreviewProps {
   @Prop refreshFunc: () => void = required
   @Prop width: string = required
   @Prop verticalHeight: string = required
+  @Prop consoleInfo = required
   @Env theme: Color = required
   @Env height: string = required
 
@@ -97,6 +100,8 @@ class Preview implements PreviewProps {
           OutputView()
             .code(this.currTransformedCode)
         }
+        ConsoleView()
+          .consoleInfo(this.consoleInfo)
       }
     }
   }

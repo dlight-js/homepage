@@ -7,6 +7,7 @@ export class DLightProject {
   transformedModules: TransformedProjectModule[]
   project: Project
   moduleId: string
+  console: any
 
   constructor(modules: ToBeTransformedModule[], entryFile = "/index") {
     this.modules = modules
@@ -20,6 +21,7 @@ export class DLightProject {
 
   async run() {
     await this.project.run()
+    this.console = this.project.console
   }
 
   new(func: (modules: ToBeTransformedModule[]) => ToBeTransformedModule[]) {

@@ -7,7 +7,7 @@ import { getSize } from "../../../../utils/utilFunc"
 @View
 class RightSetting {
   @Env theme: any = required
-  @Env toogleLanguage: any = required
+  @Env toggleLanguage: any = required
   @Env updateThemeType: any = required
 
   @View
@@ -33,7 +33,7 @@ class RightSetting {
       TranslateOutlined()
         .class(this.iconSizeCss)
         .color(this.theme.green9)
-        .onClick(this.toogleLanguage)
+        .onClick(this.toggleLanguage)
         .onDblClick(() => { console.log("double click") })
       this.NavForwardIcon({})
         .src("/imgs/github.svg")

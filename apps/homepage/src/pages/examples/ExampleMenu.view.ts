@@ -28,7 +28,7 @@ class ExampleMenu implements ExampleMenuProps {
     {
       for (const example of this.examples) {
         div(example.title)
-          .class(this.exmapleTitleCss)
+          .class(this.exampleTitleCss)
         for (const { title, description, modules } of example.children) {
           SubExampleItem()
             .header(example.title)
@@ -59,7 +59,7 @@ class ExampleMenu implements ExampleMenuProps {
     box-shadow: ${this.isOpen ? "0 2px 8px 0 #A9A9A9" : ""};
   `
 
-  exmapleTitleCss = css`
+  exampleTitleCss = css`
     font-size: 28px;
     color: ${this.theme.exampleMenuBtnTextColor};
     cursor: default;

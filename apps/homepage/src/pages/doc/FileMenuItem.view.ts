@@ -59,7 +59,7 @@ class FileMenuItem implements FileMenuItemProps {
           .class(this.textCss)
         if (this.children) {
           div()
-            .class(clsx(this.iconCss, this.iconAnimationCss, this.isOpen || this.isPathActive ? this.arrowDownCss : ""))
+            .class(clsx(this.iconCss, this.iconAnimationCss, (this.isOpen || this.isPathActive) ? this.arrowDownCss : ""))
           {
             KeyboardArrowRightFilled()
               .class(this.iconCss)
@@ -101,6 +101,7 @@ class FileMenuItem implements FileMenuItemProps {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    font-size: 0.875rem;
   `
 
   iconCss = css`
@@ -130,10 +131,10 @@ class FileMenuItem implements FileMenuItemProps {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 3px 10px;
-    margin: 1px 10px;
-    border-radius: 5px;
-    background-color: ${this.isHover || this.isChoose ? this.theme.homeBtnColor : this.theme.primaryBgColor};
+    padding: 0px 10px;
+    margin: 5px 10px;
+    border-left: ${this.isChoose ? `2px solid ${this.theme.docActiveColor}` : this.isHover ? `2px solid ${this.theme.docHoverColor}` : "0px solid #ddd"};;
+    /* background-color: ${this.isHover || this.isChoose ? this.theme.homeBtnColor : this.theme.primaryBgColor}; */
     cursor: pointer;
   `
 

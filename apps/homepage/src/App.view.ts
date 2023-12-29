@@ -1,7 +1,8 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, env } from "@dlightjs/types"
-import { Routes } from "@dlightjs/components"
+import { type Typed, Pretty, env, div, Watch } from "@dlightjs/types"
+import { Routes, RoutesEnv, Navigator } from "@dlightjs/components"
 import { Color, colors } from "./const/themes"
+import Header from "./pages/home/components/header"
 
 export interface EnvType {
   updateThemeType?: () => void
@@ -12,7 +13,7 @@ export interface EnvType {
   windowWidth?: number
   i18n?: (enContent: string, zhContent: string) => string
   language?: string
-  toogleLanguage?: () => void
+  toggleLanguage?: () => void
 }
 
 @View
@@ -25,7 +26,7 @@ class App {
   windowWidth = window.innerWidth
 
   language: "en" | "zh" | string = localStorage.getItem("DlightLanguage") ?? "en"
-  toogleLanguage() {
+  toggleLanguage() {
     this.language = this.language === "en" ? "zh" : "en"
     localStorage.setItem("DlightLanguage", this.language)
   }
@@ -56,6 +57,8 @@ class App {
     }
   }
 
+  path = ""
+
   View() {
     env<EnvType>()
       .updateThemeType(this.updateThemeType)
@@ -66,16 +69,23 @@ class App {
       .windowWidth(this.windowWidth)
       .i18n(this.i18n)
       .language(this.language)
-      .toogleLanguage(this.toogleLanguage)
+      .toggleLanguage(this.toggleLanguage)
+      .path(this.path)
+      .navigator(new Navigator())
     {
-      Routes({
-        docs: async() => await import("./pages/doc/DocPage.view"),
-        playground: async() => await import("./pages/Playground.view"),
-        examples: async() => await import("./pages/examples/ExamplesPage.view"),
-        ecosystem: async() => await import("./pages/doc/DocPage.view"),
-        ".": async() => await import("./pages/home/Home.view"),
-        "": async() => await import("./pages/ErrorPage.view")
-      })
+      div()
+        .style({ backgroundColor: this.theme.primaryBgColor })
+      {
+        Header()
+        Routes({
+          docs: async() => await import("./pages/doc/DocPage.view"),
+          playground: async() => await import("./pages/Playground.view"),
+          examples: async() => await import("./pages/examples/ExamplesPage.view"),
+          ecosystem: async() => await import("./pages/doc/DocPage.view"),
+          ".": async() => await import("./pages/home/Home.view"),
+          "": async() => await import("./pages/ErrorPage.view")
+        }).onPathUpdate(path => { this.path = path })
+      }
     }
   }
 }

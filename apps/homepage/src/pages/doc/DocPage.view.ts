@@ -5,7 +5,6 @@ import { css } from "@iandx/easy-css"
 import { findCertainFile, flatFileStructureData } from "../../utils/utilFunc"
 import { FileMap } from "../../const/docsData"
 import { DocsStructureMapType } from "../../utils/types"
-import Header from "../home/components/header/Header.view"
 import MenuBtn from "./MenuBtn.view"
 import { PageNavType } from "./types"
 import SideMenu from "../../common/sideMenu/SideMenu.view"
@@ -89,23 +88,22 @@ class DocPage {
     }
   }
 
-  hanleClickOpenMenu(e: any) {
+  handleClickOpenMenu(e: any) {
     e.stopPropagation()
     this.isOpenMenu = true
   }
 
-  hanleClickOpenOutline() {
+  handleClickOpenOutline() {
     this.isOpenOutline = { value: true }
   }
 
   View() {
-    Header()
     env()
       .selectedName(this.selectedName)
     {
       MenuBtn()
-        .hanleClickOpenMenu(this.hanleClickOpenMenu)
-        .hanleClickOpenOutline(this.hanleClickOpenOutline)
+        .handleClickOpenMenu(this.handleClickOpenMenu)
+        .handleClickOpenOutline(this.handleClickOpenOutline)
         .setMenuOpenBtnEl(this.setMenuOpenBtnEl)
       div()
         .class(this.rowFlexCss)

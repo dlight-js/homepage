@@ -48,6 +48,11 @@ class Playground implements PlaygroundProps {
     this.refreshFunc = func
   }
 
+  consoleInfo = ""
+  getConsoleInfo = (info: any) => {
+    this.consoleInfo = info
+  }
+
   verticalEditorWidth = "100%"
   horizontalEditorWidth = "50%"
 
@@ -140,6 +145,7 @@ class Playground implements PlaygroundProps {
               .getMountId(this.getMountId)
               .getCurrTransformedCode(this.getCurrTransformedCode)
               .getRefreshFunc(this.getRefreshFunc)
+              .getConsoleInfo(this.getConsoleInfo)
               .onSave(this.onSave)
             HorizontalResizer()
               .height(`${this.height}`)
@@ -150,6 +156,7 @@ class Playground implements PlaygroundProps {
               .mountId(this.mountId)
               .currTransformedCode(this.currTransformedCode)
               .refreshFunc(this.refreshFunc)
+              .consoleInfo(this.consoleInfo)
           }
         }
       }

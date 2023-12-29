@@ -13,6 +13,7 @@ interface ProjectEditorProps {
   getCurrTransformedCode: (code: string) => void
   getRefreshFunc: (func: any) => void
   getMountId: (id: string) => void
+  getConsoleInfo: (info: string) => void
   language?: string
   width?: string
   height?: string
@@ -30,6 +31,7 @@ class ProjectEditor {
   @Prop width = "100%"
   @Prop height = "100%"
   @Prop onSave?: (project: DLightProject) => void
+  @Prop getConsoleInfo = required
 
   /** @reactive */
   dlightProject = new DLightProject(this.modules)
@@ -96,6 +98,7 @@ class ProjectEditor {
     this.dlightProject = new DLightProject(modules) as any
     void this.dlightProject.run()
     this.onSave?.(this.dlightProject)
+    this.getConsoleInfo(this.dlightProject.console)
   }
 
   pathToTab(path: string) {
