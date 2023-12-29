@@ -7,8 +7,6 @@ import Footer from "./components/Footer.view"
 import Example from "./components/Example.view"
 import { getSize } from "../../utils/utilFunc"
 import Title from "./components/Title.view"
-import { Logo } from "../../logo"
-import FirstScreen from "./FirstScreen.view"
 
 @View
 class Home {
@@ -22,7 +20,21 @@ class Home {
     div()
       .class(this.bgCss)
     {
-      FirstScreen()
+      div()
+        .class(this.titleExampleWrapCss)
+      {
+        Title()
+        Example()
+      }
+      div()
+        .class(this.featureCardWrap)
+      {
+        FeatureCardGroup()
+          .data(this.featureData.slice(0, 2))
+        FeatureCardGroup()
+          .data(this.featureData.slice(2, 4))
+      }
+      Footer()
     }
   }
 
@@ -30,7 +42,25 @@ class Home {
     /* background: ${this.themeType === "dark" ? "linear-gradient(#330172, #000000)" : "linear-gradient(#fff9f4, #fff9f4)"}; */
     background-color: ${this.theme.primaryBgColor};
     overflow-x: hidden;
-    height: 100vh;
+  `
+
+  titleExampleWrapCss = css`
+    padding: 0 ${getSize(10)};
+    margin-top: ${getSize(30)};
+    display: ${this.isMobile ? "block" : "flex"};
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  `
+
+  featureCardWrap = css`
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0 30px;
   `
 }
 
