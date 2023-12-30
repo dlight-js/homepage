@@ -45,7 +45,7 @@ class NextPageNav implements NextPageNavProps {
               .color(this.hover1 ? "#daa172" : this.theme.primaryText)
           }
           div()
-            .class(this.pageNavTextBtnCss)
+            // .class(this.pageNavTextBtnCss)
           {
             div(this.i18n(this.prePage.name, this.prePage.zhName))
           }
@@ -60,7 +60,7 @@ class NextPageNav implements NextPageNavProps {
           .onMouseLeave(() => { this.hover2 = false })
         {
           div()
-            .class(clsx(this.pageNavTextBtnCss, this.nextPageNavTextBtnCss))
+            // .class(clsx(this.pageNavTextBtnCss, this.nextPageNavTextBtnCss))
           {
             div(this.i18n(this.nextPage.name, this.nextPage.zhName))
           }

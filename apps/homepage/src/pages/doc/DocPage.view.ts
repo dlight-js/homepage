@@ -74,7 +74,7 @@ class DocPage {
           }
           return ""
         })
-        .then(text => { this.mdString = text })
+        .then(text => { this.mdString = text; })
         .catch(() => { this.isFail = true })
     }
     this.selectedName = fileData?.name ?? ""

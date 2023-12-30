@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, Pretty, env, div, Watch } from "@dlightjs/types"
-import { Routes, RoutesEnv, Navigator } from "@dlightjs/components"
+import { Routes, Navigator } from "@dlightjs/components"
 import { Color, colors } from "./const/themes"
 import Header from "./pages/home/components/header"
 
@@ -14,6 +14,8 @@ export interface EnvType {
   i18n?: (enContent: string, zhContent: string) => string
   language?: string
   toggleLanguage?: () => void
+  path?: string
+  navigator?: any
 }
 
 @View

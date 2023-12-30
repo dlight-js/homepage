@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { Pretty, Typed, div, h1 } from "@dlightjs/types"
+import { Pretty, Typed, div, h1, set } from "@dlightjs/types"
 import { Logo } from "../../logo"
 import { css } from "@iandx/easy-css"
 
@@ -24,31 +24,47 @@ class FirstScreen {
   sloganWord = this.slogan.slice(0, this.sloganIdx).join("")
   getNewSloganWord() {
     if (this.sloganIdx === this.slogan.length - 1) {
-      // this.spitOutWords = false
-      // this.getNewSlogan()
-      // this.sloganIdx = 0
-      // this.interval && clearInterval(this.interval)
-      // setTimeout(() => {
-      //   this.show()
-      // }, 2000)
+      this.interval && clearInterval(this.interval)
+      setTimeout(() => {
+        this.sloganIdx = 0
+        this.spitOutWords = false
+        this.interval && clearInterval(this.interval)
+        this.fold()
+      }, 5000)
       return
     }
-    this.spitOutWords = true
     this.sloganIdx++
   }
 
   interval = null
 
-  show() {
-    // this.interval =
+  fold() {
+    this.interval = setInterval(() => {
+      if (this.sloganIdx === 0) {
+        this.interval && clearInterval(this.interval)
+        setTimeout(() => {
+          this.spitOutWords = true
+          this.getNewSlogan()
+          this.show()
+        }, 5000)
+      }
+      this.sloganIdx--
+    }, 20)
   }
 
-  willMount() {
-    console.log("i")
-    this.show()
-    setInterval(() => {
+  show() {
+    this.interval = setInterval(() => {
       this.getNewSloganWord()
     }, 30)
+  }
+
+  didMount() {
+    setTimeout(() => {
+      this.spitOutWords = true
+    }, 500)
+    setTimeout(() => {
+      this.show()
+    }, 1000)
   }
 
   View() {
@@ -57,9 +73,7 @@ class FirstScreen {
     {
       Logo()
         .isRotate(this.spitOutWords)
-      if (this.spitOutWords) {
-        h1(this.sloganWord)
-      }
+      h1(this.sloganWord)
     }
   }
 
@@ -72,7 +86,7 @@ class FirstScreen {
     height: 100vh;
     color: white;
     img {
-      transition: all 0.3s ease-in-out;
+      transition: all 0.5s ease-in-out;
     }
   `
 }

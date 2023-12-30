@@ -52,7 +52,7 @@ export class Project {
     }
     if (module.moduleExports === undefined) {
       module.moduleExports = {}
-      await module.codeRunFunc(this.require.bind(this), module.moduleExports)
+      await module.codeRunFunc(this.require.bind(this), module.moduleExports, this.console)
     }
     return module.moduleExports
   }

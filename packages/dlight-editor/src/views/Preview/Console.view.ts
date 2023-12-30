@@ -1,19 +1,26 @@
 import { View } from "@dlightjs/dlight"
 import { css } from "@iandx/easy-css"
-import { Env, Pretty, Prop, Static, Typed, div, required } from "@dlightjs/types"
+import { Env, Pretty, Prop, Static, Typed, Watch, div, required } from "@dlightjs/types"
 import * as monaco from "monaco-editor"
 import { Color } from "../../utils/const"
 
 interface ConsoleProps {
-  consoleInfo: any
 }
 
 @View
 class Console {
   /** @prop */
-  @Prop consoleInfo = required
+  @Env registerConsoleFunc
+  logs = []
+  errors = []
   @Env theme: Color = required
   @Env height: string = required
+
+  @Watch
+  register() {
+    console.log(this.registerConsoleFunc, "okkk")
+    this.registerConsoleFunc(this)
+  }
 
   /** @view */
   View() {
@@ -22,7 +29,9 @@ class Console {
     {
       div("console")
       div("11112e3213")
-      div(this.consoleInfo)
+      for (const log of this.logs) {
+        div(log)
+      }
     }
   }
 

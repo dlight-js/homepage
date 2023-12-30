@@ -59,15 +59,15 @@ interface DlightDocProps {
 @View
 class DlightDoc implements DlightDocProps {
   @Env path: any
+  @Env themeType: "light" | "dark" = "light"
   @Content content: any = required
   @Prop title = required
   @Prop isShowCatalogue = required
   @Prop nextPageNav = required
   @Prop prePageNav = required
-  @Prop themeType: "light" | "dark" = "light"
+  
 
   docAst: any = []
-  cata = []
   catalogueIndex = 0
   markitViewEl: any
   catalogueEl: any
@@ -229,6 +229,14 @@ class DlightDoc implements DlightDocProps {
     .dlight-markit-code {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background-color: ${this.theme.codeBg};
+      color: ${this.theme.codeText};
+    }
+    .dlight-markit-code-block {
+      background-color: ${this.theme.codeBg};
+      color: ${this.theme.codeText};
+    }
+    .dlight-markit-code-block-header {
+      background-color: ${this.theme.codeBlockHeader};
       color: ${this.theme.codeText};
     }
   `

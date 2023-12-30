@@ -88,6 +88,7 @@ class Header implements HeaderProps {
               NavButton(this.i18n(btnName, zhBtnName))
                 .handleClickNav(() => { this.navigator.to(path) })
                 .structureData(structureData)
+                .btnPath(path)
             }
           }
         }

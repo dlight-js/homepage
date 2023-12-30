@@ -6,7 +6,6 @@ export class CodeParser {
   static noMountIdRender(code: string, mountId: string) {
     return code.replace(/render\("(.+?)"/g, `render("$1-${mountId}"`)
   }
-
   static toRequire(code: string) {
     return transform(code, { plugins: ["transform-modules-commonjs"] }).code
   }

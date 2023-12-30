@@ -55,8 +55,14 @@ class FileMenuItem implements FileMenuItemProps {
         .onMouseOver(() => { this.isHover = true })
         .onMouseOut(() => { this.isHover = false })
       {
-        div(this.i18n(this.name, this.zhName))
-          .class(this.textCss)
+        div()
+          .class(this.menuItemCss)
+        {
+          div()
+            .class(this.activeLightCss)
+          div(this.i18n(this.name, this.zhName))
+            .class(this.textCss)
+        }
         if (this.children) {
           div()
             .class(clsx(this.iconCss, this.iconAnimationCss, (this.isOpen || this.isPathActive) ? this.arrowDownCss : ""))
@@ -97,6 +103,20 @@ class FileMenuItem implements FileMenuItemProps {
     opacity: ${this.isOpen || this.isPathActive ? "1" : "0"};
   `
 
+  menuItemCss = css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  `
+
+  activeLightCss = css`
+    height: 18px;
+    width: 2px;
+    margin-right: 10px;
+    background-color: ${this.isChoose ? this.theme.docActiveColor : this.isHover ? this.theme.docHoverColor : "transparent"};
+  `
+
   textCss = css`
     text-overflow: ellipsis;
     overflow: hidden;
@@ -132,8 +152,8 @@ class FileMenuItem implements FileMenuItemProps {
     justify-content: space-between;
     align-items: center;
     padding: 0px 10px;
-    margin: 5px 10px;
-    border-left: ${this.isChoose ? `2px solid ${this.theme.docActiveColor}` : this.isHover ? `2px solid ${this.theme.docHoverColor}` : "0px solid #ddd"};;
+    margin: 5px 0px;
+    /* border-left: ${this.isChoose ? `2px solid ${this.theme.docActiveColor}` : this.isHover ? `2px solid ${this.theme.docHoverColor}` : "0px solid #ddd"};; */
     /* background-color: ${this.isHover || this.isChoose ? this.theme.homeBtnColor : this.theme.primaryBgColor}; */
     cursor: pointer;
   `

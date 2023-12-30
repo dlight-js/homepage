@@ -13,7 +13,6 @@ interface PreviewProps {
   refreshFunc: () => void
   width: string
   verticalHeight: string
-  consoleInfo: any
 }
 
 @View
@@ -24,9 +23,10 @@ class Preview implements PreviewProps {
   @Prop refreshFunc: () => void = required
   @Prop width: string = required
   @Prop verticalHeight: string = required
-  @Prop consoleInfo = required
   @Env theme: Color = required
   @Env height: string = required
+
+  consoleNode = null
 
   /** @reactive */
   tab: "result" | "output" = "result"
@@ -101,7 +101,9 @@ class Preview implements PreviewProps {
             .code(this.currTransformedCode)
         }
         ConsoleView()
-          .consoleInfo(this.consoleInfo)
+          .do(node => {
+            this.consoleNode = node
+          })
       }
     }
   }

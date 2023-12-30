@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { div, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
+import { div, Env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
 import { DLightProject } from "../../project/dlightProject"
 import CodeEditor, { EditorStore } from "./CodeEditor.view"
 import * as monaco from "monaco-editor"
@@ -13,7 +13,7 @@ interface ProjectEditorProps {
   getCurrTransformedCode: (code: string) => void
   getRefreshFunc: (func: any) => void
   getMountId: (id: string) => void
-  getConsoleInfo: (info: string) => void
+  getRegisterConsole: (info: string) => void
   language?: string
   width?: string
   height?: string
@@ -31,7 +31,8 @@ class ProjectEditor {
   @Prop width = "100%"
   @Prop height = "100%"
   @Prop onSave?: (project: DLightProject) => void
-  @Prop getConsoleInfo = required
+  @Prop getRegisterConsole = required
+  @Env getRegisterConsoleFunc
 
   /** @reactive */
   dlightProject = new DLightProject(this.modules)
@@ -96,9 +97,9 @@ class ProjectEditor {
         : module
     ))
     this.dlightProject = new DLightProject(modules) as any
+    this.getRegisterConsoleFunc(this.dlightProject.console.register.bind(this.dlightProject.console))
     void this.dlightProject.run()
-    this.onSave?.(this.dlightProject)
-    this.getConsoleInfo(this.dlightProject.console)
+    this.onSave?.(new DLightProject(this.dlightProject.modules))
   }
 
   pathToTab(path: string) {
@@ -109,8 +110,12 @@ class ProjectEditor {
     return `/${tab}.ts`
   }
 
+  @Env registerConsoleFunc
+
   /** @lifecycle */
   didMount() {
+    this.getRegisterConsoleFunc(this.dlightProject.console.register.bind(this.dlightProject.console))
+    console.log(this.registerConsoleFunc, "shit")
     void this.dlightProject.run()
     this.getRefreshFunc(() => {
       this.updateModuleCode(this.currEditorStore.model.getValue())

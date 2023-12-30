@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, Prop, env, required } from "@dlightjs/types"
+import { type Typed, div, Pretty, Prop, env, required, Watch, comp } from "@dlightjs/types"
 import ProjectEditor from "./Editor/ProjectEditor.view"
 import PreviewView from "./Preview/Preview.view"
 import { ToBeTransformedModule } from "../project/types"
@@ -48,9 +48,14 @@ class Playground implements PlaygroundProps {
     this.refreshFunc = func
   }
 
-  consoleInfo = ""
-  getConsoleInfo = (info: any) => {
-    this.consoleInfo = info
+  registerConsoleFunc = () => {}
+  getRegisterConsoleFunc = (func: any) => {
+    this.registerConsoleFunc = func
+  }
+
+  @Watch
+  register() {
+    console.log(this.registerConsoleFunc, "nop")
   }
 
   verticalEditorWidth = "100%"
@@ -105,6 +110,8 @@ class Playground implements PlaygroundProps {
       .theme(this.theme)
       .themeType(this.themeType)
       .height(this.height)
+      .registerConsoleFunc(this.registerConsoleFunc)
+      .getRegisterConsoleFunc(this.getRegisterConsoleFunc)
     {
       div()
         .style({
@@ -112,52 +119,27 @@ class Playground implements PlaygroundProps {
         })
         .element(this.wrapperEl)
       {
-        if (this.isVertical) {
-          div()
-            .class(this.columnDisplayCss)
-          {
-            ProjectEditor()
-              .width(this.editorWidth)
-              .height(this.editorHeight)
-              .modules(this.modules)
-              .getMountId(this.getMountId)
-              .getCurrTransformedCode(this.getCurrTransformedCode)
-              .getRefreshFunc(this.getRefreshFunc)
-              .onSave(this.onSave)
-            VerticalResizer()
-              .width(`${this.width}`)
-              .onDrag(this.handleVerticalResizerDrag.bind(this))
-            PreviewView()
-              .width(this.previewWidth)
-              .verticalHeight(this.previewHeight)
-              .mountId(this.mountId)
-              .currTransformedCode(this.currTransformedCode)
-              .refreshFunc(this.refreshFunc)
-          }
-        } else {
-          div()
-            .class(this.rowDisplayCss)
-          {
-            ProjectEditor()
-              .width(this.editorWidth)
-              .height(this.editorHeight)
-              .modules(this.modules)
-              .getMountId(this.getMountId)
-              .getCurrTransformedCode(this.getCurrTransformedCode)
-              .getRefreshFunc(this.getRefreshFunc)
-              .getConsoleInfo(this.getConsoleInfo)
-              .onSave(this.onSave)
-            HorizontalResizer()
-              .height(`${this.height}`)
-              .onDrag(this.handleHorizontalResizerDrag.bind(this))
-            PreviewView()
-              .width(this.previewWidth)
-              .verticalHeight(this.previewHeight)
-              .mountId(this.mountId)
-              .currTransformedCode(this.currTransformedCode)
-              .refreshFunc(this.refreshFunc)
-              .consoleInfo(this.consoleInfo)
-          }
+        div()
+          .class(this.isVertical ? this.columnDisplayCss : this.rowDisplayCss)
+        {
+          ProjectEditor()
+            .width(this.editorWidth)
+            .height(this.editorHeight)
+            .modules(this.modules)
+            .getMountId(this.getMountId)
+            .getCurrTransformedCode(this.getCurrTransformedCode)
+            .getRefreshFunc(this.getRefreshFunc)
+            .onSave(this.onSave)
+          comp(this.isVertical ? VerticalResizer : HorizontalResizer)()
+            .width(`${this.width}`)
+            .height(`${this.height}`)
+            .onDrag(this.handleVerticalResizerDrag.bind(this))
+          PreviewView()
+            .width(this.previewWidth)
+            .verticalHeight(this.previewHeight)
+            .mountId(this.mountId)
+            .currTransformedCode(this.currTransformedCode)
+            .refreshFunc(this.refreshFunc)
         }
       }
     }

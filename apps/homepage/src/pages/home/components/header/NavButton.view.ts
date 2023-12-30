@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, button, div, Pretty, ContentProp, Content, Env, Prop, required } from "@dlightjs/types"
+import { type Typed, button, div, Pretty, ContentProp, Content, Env, Prop, required, Watch } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import MenuItem from "./MenuItem.view"
 import { Navigator } from "@dlightjs/components"
@@ -7,6 +7,7 @@ import { DocsStructureMapType, ExmaplesCodeDataType } from "../../../../utils/ty
 
 interface NavButtonProps {
   content: ContentProp<string>
+  btnPath: string
   handleClickNav: () => void
   structureData: ExmaplesCodeDataType[] | DocsStructureMapType[] | undefined
 }
@@ -16,13 +17,16 @@ class NavButton implements NavButtonProps {
   @Env i18n: any = required
   @Env navigator: Navigator = required
   @Env theme: any = required
+  @Env path = required
   @Content content: any = required
   @Prop handleClickNav = required
   @Prop structureData = required
+  @Prop btnPath = required
 
   isHover = false
   isMenuHover = false
   isShowHoverMenu = !!this.structureData
+  isSelect = this.path.startsWith(this.btnPath.split("/")[1])
 
   View() {
     div()
@@ -69,8 +73,8 @@ class NavButton implements NavButtonProps {
 
   navBtnCss = css`
     cursor: pointer;
-    background-color: ${this.isHover ? this.theme.homeBtnColor : this.theme.primaryBgColor};
-    color: ${this.isHover ? this.theme.primaryTextColor : this.theme.primaryTextColor};
+    background-color: ${this.isHover || this.isSelect ? this.theme.homeBtnColor : this.theme.primaryBgColor};
+    color: ${this.isHover || this.isSelect ? this.theme.primaryTextColor : this.theme.primaryTextColor};
     font-size: 0.875rem;
     font-weight: 600;
     padding: 8px 12px;

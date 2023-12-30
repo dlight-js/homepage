@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { code, Content, ContentProp, div, pre, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { code, Content, ContentProp, div, pre, Prop, required, Pretty, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import hljs from "highlight.js"
 import { ContentCopyFilled, DoneFilled } from "@dlightjs/material-icons"
@@ -28,10 +28,10 @@ class AdvantageBlock implements AdvantageBlockProps {
 
   View() {
     div()
-      .class(this.dlightMarkitCodeBlock)
+      .class(this.dlightMarkitCodeBlock$)
     {
       div()
-        .class(this.dlightMarkitCodeBlockHeader)
+        .class(this.dlightMarkitCodeBlockHeader$)
       {
         if (this.language) {
           div()
@@ -100,7 +100,7 @@ class AdvantageBlock implements AdvantageBlockProps {
   `
 
   /** @style */
-  dlightMarkitCodeBlockHeader = css`
+  dlightMarkitCodeBlockHeader$ = css`
     background-color: rgba(250, 190, 142, 0.3);
     padding: 8px 16px;
     border-radius: 12px 12px 0 0;
@@ -129,7 +129,7 @@ class AdvantageBlock implements AdvantageBlockProps {
     align-items: center;
     cursor: pointer;
   `
-  dlightMarkitCodeBlock = css`
+  dlightMarkitCodeBlock$ = css`
     background-color: rgba(242, 214, 159, 0.3);
     border-radius: 12px;
     font-size: 15px;

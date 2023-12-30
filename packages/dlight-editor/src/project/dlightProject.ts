@@ -17,11 +17,11 @@ export class DLightProject {
     for (const module of this.transformedModules) {
       this.project.addModule(module.path, module.dlightCode)
     }
+    this.console = this.project.console
   }
 
   async run() {
     await this.project.run()
-    this.console = this.project.console
   }
 
   new(func: (modules: ToBeTransformedModule[]) => ToBeTransformedModule[]) {
