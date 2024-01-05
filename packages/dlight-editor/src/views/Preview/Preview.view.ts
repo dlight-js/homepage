@@ -5,7 +5,8 @@ import OutputView from "./Output.view"
 import ConsoleView from "./Console.view"
 import { RefreshFilled } from "@dlightjs/material-icons"
 import { css } from "@iandx/easy-css"
-import { Color, headerHeight } from "../../utils/const"
+import { Color, dividerWidth, headerHeight } from "../../utils/const"
+import VerticalResizer from "../components/VerticalResizer.view"
 
 interface PreviewProps {
   mountId: string
@@ -25,13 +26,26 @@ class Preview implements PreviewProps {
   @Prop verticalHeight: string = required
   @Env theme: Color = required
   @Env height: string = required
-
-  consoleNode = null
+  wrapperEl: HTMLElement | undefined = undefined
 
   /** @reactive */
   tab: "result" | "output" = "result"
 
-  /** @lifecycle */
+  consoleHeight = "35%"
+  previewHeight = `calc(65% - ${dividerWidth}px - ${headerHeight}px)`
+
+  /** @method */
+  handleVerticalResizerDrag(x: number, y: number) {
+    const fullHeight = this.wrapperEl!.offsetHeight
+    this.consoleHeight = `${-y / fullHeight * 100 + +this.consoleHeight.slice(0, -1)}%`
+    const consoleHeight = +this.consoleHeight.slice(0, -1)
+    if (consoleHeight < 10) {
+      this.consoleHeight = "10%"
+    } else if (consoleHeight > 80) {
+      this.consoleHeight = "80%"
+    }
+    this.previewHeight = `calc(${100 - +this.consoleHeight.slice(0, -1)}% - ${dividerWidth}px - ${headerHeight}px)`
+  }
 
   /** @view */
   @View
@@ -56,13 +70,12 @@ class Preview implements PreviewProps {
       {
         div()
           .onClick(this.refreshFunc)
-          .class(this.refreshIconCss)
+          .class(this.iconCss)
         {
           RefreshFilled()
-            .class(this.refreshIconCss)
+            .class(this.iconCss)
             .color(this.theme.primary)
         }
-
         this.Head("result")
         this.Head("output")
       }
@@ -76,21 +89,19 @@ class Preview implements PreviewProps {
       .style({
         width: this.width
       })
+      .element(this.wrapperEl)
     {
       this.Header()
       div()
-        .style({
-          height: `calc(100% - ${headerHeight}px)`,
-          overflow: "scroll"
-        })
+        .class(this.previewWrapperCss)
       {
         div()
           .style({
-            display: this.tab === "result" ? "block" : "none"
+            display: this.tab === "result" ? "block" : "none",
+            height: this.previewHeight
           })
         {
           ResultView()
-            .mountId(this.mountId)
         }
         div()
           .style({
@@ -100,11 +111,11 @@ class Preview implements PreviewProps {
           OutputView()
             .code(this.currTransformedCode)
         }
-        ConsoleView()
-          .do(node => {
-            this.consoleNode = node
-          })
       }
+      VerticalResizer()
+        .onDrag(this.handleVerticalResizerDrag.bind(this))
+      ConsoleView()
+        .height(this.consoleHeight)
     }
   }
 
@@ -132,7 +143,7 @@ class Preview implements PreviewProps {
     width: calc(50% - 16px);
   `
 
-  refreshIconCss = css`
+  iconCss = css`
     padding: 5px 5px 0 5px;
     cursor: pointer;
   `
@@ -142,6 +153,11 @@ class Preview implements PreviewProps {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+  `
+
+  previewWrapperCss = css`
+    height: ${this.previewHeight};
+    overflow: scroll;
   `
 }
 

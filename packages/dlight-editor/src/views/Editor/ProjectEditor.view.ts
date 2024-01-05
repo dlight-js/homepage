@@ -13,11 +13,11 @@ interface ProjectEditorProps {
   getCurrTransformedCode: (code: string) => void
   getRefreshFunc: (func: any) => void
   getMountId: (id: string) => void
-  getRegisterConsole: (info: string) => void
   language?: string
   width?: string
   height?: string
   onSave?: (project: DLightProject) => void
+  getSrcDoc: (doc: string) => void
 }
 
 @View
@@ -31,8 +31,8 @@ class ProjectEditor {
   @Prop width = "100%"
   @Prop height = "100%"
   @Prop onSave?: (project: DLightProject) => void
-  @Prop getRegisterConsole = required
-  @Env getRegisterConsoleFunc
+  @Prop getSrcDoc = required
+  @Prop clearConsoleFunc = required
 
   /** @reactive */
   dlightProject = new DLightProject(this.modules)
@@ -97,9 +97,10 @@ class ProjectEditor {
         : module
     ))
     this.dlightProject = new DLightProject(modules) as any
-    this.getRegisterConsoleFunc(this.dlightProject.console.register.bind(this.dlightProject.console))
-    void this.dlightProject.run()
+    this.getSrcDoc(this.dlightProject.srcDoc)
     this.onSave?.(new DLightProject(this.dlightProject.modules))
+    // clear console
+    this.clearConsoleFunc()
   }
 
   pathToTab(path: string) {
@@ -114,9 +115,7 @@ class ProjectEditor {
 
   /** @lifecycle */
   didMount() {
-    this.getRegisterConsoleFunc(this.dlightProject.console.register.bind(this.dlightProject.console))
-    console.log(this.registerConsoleFunc, "shit")
-    void this.dlightProject.run()
+    this.getSrcDoc(this.dlightProject.srcDoc)
     this.getRefreshFunc(() => {
       this.updateModuleCode(this.currEditorStore.model.getValue())
     })

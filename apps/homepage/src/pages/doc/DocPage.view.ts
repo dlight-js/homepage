@@ -74,11 +74,10 @@ class DocPage {
           }
           return ""
         })
-        .then(text => { this.mdString = text; })
+        .then(text => { this.mdString = text; this.isLoading = false })
         .catch(() => { this.isFail = true })
     }
     this.selectedName = fileData?.name ?? ""
-    this.isLoading = false
   }
 
   @Watch
@@ -146,6 +145,11 @@ class DocPage {
                 .isShowCatalogue(this.isOpenOutline.value)
                 .nextPageNav(this.nextPageNav)
                 .prePageNav(this.prePageNav)
+                .textColor(this.theme.textColor)
+                .highlightColor(this.theme.highlightColor)
+                .codeBgColor(this.theme.codeBgColor)
+                .codeBlockHeaderColor(this.theme.codeBlockHeaderColor)
+                .codeTextColor(this.theme.codeTextColor)
                 .themeType(this.themeType)
             }
           }
@@ -158,14 +162,14 @@ class DocPage {
     padding: 1rem;
     width: 212px;
     height: calc(100vh - 92px);
-    background-color: ${this.theme.primaryBgColor};
-    box-shadow: ${this.isOpenMenu ? `0 2px 8px 0 ${this.theme.exampleMenuShadowColor}` : ""};
+    background-color: ${this.theme.bgColor};
+    box-shadow: ${this.isOpenMenu ? `0 2px 8px 0 ${this.theme.shadowColor}` : ""};
     margin-top: ${this.isMobile || this.isShortView ? "-52px" : ""};
     overflow: scroll;
   `
 
   docWrapCss = css`
-    background-color: ${this.theme.primaryBgColor};
+    background-color: ${this.theme.bgColor};
     width: ${this.isMobile || this.isShortView ? "100%" : "calc(100% - 212px)"};
     overflow-x: hidden;
     padding-left: 5%;
@@ -177,7 +181,7 @@ class DocPage {
     display: flex;
     flex-direction: row;
     overflow-x: hidden;
-    background-color: ${this.theme.primaryBgColor};
+    background-color: ${this.theme.bgColor};
   `
 }
 

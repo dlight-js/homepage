@@ -108,7 +108,7 @@ class Header implements HeaderProps {
 
   headerWrapCss = css`
     box-shadow: ${this.isShowShadow ? `0 1px 5px -3px ${this.theme.shadowColor}` : ""};
-    background-color: ${this.theme.primaryBgColor};
+    background-color: ${this.theme.bgColor};
     position: fixed;
     top: 0;
     display: flex;

@@ -43,19 +43,19 @@ class Playground implements PlaygroundProps {
     this.currTransformedCode = code
   }
 
+  srcDoc = ""
+  getSrcDoc = (doc: string) => {
+    this.srcDoc = doc
+  }
+
   refreshFunc = () => {}
   getRefreshFunc = (func: any) => {
     this.refreshFunc = func
   }
 
-  registerConsoleFunc = () => {}
-  getRegisterConsoleFunc = (func: any) => {
-    this.registerConsoleFunc = func
-  }
-
-  @Watch
-  register() {
-    console.log(this.registerConsoleFunc, "nop")
+  clearConsoleFunc = () => {}
+  getClearConsoleFunc = (func: any) => {
+    this.clearConsoleFunc = func
   }
 
   verticalEditorWidth = "100%"
@@ -110,8 +110,8 @@ class Playground implements PlaygroundProps {
       .theme(this.theme)
       .themeType(this.themeType)
       .height(this.height)
-      .registerConsoleFunc(this.registerConsoleFunc)
-      .getRegisterConsoleFunc(this.getRegisterConsoleFunc)
+      .srcDoc(this.srcDoc)
+      .getClearConsoleFunc(this.getClearConsoleFunc)
     {
       div()
         .style({
@@ -129,11 +129,13 @@ class Playground implements PlaygroundProps {
             .getMountId(this.getMountId)
             .getCurrTransformedCode(this.getCurrTransformedCode)
             .getRefreshFunc(this.getRefreshFunc)
+            .getSrcDoc(this.getSrcDoc)
             .onSave(this.onSave)
+            .clearConsoleFunc(this.clearConsoleFunc)
           comp(this.isVertical ? VerticalResizer : HorizontalResizer)()
             .width(`${this.width}`)
             .height(`${this.height}`)
-            .onDrag(this.handleVerticalResizerDrag.bind(this))
+            .onDrag(this.isVertical ? this.handleVerticalResizerDrag.bind(this) : this.handleHorizontalResizerDrag.bind(this))
           PreviewView()
             .width(this.previewWidth)
             .verticalHeight(this.previewHeight)

@@ -52,7 +52,7 @@ class SubExampleItem implements SubExampleItemProps {
     padding-bottom: 10px;
     border-bottom: solid 1px rgba(97,126,68, 0.1);
     margin-bottom: 10px;
-    color: ${this.isHover || this.isSelected ? this.theme.exampleMenuBtnHover : this.theme.exampleMenuBtnTextColor};
+    color: ${this.isHover || this.isSelected ? this.theme.highlightColor : this.theme.textColor};
   `
 
   exampleSubTitleCss = css`

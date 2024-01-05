@@ -89,7 +89,7 @@ class Resizer implements ResizerProps {
   }
 
   resizerCss = css`
-    width: 8px;
+    /* width: 8px; */
     background-color: gray;
   `
 }

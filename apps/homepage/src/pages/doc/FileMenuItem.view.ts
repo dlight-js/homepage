@@ -71,7 +71,7 @@ class FileMenuItem implements FileMenuItemProps {
               .class(this.iconCss)
               .height(20)
               .width(20)
-              .color(this.theme.green12)
+              .color(this.theme.textColor)
           }
         }
       }
@@ -114,7 +114,7 @@ class FileMenuItem implements FileMenuItemProps {
     height: 18px;
     width: 2px;
     margin-right: 10px;
-    background-color: ${this.isChoose ? this.theme.docActiveColor : this.isHover ? this.theme.docHoverColor : "transparent"};
+    background-color: ${this.isChoose ? this.theme.activeColor : this.isHover ? this.theme.hoverColor : "transparent"};
   `
 
   textCss = css`
@@ -144,7 +144,7 @@ class FileMenuItem implements FileMenuItemProps {
 
   fileNameCss = css`
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: ${this.theme.docTextColor};
+    color: ${this.theme.textColor};
     font-weight: ${this.isChoose ? "600" : "normal"};
     height: 33px;
     display: flex;
@@ -162,7 +162,7 @@ class FileMenuItem implements FileMenuItemProps {
     margin: 3px 0 3px 25px;
     overflow: hidden;
     font-size: 14px;
-    border-left: solid 1px ${this.theme.orange4};
+    border-left: solid 1px ${this.theme.activeColor};
   `
 }
 

@@ -53,7 +53,7 @@ class MenuBtn implements MenuBtnProps {
           {
             MenuRound()
               .class(this.iconCss)
-              .color(this.theme.green9)
+              .color(this.theme.textColor)
               .width(16)
             div(this.i18n("Menu", "菜单"))
           }
@@ -73,7 +73,7 @@ class MenuBtn implements MenuBtnProps {
             div(this.i18n("Outline", "大纲"))
             AlignHorizontalLeftRound()
               .class(this.iconCss)
-              .color(this.theme.green9)
+              .color(this.theme.textColor)
               .width(16)
           }
         }
@@ -87,10 +87,10 @@ class MenuBtn implements MenuBtnProps {
     justify-content: space-between;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     /* color: rgba(82,110,52,0.7); */
-    color: ${this.theme.green9};
+    color: ${this.theme.textColor};
     padding: 0 10px;
     box-shadow: 0 1px 5px -3px ${this.theme.shadowColor};
-    background-color: ${this.theme.primaryBgColor};
+    background-color: ${this.theme.bgColor};
   `
 
   titleCss = css`

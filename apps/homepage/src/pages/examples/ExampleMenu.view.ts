@@ -55,13 +55,13 @@ class ExampleMenu implements ExampleMenuProps {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     line-height: 30px;
     overflow: scroll;
-    background-color: ${this.theme.exampleMenuBtnColor};
+    background-color: ${this.theme.bgColor};
     box-shadow: ${this.isOpen ? "0 2px 8px 0 #A9A9A9" : ""};
   `
 
   exampleTitleCss = css`
     font-size: 28px;
-    color: ${this.theme.exampleMenuBtnTextColor};
+    color: ${this.theme.textColor};
     cursor: default;
     padding-bottom: 15px;
     border-bottom: solid 1px rgba(97,126,68, 0.3);

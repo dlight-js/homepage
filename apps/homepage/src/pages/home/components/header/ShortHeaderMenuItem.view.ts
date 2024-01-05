@@ -29,9 +29,9 @@ class ShortHeaderMenuItem {
     font-size: 20px;
     line-height: 30px;
     padding: 10px 20px;
-    background-color: ${this.isHover || this.isSelected ? this.theme.orange4 : ""};
+    background-color: ${this.isHover || this.isSelected ? this.theme.hoverColor : ""};
     border-radius: 5px;
-    color: ${this.theme.green12};
+    color: ${this.theme.textColor};
     cursor: pointer;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   `

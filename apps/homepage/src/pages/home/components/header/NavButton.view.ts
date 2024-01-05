@@ -73,14 +73,14 @@ class NavButton implements NavButtonProps {
 
   navBtnCss = css`
     cursor: pointer;
-    background-color: ${this.isHover || this.isSelect ? this.theme.homeBtnColor : this.theme.primaryBgColor};
-    color: ${this.isHover || this.isSelect ? this.theme.primaryTextColor : this.theme.primaryTextColor};
+    background-color: ${this.isSelect ? this.theme.activeColor : this.isHover ? this.theme.hoverColor : this.theme.bgColor};
+    color: ${this.isHover || this.isSelect ? this.theme.textColor : this.theme.textColor};
     font-size: 0.875rem;
     font-weight: 600;
     padding: 8px 12px;
     margin-right: 4px;
     /* padding-right: 6px; */
-    border-width: 0;
+    border-width: 0px;
     border-radius: 5px;
     margin-bottom: 5px;
   `
@@ -91,7 +91,7 @@ class NavButton implements NavButtonProps {
     position: absolute;
     top: 102%;
     left: 0;
-    background-color: ${this.theme.homeBtnColor};
+    background-color: ${this.theme.activeColor};
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     padding: 10px;
     border-radius: 8px;

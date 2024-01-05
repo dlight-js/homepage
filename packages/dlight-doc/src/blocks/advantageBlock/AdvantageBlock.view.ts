@@ -1,7 +1,9 @@
 import { View } from "@dlightjs/dlight"
-import { code, Content, ContentProp, div, pre, Prop, required, Pretty, Typed } from "@dlightjs/types"
+import { code, Content, ContentProp, div, pre, Prop, required, Pretty, Typed, Env, Watch } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import hljs from "highlight.js"
+import "highlight.js/styles/a11y-light.css"
+import "highlight.js/styles/a11y-dark.css"
 import { ContentCopyFilled, DoneFilled } from "@dlightjs/material-icons"
 
 interface AdvantageBlockProps {
@@ -11,6 +13,7 @@ interface AdvantageBlockProps {
 
 @View
 class AdvantageBlock implements AdvantageBlockProps {
+  @Env themeType: any = required
   @Content content: any = required
   @Prop props = required
   language = this.props.language

@@ -3,6 +3,8 @@ import { type Typed, Pretty, env, div, Watch } from "@dlightjs/types"
 import { Routes, Navigator } from "@dlightjs/components"
 import { Color, colors } from "./const/themes"
 import Header from "./pages/home/components/header"
+import { css } from "@iandx/easy-css"
+import Loading from "./common/loading/Loading.view"
 
 export interface EnvType {
   updateThemeType?: () => void
@@ -76,7 +78,7 @@ class App {
       .navigator(new Navigator())
     {
       div()
-        .style({ backgroundColor: this.theme.primaryBgColor })
+        .class(css`background-color: ${this.theme.bgColor}; color: ${this.theme.textColor};`)
       {
         Header()
         Routes({
@@ -87,6 +89,7 @@ class App {
           ".": async() => await import("./pages/home/Home.view"),
           "": async() => await import("./pages/ErrorPage.view")
         }).onPathUpdate(path => { this.path = path })
+          .fallback(View => Loading())
       }
     }
   }

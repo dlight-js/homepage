@@ -24,7 +24,7 @@ class ShortHeaderMenu {
 
   menuWarpCss = css`
     position: fixed;
-    background-color: ${this.theme.primaryBgColor};
+    background-color: ${this.theme.bgColor};
     padding: 20px 10px;
     width: calc(100% - 20px);
     height: 100%;

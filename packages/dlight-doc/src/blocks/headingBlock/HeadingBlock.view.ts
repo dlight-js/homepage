@@ -35,7 +35,7 @@ class HeadingBlock implements HeadingBlockProps {
 
   dlightMarkitHeading1UnderLineCss = css`
     height: 1px;
-    width: 90%;
+    width: 100%;
     margin-top: -10px;
     margin-bottom: 20px;
     border-radius: 10px;

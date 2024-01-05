@@ -82,9 +82,7 @@ class FirstScreen {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    color: white;
     height: 100vh;
-    color: white;
     img {
       transition: all 0.5s ease-in-out;
     }

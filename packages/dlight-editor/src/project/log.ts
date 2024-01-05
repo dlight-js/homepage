@@ -6,7 +6,7 @@ export class Console {
   log(...messages: any[]) {
     console.log("inner", ...messages)
     this.logs.push(messages)
-    this.dlNode.logs = [...this.logs]
+    // this.dlNode.logs = [...this.logs]
   }
 
   error(...messages: any[]) {

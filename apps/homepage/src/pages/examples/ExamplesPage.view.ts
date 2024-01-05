@@ -135,7 +135,7 @@ class ExamplesPage implements RoutesEnv {
   }
 
   exampleBgCss = css`
-    background-color: ${this.theme.primaryBgColor};
+    background-color: ${this.theme.bgColor};
     height: 100vh;
   `
 
@@ -144,7 +144,7 @@ class ExamplesPage implements RoutesEnv {
     display: flex;
     flex-direction: row;
     align-items: ${this.isMenuOpen ? "" : "center"};
-    background-color: ${this.theme.orange1};
+    /* background-color: ${this.theme.orange1}; */
   `
 
   dlightEditorWrapCss = css`

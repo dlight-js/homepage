@@ -15,7 +15,8 @@ interface CatalogueViewProps {
 @View
 class CatalogueView implements CatalogueViewProps {
   @Env i18n: any = required
-  @Env theme: any = required
+  @Env textColor: string = required
+  @Env highlightColor: string = required
   @Content content: any = required
   @Prop currentIndex = required
   @Prop isShowShadow = required
@@ -64,8 +65,8 @@ class CatalogueView implements CatalogueViewProps {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     line-height: 1.75rem;
     padding-left: 20px;
-    color: ${index === this.currentIndex ? "#daa172" : this.theme.primaryText};
-    border-left: ${index === this.currentIndex ? "solid 2px #daa172" : undefined};
+    color: ${index === this.currentIndex ? this.highlightColor : this.textColor};
+    border-left: ${index === this.currentIndex ? `solid 2px ${this.highlightColor}` : undefined};
     width: calc(100% - 30px);
     overflow: hidden;
     white-space: nowrap;
