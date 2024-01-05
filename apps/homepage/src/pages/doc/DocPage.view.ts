@@ -149,7 +149,7 @@ class DocPage {
                 .highlightColor(this.theme.highlightColor)
                 .codeBgColor(this.theme.codeBgColor)
                 .codeBlockHeaderColor(this.theme.codeBlockHeaderColor)
-                .codeTextColor(this.theme.codeTextColor)
+                .highlightColor(this.theme.highlightColor)
                 .themeType(this.themeType)
             }
           }

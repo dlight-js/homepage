@@ -53,10 +53,9 @@ interface DlightDocProps {
   prePageNav: PageNavType
   textColor?: string
   codeBgColor?: string
-  codeTextColor?: string
+  highlightColor?: string
   codeBlockHeaderColor?: string
   dividerColor?: string
-  highlightColor?: string
   themeType?: string
 }
 
@@ -70,10 +69,9 @@ class DlightDoc implements DlightDocProps {
   @Prop prePageNav = required
   @Prop textColor = required
   @Prop codeBgColor = required
-  @Prop codeTextColor = required
+  @Prop highlightColor = required
   @Prop codeBlockHeaderColor = required
   @Prop dividerColor = required
-  @Prop highlightColor = required
   @Prop themeType = required
 
   docAst: any = []
@@ -249,32 +247,32 @@ class DlightDoc implements DlightDocProps {
     /* .dlight-markit-code {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background-color: ${this.codeBgColor};
-      color: ${this.codeTextColor};
+      color: ${this.highlightColor};
     } */
     /* .dlight-markit-code-block {
       background-color: ${this.codeBgColor};
-      color: ${this.codeTextColor};
+      color: ${this.highlightColor};
     }
     .dlight-markit-code-block-header {
       background-color: ${this.codeBlockHeaderColor};
-      color: ${this.codeTextColor};
+      color: ${this.highlightColor};
     } */
   `
 
   dlightMarkitCode$ = css`
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background-color: ${this.codeBgColor};
-      color: ${this.codeTextColor};
+      color: ${this.highlightColor};
   `
 
   dlightMarkitCodeBlock$ = css`
     background-color: ${this.codeBgColor};
-    /* color: ${this.codeTextColor}; */
+    /* color: ${this.highlightColor}; */
   `
 
   dlightMarkitCodeBlockHeader$ = css`
     background-color: ${this.codeBlockHeaderColor};
-    color: ${this.codeTextColor};
+    color: ${this.highlightColor};
   `
 
   dlightMarkitLink$ = css`

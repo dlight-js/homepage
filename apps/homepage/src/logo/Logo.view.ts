@@ -6,12 +6,16 @@ import clsx from "clsx"
 interface LogoProps {
   isRotate: boolean
   class?: string
+  width?: string
+  height?: string
 }
 
 @View
 class Logo implements LogoProps {
   @Prop isRotate = required
   @Prop class?: string
+  @Prop width = "30px"
+  @Prop height = "30px"
 
   View() {
     img()
@@ -21,8 +25,8 @@ class Logo implements LogoProps {
 
   logoCss = css`
     margin: 5px;
-    width: 30px;
-    height: 30px;
+    width: ${this.width};
+    height: ${this.height};
     transform: ${this.isRotate ? "rotate(-90deg)" : ""};
   `
 }
