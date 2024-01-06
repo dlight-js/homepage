@@ -18,10 +18,10 @@
     "@babel/plugin-transform-modules-commonjs": "^7.23.3",
     "@babel/preset-env": "^7.23.7",
     "@babel/standalone": "^7.23.7",
-    "@dlightjs/components": "1.0.0-alpha.19",
-    "@dlightjs/dlight": "1.0.0-alpha.43",
+    "@dlightjs/components": "1.0.0-alpha.22",
+    "@dlightjs/dlight": "1.0.0-alpha.46",
     "@dlightjs/material-icons": "1.0.0-alpha.2",
-    "@dlightjs/transpiler-standalone": "1.0.0-alpha.25",
+    "@dlightjs/transpiler-standalone": "1.0.0-alpha.27",
     "@iandx/easy-css": "^0.10.14",
     "clsx": "^2.1.0",
     "monaco-editor": "^0.40.0"
@@ -32,12 +32,12 @@
     "@babel/types": "^7.23.6",
     "@dlightjs/types": "1.0.0-alpha.0",
     "@types/babel__standalone": "^7.1.7",
-    "babel-preset-dlight": "1.0.0-alpha.25",
+    "babel-preset-dlight": "1.0.0-alpha.27",
     "babel-preset-easy-css": "^0.10.14",
     "tsup": "^7.2.0",
     "typescript": "^4.9.5",
     "vite": "^4.5.1",
-    "vite-plugin-dlight": "1.0.0-alpha.25",
+    "vite-plugin-dlight": "1.0.0-alpha.27",
     "vite-plugin-easy-css": "^0.10.14"
   },
   "keywords": [

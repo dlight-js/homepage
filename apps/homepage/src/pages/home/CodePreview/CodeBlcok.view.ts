@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { Prop, type Pretty, type Typed, required, Children, div, Env } from "@dlightjs/types"
+import { Prop, type Pretty, type Typed, required, div, Env } from "@dlightjs/types"
 import CodeDisplay from "./CodeDisplay.view"
 import { css } from "@iandx/easy-css"
 import { EnvType } from "../../../App.view"
@@ -17,11 +17,7 @@ class CodeBlock implements CodeBlockProps {
   @Prop title = required
   @Prop preview = required
 
-  codeBlockElement: HTMLElement | null = null
-
-  didMount() {
-    console.log(this.codeBlockElement?.offsetHeight)
-  }
+  previewHeight = 0
 
   View() {
     div().class(this.wrapperCss); {
@@ -30,10 +26,7 @@ class CodeBlock implements CodeBlockProps {
           .title(this.title)
           .code(this.code)
           .element((elements) => {
-            this.codeBlockElement = elements[0]
-            this.codeBlockElement.onload = () => {
-              console.log(this.codeBlockElement?.offsetHeight)
-            }
+            this.previewHeight = elements[0].clientHeight
           })
       }
       div().class(this.previewCss); {
@@ -59,7 +52,7 @@ class CodeBlock implements CodeBlockProps {
 
   previewCss = css`
     background-color: ${this.theme!.reverseHLColor};
-    height: 100%;
+    height: ${this.previewHeight - 30}px;
     width: 50%;
   `
 }

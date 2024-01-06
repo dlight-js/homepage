@@ -8,6 +8,7 @@ import { ForLoop, forLoopCode } from "./CodePreview/CodeList.view"
 
 @View
 class Home {
+
   View() {
     div()
       .class(this.bgCss)

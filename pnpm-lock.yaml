@@ -30,8 +30,8 @@ importers:
 
   apps/homepage:
     specifiers:
-      '@dlightjs/components': 1.0.0-alpha.19
-      '@dlightjs/dlight': 1.0.0-alpha.43
+      '@dlightjs/components': 1.0.0-alpha.22
+      '@dlightjs/dlight': 1.0.0-alpha.46
       '@dlightjs/material-icons': 1.0.0-alpha.2
       '@dlightjs/types': 1.0.0-alpha.0
       '@iandx/easy-css': ^0.10.14
@@ -41,11 +41,11 @@ importers:
       highlight.js: ^11.9.0
       typescript: ^5.3.3
       vite: ^4.5.1
-      vite-plugin-dlight: 1.0.0-alpha.25
+      vite-plugin-dlight: 1.0.0-alpha.27
       vite-plugin-easy-css: ^0.10.14
     dependencies:
-      '@dlightjs/components': 1.0.0-alpha.19
-      '@dlightjs/dlight': 1.0.0-alpha.43
+      '@dlightjs/components': 1.0.0-alpha.22
+      '@dlightjs/dlight': 1.0.0-alpha.46
       '@dlightjs/material-icons': 1.0.0-alpha.2
       '@iandx/easy-css': 0.10.14
       clsx: 2.1.0
@@ -56,7 +56,7 @@ importers:
       '@dlightjs/types': 1.0.0-alpha.0
       typescript: 5.3.3
       vite: 4.5.1
-      vite-plugin-dlight: 1.0.0-alpha.25
+      vite-plugin-dlight: 1.0.0-alpha.27
       vite-plugin-easy-css: 0.10.14
 
   packages/dlight-doc:
@@ -66,24 +66,24 @@ importers:
       '@babel/plugin-transform-modules-commonjs': ^7.23.3
       '@babel/preset-env': ^7.23.7
       '@babel/standalone': ^7.23.7
-      '@dlightjs/dlight': 1.0.0-alpha.43
+      '@dlightjs/dlight': 1.0.0-alpha.46
       '@dlightjs/markit': 1.0.0-alpha.5
       '@dlightjs/material-icons': 1.0.0-alpha.4
       '@dlightjs/types': 1.0.0-alpha.0
       '@iandx/easy-css': ^0.10.14
-      babel-preset-dlight: 1.0.0-alpha.25
+      babel-preset-dlight: 1.0.0-alpha.27
       clsx: ^2.1.0
       highlight.js: ^11.9.0
       tsup: ^7.2.0
       typescript: ^4.9.5
       vite: ^4.5.1
-      vite-plugin-dlight: 1.0.0-alpha.25
+      vite-plugin-dlight: 1.0.0-alpha.27
       vite-plugin-easy-css: ^0.10.14
     dependencies:
       '@babel/plugin-transform-modules-commonjs': 7.23.3_@babel+core@7.23.7
       '@babel/preset-env': 7.23.7_@babel+core@7.23.7
       '@babel/standalone': 7.23.7
-      '@dlightjs/dlight': 1.0.0-alpha.43
+      '@dlightjs/dlight': 1.0.0-alpha.46
       '@dlightjs/markit': 1.0.0-alpha.5
       '@dlightjs/material-icons': 1.0.0-alpha.4
       '@iandx/easy-css': 0.10.14
@@ -93,11 +93,11 @@ importers:
       '@babel/cli': 7.23.4_@babel+core@7.23.7
       '@babel/core': 7.23.7
       '@dlightjs/types': 1.0.0-alpha.0
-      babel-preset-dlight: 1.0.0-alpha.25_@babel+core@7.23.7
+      babel-preset-dlight: 1.0.0-alpha.27_@babel+core@7.23.7
       tsup: 7.2.0_typescript@4.9.5
       typescript: 4.9.5
       vite: 4.5.1
-      vite-plugin-dlight: 1.0.0-alpha.25
+      vite-plugin-dlight: 1.0.0-alpha.27
       vite-plugin-easy-css: 0.10.14
 
   packages/dlight-editor:
@@ -108,30 +108,30 @@ importers:
       '@babel/preset-env': ^7.23.7
       '@babel/standalone': ^7.23.7
       '@babel/types': ^7.23.6
-      '@dlightjs/components': 1.0.0-alpha.19
-      '@dlightjs/dlight': 1.0.0-alpha.43
+      '@dlightjs/components': 1.0.0-alpha.22
+      '@dlightjs/dlight': 1.0.0-alpha.46
       '@dlightjs/material-icons': 1.0.0-alpha.2
-      '@dlightjs/transpiler-standalone': 1.0.0-alpha.25
+      '@dlightjs/transpiler-standalone': 1.0.0-alpha.27
       '@dlightjs/types': 1.0.0-alpha.0
       '@iandx/easy-css': ^0.10.14
       '@types/babel__standalone': ^7.1.7
-      babel-preset-dlight: 1.0.0-alpha.25
+      babel-preset-dlight: 1.0.0-alpha.27
       babel-preset-easy-css: ^0.10.14
       clsx: ^2.1.0
       monaco-editor: ^0.40.0
       tsup: ^7.2.0
       typescript: ^4.9.5
       vite: ^4.5.1
-      vite-plugin-dlight: 1.0.0-alpha.25
+      vite-plugin-dlight: 1.0.0-alpha.27
       vite-plugin-easy-css: ^0.10.14
     dependencies:
       '@babel/plugin-transform-modules-commonjs': 7.23.3_@babel+core@7.23.7
       '@babel/preset-env': 7.23.7_@babel+core@7.23.7
       '@babel/standalone': 7.23.7
-      '@dlightjs/components': 1.0.0-alpha.19
-      '@dlightjs/dlight': 1.0.0-alpha.43
+      '@dlightjs/components': 1.0.0-alpha.22
+      '@dlightjs/dlight': 1.0.0-alpha.46
       '@dlightjs/material-icons': 1.0.0-alpha.2
-      '@dlightjs/transpiler-standalone': 1.0.0-alpha.25_@babel+core@7.23.7
+      '@dlightjs/transpiler-standalone': 1.0.0-alpha.27_@babel+core@7.23.7
       '@iandx/easy-css': 0.10.14
       clsx: 2.1.0
       monaco-editor: 0.40.0
@@ -141,12 +141,12 @@ importers:
       '@babel/types': 7.23.6
       '@dlightjs/types': 1.0.0-alpha.0
       '@types/babel__standalone': 7.1.7
-      babel-preset-dlight: 1.0.0-alpha.25_@babel+core@7.23.7
+      babel-preset-dlight: 1.0.0-alpha.27_@babel+core@7.23.7
       babel-preset-easy-css: 0.10.14_@babel+core@7.23.7
       tsup: 7.2.0_typescript@4.9.5
       typescript: 4.9.5
       vite: 4.5.1
-      vite-plugin-dlight: 1.0.0-alpha.25
+      vite-plugin-dlight: 1.0.0-alpha.27
       vite-plugin-easy-css: 0.10.14
 
 packages:
@@ -1526,10 +1526,10 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@dlightjs/components/1.0.0-alpha.19:
-    resolution: {integrity: sha512-n+98Jcc/VFwMXuRlKQmMTx9hXvMbn06yKU0rIxB1CYvsKNMxEh6caN+b8+L1Y1RGTCFclBuqRBJ+MireQfqg0A==}
+  /@dlightjs/components/1.0.0-alpha.22:
+    resolution: {integrity: sha512-5OPOAMQo6ENnUQYEmyFFJPqcBXAtxxQaDtKFDjzUtAXcqYaKaJ/dIzY4x3Xx2n+EcgQQcITWmueb/JLICfiXPA==}
     dependencies:
-      '@dlightjs/dlight': 1.0.0-alpha.42
+      '@dlightjs/dlight': 1.0.0-alpha.46
     dev: false
 
   /@dlightjs/dlight/1.0.0-alpha.31:
@@ -1540,14 +1540,8 @@ packages:
     resolution: {integrity: sha512-tWQHhMsIMm63om92uU7VNDgjmFHpyCOwwE2sIWXIX+uWHA+Uemdtdv0FzH6CfXnyGSG9RjjT+DhDED7DiXSwYw==}
     dev: false
 
-  /@dlightjs/dlight/1.0.0-alpha.42:
-    resolution: {integrity: sha512-GFToIH7D5zXR8RdaimkOFGaw1NSZ5Qky7aS7PZ92ccj4Yc3DmW3piixSsQPio+V9ukaKWOkUn/d3NMRpz2oS5w==}
-    dependencies:
-      '@dlightjs/store': 0.0.0
-    dev: false
-
-  /@dlightjs/dlight/1.0.0-alpha.43:
-    resolution: {integrity: sha512-4yd0R9jsAg3eihUa/rxOtsZB+D34ogrFItFKdZVmdxLf10aBt+nz+QpaVyPekxdXfWF096NQ0SeK8xOxr+Lg8w==}
+  /@dlightjs/dlight/1.0.0-alpha.46:
+    resolution: {integrity: sha512-3oLfiAyFFyvEAQlv6P2Bt+Lam8P4HP0z7BC9STyd4gtVAHDd2nc5Z6mL9wkc1PheIqcbnbBX6BhZhzQnuJqmKA==}
     dependencies:
       '@dlightjs/store': 0.0.0
     dev: false
@@ -1569,7 +1563,7 @@ packages:
   /@dlightjs/material-icons/1.0.0-alpha.2:
     resolution: {integrity: sha512-OxYQCjfFkt22YpdtiyCiTrZZU0hhAakGwJarO/DDz+yarqPnImY653cBl5apl3kE86vZ/zboQGVOplUEyhsnLQ==}
     dependencies:
-      '@dlightjs/dlight': 1.0.0-alpha.43
+      '@dlightjs/dlight': 1.0.0-alpha.46
     dev: false
 
   /@dlightjs/material-icons/1.0.0-alpha.4:
@@ -1588,11 +1582,11 @@ packages:
     resolution: {integrity: sha512-IZCmag5+gotw3l+rjN5MtuYdUH36EL58K30xHs7iS2F5+wIWk7cnADEeCtjKBv4c+ZOcuDfyq2bVH4LACfQBQA==}
     dev: false
 
-  /@dlightjs/transpiler-standalone/1.0.0-alpha.25_@babel+core@7.23.7:
-    resolution: {integrity: sha512-OrmyOdVLPN5dE+OMVstdLIvdbH5YtjAG/KxMp5VGpGLil5cfnY+ExUpy7fMsL7M+jwFw8x6tEYtozitPoD8oZg==}
+  /@dlightjs/transpiler-standalone/1.0.0-alpha.27_@babel+core@7.23.7:
+    resolution: {integrity: sha512-+IFdzHYu1SBq4lKRtIoGKqL2d5wdx9KOu6xt0YABPFAfLFwYjio76wNt1ConNvqw7eDBhaOs+4zvVfIoDpLaVw==}
     dependencies:
       '@babel/standalone': 7.23.7
-      babel-preset-dlight: 1.0.0-alpha.25_@babel+core@7.23.7
+      babel-preset-dlight: 1.0.0-alpha.27_@babel+core@7.23.7
     transitivePeerDependencies:
       - '@babel/core'
     dev: false
@@ -1601,8 +1595,8 @@ packages:
     resolution: {integrity: sha512-N2OAjL3+kuUUvvLKmTqjhMZkJ6twS54ReurlOvqJxe2x+6ISJvVZgzrS+wrlC/QFj2AiNOQmdWawYcbq5WTx4A==}
     dev: true
 
-  /@dlightjs/view-generator/1.0.0-alpha.23:
-    resolution: {integrity: sha512-gXwuLXbjrgI8e02a5YBBZd4xxkeG03Vb+mrYDLcQzV+R6f5rSFARMbaLS7TXDr2k3Wmj1Ly4pXJPgElc5/kMBQ==}
+  /@dlightjs/view-generator/1.0.0-alpha.25:
+    resolution: {integrity: sha512-whBeSAlN/FbxOWsyIoYwsSnd/3bgYaFfD/Cdkdfx0IAwH5q5W04tEiENBoYDNAPmM1VEDVFLtOO4ExGCauQC/A==}
     dependencies:
       '@dlightjs/error-handler': 1.0.0-alpha.0
       '@dlightjs/reactivity-parser': 1.0.0-alpha.6
@@ -2393,12 +2387,12 @@ packages:
     dependencies:
       '@babel/helper-plugin-utils': 7.22.5
 
-  /babel-preset-dlight/1.0.0-alpha.25_@babel+core@7.23.7:
-    resolution: {integrity: sha512-lK9eTBlk02/gaBO+OvNAl6mLBfqbmLszopr3YEoS6qrzOvfdItWpOKYFafiNFN7E8Dk7/sTX2rneUTGz93fvOQ==}
+  /babel-preset-dlight/1.0.0-alpha.27_@babel+core@7.23.7:
+    resolution: {integrity: sha512-HYaSBLwjl5vYyuJPHaDWzKIBB6wB50Lbe0gqlFPGewOzNaJHtStFwtrl94NShWxrtTSBsSWP1TIhaGnXyeHDFg==}
     dependencies:
       '@babel/plugin-syntax-decorators': 7.23.3_@babel+core@7.23.7
       '@dlightjs/reactivity-parser': 1.0.0-alpha.6
-      '@dlightjs/view-generator': 1.0.0-alpha.23
+      '@dlightjs/view-generator': 1.0.0-alpha.25
       '@dlightjs/view-parser': 1.0.0-alpha.3
       babel-plugin-syntax-typescript-new: 1.0.0
       minimatch: 9.0.3
@@ -2452,7 +2446,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001574
-      electron-to-chromium: 1.4.622
+      electron-to-chromium: 1.4.623
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13_browserslist@4.22.2
 
@@ -2764,8 +2758,8 @@ packages:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
 
-  /electron-to-chromium/1.4.622:
-    resolution: {integrity: sha512-GZ47DEy0Gm2Z8RVG092CkFvX7SdotG57c4YZOe8W8qD4rOmk3plgeNmiLVRHP/Liqj1wRiY3uUUod9vb9hnxZA==}
+  /electron-to-chromium/1.4.623:
+    resolution: {integrity: sha512-lKoz10iCYlP1WtRYdh5MvocQPWVRoI7ysp6qf18bmeBgR8abE6+I2CsfyNKztRDZvhdWc+krKT6wS7Neg8sw3A==}
 
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -5026,11 +5020,11 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite-plugin-dlight/1.0.0-alpha.25:
-    resolution: {integrity: sha512-Wdar2ML73MjnzRobT6OHcfqbr4AtpbUP1xOjS3YhO4zbGpE4q/OlVmGBcYNVnlucWZUxTVpBd9jqE0zRLe4ZVw==}
+  /vite-plugin-dlight/1.0.0-alpha.27:
+    resolution: {integrity: sha512-X3yuhBGu6fgGUGIxAkp9A0Gjd0jswoJOm7nv/gsmvVZZ0R/beggrJ/Q3+E/Ym9z5gaWYU9VMctUS/OscWkr8Ag==}
     dependencies:
       '@babel/core': 7.23.7
-      babel-preset-dlight: 1.0.0-alpha.25_@babel+core@7.23.7
+      babel-preset-dlight: 1.0.0-alpha.27_@babel+core@7.23.7
       minimatch: 9.0.3
     transitivePeerDependencies:
       - supports-color
