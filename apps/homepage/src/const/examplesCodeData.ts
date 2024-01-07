@@ -1,248 +1,534 @@
 import { ExmaplesCodeDataType } from "../utils/types"
 
+function javascript(strings: TemplateStringsArray, ...values: any[]): string {
+  return strings.reduce((acc, str, i) => {
+    return acc + str + (values[i] || "")
+  }, "")
+}
+
 export const ExamplesCodeData: ExmaplesCodeDataType[] = [
   {
-    title: "Reactivity",
-    zhName: "响应式",
+    title: "Introduction",
+    zhName: "介绍",
     description: "",
-    path: "/examples/declare-state",
+    path: "/examples/hello-world",
     children: [
       {
-        title: "Declare State",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        title: "Hello World",
+        description: "A simple greeting using the dlight.js framework.",
+        zhDescription: "一个用dlight实现地简单问候。",
         modules: [
           {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-import Name from "./Name.view"
-
-@View
-class MyComp {
-  View() {
-    Name()
-  }
-}
-render("app", MyComp)`,
-            path: "/index.ts"
-          },
-          {
-            code: `import DLight, { View } from "@dlightjs/dlight"
-
-@View
-class Name {
-  name = "John"
-
-  View() {
-    h1(this.name)
-  }
-}
-
-export default Name`,
-            path: "/Name.view.ts"
-          }
-        ]
-      },
-      {
-        title: "Update State",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-import Name from "./Name.view"
-
-@View
-class MyComp {
-  View() {
-    Name()
-  }
-}
-render("app", MyComp)`,
-            path: "/index.ts"
-          },
-          {
-            code: `import DLight, { View } from "@dlightjs/dlight"
-
-@View
-class Name {
-  name = "John"
-
-  beforeInit() {
-    this.name = "Jane"
-  }
-
-  View() {
-    h1(this.name)
-  }
-}
-            
-export default Name`,
-            path: "/Name.view.ts"
-          }
-        ]
-      },
-      {
-        title: "Computed State",
-        description: "Lorem ipsum dolor sit amet, consectetur.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-import DoubleCount from "./DoubleCount.view"
-
-@View
-class MyComp {
-  View() {
-    DoubleCount()
-  }
-}
-render("app", MyComp)`,
-            path: "/index.ts"
-          },
-          {
-            code: `import DLight, { View } from "@dlightjs/dlight"
-
-@View
-class DoubleCount {
-  count = 10
-  doubleCount = this.count * 2
-
-  View() {
-    div(this.doubleCount)
-  }
-}
-
-export default DoubleCount`,
-            path: "/DoubleCount.view.ts"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    title: "Templating",
-    zhName: "模板",
-    description: "",
-    path: "/examples/minimal-template",
-    children: [
-      {
-        title: "Minimal Template",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
+            code: javascript`import { View, render } from "@dlightjs/dlight"
 
 @View
 class HelloWorld {
   View() {
-    h1("hello world")
+    div("Hello World!")
   }
 }
+
 render("app", HelloWorld)`,
             path: "/index.ts"
           }
         ]
       },
       {
-        title: "Styling",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        title: "ToDoMVC",
+        description: "The ToDoMVC example demonstrates how to create a simple ToDo List application using the @dlightjs/dlight framework.",
+        zhDescription: "ToDoMVC示例展示了如何使用@dlightjs/dlight框架创建一个ToDoMVC应用程序。",
         modules: [
           {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
+            code: `import { View, render } from "@dlightjs/dlight"
+import {
+  type Typed,
+  type Pretty,
+  div,
+  section,
+  header,
+  h1,
+  input,
+  label,
+  ul,
+  SubTyped,
+  button,
+  li,
+  footer,
+  span,
+  strong,
+  a,
+  p,
+} from "@dlightjs/types"
+            
+interface ToDo {
+  id: number
+  title: string
+  completed: boolean
+}
 
+interface ToDoItemProps {
+  id: number
+  editing: boolean
+  title: string
+  completed: boolean
+}
+
+type Filter = "all" | "active" | "completed"
+            
 @View
-class CssStyle {
+class TodoMVC {
+  todos: ToDo[] = []
+
+  editingId: number | null = null
+
+  editingText = ""
+
+  remainingCount = this.todos.filter(todo => !todo.completed).length
+
+  showMode: Filter = (location.hash.slice(2) as Filter) || "all"
+
+  filteredTodos = this.todos.filter(todo => {
+    switch (this.showMode) {
+      case "active":
+        return !todo.completed
+      case "completed":
+        return todo.completed
+      default:
+        return true
+    }
+  })
+
+  addTodo({ target, key }: KeyboardEvent) {
+    const title = (target as HTMLInputElement).value.trim()
+    if (key === "Enter" && title) {
+      this.todos = [
+        ...this.todos,
+        {
+          id: performance.now(),
+          title,
+          completed: false,
+        },
+      ]
+      ;(target as HTMLInputElement).value = ""
+    }
+  }
+
+  removeTodo(id: number) {
+    this.todos = this.todos.filter(todo => todo.id !== id)
+  }
+
+  toggleTodo(id: number) {
+    this.todos = this.todos.map(todo =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    )
+  }
+
+  doneEditing(id: number) {
+    this.todos = this.todos.map(todo =>
+      todo.id === id ? { ...todo, title: this.editingText } : todo
+    )
+    this.editingId = null
+  }
+
+  clearCompleted() {
+    this.todos = this.todos.filter(todo => !todo.completed)
+  }
+
+  locationHandler() {
+    this.showMode = (location.hash.slice(2) as Filter) || "all"
+  }
+
+  willMount() {
+    window.addEventListener("hashchange", this.locationHandler)
+  }
+
+  didUnmount() {
+    window.removeEventListener("hashchange", this.locationHandler)
+  }
+
+  @View
+  ToDoItem = (({ id, title, completed, editing }: ToDoItemProps) => {
+    li().class(
+      \`todo \${editing ? "editing" : ""} \${completed ? "completed" : ""}\`.trim()
+    )
+    {
+      div().class("view")
+      {
+        input()
+          .class("toggle")
+          .type("checkbox")
+          .checked(completed)
+          .onInput(() => this.toggleTodo(id))
+        label(title).onDblClick(() => {
+          this.editingText = title
+          this.editingId = id
+        })
+        button()
+          .class("destroy")
+          .onClick(() => {
+            this.removeTodo(id)
+          })
+      }
+      if (editing) {
+        input()
+          .class("edit")
+          .value(this.editingText)
+          .onInput(e => {
+            this.editingText = (e.target as HTMLInputElement).value
+          })
+          .onBlur(() => this.doneEditing(id))
+          .element(el => {
+            setTimeout(() => el.focus())
+          })
+      }
+    }
+  }) as Pretty as SubTyped<ToDoItemProps>
+
+  @View
+  Footer() {
+    footer().class("footer")
+    {
+      span().class("todo-count")
+      {
+        strong(this.remainingCount)
+        ;\` \${this.remainingCount > 1 ? "items" : "item"} left\`
+      }
+      ul().class("filters")
+      {
+        li()
+        {
+          a("All")
+            .class(this.showMode === "all" ? "selected" : "")
+            .href("#/")
+        }
+        li()
+        {
+          a("Active")
+            .class(this.showMode === "active" ? "selected" : "")
+            .href("#/active")
+        }
+        li()
+        {
+          a("Completed")
+            .class(this.showMode === "completed" ? "selected" : "")
+            .href("#/completed")
+        }
+      }
+      if (this.remainingCount !== this.todos.length) {
+        button("Clear completed")
+          .class("clear-completed")
+          .onClick(this.clearCompleted)
+      }
+    }
+  }
+
+  @View
+  Info() {
+    footer().class("info")
+    {
+      p("Double-click to edit a todo")
+      p()
+      {
+        "Written by "
+        a("Yihan Duan").href("https://github.com/IanDxSSXX")
+      }
+      p()
+      {
+        "Part of "
+        a("TodoMVC").href("http://todomvc.com")
+      }
+    }
+  }
+
   View() {
-    button("I am a button")
+    section().class("todoapp")
+    {
+      header().class("header")
+      {
+        h1("todos")
+        input()
+          .class("new-todo")
+          .placeholder("What needs to be done?")
+          .autofocus(true)
+          .onKeyDown(this.addTodo)
+      }
+      if (this.todos.length > 0) {
+        section().class("main")
+        {
+          input().id("toggle-all").class("toggle-all").type("checkbox")
+          label().for("toggle-all")
+          ul().class("todo-list")
+          {
+            for (const { id, title, completed } of this.filteredTodos) {
+              key: id
+              this.ToDoItem()
+                .id(id)
+                .title(title)
+                .completed(completed)
+                .editing(this.editingId === id)
+            }
+          }
+        }
+        this.Footer()
+      }
+    }
+    this.Info()
   }
 }
 
-render("app", CssStyle)`,
+render("app", ToDoMVC)`,
+            path: "/index.ts"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    title: "Reactivity",
+    zhName: "响应式",
+    description: "",
+    path: "/examples/reactive-states",
+    children: [
+      {
+        title: "Reactive States",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        modules: [
+          {
+            code: javascript`import { View, render } from "@dlightjs/dlight"
+
+@View
+class NameComp {
+  name = "John"
+  View() {
+    div(this.name)
+  }
+}
+render("app", NameComp)`,
             path: "/index.ts"
           }
         ]
       },
       {
-        title: "Loop",
+        title: "Computed States",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+
+@View
+class NameComp {
+  firstName = "John"
+  lastName = "Doe"
+  fullName = \`\${this.firstName} \${this.lastName}\`
+
+  View() {
+    div(this.fullName)
+  }
+}
+render("app", NameComp)`,
+            path: "/index.ts"
+          }
+        ]
+      },
+      {
+        title: "Reactive Assignments",
+        description: "Lorem ipsum dolor sit amet, consectetur.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+
+@View
+class CountComp {
+  count = 0
+
+  View() {
+    div(this.count)
+    button("Add")
+      .onClick(() => { this.count += 1 })
+  }
+}
+render("app", CountComp)`,
+            path: "/index.ts"
+          }
+        ]
+      },
+      {
+        title: "Watcher",
+        description: "Lorem ipsum dolor sit amet, consectetur.",
+        modules: [
+          {
+            code: `import { View, render, Watch } from "@dlightjs/dlight"
+
+@View
+class CountComp {
+  count = 0
+
+  @Watch
+  watchCount() {
+    console.log(\`The count change to: \${this.count}\`)
+  }
+
+  View() {
+    button("Add")
+      .onClick(() => { this.count ++ })
+    div(this.count)
+  }
+}
+render("app", CountComp)`,
+            path: "/index.ts"
+          }
+        ]
+      },
+      {
+        title: "Environment",
+        description: "Lorem ipsum dolor sit amet, consectetur.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+
+@View
+class SubComp2 {
+  @Env themeType
+  View() {
+    div("I am Sub Component2!")
+  }
+}
+
+@View
+class SubComp {
+  @Env themeType
+
+  View() {
+    div("I am Sub Component1!")
+  }
+}
+
+@View
+class RootComp {
+  themeType = "Light"
+
+  changeTheme() {
+    this.themeType = this.themeType === "Light" ? "Dark" : "Light"
+  }
+
+  View() {
+    env()
+      .themeType(this.themeType)
+    {
+      button("Change Theme")
+        .onClick(this.changeTheme)
+      SubComp()
+    }
+  }
+}
+render("app", RootComp)`,
+            path: "/index.ts"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    title: "DLight Syntax",
+    zhName: "DLight语法",
+    description: "",
+    path: "/examples/text-element",
+    children: [
+      {
+        title: "Text Element",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
+            code: `import { View, render } from "@dlightjs/dlight"
 
 @View
-class Colors {
-  colors = ["red", "green", "blue"]
-
+class TextElement {
   View() {
-    ul()
+    "I am a Text Element!"
+    \`I am also a Text Element! \`
+    'Me too!'
+  }
+}
+render("app", TextElement)`,
+            path: "/index.ts"
+          }
+        ]
+      },
+      {
+        title: "Html Element",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+
+@View
+class HtmlElement {
+  View() {
+    div("I am a Html Element!")
+    span("I am also a Html Element!")
+    div()
     {
-      for (const color of this.colors) {
-        li(color)
-      }
+      button("Button")
     }
   }
 }
 
-render("app", Colors)`,
+render("app", HtmlElement)`,
             path: "/index.ts"
           }
         ]
       },
       {
-        title: "Event Click",
+        title: "Html Element Props",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
+            code: `import { View, render } from "@dlightjs/dlight"
 
 @View
-class Counter {
-  count = 0
-
+class HtmlElementProps {
   View() {
-    p(this.count)
-    button("+1")
-      .onClick(() => {
-        this.count++
-      })
+    a("Click to DLight Github")
+      .href("https://github.com/dlight-js/dlight")
   }
 }
 
-render("app", Counter)`,
+render("app", HtmlElementProps)`,
             path: "/index.ts"
           }
         ]
       },
       {
-        title: "Dom Ref",
+        title: "Component",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-
-@View
-class InputFocused {
-  inputElement
-
-  didMount() {
-    this.inputElement.value = 500
-  }
-
+            code: `import { View, render } from "@dlightjs/dlight"
+@View SubComponent {
   View() {
-    input()
-      .type("text")
-      .element(this.inputElement)
+    div("I am Sub Component!")
   }
 }
 
-render("app", InputFocused)`,
+@View
+class RootComponent {
+  View() {
+    div("I am Root Component!")
+    SubComponent()
+  }
+}
+
+render("app", RootComponent)`,
             path: "/index.ts"
           }
         ]
       },
       {
-        title: "Conditional",
+        title: "If Block",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
+            code: `import { View, render } from "@dlightjs/dlight"
 
 const TRAFFIC_LIGHTS = ["red", "orange", "green"]
 
@@ -252,11 +538,7 @@ class TrafficLight {
   light = TRAFFIC_LIGHTS[this.lightIndex]
 
   nextLight() {
-    if (this.lightIndex + 1 > TRAFFIC_LIGHTS.length - 1) {
-      this.lightIndex = 0
-    } else {
-      this.lightIndex++
-    }
+    this.lightIndex = (this.lightIndex + 1)%TRAFFIC_LIGHTS.length
   }
 
   View() {
@@ -279,6 +561,375 @@ class TrafficLight {
 
 render("app", TrafficLight)`,
             path: "/index.ts"
+          }
+        ]
+      },
+      {
+        title: "For Loop",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+
+@View
+class Colors {
+  colors = ["red", "green", "blue"]
+
+  View() {
+    ul()
+    {
+      for (const color of this.colors) {
+        li(color)
+      }
+    }
+  }
+}
+
+render("app", Colors)`,
+            path: "/index.ts"
+          }
+        ]
+      },
+      {
+        title: "Keyed For Loop",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+
+@View
+class Colors {
+  numArr = [0,1,2,3,4]
+
+  changeNumArr() {
+    this.numArr = [...this.numArr, this.numArr.length]
+  }
+
+  View() {
+    button("Change numArr")
+      .onClick(this.changeNumArr)
+    ul()
+    {
+      for (const num of this.numArr) {
+        key: num
+        li(num)
+      }
+    }
+  }
+}
+
+render("app", Colors)`,
+            path: "/index.ts"
+          }
+        ]
+      },
+      {
+        title: "Switch Case",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+
+const TRAFFIC_LIGHTS = ["red", "orange", "green"]
+
+@View
+class TrafficLight {
+  lightIndex = 0
+  light = TRAFFIC_LIGHTS[this.lightIndex]
+
+  nextLight() {
+    this.lightIndex = (this.lightIndex + 1)%TRAFFIC_LIGHTS.length
+  }
+
+  View() {
+    button("Next light")
+      .onClick(this.nextLight)
+    p(this.light)
+    p()
+    {
+      "You must "
+      switch (this.light) {
+        case "red":
+          span("STOP")
+          break
+        case "orange":
+          span("SLOW DOWN")
+          break
+        case "green":
+          span("GO")
+          break
+      }
+    }
+  }
+}
+
+render("app", TrafficLight)`,
+            path: "/index.ts"
+          }
+        ]
+      },
+      {
+        title: "Expression",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+
+@View
+class Expression {
+  count = 2
+
+  View() {
+    _(count*2)
+  }
+}
+
+render("app", Expression)`,
+            path: "/index.ts"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    title: "Component",
+    zhName: "组件",
+    description: "",
+    path: "/examples/props",
+    children: [
+      {
+        title: "Props",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+import UserProfile from "./UserProfile.view"
+
+@View
+class App {
+  name = "John"
+
+  View() {
+    UserProfile()
+      .name(this.name)
+      .age(20)
+      .favouriteColors(["green", "blue", "red"])
+      .isAvailable(true)
+  }
+}
+render("app", App)`,
+            path: "/index.ts"
+          },
+          {
+            code: `import DLight, { View } from "@dlightjs/dlight" 
+
+@View
+class UserProfile {
+  @Prop name = ""
+  @Prop age = null
+  @Prop favouriteColors = []
+  @Prop isAvailable = false
+
+  View() {
+    div()
+    {
+      span("My name is ")
+      span(this.name)
+    }
+    div()
+    {
+      span("My age is ")
+      span(this.age)
+    }
+    div()
+    {
+      span("I am ")
+      span(this.isAvailable ? "available" : "not available")
+    }
+    div()
+    {
+      span("My favourite colors are ")
+      span(this.favouriteColors.join(", "))
+    }
+  }
+}
+
+export default UserProfile`,
+            path: "/UserProfile.view.ts"
+          }
+        ]
+      },
+      {
+        title: "Content",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+import BeautifulButton from "./BeautifulButton.view"
+
+@View
+class App {
+  count = 0
+
+  View() {
+    div(this.count)
+    BeautifulButton("Add")
+      .handleClick(()=>{
+        this.count ++
+      })
+    BeautifulButton("Minus")
+      .handleClick(()=>{
+        this.count --
+      })
+  }
+}
+
+render("app", App)`,
+            path: "/index.ts"
+          },
+          {
+            code: `import DLight, { View } from "@dlightjs/dlight" 
+
+@View
+class BeautifulButton {
+  @Content btnName
+  @Prop handleClick
+
+  View() {
+    button(this.btnName)
+      .onClick(this.handleClick)
+  }
+}
+
+export default BeautifulButton`,
+            path: "/BeautifulButton.view.ts"
+          }
+        ]
+      },
+      {
+        title: "Children",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+import CenterAlign from "./CenterAlign.view"
+
+@View
+class App {
+  View() {
+    CenterAlign()
+    {
+      div("A very very very long text")
+      div("short text")
+      div("Another very very very long text")
+    }
+  }
+}
+
+render("app", App)`,
+            path: "/index.ts"
+          },
+          {
+            code: `import DLight, { View, Children } from "@dlightjs/dlight" 
+
+@View
+class CenterAlign {
+  @Children children
+
+  View() {
+    div()
+    .style({ display: "flex", flexDirection: "column", alignItems: "center" })
+    {
+      this.children
+    }
+  }
+}
+
+export default RowDisplay`,
+            path: "/RowDisplay.view.ts"
+          }
+        ]
+      },
+      {
+        title: "SubView",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+
+@View
+class App {
+  View() {
+    FunnyButton()
+    {
+      "I got content!"
+    }
+    FunnyButton()
+  }
+}
+
+
+render("app", App)`,
+            path: "/index.ts"
+          }
+        ]
+      },
+      {
+        title: "Prop View",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+import UserProfile from 'UserProfile.view'
+
+@View
+class PropView {
+  user = {
+    id: 1,
+    username: "unicorn42",
+    email: "unicorn42@example.com"
+  }
+
+  updateUsername(newUserName) {
+    this.user = { ...this.user, userName: newUserName }
+  }
+
+  View() {
+    h1("Welcome back, " + this.user.userName)
+    env()
+      .user(this.user)
+      .updateUsername(this.updateUsername)
+    {
+      UserProfile()
+    }
+  }
+}
+
+render("app", PropView)`,
+            path: "/index.ts"
+          },
+          {
+            code: `import { View } from "@dlightjs/dlight" 
+
+@View
+class UserProfile {
+  @Env user
+  @Env updateUsername
+
+  View() {
+    div()
+    {
+      h2("My Profile")
+      p("Username: " + this.user.username)
+      p("Email: " + this.user.email)
+      button("Update username to Jane")
+        .onClick(() => this.updateUsername("Jane"))
+    }
+  }
+}
+
+export default UserProfile`,
+            path: "/UserProfile.view.ts"
           }
         ]
       }
@@ -344,445 +995,6 @@ class Time {
 }
 
 render("app", Time)`,
-            path: "/index.ts"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    title: "Component Composition",
-    zhName: "组件组合",
-    description: "",
-    path: "/examples/props",
-    children: [
-      {
-        title: "Props",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-import UserProfile from "./UserProfile.view"
-
-@View
-class App {
-  View() {
-    UserProfile()
-      .name("John")
-      .age(20)
-      .favouriteColors(["green", "blue", "red"])
-      .isAvailable(true)
-  }
-}
-render("app", App)`,
-            path: "/index.ts"
-          },
-          {
-            code: `import DLight, { View } from "@dlightjs/dlight" 
-
-@View
-class UserProfile {
-  @Prop name = ""
-  @Prop age = null
-  @Prop favouriteColors = []
-  @Prop isAvailable = false
-
-  View() {
-    div()
-    {
-      span("My name is ")
-      span(this.name)
-    }
-    div()
-    {
-      span("My age is ")
-      span(this.age)
-    }
-    div()
-    {
-      span("I am ")
-      span(this.isAvailable ? "available" : "not available")
-    }
-    div()
-    {
-      span("My favourite colors are ")
-      span(this.favouriteColors.join(", "))
-    }
-  }
-}
-
-export default UserProfile`,
-            path: "/UserProfile.view.ts"
-          }
-        ]
-      },
-      {
-        title: "Emit To Parent",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-import AnswerButton from "./AnswerButton.view"
-
-@View
-class App {
-  canCome = true
-
-  onAnswerNo() {
-    this.canCome = false
-  }
-
-  onAnswerYes() {
-    this.canCome = true
-  }
-
-  View() {
-    p("Are you happy?")
-    AnswerButton()
-      .onYes(this.onAnswerYes)
-      .onNo(this.onAnswerNo)
-    p(this.canCome ? "😀" : "😥")
-  }
-}
-
-render("app", App)`,
-            path: "/index.ts"
-          },
-          {
-            code: `import DLight, { View } from "@dlightjs/dlight" 
-
-@View
-class AnswerButton {
-  @Prop onYes
-  @Prop onNo
-
-  View() {
-    button("yes")
-      .onClick(this.onYes)
-    button("NO")
-      .onClick(this.onNo)
-  }
-}
-
-export default AnswerButton`,
-            path: "/AnswerButton.view.ts"
-          }
-        ]
-      },
-      {
-        title: "Slot",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-import FunnyButton from "./FunnyButton.view"
-
-@View
-class App {
-  View() {
-    FunnyButton()
-    {
-      "Click me!"
-    }
-  }
-}
-
-
-render("app", App)`,
-            path: "/index.ts"
-          },
-          {
-            code: `import DLight, { View, Children } from "@dlightjs/dlight" 
-
-@View
-class FunnyButton {
-  @Children children
-  View() {
-    button()
-      .style({
-        background: "rgba(0, 0, 0, 0.4)",
-        color: "#fff",
-        padding: "10px 20px",
-        fontSize: "30px",
-        border: "2px solid #fff",
-        margin: "8px",
-        transform: "scale(0.9)",
-        boxShadow: "4px 4px rgba(0, 0, 0, 0.4)",
-        transition: "transform 0.2s cubic-bezier(0.34, 1.65, 0.88, 0.925) 0s",
-        outline: "0"
-      })
-    {
-      this.children
-    }
-  }
-}
-
-export default FunnyButton`,
-            path: "/FunnyButton.view.ts"
-          }
-        ]
-      },
-      {
-        title: "Slot Fallback",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-import FunnyButton from "./FunnyButton.view"
-
-@View
-class App {
-  View() {
-    FunnyButton()
-    {
-      "I got content!"
-    }
-    FunnyButton()
-  }
-}
-
-
-render("app", App)`,
-            path: "/index.ts"
-          },
-          {
-            code: `import DLight, { View, Children } from "@dlightjs/dlight" 
-
-@View
-class FunnyButton {
-  @Children children
-  View() {
-    button()
-      .style({
-        background: "rgba(0, 0, 0, 0.4)",
-        color: "#fff",
-        padding: "10px 20px",
-        fontSize: "30px",
-        border: "2px solid #fff",
-        margin: "8px",
-        transform: "scale(0.9)",
-        boxShadow: "4px 4px rgba(0, 0, 0, 0.4)",
-        transition: "transform 0.2s cubic-bezier(0.34, 1.65, 0.88, 0.925) 0s",
-        outline: "0"
-      })
-    {
-      if (this.children.length === 0) {
-        span("No content found")
-      } else {
-        this.children
-      }
-    }
-  }
-}
-
-export default FunnyButton`,
-            path: "/FunnyButton.view.ts"
-          }
-        ]
-      },
-      {
-        title: "Context",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-import UserProfile from 'UserProfile.view'
-
-@View
-class App {
-  user = {
-    id: 1,
-    username: "unicorn42",
-    email: "unicorn42@example.com"
-  }
-
-  updateUsername(newUserName) {
-    this.user = { ...this.user, userName: newUserName }
-  }
-
-  View() {
-    h1("Welcome back, " + this.user.userName)
-    env()
-      .user(this.user)
-      .updateUsername(this.updateUsername)
-    {
-      UserProfile()
-    }
-  }
-}
-
-render("app", App)`,
-            path: "/index.ts"
-          },
-          {
-            code: `import DLight, { View } from "@dlightjs/dlight" 
-
-@View
-class UserProfile {
-  @Env user
-  @Env updateUsername
-
-  View() {
-    div()
-    {
-      h2("My Profile")
-      p("Username: " + this.user.username)
-      p("Email: " + this.user.email)
-      button("Update username to Jane")
-        .onClick(() => this.updateUsername("Jane"))
-    }
-  }
-}
-
-export default UserProfile`,
-            path: "/UserProfile.view.ts"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    title: "Form Input",
-    zhName: "表单输入",
-    description: "",
-    path: "/examples/input-text",
-    children: [
-      {
-        title: "Input Text",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-
-@View
-class InputHello {
-  text = "Hello world"
-
-  View() {
-    input()
-      .value(this.text)
-      .oninput(e => {
-        this.text = e.target.value
-      })
-    p(this.text)
-  }
-}
-
-render("app", InputHello)`,
-            path: "/index.ts"
-          }
-        ]
-      },
-      {
-        title: "Checkbox",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-
-@View
-class IsAvailable {
-  isAvailable = false
-
-  View() {
-    input(this.text)
-      .type("checkbox")
-      .id("is-available")
-      .checked(this.isAvailable)
-      .onchange(() => { this.isAvailable = !this.isAvailable })
-    label("Is Available")
-      .for("is-available")
-  }
-}
-
-render("app", IsAvailable)`,
-            path: "/index.ts"
-          }
-        ]
-      },
-      {
-        title: "Radio",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-
-@View
-class PickPill {
-  picked = "red"
-
-  handleChange(event) {
-    this.picked = event.target.value
-  }
-
-  View() {
-    div()
-    {
-      span("Picked: ")
-      span(this.picked)
-    }
-    div()
-    {
-      input()
-        .id("blue-pill")
-        .type("radio")
-        .value("blue")
-        .checked(this.picked === "blue")
-        .onchange(this.handleChange)
-      label("Blue pill")
-        .for("blue-pill")
-    }
-    div()
-    {
-      input()
-        .id("red-pill")
-        .type("radio")
-        .value("red")
-        .checked(this.picked === "red")
-        .onchange(this.handleChange)
-      label("Red pill")
-        .for("red-pill")
-    }
-  }
-}
-
-render("app", PickPill)`,
-            path: "/index.ts"
-          }
-        ]
-      },
-      {
-        title: "Select",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
-        modules: [
-          {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
-
-@View
-class ColorSelect {
-  selectedColorId = 2
-  colors = [
-    { id: 1, text: "red" },
-    { id: 2, text: "blue" },
-    { id: 3, text: "green" },
-    { id: 4, text: "gray", isDisabled: true }
-  ]
-
-  View() {
-    select()
-      .value(this.selectedColorId)
-      .onchange(e => { this.selectedColorId = e.target.value })
-    {
-      for (const { id, text, isDisabled } of this.colors) {
-        option(text)
-          .value(id)
-          .disabled(isDisabled)
-      }
-    }
-  }
-}
-
-render("app", ColorSelect)`,
             path: "/index.ts"
           }
         ]
