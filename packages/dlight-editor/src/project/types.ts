@@ -6,5 +6,5 @@ export interface ToBeTransformedModule {
 export interface TransformedProjectModule {
   path: string
   code: string
-  dlightCode: string
+  dlightCode: string | undefined | null
 }

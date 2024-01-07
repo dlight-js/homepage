@@ -1,4 +1,4 @@
-interface Color {
+export interface Color {
   textColor: string
   highlightColor: string
   bgColor: string

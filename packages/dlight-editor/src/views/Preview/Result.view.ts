@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { Env, iframe, Pretty, required, Typed } from "@dlightjs/types"
+import { div, Env, iframe, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import { Color } from "../../utils/const"
 import { css } from "@iandx/easy-css"
 
@@ -13,12 +13,11 @@ class Result {
   // @Env srcDoc: string = required
   @Env theme: Color = required
   @Env srcDoc = ""
+  @Env isStartResize = required
   @Prop height: string = required
 
   /** @view */
   View() {
-    // div()
-    // .class(this.iframeTransparentCss)
     div().class(this.wrapperCss)
     {
       iframe()
@@ -30,11 +29,21 @@ class Result {
           <script type="module" src="/dlight.js"></script>
           <script type="module">
             const originalConsoleLog = console.log;
+            const originalConsoleError = console.error;
             console.log = function(message) {
               originalConsoleLog(message);
               // Send the message to the parent window
               window.parent.postMessage(message, '*');
             };
+            console.error = function(message) {
+              originalConsoleError(message);
+              // Send the message to the parent window
+              window.parent.postMessage(message, '*');
+            };
+            window.onerror = function(message, source, lineno, colno, error) {
+              // Send the message to the parent window
+              window.parent.postMessage(error, '*');
+            }
             import { render, View, createTemplate,
             setStyle, setDataset, setEvent, setHTMLProp, setHTMLAttr,
             setHTMLProps, setHTMLAttrs, insertNode, createElement,
@@ -51,19 +60,11 @@ class Result {
   /** @style */
   wrapperCss = css`
     width: 100%;
-    height: ${this.height};
+    height: 100%;
     border-width: 0px;
     color: ${this.theme.text};
-  `
-
-  iframeTransparentCss = css`
-  width: 100%;
-  height: ${this.height};
-  position: absolute;
-  z-index: 100;
-  top: 0;
-  opacity: 0;
-  background: transparent;
+    overflow: hidden;
+    pointer-events: ${this.isStartResize ? "none" : "auto"};
   `
 }
 

@@ -18,8 +18,8 @@ export class DLightProject {
     this.moduleId = Math.random().toString(32).slice(2, 8)
     this.project = new Project(entryFile, this.moduleId)
     for (const module of this.transformedModules) {
-      this.moduleClasses.push(new Module(module.path, module.dlightCode))
-      this.project.addModule(module.path, module.dlightCode)
+      this.moduleClasses.push(new Module(module.path, module.dlightCode!))
+      this.project.addModule(module.path, module.dlightCode!)
     }
     const callEntryFile = `\n(${this.project.entryFile.replace(/\./g, "_").replace(/\//g, "$")})()`
     this.srcDoc = this.moduleClasses.map(module => module.parsedCode).join("\n") + callEntryFile

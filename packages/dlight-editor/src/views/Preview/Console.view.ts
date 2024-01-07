@@ -3,6 +3,7 @@ import { css } from "@iandx/easy-css"
 import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
 import { Color, headerHeight } from "../../utils/const"
 import { DoDisturbFilled } from "@dlightjs/material-icons"
+import ConsoleItem from "./ConsoleItem.view"
 
 interface ConsoleProps {
   height?: string
@@ -13,21 +14,20 @@ class Console {
   @Env theme: Color = required
   @Env getClearConsoleFunc: (func: any) => void = required
   @Prop height = "100%"
-  consoleMessages = []
+  consoleMessages: any[] = []
 
   clearConsole() {
     this.consoleMessages = []
   }
 
-  didMount() {
+  willMount() {
     this.getClearConsoleFunc(this.clearConsole.bind(this))
     window.addEventListener("message", (e) => {
       if (typeof e.data === "object" && e.data.vscodeScheduleAsyncWork) {
         // This is the message to filter out, so do nothing
         return
       }
-      this.consoleMessages.push(e.data)
-      this.consoleMessages = [...this.consoleMessages]
+      this.consoleMessages = [...this.consoleMessages, e.data]
     })
   }
 
@@ -51,23 +51,20 @@ class Console {
         .class(this.consoleContentCss)
       {
         for (const msg of this.consoleMessages) {
-          div(msg)
+          ConsoleItem(msg)
         }
       }
     }
   }
 
   consoleCss = css`
-    border-top: 1px solid ${this.theme.secondaryText};
     height: ${this.height};
-    /* color: white; */
-    overflow-y: scroll;
   `
 
   headerCss = css`
     display: flex;
+    flex: 1;
     align-items: center;
-    /* justify-content: center; */
     height: ${headerHeight}px;
     border-bottom: 1px solid ${this.theme.secondaryText};
     color: ${this.theme.text};
@@ -79,7 +76,9 @@ class Console {
   `
 
   consoleContentCss = css`
+    height: calc(100% - 56px);
     padding: 10px;
+    overflow-y: scroll;
   `
 
   iconCss = css`

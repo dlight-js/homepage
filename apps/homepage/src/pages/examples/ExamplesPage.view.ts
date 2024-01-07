@@ -70,7 +70,6 @@ class ExamplesPage implements RoutesEnv {
   pathWatcher() {
     const pathSplit = this.path!.split("/")
     const title = pathSplit[pathSplit.length - 1]
-
     // ---- First letter to uppercase, replace "-" to " "
     this.selectedTitle = title.split("-").map((item: string) => {
       return item[0]?.toUpperCase() + item.slice(1)
@@ -136,7 +135,7 @@ class ExamplesPage implements RoutesEnv {
 
   exampleBgCss = css`
     background-color: ${this.theme.bgColor};
-    height: 100vh;
+    height: calc(100vh - 60px);
   `
 
   examplesPageWrapCss = css`

@@ -49,6 +49,7 @@ class DocPage {
   @Watch
   pathWatcher() {
     this.isLoading = true
+    this.isOpenOutline = { value: false }
     this.isFail = false
     const [fileData, fileIndex] = findCertainFile({ mapData: this.flatfileData, filePath: "/" + this.path })
     const filePath = this.path.startsWith("docs/") ? `/${this.path}${fileData?.children ? "/index.md" : ".md"}` : ""
@@ -75,7 +76,7 @@ class DocPage {
           return ""
         })
         .then(text => { this.mdString = text; this.isLoading = false })
-        .catch(() => { this.isFail = true })
+        .catch((err) => { console.log(err); this.isFail = true })
     }
     this.selectedName = fileData?.name ?? ""
   }
@@ -150,6 +151,8 @@ class DocPage {
                 .codeBgColor(this.theme.codeBgColor)
                 .codeBlockHeaderColor(this.theme.codeBlockHeaderColor)
                 .codeTextColor(this.theme.codeTextColor)
+                .bgColor(this.theme.bgColor)
+                .shadowColor(this.theme.shadowColor)
                 .themeType(this.themeType)
             }
           }

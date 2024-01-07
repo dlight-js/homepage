@@ -97,19 +97,19 @@ class Header implements HeaderProps {
     }
     if (this.isShortView && this.isShowMenu) {
       ShortHeaderMenu()
+        .handleClickShowMenu(this.handleClickShowMenu)
     }
   }
 
   headerHeightCss = css`
-    height: 48px;
-    padding: 6px 0;
+    height: 60px;
     min-width: ${getSize(430)};
   `
 
   headerWrapCss = css`
     box-shadow: ${this.isShowShadow ? `0 1px 5px -3px ${this.theme.shadowColor}` : ""};
     background-color: ${this.theme.bgColor};
-    position: fixed;
+    position: ${this.isNeedAnimation ? "fixed" : "relative"};
     top: 0;
     display: flex;
     width: 100%;

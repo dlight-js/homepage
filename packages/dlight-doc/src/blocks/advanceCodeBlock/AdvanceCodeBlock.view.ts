@@ -1,19 +1,18 @@
 import { View } from "@dlightjs/dlight"
-import { code, Content, ContentProp, div, pre, Prop, required, Pretty, Typed, Env, Watch } from "@dlightjs/types"
+import { code, Content, ContentProp, div, pre, Prop, required, Pretty, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import hljs from "highlight.js"
 import "highlight.js/styles/a11y-light.css"
 import "highlight.js/styles/a11y-dark.css"
 import { ContentCopyFilled, DoneFilled } from "@dlightjs/material-icons"
 
-interface AdvantageBlockProps {
+interface AdvanceCodeBlockProps {
   content: ContentProp<any>
   props: any
 }
 
 @View
-class AdvantageBlock implements AdvantageBlockProps {
-  @Env themeType: any = required
+class AdvanceCodeBlock implements AdvanceCodeBlockProps {
   @Content content: any = required
   @Prop props = required
   language = this.props.language
@@ -124,7 +123,6 @@ class AdvantageBlock implements AdvantageBlockProps {
     font-weight: 500;
     margin-right: 10px;
     font-size: 16px;
-    margin-left: 10px;
   `
   dlightMarkitCopyBtnCss = css`
     display: flex;
@@ -163,4 +161,4 @@ class AdvantageBlock implements AdvantageBlockProps {
   `
 }
 
-export default AdvantageBlock as Pretty as Typed<AdvantageBlockProps>
+export default AdvanceCodeBlock as Pretty as Typed<AdvanceCodeBlockProps>

@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, Prop, env, required, Watch, comp } from "@dlightjs/types"
+import { type Typed, div, Pretty, Prop, env, required, comp } from "@dlightjs/types"
 import ProjectEditor from "./Editor/ProjectEditor.view"
 import PreviewView from "./Preview/Preview.view"
 import { ToBeTransformedModule } from "../project/types"
@@ -30,6 +30,11 @@ class Playground implements PlaygroundProps {
   @Prop height = "100vh" as any
   @Prop onSave?: (project: DLightProject) => void
   @Prop isVertical: boolean = false
+
+  isStartResize = false
+  updateIsStartResize = (isStartResize: boolean) => {
+    this.isStartResize = isStartResize
+  }
 
   /** @reactive */
   theme = colors[this.themeType]
@@ -112,6 +117,8 @@ class Playground implements PlaygroundProps {
       .height(this.height)
       .srcDoc(this.srcDoc)
       .getClearConsoleFunc(this.getClearConsoleFunc)
+      .isStartResize(this.isStartResize)
+      .updateIsStartResize(this.updateIsStartResize)
     {
       div()
         .style({
@@ -132,7 +139,9 @@ class Playground implements PlaygroundProps {
             .getSrcDoc(this.getSrcDoc)
             .onSave(this.onSave)
             .clearConsoleFunc(this.clearConsoleFunc)
+
           comp(this.isVertical ? VerticalResizer : HorizontalResizer)()
+            // @ts-expect-error
             .width(`${this.width}`)
             .height(`${this.height}`)
             .onDrag(this.isVertical ? this.handleVerticalResizerDrag.bind(this) : this.handleHorizontalResizerDrag.bind(this))

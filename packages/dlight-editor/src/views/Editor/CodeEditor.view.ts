@@ -28,8 +28,8 @@ class CodeEditor implements CodeEditorProps {
   /** @reactive */
   editor?: monaco.editor.ICodeEditor
   onEditorStoreChange = (() => {
-    this.editor?.setModel(this.editorStore.model)
-    this.editor?.restoreViewState(this.editorStore.state)
+    this.editor?.setModel(this.editorStore?.model)
+    this.editor?.restoreViewState(this.editorStore?.state)
   })()
 
   onEditorThemeChange = (() => {

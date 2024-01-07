@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { div, button, Typed, Pretty, Env, Prop, required } from "@dlightjs/types"
+import { div, Typed, Pretty, Env, Prop, required } from "@dlightjs/types"
 import ResultView from "./Result.view"
 import OutputView from "./Output.view"
 import ConsoleView from "./Console.view"
@@ -29,7 +29,7 @@ class Preview implements PreviewProps {
   wrapperEl: HTMLElement | undefined = undefined
 
   /** @reactive */
-  tab: "result" | "output" = "result"
+  tab: "Result" | "Output" = "Result"
 
   consoleHeight = "35%"
   previewHeight = `calc(65% - ${dividerWidth}px - ${headerHeight}px)`
@@ -50,7 +50,7 @@ class Preview implements PreviewProps {
   /** @view */
   @View
   Head({ content }: any): any {
-    button(content)
+    div(content)
       .class(this.headerCss)
       .style({
         borderBottom: content === this.tab ? `3px solid ${this.theme.text}` : ""
@@ -66,19 +66,14 @@ class Preview implements PreviewProps {
       .class(this.headerBGCss)
     {
       div()
-        .class(this.rowDisplayCss)
       {
-        div()
-          .onClick(this.refreshFunc)
+        RefreshFilled()
           .class(this.iconCss)
-        {
-          RefreshFilled()
-            .class(this.iconCss)
-            .color(this.theme.primary)
-        }
-        this.Head("result")
-        this.Head("output")
+          .color(this.theme.primary)
+          .onClick(this.refreshFunc)
       }
+      this.Head("Result")
+      this.Head("Output")
     }
   }
 
@@ -97,15 +92,15 @@ class Preview implements PreviewProps {
       {
         div()
           .style({
-            display: this.tab === "result" ? "block" : "none",
-            height: this.previewHeight
+            display: this.tab === "Result" ? "block" : "none"
           })
+          .class(this.resultWrapperCss)
         {
           ResultView()
         }
         div()
           .style({
-            display: this.tab === "output" ? "block" : "none"
+            display: this.tab === "Output" ? "block" : "none"
           })
         {
           OutputView()
@@ -126,33 +121,34 @@ class Preview implements PreviewProps {
     overflow: hidden;
   `
 
+  resultWrapperCss = css`
+    height: 100%;
+  `
+
   headerBGCss = css`
     background-color: ${this.theme.background};
-    height: ${headerHeight}px;
-    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   `
 
   headerCss = css`
-    padding: 2px 0px 5px 0px;
-    border-width: 0;
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+    line-height: ${headerHeight}px;
     background-color: ${this.theme.background};
     color: ${this.theme.text};
     font-size: 17px;
     height: ${headerHeight}px;
     cursor: pointer;
-    width: calc(50% - 16px);
+    flex-grow: 1;
   `
 
   iconCss = css`
-    padding: 5px 5px 0 5px;
+    margin: 0 5px;
     cursor: pointer;
-  `
-
-  rowDisplayCss = css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
   `
 
   previewWrapperCss = css`

@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { MarkitView, addBlockRule } from "@dlightjs/markit"
-import { Content, ContentProp, div, Env, env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
+import { Content, ContentProp, div, env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { AdvantageBlock, HeadingBlock } from "./blocks"
 import { CatalogueView, NextPageNav } from "./views"
@@ -55,14 +55,14 @@ interface DlightDocProps {
   codeBgColor?: string
   codeTextColor?: string
   codeBlockHeaderColor?: string
-  dividerColor?: string
   highlightColor?: string
+  bgColor?: string
+  shadowColor?: string
   themeType?: string
 }
 
 @View
 class DlightDoc implements DlightDocProps {
-  @Env path: any
   @Content content: any = required
   @Prop title = required
   @Prop isShowCatalogue = required
@@ -72,8 +72,9 @@ class DlightDoc implements DlightDocProps {
   @Prop codeBgColor = required
   @Prop codeTextColor = required
   @Prop codeBlockHeaderColor = required
-  @Prop dividerColor = required
   @Prop highlightColor = required
+  @Prop bgColor = required
+  @Prop shadowColor = required
   @Prop themeType = required
 
   docAst: any = []
@@ -126,8 +127,8 @@ class DlightDoc implements DlightDocProps {
   }
 
   @Watch
-  pathWatcher() {
-    if (this.path) {
+  contentWatcher() {
+    if (this.content) {
       this.markitViewEl?.scrollTo({
         top: 0
       })
@@ -269,12 +270,11 @@ class DlightDoc implements DlightDocProps {
 
   dlightMarkitCodeBlock$ = css`
     background-color: ${this.codeBgColor};
-    /* color: ${this.codeTextColor}; */
   `
 
   dlightMarkitCodeBlockHeader$ = css`
     background-color: ${this.codeBlockHeaderColor};
-    color: ${this.codeTextColor};
+    color: ${this.textColor};
   `
 
   dlightMarkitLink$ = css`
@@ -299,8 +299,9 @@ class DlightDoc implements DlightDocProps {
     padding-bottom: 25px;
     padding-right: 30px;
     height: 100%;
+    background-color: ${this.bgColor};
     padding-top: ${this.isShowCatalogue && !this.isShowCatalogueInner ? "30px" : "0"};
-    box-shadow: ${this.isShowCatalogue && !this.isShowCatalogueInner ? "0 2px 8px 0 #A9A9A9" : ""};
+    box-shadow: ${this.isShowCatalogue && !this.isShowCatalogueInner ? `0 2px 8px 0 ${this.shadowColor}` : ""};
     z-index: ${this.isShowCatalogue && !this.isShowCatalogueInner ? 50 : ""};
     margin-top: ${this.isShowCatalogue && !this.isShowCatalogueInner ? "-82px" : ""};
   `
@@ -309,7 +310,6 @@ class DlightDoc implements DlightDocProps {
     border-width: 0 ;
     height: 1px;
     width: 100%;
-    background-color: ${this.dividerColor};
     margin: 40px 0;
   `
 }

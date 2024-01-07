@@ -6,6 +6,7 @@ import { Navigator } from "@dlightjs/components"
 interface ShortHeaderMenuItemProps {
   btnName: string
   btnPath: string
+  handleClickShowMenu: () => void
 }
 
 @View
@@ -15,12 +16,13 @@ class ShortHeaderMenuItem {
   @Env path: string = required
   @Prop btnName = required
   @Prop btnPath = required
+  @Prop handleClickShowMenu = required
   isSelected = this.btnName === "Documents" ? this.path.includes("docs") : this.path.includes(this.btnPath.replace("/", ""))
   isHover = false
   View() {
     div(this.btnName)
       .class(this.menuBtnCss)
-      .onClick(() => { this.navigator.to(this.btnPath) })
+      .onClick(() => { this.navigator.to(this.btnPath); this.handleClickShowMenu() })
       .onMouseEnter(() => { this.isHover = true })
       .onMouseLeave(() => { this.isHover = false })
   }

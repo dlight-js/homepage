@@ -10,8 +10,8 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@dlightjs/components": "1.0.0-alpha.18",
-    "@dlightjs/dlight": "1.0.0-alpha.35",
+    "@dlightjs/components": "1.0.0-alpha.24",
+    "@dlightjs/dlight": "1.0.0-alpha.59",
     "@dlightjs/material-icons": "1.0.0-alpha.2",
     "@iandx/easy-css": "^0.10.14",
     "clsx": "^2.1.0",
@@ -22,7 +22,7 @@
     "@dlightjs/types": "1.0.0-alpha.0",
     "typescript": "^5.3.3",
     "vite": "^4.5.1",
-    "vite-plugin-dlight": "1.0.0-alpha.21",
+    "vite-plugin-dlight": "1.0.0-alpha.33",
     "vite-plugin-easy-css": "^0.10.14"
   },
   "keywords": [

@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { a, Content, ContentProp, div, Env, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { a, Content, ContentProp, div, Env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
 import { InlineRenderer } from "@dlightjs/markit"
 import { css } from "@iandx/easy-css"
 import clsx from "clsx"
@@ -23,20 +23,25 @@ class CatalogueView implements CatalogueViewProps {
   @Prop updateCurrentIndex = required
   @Prop scrollToTop = required
 
+  @Watch
+  watchContent() {
+    console.log(this.content)
+  }
+
   View() {
-    div(this.i18n("To Top", "置顶"))
+    div(this.i18n("To Top", "回到顶部"))
       .style({ textDecoration: "underline", fontWeight: 600, cursor: "pointer", width: "max-content" })
       .class(this.dlightDocHeadingLinkCss(-1))
       .onClick(this.scrollToTop)
-    for (const [index, heading] of this.content.entries()) {
+    for (const [index, heading] of Object.entries(this.content)) {
       for (const item of heading.content) {
         a()
           .href(`#${item.content}`)
           .onClick((e) => {
             e.stopPropagation()
-            this.updateCurrentIndex(index)
+            this.updateCurrentIndex(Number(index))
           })
-          .class(clsx(this.dlightDocHeadingLinkCss(index), heading.props.headingLevel > 1 ? this.dlightDocSecondaryHeadCss : this.dlightDocPrimaryHeadCss))
+          .class(clsx(this.dlightDocHeadingLinkCss(Number(index)), heading.props.headingLevel > 1 ? this.dlightDocSecondaryHeadCss : this.dlightDocPrimaryHeadCss))
         {
           InlineRenderer[item.type](item.content)
             .props(item.props)
@@ -46,17 +51,12 @@ class CatalogueView implements CatalogueViewProps {
   }
 
   /** @style */
-  dlightDocCatalogueWrapCss = css`
-      right: 0;
-      position: fixed;
-      width: 248px;
-      max-width: 248px;
-      padding-bottom: 25px;
-      padding-right: 20px;
-      background-color: white;
-      padding-top: ${this.isShowShadow ? "30px" : "0"};
-      box-shadow: ${this.isShowShadow ? "0 2px 8px 0 #A9A9A9" : ""};
-    `
+  toTopCss = css`
+    text-decoration: underline;
+    font-weight: 600;
+    cursor: pointer;
+    width: max-content;
+  `
 
   dlightDocHeadingLinkCss = (index: number) => css`
     display: block;
@@ -78,10 +78,6 @@ class CatalogueView implements CatalogueViewProps {
   `
 
   dlightDocPrimaryHeadCss = css`
-    font-weight: 600;
-  `
-  dligthDocToTopCss = css`
-    text-decoration: underline;
     font-weight: 600;
   `
 }

@@ -18,6 +18,7 @@ interface ProjectEditorProps {
   height?: string
   onSave?: (project: DLightProject) => void
   getSrcDoc: (doc: string) => void
+  clearConsoleFunc: () => void
 }
 
 @View
@@ -99,7 +100,12 @@ class ProjectEditor {
     this.dlightProject = new DLightProject(modules) as any
     this.getSrcDoc(this.dlightProject.srcDoc)
     this.onSave?.(new DLightProject(this.dlightProject.modules))
-    // clear console
+  }
+
+  @Watch("dlightProject")
+  watchDlightProject() {
+    console.log("!!!!hh")
+    // clear console when run
     this.clearConsoleFunc()
   }
 

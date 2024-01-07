@@ -1,34 +1,30 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, div, Pretty, required, Env, Prop } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { Navigator } from "@dlightjs/components"
 
 interface SkeletonProps {
-  data: number[]
+  data: number[][]
   height: string
   width: string
 }
 
 @View
 class Skeleton implements SkeletonProps {
-  @Env navigator: Navigator = required
-  @Env themeType: "light" | "dark" = required
   @Env theme: any = required
-  @Env i18n: any = required
   @Prop isPulseAnimation = true
   @Prop height = "100%"
   @Prop width = "100%"
   // 80 for title, 180 for large content, 120 for small content, 30 for one signle line
-  @Prop data = [80, 30, 30, 180, 30, 120, 30, 150, 30, 120]
+  @Prop data = [[60, 100], [20, 50], [20, 80]]
 
   View() {
     div()
       .class(this.skeletonCss)
     {
-      for (const item of this.data) {
+      for (const [height, width] of this.data) {
         div()
           .class(this.itemCss)
-          .style({ height: `${item}px` })
+          .style({ height: `${height}px`, width: `${width}%` })
       }
     }
   }
@@ -37,28 +33,28 @@ class Skeleton implements SkeletonProps {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     height: ${this.height};
     width: ${this.width};
   `
 
   itemCss = css`
-    margin: 5px 0;
+    margin: 7px 0;
     width: 100%;
-    background-color: #F5F5F5;
-    border-radius: 4px;
+    background-color: ${this.theme.shadowColor};
     animation: pulse 1s ease-in-out infinite;
   `
+
   pulseAnimation = css`
     @keyframes pulse {
       0% {
-          background-color: #CCCCCC;
+          background-color: #E7E9ED;
       }
       50% {
-          background-color: #F5F5F5;
+          background-color: #F3F5F7;
       }
       100% {
-          background-color: #CCCCCC;
+          background-color: #E7E9ED;
       }
     }
   `

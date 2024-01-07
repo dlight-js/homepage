@@ -7,7 +7,7 @@
     "dist"
   ],
   "main": "lib/Playground.view.cjs",
-  "module": "src/views/Playground.view.ts",
+  "module": "lib/Playground.view.js",
   "typings": "lib/Playground.view.d.ts",
   "scripts": {
     "dev": "vite",
@@ -15,13 +15,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.23.3",
     "@babel/preset-env": "^7.23.7",
     "@babel/standalone": "^7.23.7",
-    "@dlightjs/components": "1.0.0-alpha.18",
-    "@dlightjs/dlight": "1.0.0-alpha.35",
+    "@dlightjs/components": "1.0.0-alpha.24",
+    "@dlightjs/dlight": "1.0.0-alpha.59",
     "@dlightjs/material-icons": "1.0.0-alpha.2",
-    "@dlightjs/transpiler-standalone": "1.0.0-alpha.21",
+    "@dlightjs/transpiler-standalone": "1.0.0-alpha.33",
     "@iandx/easy-css": "^0.10.14",
     "clsx": "^2.1.0",
     "monaco-editor": "^0.40.0"
@@ -32,12 +31,12 @@
     "@babel/types": "^7.23.6",
     "@dlightjs/types": "1.0.0-alpha.0",
     "@types/babel__standalone": "^7.1.7",
-    "babel-preset-dlight": "1.0.0-alpha.21",
+    "babel-preset-dlight": "1.0.0-alpha.33",
     "babel-preset-easy-css": "^0.10.14",
     "tsup": "^7.2.0",
     "typescript": "^4.9.5",
     "vite": "^4.5.1",
-    "vite-plugin-dlight": "1.0.0-alpha.21",
+    "vite-plugin-dlight": "1.0.0-alpha.33",
     "vite-plugin-easy-css": "^0.10.14"
   },
   "keywords": [

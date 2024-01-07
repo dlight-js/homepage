@@ -21,25 +21,15 @@ class ShortHeaderMenuIcon {
       .class(this.menuBtnWrapCss)
     {
       if (this.isShortHeader && !this.isShowMenu) {
-        div()
-          .onClick(() => {
-            if (!this.isMobile) this.handleClickShowMenu()
-          })
-        {
-          MenuRound()
-            .class(this.iconSizeCss)
-            .color(this.theme.green9)
-        }
+        MenuRound()
+          .class(this.iconSizeCss)
+          .color(this.theme.highlightColor)
+          .onClick(this.handleClickShowMenu)
       } else if (this.isShortHeader && this.isShowMenu) {
-        div()
-          .onClick(() => {
-            if (!this.isMobile) this.handleClickShowMenu()
-          })
-        {
-          CloseRound()
-            .class(this.iconSizeCss)
-            .color(this.theme.green9)
-        }
+        CloseRound()
+          .class(this.iconSizeCss)
+          .color(this.theme.highlightColor)
+          .onClick(this.handleClickShowMenu)
       }
     }
   }
