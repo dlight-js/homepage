@@ -18,7 +18,7 @@
     "@babel/preset-env": "^7.23.7",
     "@babel/standalone": "^7.23.7",
     "@dlightjs/components": "1.0.0-alpha.24",
-    "@dlightjs/dlight": "1.0.0-alpha.59",
+    "@dlightjs/dlight": "1.0.0-alpha.61",
     "@dlightjs/material-icons": "1.0.0-alpha.2",
     "@dlightjs/transpiler-standalone": "1.0.0-alpha.33",
     "@iandx/easy-css": "^0.10.14",

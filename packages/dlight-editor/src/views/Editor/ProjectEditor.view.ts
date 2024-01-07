@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { div, Env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
+import { div, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
 import { DLightProject } from "../../project/dlightProject"
 import CodeEditor, { EditorStore } from "./CodeEditor.view"
 import * as monaco from "monaco-editor"
@@ -103,10 +103,11 @@ class ProjectEditor {
   }
 
   @Watch("dlightProject")
-  watchDlightProject() {
-    console.log("!!!!hh")
-    // clear console when run
-    this.clearConsoleFunc()
+  watchDlightProject(_, prevValue?: DLightProject, nextValue?: DLightProject) {
+    if (prevValue?.srcDoc !== nextValue?.srcDoc) {
+      // clear console when run
+      this.clearConsoleFunc()
+    }
   }
 
   pathToTab(path: string) {
@@ -116,8 +117,6 @@ class ProjectEditor {
   tabToPath(tab: string) {
     return `/${tab}.ts`
   }
-
-  @Env registerConsoleFunc
 
   /** @lifecycle */
   didMount() {

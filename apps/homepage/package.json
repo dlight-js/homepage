@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@dlightjs/components": "1.0.0-alpha.24",
-    "@dlightjs/dlight": "1.0.0-alpha.59",
+    "@dlightjs/dlight": "1.0.0-alpha.61",
     "@dlightjs/material-icons": "1.0.0-alpha.2",
     "@iandx/easy-css": "^0.10.14",
     "clsx": "^2.1.0",
