@@ -92,8 +92,8 @@ const example: Example = {
   codeTitle: "./MusicChooser.view.js",
   code: `@View
 class MusicChooser {
-  randomNumber = this.random()
-  music = musics[this.randomNumber]
+  musicIdx = this.random()
+  music = musics[this.musicIdx]
   random() {
     return Math.floor(Math.random() * musics.length)
   }
@@ -101,7 +101,7 @@ class MusicChooser {
   View() {
     PrettyBtn("Get a new song!")
       .onClick(() => {
-        this.randomNumber = this.random()
+        this.musicIdx = this.random()
       })
     MusicDisplay(music)
   }
