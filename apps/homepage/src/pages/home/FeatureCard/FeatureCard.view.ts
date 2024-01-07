@@ -1,8 +1,8 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, div, img, Pretty, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { getSize } from "../../../utils/utilFunc"
 import { Navigator } from "@dlightjs/components"
+import { EnvType } from "../../../App.view"
 
 export interface FeatureDataType {
   title: string
@@ -17,11 +17,11 @@ interface FeatureCardProps {
 }
 
 @View
-class FeatureCard implements FeatureCardProps {
+class FeatureCard implements FeatureCardProps, EnvType {
   @Env navigator: Navigator = required
-  @Env themeType: "light" | "dark" = required
-  @Env theme: any = required
-  @Env i18n: any = required
+  @Env themeType: EnvType["themeType"] = required
+  @Env theme: EnvType["theme"] = required
+  @Env i18n: EnvType["i18n"] = required
   @Prop data = required
 
   View() {
@@ -31,49 +31,41 @@ class FeatureCard implements FeatureCardProps {
       img()
         .src(this.themeType === "dark" ? this.data.darkImgUrl : this.data.imgUrl)
         .class(this.featureCardIconCss)
-      div(this.i18n(this.data.title, this.data.zhTitle))
+      div(this.i18n!(this.data.title, this.data.zhTitle))
         .class(this.featureCardTitleCss)
-      div(this.i18n(this.data.content, this.data.zhContent))
+      div(this.i18n!(this.data.content, this.data.zhContent))
         .class(this.featureCardContentCss)
     }
   }
 
   featureCardWrapCss = css`
-    flex: 1;
-    flex-shrink: 1;
-    box-sizing: border-box;
-    min-width: ${getSize(200)};
-    margin: ${getSize(20)} ${getSize(8)};
     display: flex;
+    flex: 1;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    height: ${getSize(400)};
-    border-radius: 15px;
-    background-color: ${this.theme.featureCardColor};
-    /* ${this.themeType === "dark" ? "box-shadow: 0 0 15px -3px #ABA0C0;" : ""} */
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: ${this.theme.primaryTextColor};
+    align-items: center;
+    padding: 20px 0;
+    margin: 15px;;
+    border-radius: 10px;
+    box-shadow: 0 0 8px 0 ${this.theme!.lightShadow};
+    background-color: ${this.theme?.secondBg};
   `
 
   featureCardIconCss = css`
-    width: ${getSize(50)};
-    height: ${getSize(50)};
+    width: 50px;
+    height: 50px;
   `
 
   featureCardTitleCss = css`
-    font-size: ${getSize(20)};
+    font-size: large;
     font-weight: 600;
-    margin: ${getSize(18)} 0;
+    margin: 14px 0;
   `
 
   featureCardContentCss = css`
-    font-size: ${getSize(14)};
+    font-size: 12px;
     font-weight: light;
-    width: 60%;
-    color: ${this.theme.secondaryTextColor};
-    display: flex;
-    flex-wrap: wrap;
+    width: 80%;
   `
 }
 

@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { Env, Pretty, Typed, div } from "@dlightjs/types"
+import { Env, Pretty, Typed, div, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { EnvType } from "../../../App.view"
 import SloganSpitter from "./SloganSpitter.view"
@@ -10,6 +10,7 @@ import GetStarted from "./GetStarted.view"
 class TitleBoard implements EnvType {
   @Env theme: EnvType["theme"]
   @Env language: EnvType["language"]
+  @Env isShortView: EnvType["isShortView"] = required
 
   View() {
     div()
@@ -27,11 +28,11 @@ class TitleBoard implements EnvType {
   }
 
   wrapperCss = css`
-    height: 500px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: ${this.isShortView ? "flex-start" : "center"};
+    justify-content: ${this.isShortView ? "flex-start" : "center"};
+    margin: 120px 40px;
   `
 }
 

@@ -59,7 +59,6 @@ class CodeDisplay implements CodeDisplayProps {
     background-color: ${this.theme!.codeBgColor};
     border-radius: 12px;
     font-size: 12px;
-    margin: 10px 0;
     width: 100%;
   `
 
@@ -80,7 +79,7 @@ class CodeDisplay implements CodeDisplayProps {
   `
   codeCss = css`
     font-family: Source Code Pro,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
-    line-height: 1%.28;
+    line-height: 1.29rem;
     font-weight: 400;
   `
 }
