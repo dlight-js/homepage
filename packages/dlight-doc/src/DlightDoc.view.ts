@@ -53,9 +53,8 @@ interface DlightDocProps {
   prePageNav: PageNavType
   textColor?: string
   codeBgColor?: string
-  codeTextColor?: string
-  codeBlockHeaderColor?: string
   highlightColor?: string
+  codeBlockHeaderColor?: string
   bgColor?: string
   shadowColor?: string
   themeType?: string
@@ -70,9 +69,8 @@ class DlightDoc implements DlightDocProps {
   @Prop prePageNav = required
   @Prop textColor = required
   @Prop codeBgColor = required
-  @Prop codeTextColor = required
-  @Prop codeBlockHeaderColor = required
   @Prop highlightColor = required
+  @Prop codeBlockHeaderColor = required
   @Prop bgColor = required
   @Prop shadowColor = required
   @Prop themeType = required
@@ -250,22 +248,22 @@ class DlightDoc implements DlightDocProps {
     /* .dlight-markit-code {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background-color: ${this.codeBgColor};
-      color: ${this.codeTextColor};
+      color: ${this.highlightColor};
     } */
     /* .dlight-markit-code-block {
       background-color: ${this.codeBgColor};
-      color: ${this.codeTextColor};
+      color: ${this.highlightColor};
     }
     .dlight-markit-code-block-header {
       background-color: ${this.codeBlockHeaderColor};
-      color: ${this.codeTextColor};
+      color: ${this.highlightColor};
     } */
   `
 
   dlightMarkitCode$ = css`
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background-color: ${this.codeBgColor};
-      color: ${this.codeTextColor};
+      color: ${this.highlightColor};
   `
 
   dlightMarkitCodeBlock$ = css`

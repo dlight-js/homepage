@@ -16,7 +16,8 @@
     "@iandx/easy-css": "^0.10.14",
     "clsx": "^2.1.0",
     "dlight-doc": "workspace:*",
-    "dlight-editor": "workspace:*"
+    "dlight-editor": "workspace:*",
+    "highlight.js": "^11.9.0"
   },
   "devDependencies": {
     "@dlightjs/types": "1.0.0-alpha.0",

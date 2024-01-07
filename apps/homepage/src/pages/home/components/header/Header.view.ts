@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, Env, Prop, required, Watch } from "@dlightjs/types"
+import { type Typed, div, Pretty, Env, Prop, required } from "@dlightjs/types"
 import NavButton from "./NavButton.view"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"

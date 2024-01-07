@@ -42,16 +42,16 @@ class FeatureCard implements FeatureCardProps {
     flex: 1;
     flex-shrink: 1;
     box-sizing: border-box;
-    min-width: ${getSize(270)};
+    min-width: ${getSize(200)};
     margin: ${getSize(20)} ${getSize(8)};
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: ${getSize(350)};
+    height: ${getSize(400)};
     border-radius: 15px;
     background-color: ${this.theme.featureCardColor};
-    ${this.themeType === "dark" ? "box-shadow: 0 0 15px -3px #ABA0C0;" : ""}
+    /* ${this.themeType === "dark" ? "box-shadow: 0 0 15px -3px #ABA0C0;" : ""} */
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: ${this.theme.primaryTextColor};
   `
@@ -68,7 +68,7 @@ class FeatureCard implements FeatureCardProps {
   `
 
   featureCardContentCss = css`
-    font-size: ${getSize(17)};
+    font-size: ${getSize(14)};
     font-weight: light;
     width: 60%;
     color: ${this.theme.secondaryTextColor};

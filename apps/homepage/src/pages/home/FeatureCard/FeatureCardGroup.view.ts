@@ -25,7 +25,7 @@ class FeatureCardGroup implements FeatureCardGroupProps {
 
   featureGroupWrapCss = css`
     box-sizing: border-box;
-    max-width: ${getSize(580)};
+    max-width: ${getSize(680)};
     display: flex;
     flex: 1;
     flex-wrap: wrap;

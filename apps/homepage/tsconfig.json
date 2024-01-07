@@ -13,8 +13,5 @@
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-  },
-  "ts-node": {
-    "esm": true
   }
 }
