@@ -20,7 +20,7 @@
     "@dlightjs/components": "1.0.0-alpha.24",
     "@dlightjs/dlight": "1.0.0-alpha.61",
     "@dlightjs/material-icons": "1.0.0-alpha.2",
-    "@dlightjs/transpiler-standalone": "1.0.0-alpha.33",
+    "@dlightjs/transpiler-standalone": "1.0.0-alpha.34",
     "@iandx/easy-css": "^0.10.14",
     "clsx": "^2.1.0",
     "monaco-editor": "^0.40.0"
@@ -31,12 +31,12 @@
     "@babel/types": "^7.23.6",
     "@dlightjs/types": "1.0.0-alpha.0",
     "@types/babel__standalone": "^7.1.7",
-    "babel-preset-dlight": "1.0.0-alpha.33",
+    "babel-preset-dlight": "1.0.0-alpha.34",
     "babel-preset-easy-css": "^0.10.14",
     "tsup": "^7.2.0",
     "typescript": "^4.9.5",
     "vite": "^4.5.1",
-    "vite-plugin-dlight": "1.0.0-alpha.33",
+    "vite-plugin-dlight": "1.0.0-alpha.34",
     "vite-plugin-easy-css": "^0.10.14"
   },
   "keywords": [

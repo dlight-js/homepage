@@ -23,7 +23,7 @@
     "@dlightjs/types": "1.0.0-alpha.0",
     "typescript": "^5.3.3",
     "vite": "^4.5.1",
-    "vite-plugin-dlight": "1.0.0-alpha.33",
+    "vite-plugin-dlight": "1.0.0-alpha.34",
     "vite-plugin-easy-css": "^0.10.14"
   },
   "keywords": [

@@ -55,7 +55,7 @@ class GetStarted implements EnvType {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 25px;
+    margin: 15px 0;
     gap: 10px;
   `
 

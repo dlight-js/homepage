@@ -32,7 +32,7 @@ class Title implements TitleProps, EnvType {
 
   titleCss = css`
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: ${this.isShortView ? 30 : 50}px;
+    font-size: ${this.isShortView ? 40 : 50}px;
     font-weight: 500;
   `
 }
