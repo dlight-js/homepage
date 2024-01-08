@@ -15,7 +15,7 @@ export const ExamplesCodeData: ExmaplesCodeDataType[] = [
     children: [
       {
         title: "Hello World",
-        description: "A simple greeting using the dlight.js framework.",
+        description: "A simple greeting using the dlight.js.",
         zhDescription: "一个用dlight实现地简单问候。",
         modules: [
           {
@@ -35,7 +35,7 @@ render("app", HelloWorld)`,
       },
       {
         title: "TodoMVC",
-        description: "The ToDoMVC example demonstrates how to create a simple ToDo List application using the @dlightjs/dlight framework.",
+        description: "The ToDoMVC example demonstrates how to create a ToDo List application using the dlight.js.",
         zhDescription: "ToDoMVC示例展示了如何使用@dlightjs/dlight框架创建一个ToDoMVC应用程序。",
         modules: [
           {
@@ -257,7 +257,7 @@ render("app", TodoMVC)`,
     children: [
       {
         title: "Reactive States",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "Showcase how to use reactive states in dlight.js.",
         modules: [
           {
             code: javascript`import { View, render } from "@dlightjs/dlight"
@@ -276,7 +276,7 @@ render("app", NameComp)`,
       },
       {
         title: "Computed States",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae.",
+        description: "Showcase how to use computed states in dlight.js.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -298,7 +298,7 @@ render("app", NameComp)`,
       },
       {
         title: "Reactive Assignments",
-        description: "Lorem ipsum dolor sit amet, consectetur.",
+        description: "Showcase how to assign reactive states in dlight.js.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -320,7 +320,7 @@ render("app", CountComp)`,
       },
       {
         title: "Watcher",
-        description: "Lorem ipsum dolor sit amet, consectetur.",
+        description: "Showcase how to use @Watcher to watch reactive state update in dlight.js.",
         modules: [
           {
             code: `import { View, render, Watch } from "@dlightjs/dlight"
@@ -347,7 +347,7 @@ render("app", CountComp)`,
       },
       {
         title: "Environment",
-        description: "Lorem ipsum dolor sit amet, consectetur.",
+        description: "Showcase how to use env block to store the global properties and use @Env to receive environment properties in dlight.js.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -427,7 +427,7 @@ render("app", RootComp)`,
     children: [
       {
         title: "Text Element",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "Showcase which is text element in dlight.js.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -447,7 +447,7 @@ render("app", TextElement)`,
       },
       {
         title: "Html Element",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "Showcase how to use html element in dlight.js.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -471,7 +471,7 @@ render("app", HtmlElement)`,
       },
       {
         title: "Html Element Props",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "Showcase how to use props with html element.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -491,7 +491,7 @@ render("app", HtmlElementProps)`,
       },
       {
         title: "Component",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "Showcase how to build and invoke a custom component.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -517,7 +517,7 @@ render("app", RootComp)`,
       },
       {
         title: "If Block",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "Showcase how to use if block in dlight.js.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -558,7 +558,7 @@ render("app", TrafficLight)`,
       },
       {
         title: "For Loop",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "Showcase how to use for loop view in dlight.js.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -584,13 +584,13 @@ render("app", Colors)`,
       },
       {
         title: "Keyed For Loop",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "Showcase how to use key in for loop to ensure correctness of array sequence.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
 
 @View
-class Colors {
+class NumComp {
   numArr = [0,1,2,3,4]
 
   changeNumArr() {
@@ -610,14 +610,14 @@ class Colors {
   }
 }
 
-render("app", Colors)`,
+render("app", NumComp)`,
             path: "/index.ts"
           }
         ]
       },
       {
         title: "Switch Case",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "Using TrafficLight component to showcase how to use switch case in dlight.js.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -662,7 +662,7 @@ render("app", TrafficLight)`,
       },
       {
         title: "Expression",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "Showcase how to use expression as a view in View block.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -753,7 +753,7 @@ export default UserProfile`,
       },
       {
         title: "Content",
-        description: "BeautifulButton component",
+        description: "Showcase how to use @Content decorator to receive dynamic content from a parent component which is different way to receive props from dot call.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -802,7 +802,7 @@ export default BeautifulButton`,
       },
       {
         title: "Children",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "Showcase how to receive dynamic children which is passing in {} from a parent component.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -846,7 +846,7 @@ export default CenterAlign`,
       },
       {
         title: "Sub View",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "Showcase how to use @View in a class to create a sub view.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -879,7 +879,7 @@ render("app", App)`,
       },
       {
         title: "Prop View",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "Showcase how to pass a view as a prop to a component.",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"

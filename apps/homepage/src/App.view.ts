@@ -78,7 +78,7 @@ class App {
       .navigator(new Navigator())
     {
       div()
-        .class(css`background-color: ${this.theme.bgColor}; color: ${this.theme.textColor};`)
+        .class(this.commonCss)
       {
         Header()
         Routes({
@@ -93,6 +93,12 @@ class App {
       }
     }
   }
+
+  commonCss = css`
+    background-color: ${this.theme.bgColor};
+    color: ${this.theme.textColor};
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  `
 }
 
 export default App as Pretty as Typed

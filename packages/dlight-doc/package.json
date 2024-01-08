@@ -18,7 +18,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.23.3",
     "@babel/preset-env": "^7.23.7",
     "@babel/standalone": "^7.23.7",
-    "@dlightjs/dlight": "1.0.0-alpha.61",
+    "@dlightjs/dlight": "1.0.0-alpha.62",
     "@dlightjs/markit": "1.0.0-alpha.5",
     "@dlightjs/material-icons": "1.0.0-alpha.4",
     "@iandx/easy-css": "^0.10.14",

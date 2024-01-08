@@ -46,11 +46,7 @@ class Result {
               // Send the message to the parent window
               window.parent.postMessage(error, '*');
             }
-            import { render, View, createTemplate,
-            setStyle, setDataset, setEvent, setHTMLProp, setHTMLAttr,
-            setHTMLProps, setHTMLAttrs, insertNode, createElement,
-            ForNode, CondNode, EnvNode, createTextNode, updateText,
-            ExpNode, PropView, SubViewNode } from "/dlight.js";\n${this.srcDoc}</script>
+            import { View, render, createElement, setStyle, setDataset, setEvent, setHTMLProp, setHTMLAttr, setHTMLProps, setHTMLAttrs, createTextNode, updateText, insertNode, ForNode, CondNode, ExpNode, EnvNode, SubViewNode, PropView } from "/dlight.js";\n${this.srcDoc}</script>
         </head>
         <body>
           <div id="app" style="height: 100%; color: ${this.theme.text}"></div>

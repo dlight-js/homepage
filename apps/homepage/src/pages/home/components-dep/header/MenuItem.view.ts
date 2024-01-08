@@ -33,7 +33,6 @@ class MenuItem implements MenuItemProps {
     border-radius: 8px;
     padding: 10px;
     width: 150px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     cursor: pointer;
     font-size: 0.875rem;
   `
