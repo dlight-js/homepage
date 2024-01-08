@@ -35,7 +35,6 @@ class ShortHeaderMenuItem {
     border-radius: 5px;
     color: ${this.theme.textColor};
     cursor: pointer;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   `
 }
 

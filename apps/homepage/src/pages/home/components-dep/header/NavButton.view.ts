@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, button, div, Pretty, ContentProp, Content, Env, Prop, required, Watch } from "@dlightjs/types"
+import { type Typed, button, div, Pretty, ContentProp, Content, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import MenuItem from "./MenuItem.view"
 import { Navigator } from "@dlightjs/components"
@@ -37,13 +37,6 @@ class NavButton implements NavButtonProps {
         .onClick(this.handleClickNav)
         .onMouseEnter(() => { this.isHover = true })
         .onMouseLeave(() => { setTimeout(() => { this.isHover = false }, 100) })
-      // if (this.isShowHoverMenu) {
-      //   div()
-      //     .class(this.iconCss)
-      //   {
-      //     KeyboardArrowDownRound()
-      //   }
-      // }
       if (this.isShowHoverMenu && (this.isMenuHover || this.isHover)) {
         div()
           .class(this.hoverMenuWrapCss)
@@ -79,7 +72,6 @@ class NavButton implements NavButtonProps {
     font-weight: 600;
     padding: 8px 12px;
     margin-right: 4px;
-    /* padding-right: 6px; */
     border-width: 0px;
     border-radius: 5px;
     margin-bottom: 5px;

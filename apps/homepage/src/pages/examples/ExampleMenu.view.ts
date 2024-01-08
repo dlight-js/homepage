@@ -49,7 +49,6 @@ class ExampleMenu implements ExampleMenuProps {
     border-radius: 4px;
     padding: 20px 10px;
     margin-top: ${this.isOpen ? "-52px" : "0px"};
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     line-height: 30px;
     overflow: scroll;
     background-color: ${this.theme.bgColor};

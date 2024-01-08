@@ -51,10 +51,6 @@ class RightSetting {
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* overflow: scroll;
-    ::-webkit-scrollbar {
-      display: none;
-    } */
   `
 
   iconSizeCss = css`

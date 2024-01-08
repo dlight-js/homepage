@@ -72,9 +72,13 @@ class ExamplesPage implements RoutesEnv {
     const title = pathSplit[pathSplit.length - 2]
     const subTitle = pathSplit[pathSplit.length - 1]
     // ---- First letter to uppercase, replace "-" to " "
-    this.selectedTitle = subTitle.split("-").map((item: string) => {
-      return item[0]?.toUpperCase() + item.slice(1)
-    }).join(" ")
+    if (subTitle === "todomvc") {
+      this.selectedTitle = "TodoMVC"
+    } else {
+      this.selectedTitle = subTitle.split("-").map((item: string) => {
+        return item[0]?.toUpperCase() + item.slice(1)
+      }).join(" ")
+    }
     this.header = title.split("-").map((item: string) => {
       return item[0]?.toUpperCase() + item.slice(1)
     }).join(" ")
@@ -142,7 +146,6 @@ class ExamplesPage implements RoutesEnv {
     display: flex;
     flex-direction: row;
     align-items: ${this.isMenuOpen ? "" : "center"};
-    /* background-color: ${this.theme.orange1}; */
   `
 
   dlightEditorWrapCss = css`

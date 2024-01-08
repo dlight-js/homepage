@@ -143,7 +143,6 @@ class FileMenuItem implements FileMenuItemProps {
   `
 
   fileNameCss = css`
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: ${this.theme.textColor};
     font-weight: ${this.isChoose ? "600" : "normal"};
     height: 33px;
@@ -153,8 +152,6 @@ class FileMenuItem implements FileMenuItemProps {
     align-items: center;
     padding: 0px 10px;
     margin: 5px 0px;
-    /* border-left: ${this.isChoose ? `2px solid ${this.theme.docActiveColor}` : this.isHover ? `2px solid ${this.theme.docHoverColor}` : "0px solid #ddd"};; */
-    /* background-color: ${this.isHover || this.isChoose ? this.theme.homeBtnColor : this.theme.primaryBgColor}; */
     cursor: pointer;
   `
 

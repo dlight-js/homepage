@@ -85,8 +85,6 @@ class MenuBtn implements MenuBtnProps {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    /* color: rgba(82,110,52,0.7); */
     color: ${this.theme.textColor};
     padding: 0 10px;
     box-shadow: 0 1px 5px -3px ${this.theme.shadowColor};
