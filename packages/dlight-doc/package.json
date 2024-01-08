@@ -28,11 +28,11 @@
     "@babel/cli": "^7.23.4",
     "@babel/core": "^7.23.7",
     "@dlightjs/types": "1.0.0-alpha.0",
-    "babel-preset-dlight": "1.0.0-alpha.35",
+    "babel-preset-dlight": "1.0.0-alpha.36",
     "tsup": "^7.2.0",
     "typescript": "^4.9.5",
     "vite": "^4.5.1",
-    "vite-plugin-dlight": "1.0.0-alpha.35",
+    "vite-plugin-dlight": "1.0.0-alpha.36",
     "vite-plugin-easy-css": "^0.10.14"
   },
   "keywords": [
