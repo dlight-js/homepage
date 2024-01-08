@@ -1,10 +1,9 @@
 import { View } from "@dlightjs/dlight"
 import { css } from "@iandx/easy-css"
 import { type Typed, div, Pretty, Env, Prop, required, Watch } from "@dlightjs/types"
-import Header from "../home/components/header/Header.view"
 import DLightEditor from "dlight-editor"
 import { ExamplesCodeData } from "../../const/examplesCodeData"
-import { CodeModuleType, ExmaplesCodeDataType } from "../../utils/types"
+import { ExmaplesCodeDataType } from "../../utils/types"
 import { RoutesEnv } from "@dlightjs/components"
 import { Loading } from "../../common"
 import ExampleMenu from "./ExampleMenu.view"
@@ -60,7 +59,7 @@ class ExamplesPage implements RoutesEnv {
   modules: any = this.examples[0].children![0].modules
   selectedTitle: string = this.examples[0].children![0].title
   menuOpenBtnEl: any
-  header: string = "Reactivity / " + this.selectedTitle
+  header: string = "Introduction"
   endLoading = (() => {
     setTimeout(() => {
       this.isLoading = false
@@ -70,18 +69,25 @@ class ExamplesPage implements RoutesEnv {
   @Watch
   pathWatcher() {
     const pathSplit = this.path!.split("/")
-    const title = pathSplit[pathSplit.length - 1]
-
+    const title = pathSplit[pathSplit.length - 2]
+    const subTitle = pathSplit[pathSplit.length - 1]
     // ---- First letter to uppercase, replace "-" to " "
-    this.selectedTitle = title.split("-").map((item: string) => {
-      return item[0]?.toUpperCase() + item.slice(1)
-    }).join(" ")
-  }
-
-  updateModules(modules: CodeModuleType[], title: string, header: string) {
-    this.modules = modules
-    this.header = `${header} / ${title}`
-    this.navigator!.to(`/examples/${title.toLocaleLowerCase().replaceAll(" ", "-")}`)
+    if (subTitle === "todomvc") {
+      this.selectedTitle = "TodoMVC"
+    } else {
+      this.selectedTitle = subTitle.split("-").map((item: string) => {
+        return item[0]?.toUpperCase() + item.slice(1)
+      }).join(" ")
+    }
+    if (title === "dlight-syntax") {
+      this.header = "DLight Syntax"
+    } else {
+      this.header = title.split("-").map((item: string) => {
+        return item[0]?.toUpperCase() + item.slice(1)
+      }).join(" ")
+    }
+    const root = this.examples.find((item) => item.title === this.header)
+    this.modules = root?.children?.find((item) => item.title === this.selectedTitle)?.modules
   }
 
   setMenuOpenBtnEl(el: any) {
@@ -101,18 +107,16 @@ class ExamplesPage implements RoutesEnv {
     div()
       .class(this.exampleBgCss)
     {
-      Header()
-        .isNeedAnimation(false)
       MenuBtn()
-        .hanleClickOpenMenu(this.openMenu)
-        .hanleClickOpenOutline(undefined)
+        .handleClickOpenMenu(this.openMenu)
+        .handleClickOpenOutline(undefined)
         .setMenuOpenBtnEl(this.setMenuOpenBtnEl)
-        .title(this.header)
+        .title(`${this.header} / ${this.selectedTitle}`)
       if (this.isLoading) {
         Loading()
       } else {
         div()
-          .class(this.exmaplesPageWrapCss)
+          .class(this.examplesPageWrapCss)
         {
           SideMenu()
             .isOpen(this.isMenuOpen)
@@ -123,7 +127,6 @@ class ExamplesPage implements RoutesEnv {
               .isOpen(this.isMenuOpen)
               .examples(this.examples)
               .selectedTitle(this.selectedTitle)
-              .updateModules(this.updateModules)
           }
           div()
             .class(this.dlightEditorWrapCss)
@@ -138,16 +141,15 @@ class ExamplesPage implements RoutesEnv {
   }
 
   exampleBgCss = css`
-    background-color: ${this.theme.primaryBgColor};
-    height: 100vh;
+    background-color: ${this.theme.bgColor};
+    height: calc(100vh - 60px);
   `
 
-  exmaplesPageWrapCss = css`
+  examplesPageWrapCss = css`
     width: 100vw;
     display: flex;
     flex-direction: row;
     align-items: ${this.isMenuOpen ? "" : "center"};
-    background-color: ${this.theme.orange1};
   `
 
   dlightEditorWrapCss = css`

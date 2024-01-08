@@ -1,14 +1,11 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, Pretty, div, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { CodeModuleType } from "../../utils/types"
 import { Navigator } from "@dlightjs/components"
 
 interface SubExampleItemProps {
   title: string
   description: string
-  modules: CodeModuleType[]
-  updateModules: (modules: CodeModuleType[], title: string, header: string) => void
   selectedTitle: string
   header: string
 }
@@ -20,29 +17,27 @@ class SubExampleItem implements SubExampleItemProps {
   @Env path: string = required
   @Prop title = required
   @Prop description = required
-  @Prop modules = required
-  @Prop updateModules = required
   @Prop selectedTitle = required
-  @Prop header = ""
-  mutatedTitle = this.title.toLocaleLowerCase().replaceAll(" ", "-")
+  @Prop header = required
+  mutatedPath = `${this.header.toLocaleLowerCase().replaceAll(" ", "-")}/${this.title.toLocaleLowerCase().replaceAll(" ", "-")}`
 
   isHover = false
   isSelected = this.selectedTitle === this.title
 
   View() {
     div()
-      .id(this.mutatedTitle)
+      .id(this.mutatedPath)
       .class(this.subExampleWrapCss)
       .onMouseEnter(() => { this.isHover = true })
       .onMouseLeave(() => { this.isHover = false })
       .onClick(() => {
-        this.updateModules(this.modules, this.title, this.header)
+        this.navigator.to(`/examples/${this.mutatedPath}`)
       })
     {
       div(this.title)
-        .class(this.exmapleSubTitleCss)
+        .class(this.exampleSubTitleCss)
       div(this.description)
-        .class(this.exmapleSubDecriptionCss)
+        .class(this.exampleSubDescriptionCss)
     }
   }
 
@@ -52,15 +47,15 @@ class SubExampleItem implements SubExampleItemProps {
     padding-bottom: 10px;
     border-bottom: solid 1px rgba(97,126,68, 0.1);
     margin-bottom: 10px;
-    color: ${this.isHover || this.isSelected ? this.theme.exampleMenuBtnHover : this.theme.exampleMenuBtnTextColor};
+    color: ${this.isHover || this.isSelected ? this.theme.highlightColor : this.theme.textColor};
   `
 
-  exmapleSubTitleCss = css`
+  exampleSubTitleCss = css`
     padding-bottom: 10px;
     font-weight: ${this.isHover || this.isSelected ? 500 : ""};
   `
 
-  exmapleSubDecriptionCss = css`
+  exampleSubDescriptionCss = css`
     font-size: 12px;
     line-height: 20px;
   `

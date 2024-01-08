@@ -2,7 +2,6 @@ import { View } from "@dlightjs/dlight"
 import { type Typed, div, Pretty, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { KeyboardArrowLeftFilled, KeyboardArrowRightFilled } from "@dlightjs/material-icons"
-import clsx from "clsx"
 
 export interface PageNavType {
   name: string
@@ -18,7 +17,8 @@ interface NextPageNavProps {
 @View
 class NextPageNav implements NextPageNavProps {
   @Env navigator: any = required
-  @Env theme: any = required
+  @Env textColor: string = required
+  @Env highlightColor: string = required
   @Env i18n: any = required
   @Prop nextPage = required
   @Prop prePage = required
@@ -33,7 +33,6 @@ class NextPageNav implements NextPageNavProps {
       if (this.prePage) {
         div()
           .class(this.prePageBtnCss)
-          .style({ color: this.hover1 ? "#daa172" : this.theme.primaryText })
           .onClick(() => { this.hover1 = false; this.navigator.to(this.prePage.path) })
           .onMouseEnter(() => { this.hover1 = true })
           .onMouseLeave(() => { this.hover1 = false })
@@ -42,33 +41,24 @@ class NextPageNav implements NextPageNavProps {
             .class(this.iconCss("prev"))
           {
             KeyboardArrowLeftFilled()
-              .color(this.hover1 ? "#daa172" : this.theme.primaryText)
+              .color(this.hover1 ? this.highlightColor : this.textColor)
           }
-          div()
-            .class(this.pageNavTextBtnCss)
-          {
-            div(this.i18n(this.prePage.name, this.prePage.zhName))
-          }
+          div(this.i18n(this.prePage.name, this.prePage.zhName))
         }
       }
       if (this.nextPage) {
         div()
           .class(this.nextPageBtnCss)
-          .style({ color: this.hover2 ? "#daa172" : this.theme.primaryText })
           .onClick(() => { this.hover2 = false; this.navigator.to(this.nextPage.path) })
-          .onMouseOver(() => { this.hover2 = true })
+          .onMouseEnter(() => { this.hover2 = true })
           .onMouseLeave(() => { this.hover2 = false })
         {
-          div()
-            .class(clsx(this.pageNavTextBtnCss, this.nextPageNavTextBtnCss))
-          {
-            div(this.i18n(this.nextPage.name, this.nextPage.zhName))
-          }
+          div(this.i18n(this.nextPage.name, this.nextPage.zhName))
           div()
             .class(this.iconCss("next"))
           {
             KeyboardArrowRightFilled()
-              .color(this.hover2 ? "#daa172" : this.theme.primaryText)
+              .color(this.hover2 ? this.highlightColor : this.textColor)
           }
         }
       }
@@ -84,7 +74,7 @@ class NextPageNav implements NextPageNavProps {
     font-size: 16px;
     display: flex;
     align-items: center;
-    border: 1px solid ${this.hover1 ? "#daa172" : this.theme.primaryText};
+    border: 1px solid ${this.hover1 ? this.highlightColor : this.textColor};
     border-radius: 10px;
     padding: 10px;
     width: calc(80% - 30px);
@@ -94,7 +84,7 @@ class NextPageNav implements NextPageNavProps {
 
   nextPageNavTextBtnCss = css`
     justify-content: flex-end;
-    border: 1px solid ${this.hover2 ? "#daa172" : this.theme.primaryText};
+    border: 1px solid ${this.hover2 ? this.highlightColor : this.textColor};
   `
 
   nextPageNavWrapCss = css`
@@ -108,20 +98,25 @@ class NextPageNav implements NextPageNavProps {
   `
 
   prePageBtnCss = css`
-    width: 50%;
+    /* width: 50%; */
+    padding: 10px 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
+    color: ${this.hover1 ? this.highlightColor : this.textColor};
   `
+
   nextPageBtnCss = css`
-    width: 50%;
+    /* width: 50%; */
+    padding: 10px 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
     cursor: pointer;
+    color: ${this.hover2 ? this.highlightColor : this.textColor};
   `
 }
 

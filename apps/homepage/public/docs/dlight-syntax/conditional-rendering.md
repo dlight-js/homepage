@@ -66,13 +66,11 @@ return (
 ```
 
 These frameworks all more or less introduced their own custom syntax to do a conditional render. While many of these additions aim to reduce the complexity for developers, they inevitably bring in a layer of learning and adjustment. However, our approach is to embrace the raw, unaltered syntax of JavaScript, which is our favorite `if else` statement!
-The traffic lights example above will look like this in DLight:
+The traffic lights example above will look like this in DLight with if statements:
 ```js [dlight]
-button("Next light")
-  .onclick(nextLight)
+button("Next light").onclick(nextLight)
 p(`Light is: ${light}`)
-p()
-{
+p(); {
   "You must"
   if (light === "red") {
     span("STOP")
@@ -83,6 +81,24 @@ p()
   }
 }
 ```
-With the if-else statement, there are no extra frills. It’s straightforward logic that developers have been using for ages. 
+Or with switch case statements:
+```js [dlight]
+button("Next light").onclick(nextLight)
+p(`Light is: ${light}`)
+p(); {
+  "You must"
+  switch (light) {
+    case "red":
+      span("STOP")
+      break
+    case "orange":
+      span("SLOW DOWN")
+      break
+    case "greed":
+      span("GO")
+  }
+}
+```
+With the if-else and switch-case statements, there are no extra frills. It’s straightforward logic that developers have been using for ages. 
 
-DLight support all `if`/`if-else`/`if-else if` statements and when the condition of the statement changes, the ui view will automatically re-render. This approach not only promotes best practices but also ensures that developers can focus on logic and functionality without the distraction of adapting to new syntax rules.
+DLight support all `if`/`if-else`/`if-else if`/`switch-case` statements and when the condition of the statement changes, the ui view will automatically re-render. This approach not only promotes best practices but also ensures that developers can focus on logic and functionality without the distraction of adapting to new syntax rules.

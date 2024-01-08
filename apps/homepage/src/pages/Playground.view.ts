@@ -1,9 +1,8 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, img, div, Pretty, Env, required } from "@dlightjs/types"
+import { type Typed, div, Pretty, Env, required } from "@dlightjs/types"
 import { Navigator } from "@dlightjs/components"
 import { ArrayView, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "../const/playgroundCodeTemplate"
 import DLightEditor from "dlight-editor"
-import { DarkModeOutlined, LightModeOutlined } from "@dlightjs/material-icons"
 import { css } from "@iandx/easy-css"
 import { Loading } from "../common"
 
@@ -46,59 +45,19 @@ class Playground {
   endLoading = (() => {
     setTimeout(() => {
       this.isLoading = false
-    }, 1500)
+    }, 1000)
   })()
-
-  @View
-  PlayGroundHeader() {
-    div()
-      .class(this.playGroundHeaderCss)
-    {
-      div()
-        .class(this.playGroundTitleCss)
-      {
-        img()
-          .class(this.logoCss)
-          .src("/imgs/logo-png.svg")
-          .onClick(() => {
-            this.navigator.to("..")
-          })
-        div("Playground")
-          .class(this.ml10)
-      }
-      if (this.isDark) {
-        div()
-          .onClick(this.updateThemeType)
-        {
-          LightModeOutlined()
-            .color("#ddd")
-            .class(this.iconCss)
-        }
-      } else {
-        div()
-          .onClick(this.updateThemeType)
-        {
-          DarkModeOutlined()
-            .class(this.iconCss)
-        }
-      }
-    }
-  }
 
   View() {
     div()
-      .style({
-        height: "max-content",
-        overflow: "hidden"
-      })
+      .class(this.playGroundWrapperCss)
     {
-      this.PlayGroundHeader()
       if (this.isLoading) {
         Loading()
       } else {
         DLightEditor()
           .modules(this.modules)
-          .height("calc(100vh - 42px)")
+          .height("calc(100vh - 60px)")
           .onSave((newCode: any) => {
             localStorage.setItem("dlight_playground_code", JSON.stringify(newCode))
           })
@@ -126,6 +85,11 @@ class Playground {
     color: ${this.isDark ? "#ddd" : "#333333"};
     font-weight: 500;
     cursor: default;
+  `
+
+  playGroundWrapperCss = css`
+    height: calc(100vh - 60px);
+    overflow: hidden;
   `
 
   playGroundHeaderCss = css`

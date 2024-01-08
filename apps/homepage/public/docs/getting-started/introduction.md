@@ -99,7 +99,7 @@ Want to declare a component?
 ```js
 @View
 class MyComp {
-  Body() {
+  View() {
     div("hello")
   }
 }
@@ -109,7 +109,7 @@ Want to declare a reactive variable?
 @View
 class MyComp {
   count = 0
-  Body() {
+  View() {
     div("hello")
     div(this.count)
   }
@@ -121,7 +121,7 @@ Want to declare a computed state?
 class MyComp {
   count = 0
   doubleCount = this.count * 2
-  Body() {
+  View() {
     div("hello")
     div(this.doubleCount)
   }

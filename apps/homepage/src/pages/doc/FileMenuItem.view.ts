@@ -46,6 +46,11 @@ class FileMenuItem implements FileMenuItemProps {
     this.navigator.to(this.filePath)
   }
 
+  handleClickArrow(e: MouseEvent) {
+    e.stopPropagation()
+    this.isOpen = !this.isOpen
+  }
+
   View() {
     div()
     {
@@ -55,17 +60,24 @@ class FileMenuItem implements FileMenuItemProps {
         .onMouseOver(() => { this.isHover = true })
         .onMouseOut(() => { this.isHover = false })
       {
-        div(this.i18n(this.name, this.zhName))
-          .class(this.textCss)
+        div()
+          .class(this.menuItemCss)
+        {
+          div()
+            .class(this.activeLightCss)
+          div(this.i18n(this.name, this.zhName))
+            .class(this.textCss)
+        }
         if (this.children) {
           div()
-            .class(clsx(this.iconCss, this.iconAnimationCss, this.isOpen || this.isPathActive ? this.arrowDownCss : ""))
+            .class(clsx(this.iconCss, this.iconAnimationCss, (this.isOpen || this.isPathActive) ? this.arrowDownCss : ""))
           {
             KeyboardArrowRightFilled()
               .class(this.iconCss)
               .height(20)
               .width(20)
-              .color(this.theme.green12)
+              .color(this.theme.textColor)
+              .onClick(this.handleClickArrow)
           }
         }
       }
@@ -97,10 +109,25 @@ class FileMenuItem implements FileMenuItemProps {
     opacity: ${this.isOpen || this.isPathActive ? "1" : "0"};
   `
 
+  menuItemCss = css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  `
+
+  activeLightCss = css`
+    height: 18px;
+    width: 2px;
+    margin-right: 10px;
+    background-color: ${this.isChoose ? this.theme.activeColor : this.isHover ? this.theme.hoverColor : "transparent"};
+  `
+
   textCss = css`
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    font-size: 0.875rem;
   `
 
   iconCss = css`
@@ -122,18 +149,15 @@ class FileMenuItem implements FileMenuItemProps {
   `
 
   fileNameCss = css`
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: ${this.theme.docTextColor};
+    color: ${this.theme.textColor};
     font-weight: ${this.isChoose ? "600" : "normal"};
     height: 33px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 3px 10px;
-    margin: 1px 10px;
-    border-radius: 5px;
-    background-color: ${this.isHover || this.isChoose ? this.theme.homeBtnColor : this.theme.primaryBgColor};
+    padding: 0px 10px;
+    margin: 5px 0px;
     cursor: pointer;
   `
 
@@ -141,7 +165,7 @@ class FileMenuItem implements FileMenuItemProps {
     margin: 3px 0 3px 25px;
     overflow: hidden;
     font-size: 14px;
-    border-left: solid 1px ${this.theme.orange4};
+    border-left: solid 1px ${this.theme.activeColor};
   `
 }
 

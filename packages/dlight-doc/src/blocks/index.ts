@@ -1,4 +1,4 @@
-import AdvantageBlock from "./advantageBlock/AdvantageBlock.view"
+import AdvantageBlock from "./advanceCodeBlock/AdvanceCodeBlock.view"
 import HeadingBlock from "./headingBlock/HeadingBlock.view"
 
 export {

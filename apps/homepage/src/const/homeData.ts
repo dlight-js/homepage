@@ -38,20 +38,20 @@ export const FeatureData = [
 
 export const HeaderData = [
   {
-    btnName: "Documents",
-    zhBtnName: "文档",
+    btnName: "📖 Documents",
+    zhBtnName: "📖 文档",
     path: "/docs/getting-started",
     structureData: DocsStructureMap
   },
   {
-    btnName: "Playground",
-    zhBtnName: "演练场",
+    btnName: "🕹️ Playground",
+    zhBtnName: "🕹️ 演练场",
     path: "/playground"
   },
   {
-    btnName: "Examples",
-    zhBtnName: "示例",
-    path: "/examples/declare-state",
+    btnName: "🎯 Examples",
+    zhBtnName: "🎯 示例",
+    path: "/examples/introduction/hello-world",
     structureData: ExamplesCodeData
   }
   // {

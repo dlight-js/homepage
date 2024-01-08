@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, _, Pretty, div, Children, Prop, Watch } from "@dlightjs/types"
+import { type Typed, _, Pretty, div, Children, Prop, Watch, required, Env } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 
 export type OnDragFunc = (x: number, y: number) => void
@@ -12,6 +12,7 @@ interface ResizerProps {
 
 @View
 class Resizer implements ResizerProps {
+  @Env updateIsStartResize = required
   @Children children: any
   /** @prop */
   @Prop onDrag?: OnDragFunc
@@ -89,7 +90,7 @@ class Resizer implements ResizerProps {
   }
 
   resizerCss = css`
-    width: 8px;
+    /* width: 8px; */
     background-color: gray;
   `
 }

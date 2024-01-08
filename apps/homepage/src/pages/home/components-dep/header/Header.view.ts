@@ -13,22 +13,22 @@ import ShortHeaderMenuIcon from "./ShortHeaderMenuIcon.view"
 interface HeaderProps {
   handleClickNav: (tabKey: string) => void
   themeType: string
-  isNeedAnimation?: boolean
   handleChangeTitleStyle: (value: boolean) => void
 }
 
 @View
 class Header implements HeaderProps {
   @Env navigator: Navigator = required
+  @Env path = required
   @Env theme: any = required
   @Env isShortView: boolean = required
   @Env windowWidth: number = required
   @Env i18n: any = required
   @Prop handleClickNav = required
   @Prop themeType = required
-  @Prop isNeedAnimation = false
   @Prop handleChangeTitleStyle = required
   navBtn = HeaderData
+  isNeedAnimation = this.path !== undefined && this.path.trim() === ""
   style2 = !this.isNeedAnimation
   isShowShadow = !this.isNeedAnimation
   isCenterTitle = window.innerWidth < 1019
@@ -88,6 +88,7 @@ class Header implements HeaderProps {
               NavButton(this.i18n(btnName, zhBtnName))
                 .handleClickNav(() => { this.navigator.to(path) })
                 .structureData(structureData)
+                .btnPath(path)
             }
           }
         }
@@ -96,19 +97,19 @@ class Header implements HeaderProps {
     }
     if (this.isShortView && this.isShowMenu) {
       ShortHeaderMenu()
+        .handleClickShowMenu(this.handleClickShowMenu)
     }
   }
 
   headerHeightCss = css`
-    height: 48px;
-    padding: 6px 0;
+    height: 60px;
     min-width: ${getSize(430)};
   `
 
   headerWrapCss = css`
     box-shadow: ${this.isShowShadow ? `0 1px 5px -3px ${this.theme.shadowColor}` : ""};
-    background-color: ${this.theme.primaryBgColor};
-    position: fixed;
+    background-color: ${this.theme.bgColor};
+    position: ${this.isNeedAnimation ? "fixed" : "relative"};
     top: 0;
     display: flex;
     width: 100%;

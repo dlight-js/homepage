@@ -15,6 +15,7 @@ export interface ExmaplesCodeDataType {
   zhName?: string
   path?: string
   description: string
+  zhDescription?: string
   children?: ExmaplesCodeDataType[]
   modules?: CodeModuleType[]
 }

@@ -17,6 +17,8 @@ interface ProjectEditorProps {
   width?: string
   height?: string
   onSave?: (project: DLightProject) => void
+  getSrcDoc: (doc: string) => void
+  clearConsoleFunc: () => void
 }
 
 @View
@@ -30,6 +32,8 @@ class ProjectEditor {
   @Prop width = "100%"
   @Prop height = "100%"
   @Prop onSave?: (project: DLightProject) => void
+  @Prop getSrcDoc = required
+  @Prop clearConsoleFunc = required
 
   /** @reactive */
   dlightProject = new DLightProject(this.modules)
@@ -94,8 +98,16 @@ class ProjectEditor {
         : module
     ))
     this.dlightProject = new DLightProject(modules) as any
-    void this.dlightProject.run()
-    this.onSave?.(this.dlightProject)
+    this.getSrcDoc(this.dlightProject.srcDoc)
+    this.onSave?.(new DLightProject(this.dlightProject.modules))
+  }
+
+  @Watch("dlightProject")
+  watchDlightProject(_, prevValue?: DLightProject, nextValue?: DLightProject) {
+    if (prevValue?.srcDoc !== nextValue?.srcDoc) {
+      // clear console when run
+      this.clearConsoleFunc()
+    }
   }
 
   pathToTab(path: string) {
@@ -108,7 +120,7 @@ class ProjectEditor {
 
   /** @lifecycle */
   didMount() {
-    void this.dlightProject.run()
+    this.getSrcDoc(this.dlightProject.srcDoc)
     this.getRefreshFunc(() => {
       this.updateModuleCode(this.currEditorStore.model.getValue())
     })

@@ -1,16 +1,18 @@
 import { View } from "@dlightjs/dlight"
-import { code, Content, ContentProp, div, pre, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { code, Content, ContentProp, div, pre, Prop, required, Pretty, Typed } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import hljs from "highlight.js"
+import "highlight.js/styles/a11y-light.css"
+import "highlight.js/styles/a11y-dark.css"
 import { ContentCopyFilled, DoneFilled } from "@dlightjs/material-icons"
 
-interface AdvantageBlockProps {
+interface AdvanceCodeBlockProps {
   content: ContentProp<any>
   props: any
 }
 
 @View
-class AdvantageBlock implements AdvantageBlockProps {
+class AdvanceCodeBlock implements AdvanceCodeBlockProps {
   @Content content: any = required
   @Prop props = required
   language = this.props.language
@@ -28,10 +30,10 @@ class AdvantageBlock implements AdvantageBlockProps {
 
   View() {
     div()
-      .class(this.dlightMarkitCodeBlock)
+      .class(this.dlightMarkitCodeBlock$)
     {
       div()
-        .class(this.dlightMarkitCodeBlockHeader)
+        .class(this.dlightMarkitCodeBlockHeader$)
       {
         if (this.language) {
           div()
@@ -100,13 +102,12 @@ class AdvantageBlock implements AdvantageBlockProps {
   `
 
   /** @style */
-  dlightMarkitCodeBlockHeader = css`
+  dlightMarkitCodeBlockHeader$ = css`
     background-color: rgba(250, 190, 142, 0.3);
     padding: 8px 16px;
     border-radius: 12px 12px 0 0;
     color: #333333;
     font-family: system-ui;
-    font-size: 14px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -120,8 +121,6 @@ class AdvantageBlock implements AdvantageBlockProps {
   dlightMarkitCodeBlockTitle = css`
     font-weight: 500;
     margin-right: 10px;
-    font-size: 16px;
-    margin-left: 10px;
   `
   dlightMarkitCopyBtnCss = css`
     display: flex;
@@ -129,10 +128,10 @@ class AdvantageBlock implements AdvantageBlockProps {
     align-items: center;
     cursor: pointer;
   `
-  dlightMarkitCodeBlock = css`
+  dlightMarkitCodeBlock$ = css`
     background-color: rgba(242, 214, 159, 0.3);
     border-radius: 12px;
-    font-size: 15px;
+    font-size: 14px;
     margin: 10px 0;
   `
   dlightHomepageMarkitCode = css`
@@ -140,13 +139,12 @@ class AdvantageBlock implements AdvantageBlockProps {
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 16px;
-    font-size: 95%;
-    /* position: relative; */
     overflow-x: auto;
   `
   code = css`
     font-family: ui-monospace, SFMono-Regular, Menlo,Monaco, Consolas, Liberation Mono, Courier New, monospace;
-    line-height: 1.25rem;
+    line-height: 1.29rem;
+    font-weight: 400;
   `
   copyIcon = css`
     width: 30px;
@@ -154,10 +152,7 @@ class AdvantageBlock implements AdvantageBlockProps {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: rgba(250, 190, 142, 0.1); */
-    /* border: 1px solid #DCDCDC; */
-    /* border-radius: 6px; */
   `
 }
 
-export default AdvantageBlock as Pretty as Typed<AdvantageBlockProps>
+export default AdvanceCodeBlock as Pretty as Typed<AdvanceCodeBlockProps>

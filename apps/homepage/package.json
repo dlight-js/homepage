@@ -10,19 +10,20 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@dlightjs/components": "1.0.0-alpha.13",
-    "@dlightjs/dlight": "1.0.0-alpha.22",
+    "@dlightjs/components": "1.0.0-alpha.24",
+    "@dlightjs/dlight": "1.0.0-alpha.62",
     "@dlightjs/material-icons": "1.0.0-alpha.2",
     "@iandx/easy-css": "^0.10.14",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.0",
     "dlight-doc": "workspace:*",
-    "dlight-editor": "workspace:*"
+    "dlight-editor": "workspace:*",
+    "highlight.js": "^11.9.0"
   },
   "devDependencies": {
     "@dlightjs/types": "1.0.0-alpha.0",
     "typescript": "^5.3.3",
     "vite": "^4.5.1",
-    "vite-plugin-dlight": "1.0.0-alpha.14",
+    "vite-plugin-dlight": "1.0.0-alpha.34",
     "vite-plugin-easy-css": "^0.10.14"
   },
   "keywords": [

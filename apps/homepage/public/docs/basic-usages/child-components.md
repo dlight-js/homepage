@@ -9,9 +9,9 @@ import { View } from "@dlightjs/dlight"
 
 @View
 class Card {
-  @Children content
+  @Children cardContent
 
-  Body() {
+  View() {
     div()
       .style({
         border: "1px solid gray",
@@ -19,7 +19,7 @@ class Card {
         borderRadius: "5px"
       })
     {
-      this.content
+      this.cardContent
     }
   }
 }
@@ -34,9 +34,8 @@ import Card from "./Card.view"
 
 @View
 class App {
-  Body() {
-    Card()
-    {
+  View() {
+    Card(); {
       div("This is the content inside the card.")
     }
   }
@@ -44,6 +43,6 @@ class App {
 
 export default App
 ```
-In this example, the Card component can wrap around any content. The content placed inside it becomes its "children", which is referred to in the Card component as `this.content`.
+In this example, the Card component can wrap around any content. The content placed inside it becomes its "children", which is referred to in the Card component as `this.cardContent`.
 
 DLight's approach to handling children components is all about intuitive design. By utilizing the `{}` notation, it mirrors the familiar structure found in HTML's child nodes. The `{}` notation signifies a cohesive unit, an organized block that can be easily interpreted and modified through out DLight. You can find it in elements' childNodes, environment, components' children and even for and if expression.

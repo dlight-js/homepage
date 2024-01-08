@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, Prop, env, required } from "@dlightjs/types"
+import { type Typed, div, Pretty, Prop, env, required, comp } from "@dlightjs/types"
 import ProjectEditor from "./Editor/ProjectEditor.view"
 import PreviewView from "./Preview/Preview.view"
 import { ToBeTransformedModule } from "../project/types"
@@ -31,6 +31,11 @@ class Playground implements PlaygroundProps {
   @Prop onSave?: (project: DLightProject) => void
   @Prop isVertical: boolean = false
 
+  isStartResize = false
+  updateIsStartResize = (isStartResize: boolean) => {
+    this.isStartResize = isStartResize
+  }
+
   /** @reactive */
   theme = colors[this.themeType]
   mountId = ""
@@ -43,9 +48,19 @@ class Playground implements PlaygroundProps {
     this.currTransformedCode = code
   }
 
+  srcDoc = ""
+  getSrcDoc = (doc: string) => {
+    this.srcDoc = doc
+  }
+
   refreshFunc = () => {}
   getRefreshFunc = (func: any) => {
     this.refreshFunc = func
+  }
+
+  clearConsoleFunc = () => {}
+  getClearConsoleFunc = (func: any) => {
+    this.clearConsoleFunc = func
   }
 
   verticalEditorWidth = "100%"
@@ -100,6 +115,10 @@ class Playground implements PlaygroundProps {
       .theme(this.theme)
       .themeType(this.themeType)
       .height(this.height)
+      .srcDoc(this.srcDoc)
+      .getClearConsoleFunc(this.getClearConsoleFunc)
+      .isStartResize(this.isStartResize)
+      .updateIsStartResize(this.updateIsStartResize)
     {
       div()
         .style({
@@ -107,50 +126,31 @@ class Playground implements PlaygroundProps {
         })
         .element(this.wrapperEl)
       {
-        if (this.isVertical) {
-          div()
-            .class(this.columnDisplayCss)
-          {
-            ProjectEditor()
-              .width(this.editorWidth)
-              .height(this.editorHeight)
-              .modules(this.modules)
-              .getMountId(this.getMountId)
-              .getCurrTransformedCode(this.getCurrTransformedCode)
-              .getRefreshFunc(this.getRefreshFunc)
-              .onSave(this.onSave)
-            VerticalResizer()
-              .width(`${this.width}`)
-              .onDrag(this.handleVerticalResizerDrag.bind(this))
-            PreviewView()
-              .width(this.previewWidth)
-              .verticalHeight(this.previewHeight)
-              .mountId(this.mountId)
-              .currTransformedCode(this.currTransformedCode)
-              .refreshFunc(this.refreshFunc)
-          }
-        } else {
-          div()
-            .class(this.rowDisplayCss)
-          {
-            ProjectEditor()
-              .width(this.editorWidth)
-              .height(this.editorHeight)
-              .modules(this.modules)
-              .getMountId(this.getMountId)
-              .getCurrTransformedCode(this.getCurrTransformedCode)
-              .getRefreshFunc(this.getRefreshFunc)
-              .onSave(this.onSave)
-            HorizontalResizer()
-              .height(`${this.height}`)
-              .onDrag(this.handleHorizontalResizerDrag.bind(this))
-            PreviewView()
-              .width(this.previewWidth)
-              .verticalHeight(this.previewHeight)
-              .mountId(this.mountId)
-              .currTransformedCode(this.currTransformedCode)
-              .refreshFunc(this.refreshFunc)
-          }
+        div()
+          .class(this.isVertical ? this.columnDisplayCss : this.rowDisplayCss)
+        {
+          ProjectEditor()
+            .width(this.editorWidth)
+            .height(this.editorHeight)
+            .modules(this.modules)
+            .getMountId(this.getMountId)
+            .getCurrTransformedCode(this.getCurrTransformedCode)
+            .getRefreshFunc(this.getRefreshFunc)
+            .getSrcDoc(this.getSrcDoc)
+            .onSave(this.onSave)
+            .clearConsoleFunc(this.clearConsoleFunc)
+
+          comp(this.isVertical ? VerticalResizer : HorizontalResizer)()
+            // @ts-expect-error
+            .width(`${this.width}`)
+            .height(`${this.height}`)
+            .onDrag(this.isVertical ? this.handleVerticalResizerDrag.bind(this) : this.handleHorizontalResizerDrag.bind(this))
+          PreviewView()
+            .width(this.previewWidth)
+            .verticalHeight(this.previewHeight)
+            .mountId(this.mountId)
+            .currTransformedCode(this.currTransformedCode)
+            .refreshFunc(this.refreshFunc)
         }
       }
     }

@@ -5,13 +5,13 @@ import { css } from "@iandx/easy-css"
 import { findCertainFile, flatFileStructureData } from "../../utils/utilFunc"
 import { FileMap } from "../../const/docsData"
 import { DocsStructureMapType } from "../../utils/types"
-import Header from "../home/components/header/Header.view"
 import MenuBtn from "./MenuBtn.view"
 import { PageNavType } from "./types"
 import SideMenu from "../../common/sideMenu/SideMenu.view"
 import Skeleton from "../../common/loading/Skeleton.view"
 import ErrorPage from "../ErrorPage.view"
 import FileMenu from "./FileMenu.view"
+import LoadingCircle from "../../common/loading/LoadingCircle.view"
 
 @View
 class DocPage {
@@ -22,7 +22,7 @@ class DocPage {
   @Env language: any = required
   @Env themeType: string = required
   @Env theme: any = required
-  isLoading = true
+  isLoading = false
   isFail = false
   mdString: string = ""
   selectedName: string = ""
@@ -49,7 +49,8 @@ class DocPage {
   // pathWatcher is a function that will be executed when the path changes
   @Watch
   pathWatcher() {
-    this.isLoading = true
+    // this.isLoading = true
+    this.isOpenOutline = { value: false }
     this.isFail = false
     const [fileData, fileIndex] = findCertainFile({ mapData: this.flatfileData, filePath: "/" + this.path })
     const filePath = this.path.startsWith("docs/") ? `/${this.path}${fileData?.children ? "/index.md" : ".md"}` : ""
@@ -76,10 +77,9 @@ class DocPage {
           return ""
         })
         .then(text => { this.mdString = text })
-        .catch(() => { this.isFail = true })
+        .catch((err) => { console.log(err); this.isFail = true })
     }
     this.selectedName = fileData?.name ?? ""
-    this.isLoading = false
   }
 
   @Watch
@@ -89,23 +89,22 @@ class DocPage {
     }
   }
 
-  hanleClickOpenMenu(e: any) {
+  handleClickOpenMenu(e: any) {
     e.stopPropagation()
     this.isOpenMenu = true
   }
 
-  hanleClickOpenOutline() {
+  handleClickOpenOutline() {
     this.isOpenOutline = { value: true }
   }
 
   View() {
-    Header()
     env()
       .selectedName(this.selectedName)
     {
       MenuBtn()
-        .hanleClickOpenMenu(this.hanleClickOpenMenu)
-        .hanleClickOpenOutline(this.hanleClickOpenOutline)
+        .handleClickOpenMenu(this.handleClickOpenMenu)
+        .handleClickOpenOutline(this.handleClickOpenOutline)
         .setMenuOpenBtnEl(this.setMenuOpenBtnEl)
       div()
         .class(this.rowFlexCss)
@@ -136,18 +135,19 @@ class DocPage {
               .btnEvent(() => { this.navigator.to("/docs/getting-started") })
           } else {
             if (this.isLoading) {
-              div()
-                .style({ marginTop: "40px" })
-              {
-                Skeleton()
-                  .width(window.innerWidth > 1135 ? "calc(100% - 320px)" : "calc(100% - 40px)")
-              }
+              LoadingCircle()
             } else {
               DlightDoc(this.mdString)
                 .title(this.selectedName)
                 .isShowCatalogue(this.isOpenOutline.value)
                 .nextPageNav(this.nextPageNav)
                 .prePageNav(this.prePageNav)
+                .textColor(this.theme.textColor)
+                .highlightColor(this.theme.highlightColor)
+                .codeBgColor(this.theme.codeBgColor)
+                .codeBlockHeaderColor(this.theme.codeBlockHeaderColor)
+                .bgColor(this.theme.bgColor)
+                .shadowColor(this.theme.codeGray)
                 .themeType(this.themeType)
             }
           }
@@ -160,14 +160,14 @@ class DocPage {
     padding: 1rem;
     width: 212px;
     height: calc(100vh - 92px);
-    background-color: ${this.theme.primaryBgColor};
-    box-shadow: ${this.isOpenMenu ? `0 2px 8px 0 ${this.theme.exampleMenuShadowColor}` : ""};
+    background-color: ${this.theme.bgColor};
+    box-shadow: ${this.isOpenMenu ? `0 2px 8px 0 ${this.theme.shadowColor}` : ""};
     margin-top: ${this.isMobile || this.isShortView ? "-52px" : ""};
     overflow: scroll;
   `
 
   docWrapCss = css`
-    background-color: ${this.theme.primaryBgColor};
+    background-color: ${this.theme.bgColor};
     width: ${this.isMobile || this.isShortView ? "100%" : "calc(100% - 212px)"};
     overflow-x: hidden;
     padding-left: 5%;
@@ -179,7 +179,7 @@ class DocPage {
     display: flex;
     flex-direction: row;
     overflow-x: hidden;
-    background-color: ${this.theme.primaryBgColor};
+    background-color: ${this.theme.bgColor};
   `
 }
 

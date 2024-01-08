@@ -1,70 +1,32 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, div, Env, required, Watch } from "@dlightjs/types"
-import Header from "./components/header"
+import { type Typed, Pretty, div } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
-import { FeatureData } from "../../const/homeData"
-import FeatureCardGroup from "./components/FeatureCardGroup.view"
-import Footer from "./components/Footer.view"
-import Example from "./components/Example.view"
-import { getSize } from "../../utils/utilFunc"
-import Title from "./components/Title.view"
-
+import TitleBoard from "./TitleBoard/TitleBoard.view"
+import CodeBlock from "./CodePreview/CodeBlcok.view"
+import forLoop from "./CodePreview/ForLoopExample.view"
+import reactivity from "./CodePreview/ReactivityExample.view"
+import ifStatement from "./CodePreview/IfExample.view"
+import environment from "./CodePreview/EnvExample.view"
+import FeatureCardBoard from "./FeatureCard/FeatureCardBoard.view"
+import Footer from "./Footer/Footer.view"
 @View
 class Home {
-  @Env navigator = required
-  @Env themeType: "light" | "dark" = required
-  @Env theme: any = required
-  @Env isMobile: boolean = required
-  featureData = FeatureData
-  count = 2
-
   View() {
     div()
       .class(this.bgCss)
     {
-      Header()
-        .isNeedAnimation(true)
-      div()
-        .class(this.titleExampleWrapCss)
-      {
-        Title()
-        Example()
-      }
-      div()
-        .class(this.featureCardWrap)
-      {
-        FeatureCardGroup()
-          .data(this.featureData.slice(0, 2))
-        FeatureCardGroup()
-          .data(this.featureData.slice(2, 4))
-      }
+      TitleBoard()
+      CodeBlock(reactivity)
+      CodeBlock(ifStatement)
+      CodeBlock(forLoop)
+      CodeBlock(environment)
+      FeatureCardBoard()
       Footer()
     }
   }
 
   bgCss = css`
-    /* background: ${this.themeType === "dark" ? "linear-gradient(#330172, #000000)" : "linear-gradient(#fff9f4, #fff9f4)"}; */
-    background-color: ${this.theme.primaryBgColor};
     overflow-x: hidden;
-  `
-
-  titleExampleWrapCss = css`
-    padding: 0 ${getSize(10)};
-    margin-top: ${getSize(30)};
-    display: ${this.isMobile ? "block" : "flex"};
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  `
-
-  featureCardWrap = css`
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 0 30px;
   `
 }
 

@@ -5,14 +5,9 @@
     "path": "getting-started",
     "children": [
       {
-        "name": "📘 Introduction",
-        "zhName": "📘 介绍",
+        "name": "📗 Introduction",
+        "zhName": "📗 介绍",
         "path": "introduction"
-      },
-      {
-        "name": "🤔 Rethinking Reactivity",
-        "zhName": "🤔 重新思考响应式",
-        "path": "rethinking-reactivity"
       },
       {
         "name": "⚡️ Quick Start",
@@ -42,9 +37,9 @@
         "path": "custom-components"
       },
       {
-        "name": "🔀 If Statements",
-        "zhName": "🔀 条件语句",
-        "path": "if-statements"
+        "name": "🔀 Conditional Rendering",
+        "zhName": "🔀 条件渲染",
+        "path": "conditional-rendering"
       },
       {
         "name": "🔁 For Loops",
@@ -92,6 +87,11 @@
         "name": "⏳ Lifecycle",
         "zhName": "⏳ 生命周期",
         "path": "lifecycle"
+      },
+      {
+        "name": "🏃🏼 Best Practices",
+        "zhName": "🏃🏼 最佳实践",
+        "path": "best-practices"
       }
     ]
   },
@@ -101,30 +101,35 @@
     "path": "advanced-usages",
     "children": [
       {
-        "name": "🏷 Assertion Tags",
-        "zhName": "🏷 断言标签",
-        "path": "assertion-tags"
+        "name": "🎼 SubView",
+        "zhName": "🎼 子视图",
+        "path": "subview"
       },
       {
-        "name": "💡 Expressions",
-        "zhName": "💡 表达式",
-        "path": "expressions"
+        "name": "🅷 HTML Props",
+        "zhName": "🅷 HTML参数",
+        "path": "html-props"
+      },
+      {
+        "name": "📄 Getting Element",
+        "zhName": "📄 获取元素",
+        "path": "getting-element"
+      },
+      {
+        "name": "📦 Prop View",
+        "zhName": "📦 Prop View",
+        "path": "prop-view"
       },
       {
         "name": "⤵️ Forward Props",
         "zhName": "⤵️ 向下传递属性",
         "path": "forward-props"
-      },
-      {
-        "name": "⚙️ Reactivity Utils",
-        "zhName": "⚙️ 响应式工具",
-        "path": "reactivity-utils"
-      },
-      {
-        "name": "📦 DLNodes as Props",
-        "zhName": "📦 DLNodes 作为属性",
-        "path": "dlnodes-as-props"
       }
     ]
+  },
+  {
+    "name": "📘 Typescript Support",
+    "zhName": "📘 Typescript 支持",
+    "path": "typescript-support"
   }
 ]

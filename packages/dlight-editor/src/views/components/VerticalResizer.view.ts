@@ -13,6 +13,7 @@ interface VerticalResizerProps {
 class VerticalResizer implements VerticalResizerProps {
   /** @prop */
   @Env theme: Color = required
+  @Env updateIsStartResize = required
   @Prop width = "100%"
   @Prop onDrag?: OnDragFunc
   hover: number = 0
@@ -20,6 +21,7 @@ class VerticalResizer implements VerticalResizerProps {
   /** @method */
   onMouseUp() {
     if (this.hover !== 0) this.hover--
+    this.updateIsStartResize(false)
   }
 
   handleDrag(left: number, top: number) {
@@ -32,6 +34,7 @@ class VerticalResizer implements VerticalResizerProps {
 
   onMouseDown() {
     this.hover++
+    this.updateIsStartResize(true)
   }
 
   onMouseOut() {

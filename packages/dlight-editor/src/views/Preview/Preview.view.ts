@@ -1,10 +1,12 @@
 import { View } from "@dlightjs/dlight"
-import { div, button, Typed, Pretty, Env, Prop, required } from "@dlightjs/types"
+import { div, Typed, Pretty, Env, Prop, required } from "@dlightjs/types"
 import ResultView from "./Result.view"
 import OutputView from "./Output.view"
+import ConsoleView from "./Console.view"
 import { RefreshFilled } from "@dlightjs/material-icons"
 import { css } from "@iandx/easy-css"
-import { Color, headerHeight } from "../../utils/const"
+import { Color, dividerWidth, headerHeight } from "../../utils/const"
+import VerticalResizer from "../components/VerticalResizer.view"
 
 interface PreviewProps {
   mountId: string
@@ -24,16 +26,31 @@ class Preview implements PreviewProps {
   @Prop verticalHeight: string = required
   @Env theme: Color = required
   @Env height: string = required
+  wrapperEl: HTMLElement | undefined = undefined
 
   /** @reactive */
-  tab: "result" | "output" = "result"
+  tab: "Result" | "Output" = "Result"
 
-  /** @lifecycle */
+  consoleHeight = "35%"
+  previewHeight = `calc(65% - ${dividerWidth}px - ${headerHeight}px)`
+
+  /** @method */
+  handleVerticalResizerDrag(x: number, y: number) {
+    const fullHeight = this.wrapperEl!.offsetHeight
+    this.consoleHeight = `${-y / fullHeight * 100 + +this.consoleHeight.slice(0, -1)}%`
+    const consoleHeight = +this.consoleHeight.slice(0, -1)
+    if (consoleHeight < 10) {
+      this.consoleHeight = "10%"
+    } else if (consoleHeight > 80) {
+      this.consoleHeight = "80%"
+    }
+    this.previewHeight = `calc(${100 - +this.consoleHeight.slice(0, -1)}% - ${dividerWidth}px - ${headerHeight}px)`
+  }
 
   /** @view */
   @View
   Head({ content }: any): any {
-    button(content)
+    div(content)
       .class(this.headerCss)
       .style({
         borderBottom: content === this.tab ? `3px solid ${this.theme.text}` : ""
@@ -49,20 +66,14 @@ class Preview implements PreviewProps {
       .class(this.headerBGCss)
     {
       div()
-        .class(this.rowDisplayCss)
       {
-        div()
+        RefreshFilled()
+          .class(this.iconCss)
+          .color(this.theme.primary)
           .onClick(this.refreshFunc)
-          .class(this.refreshIconCss)
-        {
-          RefreshFilled()
-            .class(this.refreshIconCss)
-            .color(this.theme.primary)
-        }
-
-        this.Head("result")
-        this.Head("output")
       }
+      this.Head("Result")
+      this.Head("Output")
     }
   }
 
@@ -73,31 +84,33 @@ class Preview implements PreviewProps {
       .style({
         width: this.width
       })
+      .element(this.wrapperEl)
     {
       this.Header()
       div()
-        .style({
-          height: `calc(100% - ${headerHeight}px)`,
-          overflow: "scroll"
-        })
+        .class(this.previewWrapperCss)
       {
         div()
           .style({
-            display: this.tab === "result" ? "block" : "none"
+            display: this.tab === "Result" ? "block" : "none"
           })
+          .class(this.resultWrapperCss)
         {
           ResultView()
-            .mountId(this.mountId)
         }
         div()
           .style({
-            display: this.tab === "output" ? "block" : "none"
+            display: this.tab === "Output" ? "block" : "none"
           })
         {
           OutputView()
             .code(this.currTransformedCode)
         }
       }
+      VerticalResizer()
+        .onDrag(this.handleVerticalResizerDrag.bind(this))
+      ConsoleView()
+        .height(this.consoleHeight)
     }
   }
 
@@ -108,33 +121,39 @@ class Preview implements PreviewProps {
     overflow: hidden;
   `
 
+  resultWrapperCss = css`
+    height: 100%;
+  `
+
   headerBGCss = css`
     background-color: ${this.theme.background};
-    height: ${headerHeight}px;
-    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   `
 
   headerCss = css`
-    padding: 2px 0px 5px 0px;
-    border-width: 0;
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+    line-height: ${headerHeight}px;
     background-color: ${this.theme.background};
     color: ${this.theme.text};
     font-size: 17px;
     height: ${headerHeight}px;
     cursor: pointer;
-    width: calc(50% - 16px);
+    flex-grow: 1;
   `
 
-  refreshIconCss = css`
-    padding: 5px 5px 0 5px;
+  iconCss = css`
+    margin: 0 5px;
     cursor: pointer;
   `
 
-  rowDisplayCss = css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  previewWrapperCss = css`
+    height: ${this.previewHeight};
+    overflow: scroll;
   `
 }
 
