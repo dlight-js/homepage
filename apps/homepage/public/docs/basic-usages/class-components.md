@@ -64,23 +64,3 @@ class App {
 }
 
 ```
-
-# SubViews
-SubViews within a class enable developers to create reusable components efficiently within a singular class, maintaining coherent internal states. For a substantial, standalone component that may be utilized across different parts of the application, crafting a new class component would be a better option. However, when dealing with smaller, reusable UI segments that are inherently dependent on the current component’s parameters and state, leveraging subViews becomes a sound choice. 
-
-To create a subView in DLight, you can just declare a class method or a arrow function class property with a `View` decorator like this:
-```js
-@View
-class MyComp {
-  @View
-  Hello() {
-    div("hello")
-  }
-  View() {
-    this.Hello()
-    this.Hello()
-  }
-}
-```
-It's worth noting that same with the `View` method, you can only code in the DSL syntax DLight provides, in a subView method.
-

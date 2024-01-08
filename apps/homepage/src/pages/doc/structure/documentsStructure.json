@@ -5,8 +5,8 @@
     "path": "getting-started",
     "children": [
       {
-        "name": "📘 Introduction",
-        "zhName": "📘 介绍",
+        "name": "📗 Introduction",
+        "zhName": "📗 介绍",
         "path": "introduction"
       },
       {
@@ -101,14 +101,14 @@
     "path": "advanced-usages",
     "children": [
       {
-        "name": "🏷 Assertion Tags",
-        "zhName": "🏷 断言标签",
-        "path": "assertion-tags"
+        "name": "🎼 SubView",
+        "zhName": "🎼 子视图",
+        "path": "subview"
       },
       {
-        "name": "💡 Expressions",
-        "zhName": "💡 表达式",
-        "path": "expressions"
+        "name": "🅷 HTML Props",
+        "zhName": "🅷 HTML参数",
+        "path": "html-props"
       },
       {
         "name": "⤵️ Forward Props",
@@ -116,15 +116,15 @@
         "path": "forward-props"
       },
       {
-        "name": "⚙️ Reactivity Utils",
-        "zhName": "⚙️ 响应式工具",
-        "path": "reactivity-utils"
-      },
-      {
-        "name": "📦 DLNodes as Props",
-        "zhName": "📦 DLNodes 作为属性",
+        "name": "📦 Prop View",
+        "zhName": "📦 Prop View",
         "path": "dlnodes-as-props"
       }
     ]
+  },
+  {
+    "name": "📘 Typescript Support",
+    "zhName": "📘 Typescript 支持",
+    "path": "typescript-support"
   }
 ]
