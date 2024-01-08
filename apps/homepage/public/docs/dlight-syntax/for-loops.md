@@ -54,17 +54,17 @@ With DLight, what you see is the raw and familiar power of JavaScript.
 # Keyed vs. non-keyed
 Keyed update uses a unique identifier (a "key") for each item. This key helps in tracking the identity of each item through re-renders. When data changes, only the specific items that changed (based on the unique key) are updated.
 
-DLight accepts all types of keys. By default, the item inside a loop itself is the key:
+DLight accepts all types of keys. By default, it's non-keyed or you can regard each item's index as its key:
 ```js
 for (const color of colors) {
   li(color)
 }
-// -> key = color
+// -> key = null
 ```
-And you can set your own specific key by adding a one-length array that contains your key right after the for body:
+You can set your own specific key by adding a labeled statement that contains your key right after the for body. Pretty straightforward:
 ```js
 for (const [idx, color] of Object.entries(colors)) { 
-  [myId]
+  key: idx
   li(color)
 }
 // -> key = idx
@@ -76,11 +76,4 @@ For keyed-update, it'll need to first remove number 1 and move other three eleme
 For non-keyed-update, it'll just delete the last element and change the front elements accordingly. In implementation, we don't need to find the idx of the element to be removed. What we do here is to get the new array length(3) and cut there in our old array(1,3,4), then we do some element property altering operations, which are much cheaper.
 ![non-keyed-update](../imgs/non-keyed-update.png "non-keyed-update")
 
-Non-keyed update works for 90% scenarios if there's no specific requirement to set a key. And this is how we do it in DLight:
-```js
-for (const color of colors) { 
-  [null]
-  li(color)
-} 
-// -> non-keyed loop
-```
+Non-keyed update works for 90% scenarios if there's no specific requirement to set a key.
