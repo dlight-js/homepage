@@ -18,11 +18,9 @@ class Result {
 
   /** @view */
   View() {
-    div().class(this.wrapperCss)
-    {
-      iframe()
-        .class(this.wrapperCss)
-        .srcdoc(`<!DOCTYPE html>
+    iframe()
+      .class(this.wrapperCss)
+      .srcdoc(`<!DOCTYPE html>
       <html lang="en">
         <head>
           <meta charset="UTF-8" />
@@ -52,7 +50,6 @@ class Result {
           <div id="app" style="height: 100%; color: ${this.theme.text}"></div>
         </body>
       </html>`)
-    }
   }
 
   /** @style */

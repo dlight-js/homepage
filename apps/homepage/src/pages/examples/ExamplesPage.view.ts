@@ -79,9 +79,13 @@ class ExamplesPage implements RoutesEnv {
         return item[0]?.toUpperCase() + item.slice(1)
       }).join(" ")
     }
-    this.header = title.split("-").map((item: string) => {
-      return item[0]?.toUpperCase() + item.slice(1)
-    }).join(" ")
+    if (title === "dlight-syntax") {
+      this.header = "DLight Syntax"
+    } else {
+      this.header = title.split("-").map((item: string) => {
+        return item[0]?.toUpperCase() + item.slice(1)
+      }).join(" ")
+    }
     const root = this.examples.find((item) => item.title === this.header)
     this.modules = root?.children?.find((item) => item.title === this.selectedTitle)?.modules
   }

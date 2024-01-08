@@ -15,8 +15,8 @@ export const ExamplesCodeData: ExmaplesCodeDataType[] = [
     children: [
       {
         title: "Hello World",
-        description: "A simple greeting using the dlight.js.",
-        zhDescription: "一个用dlight实现地简单问候。",
+        description: "A greeting from DLight.js.",
+        zhDescription: "来自DLight的问候。",
         modules: [
           {
             code: javascript`import { View, render } from "@dlightjs/dlight"
@@ -420,8 +420,8 @@ render("app", RootComp)`,
     ]
   },
   {
-    title: "Dlight Syntax",
-    zhName: "Dlight语法",
+    title: "DLight Syntax",
+    zhName: "DLight语法",
     description: "",
     path: "/examples/dlight-syntax/text-element",
     children: [
@@ -713,7 +713,7 @@ render("app", App)`,
             path: "/index.ts"
           },
           {
-            code: `import DLight, { View } from "@dlightjs/dlight" 
+            code: `import { View } from "@dlightjs/dlight" 
 
 @View
 class UserProfile {
@@ -780,7 +780,7 @@ render("app", App)`,
             path: "/index.ts"
           },
           {
-            code: `import DLight, { View } from "@dlightjs/dlight" 
+            code: `import { View } from "@dlightjs/dlight" 
 
 @View
 class BeautifulButton {
@@ -824,7 +824,7 @@ render("app", App)`,
             path: "/index.ts"
           },
           {
-            code: `import DLight, { View, Children } from "@dlightjs/dlight" 
+            code: `import { View, Children } from "@dlightjs/dlight" 
 
 @View
 class CenterAlign {
