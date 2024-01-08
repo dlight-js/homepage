@@ -1,5 +1,5 @@
 # File Naming Convention
-DLight is using a pre-compiler to compile DLight DSL into js code. There's a babel preset called `babel-preset-dlight` to do this job. In this preset's option, there're two parameters called `files` and `excludeFiles` to specify which files to compile. By default, it's `"**/*.{js,jsx,ts,tsx}"` for files and `"**/{dist,node_modules,lib}/*"` for excludeFiles. You can change it in your babel config file.
+DLight is using a pre-compiler to compile DLight DSL into js code. There's a babel preset called `babel-preset-dlight` to do this job. In this preset's option, there're two parameters called `files` and `excludeFiles` to specify which files to compile. By default, it's `**/*.{js,jsx,ts,tsx}` for files and `**/{dist,node_modules,lib}/*` for excludeFiles. You can change it in your babel config file.
 
 We recommend you to use `*.view.js` as your view file's extension, in this way, it'll be very clear for you to know which file is a view file and which is not. And also, it'll make the compiler faster because it only compiles view files. So a recommended babel preset option will be:
 ```json
@@ -195,7 +195,7 @@ class TestStyleX {
 # Coding style
 There're some coding styles that we recommend you to follow when you're coding in DLight. Soon we'll make an eslint plugin to enforce these rules.
 
-## Don't over 200 lines for one component
+## Don't get over 200 lines for one component
 If your component is over 200 lines, it's probably doing too much. Try to break it down into smaller components or extract some logic into a reusable function.
 
 ## Inline props or new line props
@@ -247,4 +247,4 @@ class App {
 export default App
 ```
 ----
-But of course you can do what the fk you want in DLight and don't need to follow any one of rules.
+But of course you can do what the fk you want in DLight and don't need to follow any of the rules.
