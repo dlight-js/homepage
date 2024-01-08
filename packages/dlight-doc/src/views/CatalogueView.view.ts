@@ -23,11 +23,6 @@ class CatalogueView implements CatalogueViewProps {
   @Prop updateCurrentIndex = required
   @Prop scrollToTop = required
 
-  @Watch
-  watchContent() {
-    console.log(this.content)
-  }
-
   View() {
     div(this.i18n("To Top", "回到顶部"))
       .style({ textDecoration: "underline", fontWeight: 600, cursor: "pointer", width: "max-content" })
