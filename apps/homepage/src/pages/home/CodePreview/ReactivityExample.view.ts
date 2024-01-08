@@ -80,7 +80,7 @@ class MusicChooser {
     position: relative;
     user-select: none;
     vertical-align: middle;
-    margin: 10px
+    margin: 10px;
   `
 }
 
@@ -92,10 +92,11 @@ const example: Example = {
   codeTitle: "./MusicChooser.view.js",
   code: `@View
 class MusicChooser {
+  @Prop musics
   musicIdx = this.random()
-  music = musics[this.musicIdx]
+  music = this.musics[this.musicIdx]
   random() {
-    return Math.floor(Math.random() * musics.length)
+    return Math.floor(Math.random() * this.musics.length)
   }
 
   View() {

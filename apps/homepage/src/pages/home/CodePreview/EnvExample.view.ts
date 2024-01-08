@@ -24,6 +24,7 @@ class AppClass {
     div().class(this.musicListCss); {
       MusicList()
         .musicList(musics)
+        .language(this.language)
     }
   }
 
@@ -83,6 +84,9 @@ class App {
 
   View() {
     ChangeLanguageBtn()
+      .onClick(() => {
+        this.language = this.language === "en" ? "zh" : "en"
+      })
     env().language(this.language); {
       Home()
     }
