@@ -39,7 +39,8 @@ Usage:
 ```js
 // inside Body
 MyComponent()
-  .willMount(() => {
+  .willMount(comp => {
+    console.log(`${comp} is about to mount!`)
     // Code to run before mounting
   })
   .didMount(() => {
@@ -50,32 +51,46 @@ MyComponent()
 This method provides flexibility, especially when reusing components across different parts of an application. It enables developers to tailor component behavior on-the-fly based on its context of usage.
 
 # Lifecycle in HTML Elements
-HTML elements in DLight have a slightly different set of lifecycle hooks:
-
-* willAppear: Triggered just before the element is added to the DOM.
-* didAppear: Triggered right after the element has been added to the DOM.
-* willDisappear: Triggered just before the element is removed from the DOM.
-* didDisappear: Triggered right after the element has been removed from the DOM.
-
-## Usage
-Unlike custom components where lifecycle methods can be added both within the class definition and during invocation, HTML elements in DLight utilize the methods directly during the element's declaration:
+HTML elements in DLight have the same lifecycle methods as custom components. However, unlike custom components where lifecycle methods can be added both within the class definition and during invocation, HTML elements in DLight utilize the methods directly during the element's declaration:
 
 ```js
 div()
-  .willAppear(() => {
+  .willMount(() => {
     console.log("div will appear in the DOM!")
   })
-  .didAppear(() => {
-    console.log("div has appeared in the DOM!")
+  .didMount(element => {
+    console.log(`${element} has appeared in the DOM!`)
   })
-  .willDisappear(() => {
+  .willUnmount(() => {
     console.log("div will be removed from the DOM!")
   })
-  .didDisappear(() => {
+  .didUnmount(() => {
     console.log("div has been removed from the DOM!")
   })
 ```
 This approach allows developers to easily and intuitively define lifecycle behaviors directly where the element is declared, making it clear when and how the element's lifecycle methods will be invoked.
 
-# Wrap-up
-The lifecycle in DLight provides developers with the granularity to handle component and element behaviors at specific stages, ensuring efficiency and a seamless user experience.
+# Lifecycle order in nested components/elements
+## willMount/willUnmount
+The `willMount` and `willUnmount` methods are invoked in the order of the component's hierarchy. For instance, if you have a component that contains another component, the `willMount` method of the parent component will be invoked before the child component's `willMount` method. Similarly for `willUnmount`.
+
+## didMount/didUnmount
+The `didMount` and `didUnmount` methods are invoked in the reverse order of the component's hierarchy. For instance, if you have a component that contains another component, the `didMount` method of the child component will be invoked after the parent component's `didMount` method. Similarly for `didUnmount`.
+
+Example:
+```js
+A(); {
+  B(); {
+    C()
+  }
+  D()
+}
+```
+Lifecycle order:
+```
+A.willMount -> B.willMount -> C.willMount -> D.willMount 
+-> D.didMount -> C.didMount -> B.didMount -> A.didMount
+
+A.willUnmount -> B.willUnmount -> C.willUnmount -> D.willUnmount
+-> D.didUnmount -> C.didUnmount -> B.didUnmount -> A.didUnmount
+```

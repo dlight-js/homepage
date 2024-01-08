@@ -9,4 +9,4 @@ DLight.js is a DX-first UI rendering library. And now the first stable version v
 * 🪶 Intuitively Simple
   * Dlight is born reactive and is designed to be intuitively simple, with a minimalistic API that requires no memorization of complex functions or libraries.
 
-In this section, we'll quickly walk you through the core idea of DLight.js and help you get started with a simple DLight project. If you just want to get your hands on a new DLight project, go through `Introduction` and `Quick Start` session and take a look at `DLight Syntax` and `Basic Usage`. If you want to know what's under DLight's hood, check `Rethinking Reactivity` out!
+In this section, we'll quickly walk you through the core idea of DLight.js and help you get started with a simple DLight project. Let's get started!

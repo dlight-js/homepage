@@ -95,7 +95,7 @@ const { user, updateUsername } = inject("user");
 </template>
 ```
 
-Next, while the examples from React and Vue3 showcase ways of passing states and methods between components, they indeed introduce a level of complexity and new concepts, such as context, provide, and inject. For beginners, this might present a learning curve.
+Neat, while the examples from React and Vue3 showcase ways of passing states and methods between components are, they indeed introduce a level of complexity and new concepts, such as context, provide, and inject. For beginners, this might present a learning curve.
 
 # Environment in DLight
 One might ask: Why can't we manage the shared state across multiple components in a straightforward manner, similar to how we handle prop-passing between parent-child components? After all, shouldn't the principle of passing data between multiple components be the same as with just two components? We don't necessarily need to reinvent the wheel; we just need a method that's more intuitive, with fewer concepts to juggle and a seamless transition from the simple parent-child prop-passing paradigm to a more global state management scenario.
@@ -120,7 +120,7 @@ class App {
     this.user = { ...this.user, userName: newUserName }
   }
 
-  Body() {
+  View() {
     h1(`Welcome back, ${this.user.userName}`)
     env()
       .user(this.user)
@@ -141,14 +141,13 @@ class UserProfile {
   @Env user
   @Env updateUsername
 
-  Body() {
-    div()
-    {
+  View() {
+    div(); {
       h2("My Profile")
       p(`Username: ${this.user.username}`)
       p(`Email: ${this.user.email}`)
       button("Update username to Jane")
-        .onclick(() => this.updateUsername("Jane"))
+        .onClick(() => this.updateUsername("Jane"))
     }
   }
 }
@@ -164,7 +163,7 @@ By consolidating state management into clear environments, DLight ensures develo
 
 # Nested Environment
 In DLight, you can have environments inside other environments. We call this a "nested environment". Here's what you need to know:
-* If you're inside a nested environment, you can access variables from both the outer and inner environment.
+* If one component inside a nested environment, you can access variables from both the outer and inner environment.
 * If the inner environment has a variable with the same name as the outer one, the inner one is used.
 
 Here's a simple example sorting this:
@@ -174,21 +173,17 @@ class MyComp {
   @Env message // this will be ok
   @Env count // this will be 100
 
-  Body() {
-    "nothing here"
-  }
+  View() {}
 }
 
 @View
 class App {
-  Body() {
+  View() {
     env()
       .message("ok")
       .count(0)
     {
-      env()
-        .count(100)
-      {
+      env().count(100); {
         MyComp()
       }
     }

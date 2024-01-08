@@ -4,13 +4,13 @@ Passing properties to components means that you can send data from one component
 In previous versions of DLight, we implemented a bidirectional data binding mechanism, which allowed for data synchronization between components. While bidirectional data binding has its advantages, it can sometimes lead to unclear data flow and make the codebase harder to maintain. That's why we have decided to transition to a unidirectional data flow model in the latest version of DLight.
 
 # Declaring a prop
-Props are a way to pass data into a component. In DLight, you can declare props using the @Prop decorator within a component class. For example:
+Props are a way to pass data into a component. In DLight, you can declare props using the `@Prop` decorator within a component class. For example:
 ```js
 @View
 class MyComp {
   @Prop myFirstProp
 
-  Body() {
+  View() {
     div(this.myFirstProp)
   }
 }
@@ -21,7 +21,7 @@ Once you've declared a prop, you can pass data to it inside other components tha
 ```js
 @View
 class App {
-  Body() {
+  View() {
     MyComp()
       .myFirstProp("this prop is declared in MyComp component")
   }
@@ -38,12 +38,12 @@ class MyComp {
   @Prop myThirdProp
   @Prop ...
 
-  Body() { ... }
+  View() { ... }
 }
 
 @View
 class App {
-  Body() {
+  View() {
     MyComp()
       .myFirstProp("1st prop")
       .mySecondProp({ value: "2nd prop" })
@@ -61,23 +61,35 @@ Consider the following example:
 ```javascript
 @View
 class MyComp {
-  @Prop @Content myContentProp
+  @Content myContentProp
 
-  Body() {
+  View() {
     div(this.myContentProp)
   }
 }
 
 @View 
 class App {
-  Body() {
+  View() {
     MyComp("This is content prop")
   }
 }
 ```
 
-The `@Content` decorator allows you to directly pass content to the component without the need for dot chaining. In the MyComp component, `@Content` myContentProp is declared, indicating that it accepts content prop as its value. It's nothing complicated and just like `innerText` in an HTML Element. **It's a shortcut!** Of course you can do `div().innerText("hi")`, but isn't `div("hi")` much simpler? So is the case with custom components in DLight.
+The `@Content` decorator allows you to directly pass content to the component without the need for dot chaining. In the MyComp component, `@Content` myContentProp is declared, indicating that it accepts content prop as its value. It's nothing complicated and just like `textContent` in an HTML Element. **It's a shortcut!** Of course you can do `div().textContent("hi")`, but isn't `div("hi")` much simpler? So is the case with custom components in DLight.
 
+# Default value
+You can also set a default value for any prop. For example:
+```js
+@View
+class MyComp {
+  @Prop message = "Hello, DLight! This is a default value."
+
+  View() {
+    div(this.message)
+  }
+}
+```
 
 # Data flow
 We've already talked about DLight adhering to the concept of unidirectional data flow, which means that data flows in one direction, from parent components to child components. Let's take a look at this example:
@@ -86,7 +98,7 @@ We've already talked about DLight adhering to the concept of unidirectional data
 class MyComp {
   @Prop compCount
 
-  Body() {
+  View() {
     div(this.compCount)
   }
 }
@@ -95,7 +107,7 @@ class MyComp {
 class App {
   count = 0
 
-  Body() {
+  View() {
     MyComp()
       .compCount(this.count)
   }
@@ -115,11 +127,9 @@ Just pass a function that sets the `count` variable like this:
 class MyComp {
   @Prop changeCount
 
-  Body() {
+  View() {
     button("change count")
-      .onclick(() => {
-        this.changeCount()
-      })
+      .onClick(this.changeCount)
   }
 }
 
@@ -131,7 +141,7 @@ class App {
     this.count ++
   }
 
-  Body() {
+  View() {
     MyComp()
       .compCount(this.changeCount)
   }

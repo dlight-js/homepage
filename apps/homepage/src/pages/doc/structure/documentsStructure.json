@@ -10,11 +10,6 @@
         "path": "introduction"
       },
       {
-        "name": "🤔 Rethinking Reactivity",
-        "zhName": "🤔 重新思考响应式",
-        "path": "rethinking-reactivity"
-      },
-      {
         "name": "⚡️ Quick Start",
         "zhName": "⚡️ 快速上手",
         "path": "quick-start"
