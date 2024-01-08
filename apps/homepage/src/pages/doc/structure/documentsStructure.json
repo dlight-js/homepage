@@ -42,9 +42,9 @@
         "path": "custom-components"
       },
       {
-        "name": "🔀 If Statements",
-        "zhName": "🔀 条件语句",
-        "path": "if-statements"
+        "name": "🔀 Conditional Rendering",
+        "zhName": "🔀 条件渲染",
+        "path": "conditional-rendering"
       },
       {
         "name": "🔁 For Loops",

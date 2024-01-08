@@ -28,7 +28,6 @@ to invert selection, and <enter> to proceed)
 ❯◯ @dlightjs/components
  ◯ @dlightjs/material-icons
  ◯ @dlightjs/markit
- ◯ @iandx/easy-css
 ```
 Choose a package manager other than 'NONE' in the selector, and dlight.js will automatically install the required dependencies:
 ```shell
@@ -81,7 +80,7 @@ import { View } from "@dlightjs/dlight"
 
 @View
 export default class App {
-  Body() {
+  View() {
     div("hello dlight!")
   }
 }

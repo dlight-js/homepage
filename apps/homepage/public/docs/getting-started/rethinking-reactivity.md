@@ -1,4 +1,4 @@
-A Deep Dive into the Reactivity Graph
+A Dive into the Reactivity Graph
 
 # Introduction
 Reactivity, or the ability to update the UI in response to data changes, is pivotal in modern frontend frameworks. As frontend applications burgeon in complexity, managing the mutable states and their effects on the UI is vitally important. While the frontend community has devised various solutions for reactivity, a handful of common issues and challenges still linger:
