@@ -46,7 +46,7 @@ class Result {
             }
             import { View, render, createElement, setStyle, setDataset, setEvent, setHTMLProp, setHTMLAttr, setHTMLProps, setHTMLAttrs, createTextNode, updateText, insertNode, ForNode, CondNode, ExpNode, EnvNode, SubViewNode, PropView } from "/dlight.js";\n${this.srcDoc}</script>
         </head>
-        <body>
+        <body style="margin: 0;">
           <div id="app" style="height: 100%; color: ${this.theme.text}"></div>
         </body>
       </html>`)
