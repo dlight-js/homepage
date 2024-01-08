@@ -249,7 +249,7 @@ class DlightDoc implements DlightDocProps {
 
   dlightMarkitCode$ = css`
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background-color: ${this.codeBgColor};
+      background-color: ${this.shadowColor};
       color: ${this.highlightColor};
   `
 
