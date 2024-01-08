@@ -64,7 +64,7 @@ div().attr(attrs)
 ```
 
 # Dataset
-In js, dataset is a special property that allows you to set data attributes. For instance, if you want to set `data-id` to `my-id`, you can do it like this:
+In js, dataset is a special property that allows you to set data attributes. For instance, if you want to set `data-id` to `my-id`, you can do it like this in js:
 ```js
 el.dataset.id = "my-id"
 ```

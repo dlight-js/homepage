@@ -111,14 +111,19 @@
         "path": "html-props"
       },
       {
-        "name": "⤵️ Forward Props",
-        "zhName": "⤵️ 向下传递属性",
-        "path": "forward-props"
+        "name": "📄 Getting Element",
+        "zhName": "📄 获取元素",
+        "path": "getting-element"
       },
       {
         "name": "📦 Prop View",
         "zhName": "📦 Prop View",
-        "path": "dlnodes-as-props"
+        "path": "prop-view"
+      },
+      {
+        "name": "⤵️ Forward Props",
+        "zhName": "⤵️ 向下传递属性",
+        "path": "forward-props"
       }
     ]
   },

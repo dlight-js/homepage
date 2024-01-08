@@ -7,7 +7,7 @@
     "dist"
   ],
   "main": "lib/Playground.view.cjs",
-  "module": "lib/Playground.view.js",
+  "module": "src/views/Playground.view.ts",
   "typings": "lib/Playground.view.d.ts",
   "scripts": {
     "dev": "vite",

@@ -7,7 +7,7 @@
     "dist"
   ],
   "main": "lib/DlightDoc.view.cjs",
-  "module": "lib/DlightDoc.view.js",
+  "module": "src/DlightDoc.view.ts",
   "typings": "lib/DlightDoc.view.d.ts",
   "scripts": {
     "dev": "vite",

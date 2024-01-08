@@ -1,5 +1,5 @@
 # Rethinking State Variables
-Imagine a world where managing state in your app is as easy as declaring a variable - no fanfare, no special treatment. Just declare it, use it in the view, and voilà, any changes to the variable automatically update the view. Sounds dreamy, doesn't it?
+Imagine a world where managing state in your app is as easy as declaring a variable - no fanfare, no special treatment. Just declare it, use it in the view, and voilà, any changes to the variable automatically update the view. Sounds nice, doesn't it?
 
 Because at its core, what is state? It’s a variable that, when changed, should naturally cause the view to update. It's unique but not THAT unique, right? It should be as straightforward to use as any other variable in your code.
 
