@@ -63,7 +63,6 @@ class FeatureCard implements FeatureCardProps, EnvType {
   `
 
   featureCardContentCss = css`
-    font-size: 12px;
     font-weight: light;
     width: 80%;
   `

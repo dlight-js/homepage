@@ -31,7 +31,7 @@ importers:
   apps/homepage:
     specifiers:
       '@dlightjs/components': 1.0.0-alpha.24
-      '@dlightjs/dlight': 1.0.0-alpha.61
+      '@dlightjs/dlight': 1.0.0-alpha.62
       '@dlightjs/material-icons': 1.0.0-alpha.2
       '@dlightjs/types': 1.0.0-alpha.0
       '@iandx/easy-css': ^0.10.14
@@ -45,7 +45,7 @@ importers:
       vite-plugin-easy-css: ^0.10.14
     dependencies:
       '@dlightjs/components': 1.0.0-alpha.24
-      '@dlightjs/dlight': 1.0.0-alpha.61
+      '@dlightjs/dlight': 1.0.0-alpha.62
       '@dlightjs/material-icons': 1.0.0-alpha.2
       '@iandx/easy-css': 0.10.14
       clsx: 2.1.0
@@ -66,7 +66,7 @@ importers:
       '@babel/plugin-transform-modules-commonjs': ^7.23.3
       '@babel/preset-env': ^7.23.7
       '@babel/standalone': ^7.23.7
-      '@dlightjs/dlight': 1.0.0-alpha.61
+      '@dlightjs/dlight': 1.0.0-alpha.62
       '@dlightjs/markit': 1.0.0-alpha.5
       '@dlightjs/material-icons': 1.0.0-alpha.4
       '@dlightjs/types': 1.0.0-alpha.0
@@ -83,7 +83,7 @@ importers:
       '@babel/plugin-transform-modules-commonjs': 7.23.3_@babel+core@7.23.7
       '@babel/preset-env': 7.23.7_@babel+core@7.23.7
       '@babel/standalone': 7.23.7
-      '@dlightjs/dlight': 1.0.0-alpha.61
+      '@dlightjs/dlight': 1.0.0-alpha.62
       '@dlightjs/markit': 1.0.0-alpha.5
       '@dlightjs/material-icons': 1.0.0-alpha.4
       '@iandx/easy-css': 0.10.14
@@ -108,7 +108,7 @@ importers:
       '@babel/standalone': ^7.23.7
       '@babel/types': ^7.23.6
       '@dlightjs/components': 1.0.0-alpha.24
-      '@dlightjs/dlight': 1.0.0-alpha.61
+      '@dlightjs/dlight': 1.0.0-alpha.62
       '@dlightjs/material-icons': 1.0.0-alpha.2
       '@dlightjs/transpiler-standalone': 1.0.0-alpha.34
       '@dlightjs/types': 1.0.0-alpha.0
@@ -127,7 +127,7 @@ importers:
       '@babel/preset-env': 7.23.7_@babel+core@7.23.7
       '@babel/standalone': 7.23.7
       '@dlightjs/components': 1.0.0-alpha.24
-      '@dlightjs/dlight': 1.0.0-alpha.61
+      '@dlightjs/dlight': 1.0.0-alpha.62
       '@dlightjs/material-icons': 1.0.0-alpha.2
       '@dlightjs/transpiler-standalone': 1.0.0-alpha.34_@babel+core@7.23.7
       '@iandx/easy-css': 0.10.14
@@ -1540,12 +1540,6 @@ packages:
 
   /@dlightjs/dlight/1.0.0-alpha.59:
     resolution: {integrity: sha512-ufsQQNMc/CqMuFi8ZV/qOhq/GU8L0BGXiQW3HxzJiEGlmEqjbdDw7VJo6uvyKPahtar6LbzTM3LDzSbEJuZtOg==}
-    dependencies:
-      '@dlightjs/store': 0.0.0
-    dev: false
-
-  /@dlightjs/dlight/1.0.0-alpha.61:
-    resolution: {integrity: sha512-U3NYEQUK66e9cO+jnk7bEwajy/7XxLXArFRyG/3MVIuLjm8VEcrpMx66497VeWowZ5m8LkpKLkDs1U7bQQ8rwg==}
     dependencies:
       '@dlightjs/store': 0.0.0
     dev: false

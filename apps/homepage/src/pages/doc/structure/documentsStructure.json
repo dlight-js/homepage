@@ -87,6 +87,11 @@
         "name": "⏳ Lifecycle",
         "zhName": "⏳ 生命周期",
         "path": "lifecycle"
+      },
+      {
+        "name": "🏃🏼 Best Practices",
+        "zhName": "🏃🏼 最佳实践",
+        "path": "best-practices"
       }
     ]
   },

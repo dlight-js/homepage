@@ -8,8 +8,11 @@ import { Example, MusicItem, musics } from "./utils"
 @View
 class ForLoopClass {
   @Prop musicList = musics.slice(1, 4)
+  @Prop language = "en"
 
-  heading = `${this.musicList.length} songs  by Lana Del Rey`
+  heading = this.language === "en"
+    ? `${this.musicList.length} songs  by Lana Del Rey`
+    : `Lana Del Rey的${this.musicList.length}首歌`
 
   @View MusicItem = (({ name, link, album, picture }: MusicItem) => {
     div().class(this.musicItemCss); {
@@ -90,10 +93,11 @@ class ForLoopClass {
 
   headingCss = css`
     margin: 0;
+    line-height: 30px;
   `
 }
 
-export const MusicList = ForLoopClass as Pretty as Typed<{ musicList: MusicItem[] }>
+export const MusicList = ForLoopClass as Pretty as Typed<{ musicList: MusicItem[], language: string }>
 
 const example: Example = {
   title: "Meet your best old friend: for loop",
