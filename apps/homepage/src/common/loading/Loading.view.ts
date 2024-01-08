@@ -1,12 +1,9 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, img, Env, Prop, required } from "@dlightjs/types"
+import { type Typed, div, Pretty, img, Env, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import { Navigator } from "@dlightjs/components"
 import { EnvType } from "../../App.view"
 import clsx from "clsx"
-// interface LoadingProps {
-//   data: FeatureDataType
-// }
 
 @View
 class Loading implements EnvType {
@@ -14,7 +11,6 @@ class Loading implements EnvType {
   @Env themeType: "light" | "dark" = required
   @Env theme: any = required
   @Env i18n: any = required
-  @Prop data = required
 
   View() {
     div()

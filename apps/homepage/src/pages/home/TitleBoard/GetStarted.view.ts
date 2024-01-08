@@ -43,10 +43,10 @@ class GetStarted implements EnvType {
     {
       this.Button(this.i18n!("Get Started", "快速开始"))
         .className(this.startCss)
-        .onClick(() => { this.navigator.to("./docs/getting-started") })
+        .onClick(() => { this.navigator.to("/docs/getting-started") })
       this.Button(this.i18n!("Quick Example", "快速示例"))
         .className(this.exampleCss)
-        .onClick(() => { this.navigator.to("./docs/getting-started") })
+        .onClick(() => { this.navigator.to("/examples/introduction/hello-world") })
     }
   }
 

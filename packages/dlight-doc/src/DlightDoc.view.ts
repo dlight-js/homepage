@@ -245,19 +245,6 @@ class DlightDoc implements DlightDocProps {
       word-wrap: break-word;
       line-height: 1.75rem;
     }
-    /* .dlight-markit-code {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background-color: ${this.codeBgColor};
-      color: ${this.highlightColor};
-    } */
-    /* .dlight-markit-code-block {
-      background-color: ${this.codeBgColor};
-      color: ${this.highlightColor};
-    }
-    .dlight-markit-code-block-header {
-      background-color: ${this.codeBlockHeaderColor};
-      color: ${this.highlightColor};
-    } */
   `
 
   dlightMarkitCode$ = css`

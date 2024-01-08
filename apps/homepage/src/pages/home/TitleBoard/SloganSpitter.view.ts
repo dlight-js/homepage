@@ -128,6 +128,7 @@ class SloganSpitter implements EnvType {
         .width(this.logoWidth)
         .height(this.logoWidth)
       tag(this.headerTag)(this.slogan)
+        .class(this.sloganTextCss)
     }
   }
 
@@ -142,6 +143,10 @@ class SloganSpitter implements EnvType {
     align-items: center;
     justify-content: center;
     gap: 10px;
+  `
+
+  sloganTextCss = css`
+    font-weight: 500;
   `
 }
 

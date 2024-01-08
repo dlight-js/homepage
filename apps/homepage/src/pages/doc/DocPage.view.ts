@@ -11,6 +11,7 @@ import SideMenu from "../../common/sideMenu/SideMenu.view"
 import Skeleton from "../../common/loading/Skeleton.view"
 import ErrorPage from "../ErrorPage.view"
 import FileMenu from "./FileMenu.view"
+import LoadingCircle from "../../common/loading/LoadingCircle.view"
 
 @View
 class DocPage {
@@ -21,7 +22,7 @@ class DocPage {
   @Env language: any = required
   @Env themeType: string = required
   @Env theme: any = required
-  isLoading = true
+  isLoading = false
   isFail = false
   mdString: string = ""
   selectedName: string = ""
@@ -48,7 +49,7 @@ class DocPage {
   // pathWatcher is a function that will be executed when the path changes
   @Watch
   pathWatcher() {
-    this.isLoading = true
+    // this.isLoading = true
     this.isOpenOutline = { value: false }
     this.isFail = false
     const [fileData, fileIndex] = findCertainFile({ mapData: this.flatfileData, filePath: "/" + this.path })
@@ -75,7 +76,7 @@ class DocPage {
           }
           return ""
         })
-        .then(text => { this.mdString = text; this.isLoading = false })
+        .then(text => { this.mdString = text })
         .catch((err) => { console.log(err); this.isFail = true })
     }
     this.selectedName = fileData?.name ?? ""
@@ -134,12 +135,7 @@ class DocPage {
               .btnEvent(() => { this.navigator.to("/docs/getting-started") })
           } else {
             if (this.isLoading) {
-              div()
-                .style({ marginTop: "40px" })
-              {
-                Skeleton()
-                  .width(window.innerWidth > 1135 ? "calc(100% - 320px)" : "calc(100% - 40px)")
-              }
+              LoadingCircle()
             } else {
               DlightDoc(this.mdString)
                 .title(this.selectedName)

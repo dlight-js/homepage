@@ -46,6 +46,11 @@ class FileMenuItem implements FileMenuItemProps {
     this.navigator.to(this.filePath)
   }
 
+  handleClickArrow(e: MouseEvent) {
+    e.stopPropagation()
+    this.isOpen = !this.isOpen
+  }
+
   View() {
     div()
     {
@@ -72,6 +77,7 @@ class FileMenuItem implements FileMenuItemProps {
               .height(20)
               .width(20)
               .color(this.theme.textColor)
+              .onClick(this.handleClickArrow)
           }
         }
       }

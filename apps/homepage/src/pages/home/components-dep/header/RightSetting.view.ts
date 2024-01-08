@@ -43,6 +43,7 @@ class RightSetting {
         .href("https://github.com/dlight-js/dlight")
       this.NavForwardIcon()
         .src("/imgs/discord.svg")
+        .href("https://github.com/dlight-js/dlight")
     }
   }
 

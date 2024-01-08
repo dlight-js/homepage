@@ -108,7 +108,6 @@ class AdvanceCodeBlock implements AdvanceCodeBlockProps {
     border-radius: 12px 12px 0 0;
     color: #333333;
     font-family: system-ui;
-    font-size: 14px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -122,7 +121,6 @@ class AdvanceCodeBlock implements AdvanceCodeBlockProps {
   dlightMarkitCodeBlockTitle = css`
     font-weight: 500;
     margin-right: 10px;
-    font-size: 16px;
   `
   dlightMarkitCopyBtnCss = css`
     display: flex;
@@ -133,7 +131,7 @@ class AdvanceCodeBlock implements AdvanceCodeBlockProps {
   dlightMarkitCodeBlock$ = css`
     background-color: rgba(242, 214, 159, 0.3);
     border-radius: 12px;
-    font-size: 15px;
+    font-size: 14px;
     margin: 10px 0;
   `
   dlightHomepageMarkitCode = css`
@@ -141,13 +139,12 @@ class AdvanceCodeBlock implements AdvanceCodeBlockProps {
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 16px;
-    font-size: 95%;
-    /* position: relative; */
     overflow-x: auto;
   `
   code = css`
     font-family: ui-monospace, SFMono-Regular, Menlo,Monaco, Consolas, Liberation Mono, Courier New, monospace;
-    line-height: 1.25rem;
+    line-height: 1.29rem;
+    font-weight: 400;
   `
   copyIcon = css`
     width: 30px;
@@ -155,9 +152,6 @@ class AdvanceCodeBlock implements AdvanceCodeBlockProps {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: rgba(250, 190, 142, 0.1); */
-    /* border: 1px solid #DCDCDC; */
-    /* border-radius: 6px; */
   `
 }
 
