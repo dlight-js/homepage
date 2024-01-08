@@ -26,6 +26,8 @@ class Result {
       <html lang="en">
         <head>
           <meta charset="UTF-8" />
+          <link rel="stylesheet" href="/index.css">
+          <link rel="stylesheet" href="/base.css">
           <script type="module" src="/dlight.js"></script>
           <script type="module">
             const originalConsoleLog = console.log;
@@ -51,7 +53,7 @@ class Result {
             ExpNode, PropView, SubViewNode } from "/dlight.js";\n${this.srcDoc}</script>
         </head>
         <body>
-          <div id="app" style="height: 100%"></div>
+          <div id="app" style="height: 100%; color: ${this.theme.text}"></div>
         </body>
       </html>`)
     }
@@ -61,6 +63,8 @@ class Result {
   wrapperCss = css`
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
     border-width: 0px;
     color: ${this.theme.text};
     overflow: hidden;

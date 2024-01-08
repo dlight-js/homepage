@@ -52,8 +52,8 @@ class FeatureCard implements FeatureCardProps, EnvType {
   `
 
   featureCardIconCss = css`
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
   `
 
   featureCardTitleCss = css`

@@ -1,15 +1,14 @@
 import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, div, Env, Prop, required, Watch } from "@dlightjs/types"
+import { type Typed, Pretty, div, Env, Prop, required } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import SubExampleItem from "./SubExampleItem.view"
 import { Navigator } from "@dlightjs/components"
-import { CodeModuleType, ExmaplesCodeDataType } from "../../utils/types"
+import { ExmaplesCodeDataType } from "../../utils/types"
 
 interface ExampleMenuProps {
   isOpen: boolean
   selectedTitle: string
   examples: ExmaplesCodeDataType[]
-  updateModules: (modules: CodeModuleType[], title: string, header: string) => void
 }
 
 @View
@@ -19,8 +18,8 @@ class ExampleMenu implements ExampleMenuProps {
   @Env windowWidth = required
   @Prop isOpen = required
   @Prop examples = required
-  @Prop updateModules = required
   @Prop selectedTitle = required
+  @Prop header = required
 
   View() {
     div()
@@ -29,13 +28,11 @@ class ExampleMenu implements ExampleMenuProps {
       for (const example of this.examples) {
         div(example.title)
           .class(this.exampleTitleCss)
-        for (const { title, description, modules } of example.children) {
+        for (const { title, description } of example.children) {
           SubExampleItem()
             .header(example.title)
             .title(title)
             .description(description)
-            .modules(modules)
-            .updateModules(this.updateModules)
             .selectedTitle(this.selectedTitle)
         }
       }

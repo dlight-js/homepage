@@ -11,7 +11,7 @@ export const ExamplesCodeData: ExmaplesCodeDataType[] = [
     title: "Introduction",
     zhName: "介绍",
     description: "",
-    path: "/examples/hello-world",
+    path: "/examples/introduction/hello-world",
     children: [
       {
         title: "Hello World",
@@ -34,58 +34,24 @@ render("app", HelloWorld)`,
         ]
       },
       {
-        title: "ToDoMVC",
+        title: "TodoMVC",
         description: "The ToDoMVC example demonstrates how to create a simple ToDo List application using the @dlightjs/dlight framework.",
         zhDescription: "ToDoMVC示例展示了如何使用@dlightjs/dlight框架创建一个ToDoMVC应用程序。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
-import {
-  type Typed,
-  type Pretty,
-  div,
-  section,
-  header,
-  h1,
-  input,
-  label,
-  ul,
-  SubTyped,
-  button,
-  li,
-  footer,
-  span,
-  strong,
-  a,
-  p,
-} from "@dlightjs/types"
-            
-interface ToDo {
-  id: number
-  title: string
-  completed: boolean
-}
-
-interface ToDoItemProps {
-  id: number
-  editing: boolean
-  title: string
-  completed: boolean
-}
-
-type Filter = "all" | "active" | "completed"
-            
+      
 @View
 class TodoMVC {
-  todos: ToDo[] = []
+  todos = []
 
-  editingId: number | null = null
+  editingId = null
 
   editingText = ""
 
   remainingCount = this.todos.filter(todo => !todo.completed).length
 
-  showMode: Filter = (location.hash.slice(2) as Filter) || "all"
+  showMode = location.hash.slice(2) || "all"
 
   filteredTodos = this.todos.filter(todo => {
     switch (this.showMode) {
@@ -98,8 +64,8 @@ class TodoMVC {
     }
   })
 
-  addTodo({ target, key }: KeyboardEvent) {
-    const title = (target as HTMLInputElement).value.trim()
+  addTodo({ target, key }) {
+    const title = target.value.trim()
     if (key === "Enter" && title) {
       this.todos = [
         ...this.todos,
@@ -109,21 +75,21 @@ class TodoMVC {
           completed: false,
         },
       ]
-      ;(target as HTMLInputElement).value = ""
+      ;target.value = ""
     }
   }
 
-  removeTodo(id: number) {
+  removeTodo(id) {
     this.todos = this.todos.filter(todo => todo.id !== id)
   }
 
-  toggleTodo(id: number) {
+  toggleTodo(id) {
     this.todos = this.todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     )
   }
 
-  doneEditing(id: number) {
+  doneEditing(id) {
     this.todos = this.todos.map(todo =>
       todo.id === id ? { ...todo, title: this.editingText } : todo
     )
@@ -135,7 +101,7 @@ class TodoMVC {
   }
 
   locationHandler() {
-    this.showMode = (location.hash.slice(2) as Filter) || "all"
+    this.showMode = location.hash.slice(2) || "all"
   }
 
   willMount() {
@@ -147,7 +113,7 @@ class TodoMVC {
   }
 
   @View
-  ToDoItem = (({ id, title, completed, editing }: ToDoItemProps) => {
+  ToDoItem({ id, title, completed, editing }) {
     li().class(
       \`todo \${editing ? "editing" : ""} \${completed ? "completed" : ""}\`.trim()
     )
@@ -164,7 +130,7 @@ class TodoMVC {
           this.editingId = id
         })
         button()
-          .class("destroy")
+          .class("button destroy")
           .onClick(() => {
             this.removeTodo(id)
           })
@@ -174,7 +140,7 @@ class TodoMVC {
           .class("edit")
           .value(this.editingText)
           .onInput(e => {
-            this.editingText = (e.target as HTMLInputElement).value
+            this.editingText = e.target.value
           })
           .onBlur(() => this.doneEditing(id))
           .element(el => {
@@ -182,7 +148,7 @@ class TodoMVC {
           })
       }
     }
-  }) as Pretty as SubTyped<ToDoItemProps>
+  }
 
   @View
   Footer() {
@@ -216,7 +182,7 @@ class TodoMVC {
       }
       if (this.remainingCount !== this.todos.length) {
         button("Clear completed")
-          .class("clear-completed")
+          .class("button clear-completed")
           .onClick(this.clearCompleted)
       }
     }
@@ -276,7 +242,7 @@ class TodoMVC {
   }
 }
 
-render("app", ToDoMVC)`,
+render("app", TodoMVC)`,
             path: "/index.ts"
           }
         ]
@@ -287,7 +253,7 @@ render("app", ToDoMVC)`,
     title: "Reactivity",
     zhName: "响应式",
     description: "",
-    path: "/examples/reactive-states",
+    path: "/examples/reactivity/reactive-states",
     children: [
       {
         title: "Reactive States",
@@ -387,25 +353,47 @@ render("app", CountComp)`,
             code: `import { View, render } from "@dlightjs/dlight"
 
 @View
+class SubSubComp {
+  @Env theme
+  View() {
+    div("I am Sub Sub Component!")
+      .style({ color: this.theme.textColor, backgroundColor: this.theme.bgColor, margin: "10px 0" })
+  }
+}
+
+@View
 class SubComp2 {
-  @Env themeType
+  @Env theme
   View() {
     div("I am Sub Component2!")
+      .style({ color: this.theme.textColor, backgroundColor: this.theme.bgColor, margin: "10px 0" })
   }
 }
 
 @View
 class SubComp {
-  @Env themeType
+  @Env theme
 
   View() {
     div("I am Sub Component1!")
+      .style({ color: this.theme.textColor, backgroundColor: this.theme.bgColor, margin: "10px 0" })
+    SubSubComp()
   }
 }
 
 @View
 class RootComp {
   themeType = "Light"
+  theme = {
+    Light: {
+      bgColor: "#fff",
+      textColor: "#000"
+    },
+    Dark: {
+      bgColor: "#000",
+      textColor: "#fff"
+    }
+  }
 
   changeTheme() {
     this.themeType = this.themeType === "Light" ? "Dark" : "Light"
@@ -413,14 +401,17 @@ class RootComp {
 
   View() {
     env()
-      .themeType(this.themeType)
+      .theme(this.theme[this.themeType])
     {
+      div("The themeType is " + this.themeType)
       button("Change Theme")
         .onClick(this.changeTheme)
       SubComp()
+      SubComp2()
     }
   }
 }
+
 render("app", RootComp)`,
             path: "/index.ts"
           }
@@ -429,10 +420,10 @@ render("app", RootComp)`,
     ]
   },
   {
-    title: "DLight Syntax",
-    zhName: "DLight语法",
+    title: "Dlight Syntax",
+    zhName: "Dlight语法",
     description: "",
-    path: "/examples/text-element",
+    path: "/examples/dlight-syntax/text-element",
     children: [
       {
         title: "Text Element",
@@ -504,21 +495,22 @@ render("app", HtmlElementProps)`,
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
-@View SubComponent {
+@View 
+class SubComp {
   View() {
     div("I am Sub Component!")
   }
 }
 
 @View
-class RootComponent {
+class RootComp {
   View() {
     div("I am Root Component!")
-    SubComponent()
+    SubComp()
   }
 }
 
-render("app", RootComponent)`,
+render("app", RootComp)`,
             path: "/index.ts"
           }
         ]
@@ -547,7 +539,7 @@ class TrafficLight {
     p(this.light)
     p()
     {
-      "You must"
+      "You must "
       if (this.light === "red") {
         span("STOP")
       } else if (this.light === "orange") {
@@ -680,7 +672,7 @@ class Expression {
   count = 2
 
   View() {
-    _(count*2)
+    _(this.count*2)
   }
 }
 
@@ -695,11 +687,11 @@ render("app", Expression)`,
     title: "Component",
     zhName: "组件",
     description: "",
-    path: "/examples/props",
+    path: "/examples/component/props",
     children: [
       {
         title: "Props",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "UserProfile component receiving dynamic properties from an App class",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -761,7 +753,7 @@ export default UserProfile`,
       },
       {
         title: "Content",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        description: "BeautifulButton component",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -798,6 +790,8 @@ class BeautifulButton {
   View() {
     button(this.btnName)
       .onClick(this.handleClick)
+      .style({ color: "white", backgroundColor: "green", border: "none",
+        padding: "5px 10px", marginRight: "10px", borderRadius: "4px" })
   }
 }
 
@@ -845,13 +839,13 @@ class CenterAlign {
   }
 }
 
-export default RowDisplay`,
-            path: "/RowDisplay.view.ts"
+export default CenterAlign`,
+            path: "/CenterAlign.view.ts"
           }
         ]
       },
       {
-        title: "SubView",
+        title: "Sub View",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
         modules: [
           {
@@ -859,15 +853,24 @@ export default RowDisplay`,
 
 @View
 class App {
+  count = 0
+
+  @View
+  BeautifulBtn({content, handleClick}) {
+    button(content)
+      .onClick(handleClick)
+      .style({ color: "white", backgroundColor: "green", border: "none",
+        padding: "5px 10px", marginRight: "10px", borderRadius: "4px" })
+  }
+
   View() {
-    FunnyButton()
-    {
-      "I got content!"
-    }
-    FunnyButton()
+    div(this.count)
+    this.BeautifulBtn("Add")
+      .handleClick(()=>{ this.count ++ })
+    this.BeautifulBtn("Minus")
+      .handleClick(()=>{ this.count -- })
   }
 }
-
 
 render("app", App)`,
             path: "/index.ts"
@@ -880,56 +883,50 @@ render("app", App)`,
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
-import UserProfile from 'UserProfile.view'
+import Header from './Header.view'
 
 @View
-class PropView {
-  user = {
-    id: 1,
-    username: "unicorn42",
-    email: "unicorn42@example.com"
-  }
-
-  updateUsername(newUserName) {
-    this.user = { ...this.user, userName: newUserName }
-  }
-
+class PropViewComp {
   View() {
-    h1("Welcome back, " + this.user.userName)
-    env()
-      .user(this.user)
-      .updateUsername(this.updateUsername)
-    {
-      UserProfile()
-    }
+    Header()
+      .leftView(View => div("X"))
+      .centerView(View => div("Title"))
+      .rightView(View => div("···"))
   }
 }
 
-render("app", PropView)`,
+render("app", PropViewComp)`,
             path: "/index.ts"
           },
           {
             code: `import { View } from "@dlightjs/dlight" 
 
 @View
-class UserProfile {
-  @Env user
-  @Env updateUsername
+class Header {
+  @Prop leftView
+  @Prop centerView
+  @Prop rightView
 
   View() {
     div()
+      .style({ display: "flex", justifyContent: "space-between", alignItems: "center",
+        backgroundColor: "#a9a9a9", color: "black", padding: "5px 10px" })
     {
-      h2("My Profile")
-      p("Username: " + this.user.username)
-      p("Email: " + this.user.email)
-      button("Update username to Jane")
-        .onClick(() => this.updateUsername("Jane"))
+      if (this.leftView) {
+        this.leftView
+      }
+      if (this.centerView) {
+        this.centerView
+      }
+      if (this.rightView) {
+        this.rightView
+      }
     }
   }
 }
 
-export default UserProfile`,
-            path: "/UserProfile.view.ts"
+export default Header`,
+            path: "/Header.view.ts"
           }
         ]
       }
@@ -939,39 +936,176 @@ export default UserProfile`,
     title: "Lifecycle",
     zhName: "生命周期",
     description: "",
-    path: "/examples/on-mount",
+    path: "/examples/lifecycle/html-element-lifecycle",
     children: [
       {
-        title: "On Mount",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        title: "Html Element Lifecycle",
+        description: "A Firecracker class showcasing HTML element lifecycle management by dynamically removing firecracker.",
         modules: [
           {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
+            code: `import { View, render } from "@dlightjs/dlight"
 
 @View
-class PageTitle {
-  pageTitle = ""
+class Firecracker {
+  firecrackers = new Array(10).fill(0)
 
-  didMount() {
-    this.pageTitle = document.title
+  fire() {
+    this.firecrackers = this.firecrackers.slice(0, this.firecrackers.length - 1)
   }
 
   View() {
-    p(this.pageTitle)
+    for (const firecracker of this.firecrackers) {
+      div("🀫")
+        .didUnmount(() => { 
+          if (this.firecrackers.length > 0) {
+            setTimeout(() => {
+              this.firecrackers = this.firecrackers.slice(0, this.firecrackers.length - 1)
+            }, 50)
+          }
+        })
+    }
+    button("🔥")
+      .onClick(this.fire)
+    button("get a new firecracker")
+      .onClick(() => { this.firecrackers = new Array(10).fill(0) })
   }
 }
 
-render("app", PageTitle)`,
+render("app", Firecracker)`,
             path: "/index.ts"
           }
         ]
       },
       {
-        title: "On Unmount",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing.",
+        title: "Component Lifecycle",
+        description: "An interactive AppleTree class demonstrates the component lifecycle using lifecycle hooks.",
         modules: [
           {
-            code: `import DLight, { View, render } from "@dlightjs/dlight"
+            code: `import { View, render } from "@dlightjs/dlight"
+import Apple from "./Apple.view"
+
+@View
+class AppleTree {
+  appleIds = [0,1,2,3]
+
+  View() {
+    button("Add an Apple")
+      .onClick(() => { 
+        const newAppleId = [...Array(this.appleIds.length + 1).keys()]
+          .find(i => !this.appleIds.includes(i))
+        this.appleIds = [...this.appleIds, newAppleId] 
+      })
+    button("Pick an Apple")
+      .onClick(() => { 
+        this.appleIds.splice(Math.floor(Math.random() * this.appleIds.length), 1)
+        this.appleIds = [...this.appleIds]
+       })
+    for (const appleId of this.appleIds) {
+      key: appleId
+      Apple()
+        .appleId(appleId)
+        .willMount(() => { console.log("[willMount] apple " + appleId) })
+        .didMount(() => { console.log("[didMount] apple " + appleId) })
+        .willUnmount(() => { console.log("[willUnmount] apple " + appleId) })
+        .didUnmount(() => { console.log("[didUnmount] apple " + appleId) })
+    }
+  }
+}
+
+render("app", AppleTree)`,
+            path: "/index.ts"
+          },
+          {
+            code: `import { View } from "@dlightjs/dlight" 
+
+@View
+class Apple {
+  @Prop appleId
+
+  View() {
+    div("🍎apple " + this.appleId)
+  }
+}
+
+export default Apple`,
+            path: "/Apple.view.ts"
+          }
+        ]
+      },
+      {
+        title: "Instant Component Lifecycle",
+        description: "An interactive AppleTree class demonstrates instant component lifecycle using lifecycle hooks.",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
+import Apple from "./Apple.view"
+
+@View
+class AppleTree {
+  appleIds = [0,1,2,3]
+
+  View() {
+    button("Add an Apple")
+      .onClick(() => { 
+        const newAppleId = [...Array(this.appleIds.length + 1).keys()]
+          .find(i => !this.appleIds.includes(i))
+        this.appleIds = [...this.appleIds, newAppleId] 
+      })
+    button("Pick an Apple")
+      .onClick(() => { 
+        this.appleIds.splice(Math.floor(Math.random() * this.appleIds.length), 1)
+        this.appleIds = [...this.appleIds]
+       })
+    for (const appleId of this.appleIds) {
+      key: appleId
+      Apple()
+        .appleId(appleId)
+    }
+  }
+}
+
+render("app", AppleTree)`,
+            path: "/index.ts"
+          },
+          {
+            code: `import { View } from "@dlightjs/dlight" 
+
+@View
+class Apple {
+  @Prop appleId
+
+  willMount() {
+    console.log("[willMount] apple " + this.appleId)
+  }
+
+  didMount() {
+    console.log("[didMount] apple " + this.appleId)
+  }
+
+  willUnmount() {
+    console.log("[willUnmount] apple " + this.appleId)
+  }
+
+  didUnmount() {
+    console.log("[didUnmount] apple" + this.appleId)
+  }
+
+  View() {
+    div("🍎apple " + this.appleId)
+  }
+}
+
+export default Apple`,
+            path: "/Apple.view.ts"
+          }
+        ]
+      },
+      {
+        title: "Did Update",
+        description: "A dynamic time display demonstrates how to use didUpdate feature to update every second",
+        modules: [
+          {
+            code: `import { View, render } from "@dlightjs/dlight"
 
 @View
 class Time {
@@ -979,7 +1113,7 @@ class Time {
   timer
 
   didMount() {
-    this.timer = setInterval(() => {
+    this.timer = setTimeout(() => {
       this.time = new Date().toLocaleTimeString()
     }, 1000)
   }
@@ -989,8 +1123,12 @@ class Time {
   }
 
   View() {
-    span("Current time: ")
-    span(this.time)
+    span(\`Current time: \${this.time}\`)
+      .didUpdate(() => {
+        this.timer = setTimeout(() => {
+          this.time = new Date().toLocaleTimeString()
+        }, 1000)
+      })
   }
 }
 

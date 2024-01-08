@@ -84,6 +84,7 @@ class Console {
   iconCss = css`
     padding-top: 5px;
     margin-left: 10px;
+    cursor: pointer;
   `
 }
 

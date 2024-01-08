@@ -51,7 +51,7 @@ export const HeaderData = [
   {
     btnName: "🎯 Examples",
     zhBtnName: "🎯 示例",
-    path: "/examples/declare-state",
+    path: "/examples/introduction/hello-world",
     structureData: ExamplesCodeData
   }
   // {

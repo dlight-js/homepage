@@ -3,7 +3,7 @@ import { css } from "@iandx/easy-css"
 import { type Typed, div, Pretty, Env, Prop, required, Watch } from "@dlightjs/types"
 import DLightEditor from "dlight-editor"
 import { ExamplesCodeData } from "../../const/examplesCodeData"
-import { CodeModuleType, ExmaplesCodeDataType } from "../../utils/types"
+import { ExmaplesCodeDataType } from "../../utils/types"
 import { RoutesEnv } from "@dlightjs/components"
 import { Loading } from "../../common"
 import ExampleMenu from "./ExampleMenu.view"
@@ -59,7 +59,7 @@ class ExamplesPage implements RoutesEnv {
   modules: any = this.examples[0].children![0].modules
   selectedTitle: string = this.examples[0].children![0].title
   menuOpenBtnEl: any
-  header: string = "Reactivity / " + this.selectedTitle
+  header: string = "Introduction"
   endLoading = (() => {
     setTimeout(() => {
       this.isLoading = false
@@ -69,17 +69,17 @@ class ExamplesPage implements RoutesEnv {
   @Watch
   pathWatcher() {
     const pathSplit = this.path!.split("/")
-    const title = pathSplit[pathSplit.length - 1]
+    const title = pathSplit[pathSplit.length - 2]
+    const subTitle = pathSplit[pathSplit.length - 1]
     // ---- First letter to uppercase, replace "-" to " "
-    this.selectedTitle = title.split("-").map((item: string) => {
+    this.selectedTitle = subTitle.split("-").map((item: string) => {
       return item[0]?.toUpperCase() + item.slice(1)
     }).join(" ")
-  }
-
-  updateModules(modules: CodeModuleType[], title: string, header: string) {
-    this.modules = modules
-    this.header = `${header} / ${title}`
-    this.navigator!.to(`/examples/${title.toLocaleLowerCase().replaceAll(" ", "-")}`)
+    this.header = title.split("-").map((item: string) => {
+      return item[0]?.toUpperCase() + item.slice(1)
+    }).join(" ")
+    const root = this.examples.find((item) => item.title === this.header)
+    this.modules = root?.children?.find((item) => item.title === this.selectedTitle)?.modules
   }
 
   setMenuOpenBtnEl(el: any) {
@@ -103,7 +103,7 @@ class ExamplesPage implements RoutesEnv {
         .handleClickOpenMenu(this.openMenu)
         .handleClickOpenOutline(undefined)
         .setMenuOpenBtnEl(this.setMenuOpenBtnEl)
-        .title(this.header)
+        .title(`${this.header} / ${this.selectedTitle}`)
       if (this.isLoading) {
         Loading()
       } else {
@@ -119,7 +119,6 @@ class ExamplesPage implements RoutesEnv {
               .isOpen(this.isMenuOpen)
               .examples(this.examples)
               .selectedTitle(this.selectedTitle)
-              .updateModules(this.updateModules)
           }
           div()
             .class(this.dlightEditorWrapCss)
