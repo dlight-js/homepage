@@ -29,7 +29,7 @@ class HelloWorld {
 }
 
 render("app", HelloWorld)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -243,7 +243,7 @@ class TodoMVC {
 }
 
 render("app", TodoMVC)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       }
@@ -270,7 +270,7 @@ class NameComp {
   }
 }
 render("app", NameComp)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -292,7 +292,7 @@ class NameComp {
   }
 }
 render("app", NameComp)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -314,7 +314,7 @@ class CountComp {
   }
 }
 render("app", CountComp)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -341,7 +341,7 @@ class CountComp {
   }
 }
 render("app", CountComp)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -413,7 +413,7 @@ class RootComp {
 }
 
 render("app", RootComp)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       }
@@ -441,7 +441,7 @@ class TextElement {
   }
 }
 render("app", TextElement)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -465,7 +465,7 @@ class HtmlElement {
 }
 
 render("app", HtmlElement)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -485,7 +485,7 @@ class HtmlElementProps {
 }
 
 render("app", HtmlElementProps)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -511,7 +511,7 @@ class RootComp {
 }
 
 render("app", RootComp)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -552,7 +552,7 @@ class TrafficLight {
 }
 
 render("app", TrafficLight)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -578,7 +578,7 @@ class Colors {
 }
 
 render("app", Colors)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -611,7 +611,7 @@ class NumComp {
 }
 
 render("app", NumComp)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -656,7 +656,7 @@ class TrafficLight {
 }
 
 render("app", TrafficLight)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -677,7 +677,7 @@ class Expression {
 }
 
 render("app", Expression)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       }
@@ -710,7 +710,7 @@ class App {
   }
 }
 render("app", App)`,
-            path: "/index.ts"
+            path: "/index.js"
           },
           {
             code: `import { View } from "@dlightjs/dlight" 
@@ -747,7 +747,7 @@ class UserProfile {
 }
 
 export default UserProfile`,
-            path: "/UserProfile.view.ts"
+            path: "/UserProfile.view.js"
           }
         ]
       },
@@ -777,7 +777,7 @@ class App {
 }
 
 render("app", App)`,
-            path: "/index.ts"
+            path: "/index.js"
           },
           {
             code: `import { View } from "@dlightjs/dlight" 
@@ -796,7 +796,7 @@ class BeautifulButton {
 }
 
 export default BeautifulButton`,
-            path: "/BeautifulButton.view.ts"
+            path: "/BeautifulButton.view.js"
           }
         ]
       },
@@ -821,7 +821,7 @@ class App {
 }
 
 render("app", App)`,
-            path: "/index.ts"
+            path: "/index.js"
           },
           {
             code: `import { View, Children } from "@dlightjs/dlight" 
@@ -840,7 +840,7 @@ class CenterAlign {
 }
 
 export default CenterAlign`,
-            path: "/CenterAlign.view.ts"
+            path: "/CenterAlign.view.js"
           }
         ]
       },
@@ -873,7 +873,7 @@ class App {
 }
 
 render("app", App)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -896,7 +896,7 @@ class PropViewComp {
 }
 
 render("app", PropViewComp)`,
-            path: "/index.ts"
+            path: "/index.js"
           },
           {
             code: `import { View } from "@dlightjs/dlight" 
@@ -926,7 +926,7 @@ class Header {
 }
 
 export default Header`,
-            path: "/Header.view.ts"
+            path: "/Header.view.js"
           }
         ]
       }
@@ -972,7 +972,7 @@ class Firecracker {
 }
 
 render("app", Firecracker)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       },
@@ -1013,7 +1013,7 @@ class AppleTree {
 }
 
 render("app", AppleTree)`,
-            path: "/index.ts"
+            path: "/index.js"
           },
           {
             code: `import { View } from "@dlightjs/dlight" 
@@ -1028,7 +1028,7 @@ class Apple {
 }
 
 export default Apple`,
-            path: "/Apple.view.ts"
+            path: "/Apple.view.js"
           }
         ]
       },
@@ -1065,7 +1065,7 @@ class AppleTree {
 }
 
 render("app", AppleTree)`,
-            path: "/index.ts"
+            path: "/index.js"
           },
           {
             code: `import { View } from "@dlightjs/dlight" 
@@ -1096,7 +1096,7 @@ class Apple {
 }
 
 export default Apple`,
-            path: "/Apple.view.ts"
+            path: "/Apple.view.js"
           }
         ]
       },
@@ -1133,7 +1133,7 @@ class Time {
 }
 
 render("app", Time)`,
-            path: "/index.ts"
+            path: "/index.js"
           }
         ]
       }

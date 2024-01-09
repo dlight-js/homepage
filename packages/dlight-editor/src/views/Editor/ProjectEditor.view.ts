@@ -115,7 +115,7 @@ class ProjectEditor {
   }
 
   tabToPath(tab: string) {
-    return `/${tab}.ts`
+    return `/${tab}.js`
   }
 
   /** @lifecycle */

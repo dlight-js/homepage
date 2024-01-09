@@ -1,4 +1,5 @@
 import { transform } from "@babel/standalone"
+import DLightPreset from "babel-preset-dlight"
 import T from "@babel/types"
 
 function ParserPlugin({ types: t }: { types: typeof T }, { fileName }: any) {
@@ -96,24 +97,14 @@ function ParserPlugin({ types: t }: { types: typeof T }, { fileName }: any) {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-extraneous-class
-export class CodeParser {
-  static changeExport(code: string, path: string) {
-    return transform(code, { plugins: [[ParserPlugin, { fileName: path }]] }).code
-  }
+export function transformEmbeddedCode(code: string, path: string) {
+  return transform(code, { plugins: [[ParserPlugin, { fileName: path }]] }).code
 }
 
-export class Module {
-  path
-  parsedCode
-  moduleExports: undefined | object
-  constructor(path: string, code: string) {
-    this.path = path
-    this.parsedCode = this.parseCode(code)
-  }
-
-  parseCode(code: string) {
-    const filename = this.path.replace(/\.ts$/, "")
-    return CodeParser.changeExport(code, filename)
-  }
+export function transformDlight(code: string) {
+  return transform(code, {
+    presets: [
+      [DLightPreset, { files: "*" }]
+    ]
+  }).code
 }
