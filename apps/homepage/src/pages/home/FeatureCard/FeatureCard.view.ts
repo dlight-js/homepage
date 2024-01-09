@@ -29,6 +29,7 @@ class FeatureCard implements FeatureCardProps, EnvType {
       .class(this.featureCardWrapCss)
     {
       img()
+        .alt(this.data.title)
         .src(this.themeType === "dark" ? this.data.darkImgUrl : this.data.imgUrl)
         .class(this.featureCardIconCss)
       div(this.i18n!(this.data.title, this.data.zhTitle))

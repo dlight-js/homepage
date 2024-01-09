@@ -21,6 +21,7 @@ class RightSetting {
         .href(href)
       {
         img()
+          .alt(`${src.split("/").pop()?.split(".")[0]} icon` ?? "")
           .class(this.iconSizeCss)
           .src(src)
       }

@@ -20,6 +20,7 @@ class Logo implements LogoProps {
   View() {
     img()
       .src("/imgs/logo-leading-png.svg")
+      .alt("DLight Logo")
       .class(clsx(this.logoCss, this.class))
   }
 

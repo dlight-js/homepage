@@ -25,6 +25,7 @@ class Loading implements EnvType {
           .class(clsx(this.ballCss, this.ballRightCss))
       }
       img()
+        .alt("Loading")
         .src("/imgs/D.svg")
         .class(this.imgCss)
     }
