@@ -22,7 +22,7 @@ export const colors: Record<string, Color> = {
     activeColor: "#ffc494",
     hoverColor: "#ffd2ad",
     shadowColor: "#A9A9A9",
-    codeBgColor: "rgba(250, 173, 20, 0.1)",
+    codeBgColor: "rgba(250, 196, 90, 0.1)",
     reverseHLColor: "#72875D",
     codeBlockHeaderColor: "#ffc494",
     lightShadow: "rgba(0, 0, 0, 0.1)",
