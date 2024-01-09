@@ -27,7 +27,7 @@ export const FeatureData = [
     zhContent: "Dlight使用函数调用和点语法，使开发更加愉快，无需编写过时且难以阅读的XML代码。"
   },
   {
-    title: "Intuitively Simple",
+    title: "Intuitive",
     zhTitle: "直观简单",
     imgUrl: "/imgs/intuitively.svg",
     darkImgUrl: "/imgs/intuitively-dark.svg",

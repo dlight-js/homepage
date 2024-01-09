@@ -116,8 +116,8 @@ export const WrapperView = `import { View, required } from "@dlightjs/dlight"
 
 @View
 class WrapperView {
-  @Prop color = required
-  @Children children = required
+  @Prop color
+  @Children children
   View() {
     div()
       .style({

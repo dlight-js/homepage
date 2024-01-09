@@ -8,23 +8,23 @@ import { Loading } from "../common"
 
 const defaultModules = [{
   code: indexCode,
-  path: "/index.ts"
+  path: "/index.js"
 },
 {
   code: HelloView,
-  path: "/hello.view.ts"
+  path: "/hello.view.js"
 }, {
   code: CounterView,
-  path: "/counter.view.ts"
+  path: "/counter.view.js"
 }, {
   code: ArrayView,
-  path: "/array.view.ts"
+  path: "/array.view.js"
 }, {
   code: ToggleView,
-  path: "/toggle.view.ts"
+  path: "/toggle.view.js"
 }, {
   code: WrapperView,
-  path: "/wrapper.view.ts"
+  path: "/wrapper.view.js"
 }
 ]
 
@@ -38,6 +38,7 @@ class Playground {
   isLoading = true
   isDark: boolean = this.themeType === "dark"
   modules: any = (() => {
+    localStorage.removeItem("dlight_playground_code")
     const code = localStorage.getItem("dlight_playground_code")
     return code ? JSON.parse(code).modules : defaultModules
   })()
@@ -59,7 +60,7 @@ class Playground {
           .modules(this.modules)
           .height("calc(100vh - 60px)")
           .onSave((newCode: any) => {
-            localStorage.setItem("dlight_playground_code", JSON.stringify(newCode))
+            // localStorage.setItem("dlight_playground_code", JSON.stringify(newCode))
           })
           .themeType(this.themeType)
           .isVertical(this.isMobile || this.isShortView)

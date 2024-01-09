@@ -111,11 +111,11 @@ class ProjectEditor {
   }
 
   pathToTab(path: string) {
-    return path.replace(/^\/(.+?).ts/, "$1")
+    return path.replace(/^\/(.+?).js/, "$1")
   }
 
   tabToPath(tab: string) {
-    return `/${tab}.ts`
+    return `/${tab}.js`
   }
 
   /** @lifecycle */

@@ -42,19 +42,19 @@ class Tabs implements TabsProps {
   editingElement?: HTMLSpanElement
 
   /** @func */
-  hanleAddTab() {
+  handleAddTab() {
     const tabName = this.geneNewTabName()
     this.addTab(tabName)
     const defaultCode = codeTemplate(tabName)
     const model = monaco.editor.createModel(defaultCode, this.language)
     this.editorStores[tabName] = { model, state: null }
-    this.swithTab(tabName)
+    this.switchTab(tabName)
   }
 
   handleDeleteTab(tabName: string) {
     this.deleteTab(tabName)
     // ---- switch tab
-    this.swithTab("index")
+    this.switchTab("index")
     // ---- delete from monaco
     this.editorStores[tabName].model.dispose()
     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
@@ -76,14 +76,14 @@ class Tabs implements TabsProps {
     }
   }
 
-  swithTab(tabName: string) {
+  switchTab(tabName: string) {
     if (this.saveViewState && this.editorStores[this.tabKey]) this.editorStores[this.tabKey].state = this.saveViewState()
     this.getTabKey(tabName)
     this.getCurrEditorStore(this.editorStores[tabName])
   }
 
   pathToTab(path: string) {
-    return path.replace(/^\/(.+?).ts/, "$1")
+    return path.replace(/^\/(.+?).js/, "$1")
   }
 
   tabToPath(tab: string) {
@@ -127,13 +127,13 @@ class Tabs implements TabsProps {
           })
           .contentEditable(`${this.tabKey === tabName && this.isTabEdit && tabName !== "index"}`)
           .onInput((e: any) => {
-            this.updateModulePath(tabName, `/${e.target.innerText}.ts`)
+            this.updateModulePath(tabName, `/${e.target.innerText}.js`)
           })
           .onDblClick((e: any) => {
             this.isTabEdit = true
             e.target.focus()
           })
-        span(".ts")
+        span(".js")
           .class(this.preventSelectCss)
       }
 
@@ -161,7 +161,7 @@ class Tabs implements TabsProps {
           div()
             .class(this.tabWrapCss(this.pathToTab(path)))
             .onClick(() => {
-              this.swithTab(this.pathToTab(path))
+              this.switchTab(this.pathToTab(path))
             })
           {
             this.Tab({})
@@ -173,7 +173,7 @@ class Tabs implements TabsProps {
           .class(this.addIconCss)
           .color(this.theme.primary)
           .onClick(() => {
-            this.hanleAddTab()
+            this.handleAddTab()
           })
       }
     }
