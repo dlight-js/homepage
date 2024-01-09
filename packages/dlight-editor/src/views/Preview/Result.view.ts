@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { div, Env, iframe, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { Env, iframe, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import { Color } from "../../utils/const"
 import { css } from "@iandx/easy-css"
 
@@ -23,6 +23,7 @@ class Result {
       .srcdoc(`<!DOCTYPE html>
       <html lang="en">
         <head>
+          <meta name="description" content="Author: Xinyi Chen">
           <meta charset="UTF-8" />
           <link rel="stylesheet" href="/index.css">
           <link rel="stylesheet" href="/base.css">

@@ -16,7 +16,7 @@ class TitleBoard implements EnvType {
     div()
       .class(this.wrapperCss)
     {
-      Title([["DLight", this.theme!.highlightColor], ".js"])
+      Title([["DLight", this.theme!.titleColor], ".js"])
       Title([[
         this.language === "en" ? "DX-first" : "开发者体验优先",
         this.theme!.reverseHLColor

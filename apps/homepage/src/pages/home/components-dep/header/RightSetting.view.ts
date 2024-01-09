@@ -21,6 +21,7 @@ class RightSetting {
         .href(href)
       {
         img()
+          .alt(`${src.split("/").pop()?.split(".")[0]} icon` ?? "")
           .class(this.iconSizeCss)
           .src(src)
       }
@@ -34,10 +35,10 @@ class RightSetting {
         .class(this.iconSizeCss)
         .color(this.theme.highlightColor)
         .onClick(this.updateThemeType)
-      TranslateOutlined()
-        .class(this.iconSizeCss)
-        .color(this.theme.highlightColor)
-        .onClick(this.toggleLanguage)
+      // TranslateOutlined()
+      //   .class(this.iconSizeCss)
+      //   .color(this.theme.highlightColor)
+      //   .onClick(this.toggleLanguage)
       this.NavForwardIcon()
         .src("/imgs/github.svg")
         .href("https://github.com/dlight-js/dlight")

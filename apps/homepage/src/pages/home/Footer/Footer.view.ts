@@ -29,7 +29,7 @@ class Footer implements EnvType {
 
   contributorCss = css`
     text-decoration: none;
-    color: ${this.theme?.activeColor};
+    color: ${this.theme?.reverseHLColor};
   `
 }
 

@@ -15,6 +15,7 @@ class LogoTitle implements LogoTitleProps {
   View() {
     img()
       .src("/imgs/light.svg")
+      .alt("DLight Title Logo")
       .class(this.logoCss)
       .onClick(this.onClick)
   }
