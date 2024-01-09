@@ -63,7 +63,7 @@ class CodeDisplay implements CodeDisplayProps {
   `
 
   dlightCodeBlockHeader = css`
-    background-color: ${this.theme!.activeColor};
+    background-color: ${this.theme!.codeBlockHeaderColor};
     padding: 8px 16px;
     border-radius: 12px 12px 0 0;
     font-weight: 500;

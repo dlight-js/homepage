@@ -84,7 +84,7 @@ class CodeBlock implements CodeBlockProps, EnvType {
   previewBGCss = css`
     box-shadow: ${this.isShortView
       ? `0 4px 8px 0 ${this.theme!.lightShadow}`
-      : `-4px 4px 8px 0 ${this.theme!.lightShadow}`};
+      : `4px 4px 8px 0 ${this.theme!.lightShadow}`};
 
     background-color: ${this.theme!.secondBg};
     ${this.isShortView ? "padding: 30px 0;" : ""}

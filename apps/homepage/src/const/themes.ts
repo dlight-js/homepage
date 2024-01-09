@@ -10,7 +10,8 @@ export interface Color {
   codeBlockHeaderColor: string
   lightShadow: string
   secondBg: string
-  codeGray?: string
+  codeGray: string
+  titleColor: string
 }
 
 export const colors: Record<string, Color> = {
@@ -21,12 +22,13 @@ export const colors: Record<string, Color> = {
     activeColor: "#ffc494",
     hoverColor: "#ffd2ad",
     shadowColor: "#A9A9A9",
-    codeBgColor: "rgba(250, 173, 20, 0.3)",
+    codeBgColor: "rgba(250, 173, 20, 0.1)",
     reverseHLColor: "#72875D",
     codeBlockHeaderColor: "#ffc494",
     lightShadow: "rgba(0, 0, 0, 0.1)",
     secondBg: "rgba(252, 223, 202, 0.5)",
-    codeGray: "#EDEDEB"
+    codeGray: "#EDEDEB",
+    titleColor: "#e36707"
   },
   dark: {
     textColor: "#F3FAEA",
@@ -40,6 +42,7 @@ export const colors: Record<string, Color> = {
     codeBlockHeaderColor: "#5A6B49",
     lightShadow: "rgba(90, 90, 90, 0.1)",
     secondBg: "rgba(56, 61, 54, 0.5)",
-    codeGray: "#292927"
+    codeGray: "#292927",
+    titleColor: "#BBE683"
   }
 }
