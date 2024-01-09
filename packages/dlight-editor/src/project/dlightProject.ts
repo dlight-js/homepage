@@ -1,5 +1,5 @@
 import { ToBeTransformedModule, TransformedProjectModule } from "./types"
-import { transformDlight, transformEmbeddedCode } from "./module"
+import { transformDlight, transformEmbeddedCode } from "./parser"
 
 export class DLightProject {
   modules: ToBeTransformedModule[]
