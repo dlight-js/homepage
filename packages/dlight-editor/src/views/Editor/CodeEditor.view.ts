@@ -46,7 +46,7 @@ class CodeEditor implements CodeEditorProps {
   }
 
   onKeyDown = (e: any) => {
-    if (e.key === "s" && e.metaKey) {
+    if (e.key === "s" && (/Mac/i.test(navigator.userAgent) ? e.metaKey : e.ctrlKey)) {
       e.preventDefault()
       this.handleCodeChange()
     }

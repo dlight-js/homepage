@@ -30,7 +30,7 @@ class Output implements OutputProps {
       value: this.code,
       minimap: { enabled: false },
       readOnly: true,
-      language: "typescript",
+      language: "javascript",
       automaticLayout: true
     })
   }

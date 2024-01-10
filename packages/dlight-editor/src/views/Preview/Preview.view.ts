@@ -7,6 +7,7 @@ import { RefreshFilled } from "@dlightjs/material-icons"
 import { css } from "@iandx/easy-css"
 import { Color, dividerWidth, headerHeight } from "../../utils/const"
 import VerticalResizer from "../components/VerticalResizer.view"
+import clsx from "clsx"
 
 interface PreviewProps {
   mountId: string
@@ -27,6 +28,7 @@ class Preview implements PreviewProps {
   @Env theme: Color = required
   @Env height: string = required
   wrapperEl: HTMLElement | undefined = undefined
+  onClick = false
 
   /** @reactive */
   tab: "Result" | "Output" = "Result"
@@ -68,9 +70,16 @@ class Preview implements PreviewProps {
       div()
       {
         RefreshFilled()
-          .class(this.iconCss)
-          .color(this.theme.primary)
-          .onClick(this.refreshFunc)
+          .title("To refresh, press cmd(Mac)/ctrl(Win) s")
+          .class(clsx(this.iconCss, this.onClick ? this.rotateCss : ""))
+          .color(this.theme.text)
+          .onClick(() => {
+            this.onClick = true
+            this.refreshFunc()
+            setTimeout(() => {
+              this.onClick = false
+            }, 200)
+          })
       }
       this.Head("Result")
       this.Head("Output")
@@ -147,8 +156,14 @@ class Preview implements PreviewProps {
   `
 
   iconCss = css`
+    display: inline-block;
     margin: 0 5px;
     cursor: pointer;
+    transition: all 0.2s;
+  `
+
+  rotateCss = css`
+    transform: rotate(60deg);
   `
 
   previewWrapperCss = css`

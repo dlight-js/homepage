@@ -10,7 +10,7 @@ import { PageNavType } from "./types"
 import SideMenu from "../../common/sideMenu/SideMenu.view"
 import ErrorPage from "../ErrorPage.view"
 import FileMenu from "./FileMenu.view"
-import LoadingCircle from "../../common/loading/LoadingCircle.view"
+import { Loading } from "../../common"
 
 @View
 class DocPage {
@@ -21,7 +21,7 @@ class DocPage {
   @Env language: any = required
   @Env themeType: string = required
   @Env theme: any = required
-  isLoading = false
+  isLoading = true
   isFail = false
   mdString: string = ""
   selectedName: string = ""
@@ -48,7 +48,7 @@ class DocPage {
   // pathWatcher is a function that will be executed when the path changes
   @Watch
   pathWatcher() {
-    // this.isLoading = true
+    this.isLoading = true
     this.isOpenOutline = { value: false }
     this.isFail = false
     const [fileData, fileIndex] = findCertainFile({ mapData: this.flatFileData, filePath: "/" + this.path })
@@ -75,8 +75,14 @@ class DocPage {
           }
           return ""
         })
-        .then(text => { this.mdString = text })
-        .catch((err) => { console.log(err); this.isFail = true })
+        .then(text => {
+          this.mdString = text
+          this.isLoading = false
+        })
+        .catch((err) => {
+          console.log(err)
+          this.isFail = true
+        })
     }
     this.selectedName = fileData?.name ?? ""
   }
@@ -134,7 +140,7 @@ class DocPage {
               .btnEvent(() => { this.navigator.to("/docs/getting-started") })
           } else {
             if (this.isLoading) {
-              LoadingCircle()
+              Loading()
             } else {
               DlightDoc(this.mdString)
                 .title(this.selectedName)

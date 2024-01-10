@@ -50,8 +50,8 @@ export const HeaderData = [
     structureData: ExamplesCodeData
   },
   {
-    btnName: "⚙️ Ecosystem",
-    zhBtnName: "⚙️ 生态",
+    btnName: "🌎 Ecosystem",
+    zhBtnName: "🌎 生态",
     path: "/ecosystem"
   },
   {
