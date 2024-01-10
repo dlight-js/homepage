@@ -24,13 +24,13 @@ class MyComp {
 No difference from the js version. But after you add imports from `@dlightjs/types`, you'll get full typing support in your IDE:
 
 Attributes & events:
-![image](./imgs/ts-el-attr.gif)
+![ts-el-attr](./imgs/ts-el-attr.gif "ts-el-attr")
 
 Inline style & dataset:
-![image](./imgs/ts-el-style.gif)
+![ts-el-style](./imgs/ts-el-style.gif "ts-el-style")
 
 Lifecycle & element:
-![image](./imgs/ts-el-dlight.gif)
+![ts-el-dlight](./imgs/ts-el-dlight.gif "ts-el-dlight")
 
 
 # Components
@@ -78,7 +78,7 @@ But this would be too ugly and became **AnyScript**, so we do `as Pretty as` to 
 
 
 And what you get in your IDE:
-![image](./imgs/ts-comp.gif)
+![ts-comp](./imgs/ts-comp.gif "ts-comp")
 
 
 # Environment
@@ -112,4 +112,4 @@ class MyComp {
 }
 ```
 What you get in your IDE:
-![image](./imgs/ts-env.gif)
+![ts-env](./imgs/ts-env.gif "ts-env")
