@@ -8,7 +8,6 @@ import { DocsStructureMapType } from "../../utils/types"
 import MenuBtn from "./MenuBtn.view"
 import { PageNavType } from "./types"
 import SideMenu from "../../common/sideMenu/SideMenu.view"
-import Skeleton from "../../common/loading/Skeleton.view"
 import ErrorPage from "../ErrorPage.view"
 import FileMenu from "./FileMenu.view"
 import LoadingCircle from "../../common/loading/LoadingCircle.view"
@@ -34,7 +33,7 @@ class DocPage {
   menuEl: HTMLElement | undefined = undefined
   menuOpenBtnEl: HTMLElement | undefined = undefined
   fileType = this.path.split("/")[0] as "ecosystem" | "docs"
-  flatfileData = flatFileStructureData(FileMap[this.fileType])
+  flatFileData = flatFileStructureData(FileMap[this.fileType])
   prePageNav: PageNavType | undefined
   nextPageNav: PageNavType | undefined
 
@@ -52,20 +51,20 @@ class DocPage {
     // this.isLoading = true
     this.isOpenOutline = { value: false }
     this.isFail = false
-    const [fileData, fileIndex] = findCertainFile({ mapData: this.flatfileData, filePath: "/" + this.path })
+    const [fileData, fileIndex] = findCertainFile({ mapData: this.flatFileData, filePath: "/" + this.path })
     const filePath = this.path.startsWith("docs/") ? `/${this.path}${fileData?.children ? "/index.md" : ".md"}` : ""
-    this.nextPageNav = fileIndex < this.flatfileData.length - 1
+    this.nextPageNav = fileIndex < this.flatFileData.length - 1
       ? {
-          name: this.flatfileData[fileIndex + 1].name,
-          zhName: this.flatfileData[fileIndex + 1].zhName,
-          path: this.flatfileData[fileIndex + 1].path
+          name: this.flatFileData[fileIndex + 1].name,
+          zhName: this.flatFileData[fileIndex + 1].zhName,
+          path: this.flatFileData[fileIndex + 1].path
         }
       : undefined
     this.prePageNav = fileIndex > 0
       ? {
-          name: this.flatfileData[fileIndex - 1].name,
-          zhName: this.flatfileData[fileIndex - 1].zhName,
-          path: this.flatfileData[fileIndex - 1].path
+          name: this.flatFileData[fileIndex - 1].name,
+          zhName: this.flatFileData[fileIndex - 1].zhName,
+          path: this.flatFileData[fileIndex - 1].path
         }
       : undefined
     if (filePath !== "") {
