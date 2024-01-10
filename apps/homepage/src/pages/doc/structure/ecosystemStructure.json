@@ -2,19 +2,23 @@
   {
     "name": "📦 Components",
     "path": "components",
+    "zhName": "组件",
     "children": [
       {
         "name": "Lazy",
+        "zhName": "懒加载",
         "path": "lazy"
       },
       {
         "name": "Routes",
+        "zhName": "路由",
         "path": "routes"
       }
     ]
   },
   {
     "name": "📄 MarkIt",
+    "zhName": "MarkIt",
     "path": "markit"
   }
 ]

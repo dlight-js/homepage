@@ -52,7 +52,7 @@ class DocPage {
     this.isOpenOutline = { value: false }
     this.isFail = false
     const [fileData, fileIndex] = findCertainFile({ mapData: this.flatFileData, filePath: "/" + this.path })
-    const filePath = this.path.startsWith("docs/") ? `/${this.path}${fileData?.children ? "/index.md" : ".md"}` : ""
+    const filePath = `/${this.path}${fileData?.children ? "/index.md" : ".md"}`
     this.nextPageNav = fileIndex < this.flatFileData.length - 1
       ? {
           name: this.flatFileData[fileIndex + 1].name,
@@ -67,6 +67,7 @@ class DocPage {
           path: this.flatFileData[fileIndex - 1].path
         }
       : undefined
+
     if (filePath !== "") {
       fetch(this.language === "en" ? filePath : filePath.split("docs")[0] + "docs/zh" + filePath.split("docs")[1])
         .then(async data => {
