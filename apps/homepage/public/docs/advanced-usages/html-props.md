@@ -8,7 +8,7 @@ I've been hesitating a lot about whether to use `class` or `className` / `for` o
 
 The main naming difference for other paired properties and attributes is that the property name is camelCased while the attribute name is kebab-cased... except for `class` vs. `className` and `for` vs. `htmlFor`. The reason is that `class` and `for` are reserved keywords in js, so we can't use them as property names. So it makes no sense to use `class` and `for` to represent property names in js. It also makes no sense to use `className` and `htmlFor` since now `class` and `for` are available as a member expression's property name in DLight. 
 
-After a long-time consideration, we decided to go with `class` and `for` as property names in DLight. But be noted that they're translated into `className` and `htmlFor` when they're compiled into js because they're properties!
+After a long-time consideration, we decided to go with `class` and `for` + `className` and `htmlFor`. Yeah both of them are valid. But we recommend using `class` and `for` since they're shorter.
 
 # Set a bunch of properties at once
 In DLight, you can set a bunch of properties at once by using the `prop` prop. For instance, if you have a pre-defined object like this:

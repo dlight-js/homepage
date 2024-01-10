@@ -121,9 +121,9 @@
         "path": "getting-element"
       },
       {
-        "name": "📦 Prop View",
-        "zhName": "📦 Prop View",
-        "path": "prop-view"
+        "name": "📦 View Prop",
+        "zhName": "📦 View View",
+        "path": "view-prop"
       },
       {
         "name": "🎧 Did Update",
