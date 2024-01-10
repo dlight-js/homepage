@@ -101,6 +101,11 @@
     "path": "advanced-usages",
     "children": [
       {
+        "name": "👀 Watch",
+        "zhName": "👀 Watch",
+        "path": "watch"
+      },
+      {
         "name": "🎼 SubView",
         "zhName": "🎼 子视图",
         "path": "subview"
@@ -119,6 +124,11 @@
         "name": "📦 Prop View",
         "zhName": "📦 Prop View",
         "path": "prop-view"
+      },
+      {
+        "name": "🎧 Did Update",
+        "zhName": "🎧 监听更新",
+        "path": "did-update"
       },
       {
         "name": "⤵️ Forward Props",
