@@ -33,6 +33,12 @@ class DocPage {
   menuEl: HTMLElement | undefined = undefined
   menuOpenBtnEl: HTMLElement | undefined = undefined
   fileType = this.path.split("/")[0] as "ecosystem" | "docs"
+  entryFile = `/${this.fileType}/${
+    this.fileType === "ecosystem"
+    ? "components"
+    : "getting-started"
+  }`
+
   flatFileData = flatFileStructureData(FileMap[this.fileType])
   prePageNav: PageNavType | undefined
   nextPageNav: PageNavType | undefined
@@ -48,6 +54,11 @@ class DocPage {
   // pathWatcher is a function that will be executed when the path changes
   @Watch
   pathWatcher() {
+    if (this.path === this.fileType || this.path === `${this.fileType}/`) {
+      // --- To new path in the next tick
+      setTimeout(() => { this.navigator.to(this.entryFile) })
+      return
+    }
     this.isLoading = true
     this.isOpenOutline = { value: false }
     this.isFail = false
