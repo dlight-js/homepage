@@ -153,6 +153,7 @@ export interface Color {
   primary: string
   secondary: string
   secondaryText: string
+  test: string
 }
 
 export const colors: Record<string, Color> = {
@@ -161,14 +162,16 @@ export const colors: Record<string, Color> = {
     text: "#000000",
     primary: "#ccc",
     secondary: "#f5f5f5",
-    secondaryText: "#ccc"
+    secondaryText: "#ccc",
+    test: "#c9c9c9"
   },
   dark: {
     background: "#1C1C1E",
     text: "#ddd",
     primary: "#0856b6",
     secondary: "#333",
-    secondaryText: "#ccc"
+    secondaryText: "#ccc",
+    test: "#757575"
   }
 }
 

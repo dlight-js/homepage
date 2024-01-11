@@ -38,10 +38,6 @@ class Playground implements PlaygroundProps {
 
   /** @reactive */
   theme = colors[this.themeType]
-  mountId = ""
-  getMountId = (id: string) => {
-    this.mountId = id
-  }
 
   currTransformedCode = ""
   getCurrTransformedCode = (code: any) => {
@@ -51,6 +47,11 @@ class Playground implements PlaygroundProps {
   srcDoc = ""
   getSrcDoc = (doc: string) => {
     this.srcDoc = doc
+  }
+
+  css = ""
+  getCss = (css: string) => {
+    this.css = css
   }
 
   refreshFunc = () => {}
@@ -116,6 +117,7 @@ class Playground implements PlaygroundProps {
       .themeType(this.themeType)
       .height(this.height)
       .srcDoc(this.srcDoc)
+      .css(this.css)
       .getClearConsoleFunc(this.getClearConsoleFunc)
       .isStartResize(this.isStartResize)
       .updateIsStartResize(this.updateIsStartResize)
@@ -133,10 +135,10 @@ class Playground implements PlaygroundProps {
             .width(this.editorWidth)
             .height(this.editorHeight)
             .modules(this.modules)
-            .getMountId(this.getMountId)
             .getCurrTransformedCode(this.getCurrTransformedCode)
             .getRefreshFunc(this.getRefreshFunc)
             .getSrcDoc(this.getSrcDoc)
+            .getCss(this.getCss)
             .onSave(this.onSave)
             .clearConsoleFunc(this.clearConsoleFunc)
 
@@ -148,7 +150,6 @@ class Playground implements PlaygroundProps {
           PreviewView()
             .width(this.previewWidth)
             .verticalHeight(this.previewHeight)
-            .mountId(this.mountId)
             .currTransformedCode(this.currTransformedCode)
             .refreshFunc(this.refreshFunc)
         }

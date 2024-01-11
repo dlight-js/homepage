@@ -61,7 +61,7 @@ class ConsoleItemClass implements ConsoleItemProps {
   View() {
     if (typeof this.msg === "object") {
       if (this.msg instanceof Error) {
-        div(JSON.stringify(this.msg))
+        div(this.msg)
           .class(this.errorTextCss)
       } else {
         div()

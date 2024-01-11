@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { div, Env, Pretty, Prop, required, span, Static, Typed } from "@dlightjs/types"
+import { div, Env, Pretty, Prop, required, span, Static, Typed, Watch } from "@dlightjs/types"
 import { css } from "@iandx/easy-css"
 import clsx from "clsx"
 import { CloseFilled, AddFilled } from "@dlightjs/material-icons"
@@ -7,6 +7,7 @@ import { EditorStore } from "./CodeEditor.view"
 import * as monaco from "monaco-editor"
 import { codeTemplate, Color } from "../../utils/const"
 import { ToBeTransformedModule } from "../../project/types"
+import TabItem from "./TabItem.view"
 
 interface TabsProps {
   modules: ToBeTransformedModule[]
@@ -39,14 +40,22 @@ class Tabs implements TabsProps {
   @Static editorStores: Record<string, EditorStore> = {}
 
   /** @element */
-  editingElement?: HTMLSpanElement
+  tabElement?: HTMLSpanElement
 
   /** @func */
   handleAddTab() {
-    const tabName = this.geneNewTabName()
+    const tabName = this.geneNewTabName("js")
     this.addTab(tabName)
-    const defaultCode = codeTemplate(tabName)
+    const defaultCode = codeTemplate(this.TabToName(tabName))
     const model = monaco.editor.createModel(defaultCode, this.language)
+    this.editorStores[tabName] = { model, state: null }
+    this.switchTab(tabName)
+  }
+
+  handleAddCss() {
+    const tabName = this.geneNewTabName("css")
+    this.addTab(tabName)
+    const model = monaco.editor.createModel("", "css")
     this.editorStores[tabName] = { model, state: null }
     this.switchTab(tabName)
   }
@@ -54,26 +63,21 @@ class Tabs implements TabsProps {
   handleDeleteTab(tabName: string) {
     this.deleteTab(tabName)
     // ---- switch tab
-    this.switchTab("index")
+    this.switchTab("index.js")
     // ---- delete from monaco
     this.editorStores[tabName].model.dispose()
     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
     delete this.editorStores[tabName]
   }
 
-  geneNewTabName() {
-    const tabNames = this.modules.map(module => this.pathToTab(module.path))
+  geneNewTabName(type = "js") {
+    const prefix = type === "js" ? "tab" : "style"
+    const tabNames = this.modules.map(module => this.TabToName(module.path))
     let i = 0
-    while (tabNames.includes(`tab${i === 0 ? "" : i}`)) {
+    while (tabNames.includes(`${prefix}${i === 0 ? "" : i}.${type}`)) {
       i++
     }
-    return i === 0 ? "tab" : `tab${i}`
-  }
-
-  clickTabOutside(event: Event) {
-    if (!this.editingElement?.contains(event.target as any)) {
-      this.isTabEdit = false
-    }
+    return i === 0 ? `${prefix}.${type}` : `${prefix}${i}.${type}`
   }
 
   switchTab(tabName: string) {
@@ -82,22 +86,30 @@ class Tabs implements TabsProps {
     this.getCurrEditorStore(this.editorStores[tabName])
   }
 
-  pathToTab(path: string) {
-    return path.replace(/^\/(.+?).js/, "$1")
+  changeTabName(tabName: string, newTabName: string) {
+    const model = this.editorStores[tabName].model
+    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+    delete this.editorStores[tabName]
+    this.editorStores[newTabName] = { model, state: null }
+    this.updateModulePath(`/${tabName}`, `/${newTabName}`)
+    this.switchTab(newTabName)
   }
 
-  tabToPath(tab: string) {
-    return `/${tab}.ts`
+  TabToName(tab: string) {
+    return tab.replace(/^(.+?).js/, "$1").replace(/^(.+?).css/, "$1")
+  }
+
+  PathToTab(path: string) {
+    return path.replace("/", "")
   }
 
   /** @lifecycle */
   didMount() {
-    document.addEventListener("click", this.clickTabOutside.bind(this))
     this.editorStores = Object.fromEntries(
       this.modules.map(({ code, path }) => [
-        this.pathToTab(path),
+        this.PathToTab(path),
         {
-          model: monaco.editor.createModel(code, this.language),
+          model: monaco.editor.createModel(code, path.endsWith(".css") ? "css" : this.language),
           state: null
         }
       ])
@@ -105,51 +117,7 @@ class Tabs implements TabsProps {
     this.getCurrEditorStore(this.editorStores[this.tabKey])
   }
 
-  willUnmount() {
-    document.removeEventListener("click", this.clickTabOutside.bind(this))
-  }
-
   /** @view */
-  @View
-  Tab({ tabName }: any): any {
-    div()
-      .class(this.rowDisplayCss)
-    {
-      div()
-        .class(this.tabNameCss)
-      {
-        span(tabName)
-          .class(clsx(this.tabNameSpanCss, tabName === "index" ? this.preventSelectCss : undefined))
-          .element((el: any) => {
-            if (this.tabKey === tabName && this.isTabEdit) {
-              this.editingElement = el
-            }
-          })
-          .contentEditable(`${this.tabKey === tabName && this.isTabEdit && tabName !== "index"}`)
-          .onInput((e: any) => {
-            this.updateModulePath(tabName, `/${e.target.innerText}.js`)
-          })
-          .onDblClick((e: any) => {
-            this.isTabEdit = true
-            e.target.focus()
-          })
-        span(".js")
-          .class(this.preventSelectCss)
-      }
-
-      if (tabName !== "index") {
-        CloseFilled()
-          .height(16)
-          .class(this.deleteIconCss)
-          .color(this.theme.primary)
-          .onClick(e => {
-            e.stopPropagation()
-            this.handleDeleteTab(tabName)
-          })
-      }
-    }
-  }
-
   View() {
     div()
       .class(this.tabBarCss)
@@ -159,21 +127,32 @@ class Tabs implements TabsProps {
       {
         for (const { path } of this.modules) {
           div()
-            .class(this.tabWrapCss(this.pathToTab(path)))
+            .class(this.tabWrapCss(this.PathToTab(path)))
             .onClick(() => {
-              this.switchTab(this.pathToTab(path))
+              this.switchTab(this.PathToTab(path))
             })
           {
-            this.Tab({})
-              .tabName(this.pathToTab(path))
+            TabItem()
+              .tabKey(this.tabKey)
+              .tabName(this.PathToTab(path))
+              .type(path.split(".")[path.split(".").length - 1])
+              .changeTabName(this.changeTabName)
+              .handleDeleteTab(this.handleDeleteTab)
           }
         }
         AddFilled()
           .height(18)
           .class(this.addIconCss)
-          .color(this.theme.primary)
+          .color(this.theme.text)
+        div("JS")
+          .class(this.addWrapCss)
           .onClick(() => {
             this.handleAddTab()
+          })
+        div("CSS")
+          .class(this.addWrapCss)
+          .onClick(() => {
+            this.handleAddCss()
           })
       }
     }
@@ -187,27 +166,6 @@ class Tabs implements TabsProps {
     ::-webkit-scrollbar {
       display: none;
     }
-  `
-
-  tabNameCss = css`
-    line-height: 30px;
-    font-size: 18px;
-    background-color: ${this.theme.background};
-    border-width: 0px;
-  `
-
-  tabNameSpanCss = css`
-    color: ${this.theme.text};
-    padding: 2px;
-    cursor: pointer;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-  `
-
-  preventSelectCss = css`
-    color: ${this.theme.text};
-    -moz-user-select: none;
-    -webkit-user-select: none;
   `
 
   tabCss = (backgroundColor: string, borderColor: string) => css`
@@ -227,15 +185,8 @@ class Tabs implements TabsProps {
     border-bottom: ${tab === this.tabKey ? `3px solid ${this.theme.text}` : undefined};
   `
 
-  deleteIconCss = css`
-    height: 16px;
-    cursor: pointer;
-    padding-left: 5px;
-  `
-
   addIconCss = css`
     height: 18px;
-    cursor: pointer;
   `
 
   rowDisplayCss = css`
@@ -244,6 +195,18 @@ class Tabs implements TabsProps {
     align-items: center;
     justify-content: flex-start;
     width: 100%;
+  `
+
+  addWrapCss = css`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 5px;
+    font-weight: 600;
+    color: ${this.theme.background};
+    background-color: ${this.theme.test};
+    cursor: pointer;
+    margin-right: 1px;
   `
 }
 

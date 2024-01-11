@@ -20,7 +20,7 @@ class CodeEditor implements CodeEditorProps {
   /** @prop */
   @Prop editorStore: EditorStore = required
   @Prop onCodeChange?: (code: string) => void
-  @Prop language = "typescript"
+  @Prop language = "javascript"
   @Prop getSaveViewState?: (func: () => monaco.editor.ICodeEditorViewState | null) => void
   @Env themeType: "light" | "dark" = required
   @Env height: string = required

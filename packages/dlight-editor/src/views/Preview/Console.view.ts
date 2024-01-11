@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { css } from "@iandx/easy-css"
-import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
+import { Env, Pretty, Prop, Typed, Watch, div, required } from "@dlightjs/types"
 import { Color, headerHeight } from "../../utils/const"
 import { DoDisturbFilled } from "@dlightjs/material-icons"
 import ConsoleItem from "./ConsoleItem.view"

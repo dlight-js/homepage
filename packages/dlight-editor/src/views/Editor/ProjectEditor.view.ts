@@ -12,13 +12,13 @@ interface ProjectEditorProps {
   modules: ToBeTransformedModule[]
   getCurrTransformedCode: (code: string) => void
   getRefreshFunc: (func: any) => void
-  getMountId: (id: string) => void
   language?: string
   width?: string
   height?: string
   onSave?: (project: DLightProject) => void
   getSrcDoc: (doc: string) => void
   clearConsoleFunc: () => void
+  getCss: (css: string) => void
 }
 
 @View
@@ -27,18 +27,18 @@ class ProjectEditor {
   @Prop modules = required
   @Prop getCurrTransformedCode = required
   @Prop getRefreshFunc = required
-  @Prop getMountId = required
-  @Prop language = "typescript"
+  @Prop language = "javascript"
   @Prop width = "100%"
   @Prop height = "100%"
   @Prop onSave?: (project: DLightProject) => void
   @Prop getSrcDoc = required
   @Prop clearConsoleFunc = required
+  @Prop getCss = required
 
   /** @reactive */
   dlightProject = new DLightProject(this.modules)
 
-  tabKey = "index"
+  tabKey = "index.js"
   isTabEdit = false
   saveViewState?: () => monaco.editor.ICodeEditorViewState
   currEditorStore: EditorStore = undefined as any
@@ -52,16 +52,19 @@ class ProjectEditor {
 
   @Watch
   onTabKeyChange() {
-    this.getCurrTransformedCode(this.dlightProject.transformedModules.find(
-      (module: TransformedProjectModule) => {
-        return module.path === this.tabToPath(this.tabKey)
-      }
-    )?.dlightCode ?? "" as any)
-  }
-
-  @Watch
-  onDlightProjectChange() {
-    this.getMountId(this.dlightProject.moduleId)
+    if (this.tabKey.endsWith(".js")) {
+      this.getCurrTransformedCode(this.dlightProject.transformedModules.find(
+        (module: TransformedProjectModule) => {
+          return module.path === this.tabToPath(this.tabKey)
+        }
+      )?.dlightCode ?? "" as any)
+    } else {
+      this.getCurrTransformedCode(this.dlightProject.modules.find(
+        (module: ToBeTransformedModule) => {
+          return module.path === this.tabToPath(this.tabKey)
+        }
+      )?.code ?? "" as any)
+    }
   }
 
   getSaveViewState(saveState: any) {
@@ -77,13 +80,20 @@ class ProjectEditor {
     this.dlightProject = new DLightProject(modules) as any
   }
 
-  addTab(tabName: string) {
+  addTab(tabName: string, type: "js" | "css" = "js") {
     // ---- add to project
-    const defaultCode = codeTemplate(tabName)
-    this.dlightProject = new DLightProject([
-      ...this.dlightProject.modules,
-      { path: this.tabToPath(tabName), code: defaultCode }
-    ]) as any
+    if (type === "js") {
+      const defaultCode = codeTemplate(this.pathToTab(tabName))
+      this.dlightProject = new DLightProject([
+        ...this.dlightProject.modules,
+        { path: this.tabToPath(tabName), code: defaultCode }
+      ]) as any
+    } else if (type === "css") {
+      this.dlightProject = new DLightProject([
+        ...this.dlightProject.modules,
+        { path: this.tabToPath(tabName), code: "" }
+      ]) as any
+    }
   }
 
   deleteTab(tabName: string) {
@@ -99,6 +109,7 @@ class ProjectEditor {
     ))
     this.dlightProject = new DLightProject(modules) as any
     this.getSrcDoc(this.dlightProject.srcDoc)
+    this.getCss(this.dlightProject.css)
     this.onSave?.(new DLightProject(this.dlightProject.modules))
   }
 
@@ -111,16 +122,17 @@ class ProjectEditor {
   }
 
   pathToTab(path: string) {
-    return path.replace(/^\/(.+?).js/, "$1")
+    return path.replace(/^(.+?).js/, "$1")
   }
 
   tabToPath(tab: string) {
-    return `/${tab}.js`
+    return `/${tab}`
   }
 
   /** @lifecycle */
   didMount() {
     this.getSrcDoc(this.dlightProject.srcDoc)
+    this.getCss(this.dlightProject.css)
     this.getRefreshFunc(() => {
       this.updateModuleCode(this.currEditorStore.model.getValue())
     })

@@ -10,7 +10,6 @@ import VerticalResizer from "../components/VerticalResizer.view"
 import clsx from "clsx"
 
 interface PreviewProps {
-  mountId: string
   currTransformedCode: string
   refreshFunc: () => void
   width: string
@@ -20,7 +19,6 @@ interface PreviewProps {
 @View
 class Preview implements PreviewProps {
   /** @prop */
-  @Prop mountId: string = required
   @Prop currTransformedCode: string = required
   @Prop refreshFunc: () => void = required
   @Prop width: string = required

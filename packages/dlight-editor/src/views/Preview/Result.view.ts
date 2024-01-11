@@ -13,6 +13,7 @@ class Result {
   // @Env srcDoc: string = required
   @Env theme: Color = required
   @Env srcDoc = ""
+  @Env css = ""
   @Env isStartResize = required
   @Prop height: string = required
 
@@ -25,8 +26,7 @@ class Result {
         <head>
           <meta name="description" content="Author: Xinyi Chen">
           <meta charset="UTF-8" />
-          <link rel="stylesheet" href="/index.css">
-          <link rel="stylesheet" href="/base.css">
+          <style>${this.css}</style>
           <script type="module" src="/dlight.js"></script>
           <script type="module">
             const originalConsoleLog = console.log;
