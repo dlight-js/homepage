@@ -2,7 +2,7 @@ import { View } from "@dlightjs/dlight"
 import { Content, required, type Pretty, type Typed, div, Env, ContentProp, SubTyped } from "@dlightjs/types"
 import { ArrowRightFilled } from "@dlightjs/material-icons"
 import clsx from "clsx"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 
 interface ConsoleItemProps {
   msg: ContentProp<string>

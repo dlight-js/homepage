@@ -3,7 +3,7 @@ import { type Typed, div, Pretty, Env, required } from "@dlightjs/types"
 import { Navigator } from "@dlightjs/components"
 import { ArrayView, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "../const/playgroundCodeTemplate"
 import DLightEditor from "dlight-editor"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { Loading } from "../common"
 
 const defaultModules = [{

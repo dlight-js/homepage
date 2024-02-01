@@ -1,7 +1,7 @@
 
 import { View } from "@dlightjs/dlight"
 import { div, Env, required, button, h1 } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { Example, musics } from "./utils"
 import { EnvType } from "../../../App.view"
 import { MusicList } from "./ForLoopExample.view"

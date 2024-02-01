@@ -13,7 +13,7 @@
     "@dlightjs/components": "1.0.0-alpha.24",
     "@dlightjs/dlight": "1.0.0-alpha.63",
     "@dlightjs/material-icons": "1.0.0-alpha.2",
-    "@iandx/easy-css": "^0.10.14",
+    "@emotion/css": "^11.11.2",
     "clsx": "^2.1.0",
     "dlight-doc": "workspace:*",
     "dlight-editor": "workspace:*",
@@ -23,8 +23,7 @@
     "@dlightjs/types": "1.0.0-alpha.0",
     "typescript": "^5.3.3",
     "vite": "^4.5.1",
-    "vite-plugin-dlight": "1.0.0-alpha.36",
-    "vite-plugin-easy-css": "^0.10.14"
+    "vite-plugin-dlight": "1.0.0-alpha.36"
   },
   "keywords": [
     "dlight.js"

@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { MenuRound, AlignHorizontalLeftRound } from "@dlightjs/material-icons"
 import { Env, Pretty, Prop, Typed, Watch, div, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { shortViewWidth } from "../../const/pageSetting"
 
 interface MenuBtnProps {

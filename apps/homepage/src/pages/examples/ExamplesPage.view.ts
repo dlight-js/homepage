@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { type Typed, div, Pretty, Env, Prop, required, Watch } from "@dlightjs/types"
 import DLightEditor from "dlight-editor"
 import { ExamplesCodeData } from "../../const/examplesCodeData"

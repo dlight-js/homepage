@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, _, Pretty, div, Children, Prop, Watch, required, Env } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 
 export type OnDragFunc = (x: number, y: number) => void
 export type DragAxis = "x" | "y" | "all"

@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, img, Pretty, div, Env, Watch, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import ExampleResult from "./ExampleResult.view"
 import ReactiveGraph from "./reactiveGraph/ReactiveGraph.view"
 import { getSize } from "../../../utils/utilFunc"

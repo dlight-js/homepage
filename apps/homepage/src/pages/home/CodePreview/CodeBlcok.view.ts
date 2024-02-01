@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { type Pretty, type Typed, required, div, Env, ContentProp, Content, h1, p } from "@dlightjs/types"
 import CodeDisplay from "./CodeDisplay.view"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { EnvType } from "../../../App.view"
 import { Example } from "./utils"
 

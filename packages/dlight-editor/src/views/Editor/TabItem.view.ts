@@ -3,7 +3,7 @@ import { CloseFilled } from "@dlightjs/material-icons"
 import { div, span, type Pretty, type Typed, Prop, required, Env } from "@dlightjs/types"
 import clsx from "clsx"
 import { Color } from "../../utils/const"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 
 interface TabItemProps {
   tabKey: string

@@ -6,7 +6,7 @@ import * as monaco from "monaco-editor"
 import { codeTemplate } from "../../utils/const"
 import { ToBeTransformedModule, TransformedProjectModule } from "../../project/types"
 import Tabs from "./Tabs.view"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 
 interface ProjectEditorProps {
   modules: ToBeTransformedModule[]

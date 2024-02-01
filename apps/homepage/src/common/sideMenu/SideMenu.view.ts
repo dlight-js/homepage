@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, div, Pretty, Children, Env, Prop, Watch, required } from "@dlightjs/types"
 import { Navigator } from "@dlightjs/components"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { shortViewWidth } from "../../const/pageSetting"
 
 interface SideMenuProps {

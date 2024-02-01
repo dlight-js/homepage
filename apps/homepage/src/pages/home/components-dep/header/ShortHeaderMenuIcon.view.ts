@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { MenuRound, CloseRound } from "@dlightjs/material-icons"
 import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 
 interface ShortHeaderMenuIconProps {
   isShortHeader: boolean

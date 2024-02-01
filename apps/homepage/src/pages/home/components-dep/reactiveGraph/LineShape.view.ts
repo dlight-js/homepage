@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, Pretty, div, img, Env, Prop, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 
 interface LineShapeProps {
   start: boolean

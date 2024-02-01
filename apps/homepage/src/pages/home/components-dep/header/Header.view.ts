@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, div, Pretty, Env, Prop, required } from "@dlightjs/types"
 import NavButton from "./NavButton.view"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { Navigator } from "@dlightjs/components"
 import { HeaderData } from "../../../../const/homeData"
 import { getSize } from "../../../../utils/utilFunc"

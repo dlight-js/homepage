@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { Env, Pretty, SubTyped, Typed, a, div, img, required } from "@dlightjs/types"
 import { LightModeOutlined, TranslateOutlined } from "@dlightjs/material-icons"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { getSize } from "../../../../utils/utilFunc"
 
 interface NavForwardIconProps {

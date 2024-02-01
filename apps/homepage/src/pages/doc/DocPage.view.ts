@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { Env, Pretty, Typed, Watch, div, env, required, tr } from "@dlightjs/types"
 import DlightDoc from "dlight-doc"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { findCertainFile, flatFileStructureData } from "../../utils/utilFunc"
 import { FileMap } from "../../const/docsData"
 import { DocsStructureMapType } from "../../utils/types"

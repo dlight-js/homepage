@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, div, Pretty, required, Env, Prop } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 
 interface SkeletonProps {
   data: number[][]

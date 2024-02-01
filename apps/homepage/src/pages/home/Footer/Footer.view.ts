@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { a, div, Env, required, type Pretty, type Typed } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { Logo } from "../../../logo"
 import { EnvType } from "../../../App.view"
 

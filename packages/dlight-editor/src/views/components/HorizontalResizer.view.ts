@@ -2,7 +2,7 @@ import { View } from "@dlightjs/dlight"
 import { div, Env, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import Resizer, { OnDragFunc } from "./Resizer.view"
 import { Color, dividerWidth } from "../../utils/const"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 
 interface HorizontalResizerProps {
   height?: string

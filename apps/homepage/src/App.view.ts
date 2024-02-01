@@ -3,7 +3,7 @@ import { type Typed, Pretty, env, div } from "@dlightjs/types"
 import { Routes, Navigator } from "@dlightjs/components"
 import { Color, colors } from "./const/themes"
 import Header from "./pages/home/components-dep/header"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import Loading from "./common/loading/Loading.view"
 
 export interface EnvType {

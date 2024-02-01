@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, button, div, Pretty, ContentProp, Content, Env, Prop, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import MenuItem from "./MenuItem.view"
 import { Navigator } from "@dlightjs/components"
 import { DocsStructureMapType, ExmaplesCodeDataType } from "../../../../utils/types"

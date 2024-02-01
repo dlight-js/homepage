@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, img, Pretty, div, button, h2, Env, Prop, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 
 interface ExampleResultProps {
   count: number
@@ -41,10 +41,10 @@ class ExampleResult implements ExampleResultProps {
       }
       button("Count++")
         .onClick(this.incrementCount)
-        .class(this.beautifulBtn$)
+        .class(this.beautifulBtn)
       button("DoubleCount++")
         .onClick(this.incrementDoubleCount)
-        .class(this.beautifulBtn$)
+        .class(this.beautifulBtn)
       div(`DoubleCount: ${this.doubleCount}`)
         .style({
           fontSize: "20px",
@@ -79,13 +79,13 @@ class ExampleResult implements ExampleResultProps {
     align-items: center;
   `
 
-  doubleCountCss$ = css`
+  doubleCountCss = css`
     font-size: 20px;
     margin: 10px 5px 0px 5px;
     font-family: "Comic Sans MS";
   `
 
-  beautifulBtn$ = css`
+  beautifulBtn = css`
     margin: 5px;
     align-items: center;
     background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);

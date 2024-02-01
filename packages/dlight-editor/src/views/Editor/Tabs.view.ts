@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { div, Env, Pretty, Prop, required, span, Static, Typed, Watch } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import clsx from "clsx"
 import { CloseFilled, AddFilled } from "@dlightjs/material-icons"
 import { EditorStore } from "./CodeEditor.view"

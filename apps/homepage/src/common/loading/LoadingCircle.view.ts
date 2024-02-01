@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { div, Env, type Pretty, type Typed, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 
 @View
 class LoadingCircle {

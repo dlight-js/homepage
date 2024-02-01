@@ -2,7 +2,7 @@
 import { View } from "@dlightjs/dlight"
 import { FavoriteBorderOutlined, FavoriteFilled, PlayCircleFilled } from "@dlightjs/material-icons"
 import { div, Env, required, a, img } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { Example, musics } from "./utils"
 import { EnvType } from "../../../App.view"
 
@@ -109,7 +109,7 @@ class MusicItemClass {
 const example: Example = {
   title: "Bye-bye ternary operator - if statement is back",
   zhTitle: "再见三目运算符 - if语句回来啦",
-  description: "So tried of endless ternary operators? Now in DLight, your familiar conditional statements like if-else, switch-case are back! Build the UI as if you are writing a normal JavaScript program.",
+  description: "So tired of endless ternary operators? Now in DLight, your familiar conditional statements like if-else, switch-case are back! Build the UI as if you are writing a normal JavaScript program.",
   zhDescription: "厌倦了无休止的三目运算符？现在在DLight中，你熟悉的if-else，switch-case等条件语句都回来了！你可以像写普通JavaScript代码一样来构建UI。",
   codeTitle: "./MusicFavoriteItem.view.js",
   code: `@View

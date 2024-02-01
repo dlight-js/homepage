@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, Pretty, div } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import TitleBoard from "./TitleBoard/TitleBoard.view"
 import CodeBlock from "./CodePreview/CodeBlcok.view"
 import forLoop from "./CodePreview/ForLoopExample.view"

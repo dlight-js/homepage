@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { code, div, pre, Prop, required, Pretty, Typed, Env, Watch } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import hljs from "highlight.js"
 import "highlight.js/styles/a11y-light.css"
 import "highlight.js/styles/a11y-dark.css"

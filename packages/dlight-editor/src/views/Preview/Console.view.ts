@@ -1,5 +1,5 @@
 import { View } from "@dlightjs/dlight"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { Env, Pretty, Prop, Typed, Watch, div, required } from "@dlightjs/types"
 import { Color, headerHeight } from "../../utils/const"
 import { DoDisturbFilled } from "@dlightjs/material-icons"

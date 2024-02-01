@@ -3,7 +3,7 @@ import { Navigator } from "@dlightjs/components"
 import { View } from "@dlightjs/dlight"
 import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
 import { Logo, LogoTitle } from "../../../../logo"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 
 interface AnimatedLogoProps {
   isStyle2: boolean

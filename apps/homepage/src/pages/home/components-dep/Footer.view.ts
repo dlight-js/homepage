@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, Pretty, div, Env, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { getSize } from "../../../utils/utilFunc"
 
 @View

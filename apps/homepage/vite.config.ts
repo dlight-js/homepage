@@ -1,6 +1,5 @@
 import { defineConfig } from "vite"
 import dlight from "vite-plugin-dlight"
-import easyCss from "vite-plugin-easy-css"
 
 export default defineConfig({
   server: {
@@ -8,7 +7,6 @@ export default defineConfig({
   },
   base: "",
   plugins: [
-    easyCss({ files: "**/*.view.ts" }),
     dlight({ files: "**/*.view.ts" })
   ]
 })

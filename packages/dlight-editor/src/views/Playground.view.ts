@@ -8,7 +8,7 @@ import HorizontalResizer from "./components/HorizontalResizer.view"
 import { DLightProject } from "../project/dlightProject"
 import { loadMonacoWorker } from "../utils/loader"
 import VerticalResizer from "./components/VerticalResizer.view"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 
 loadMonacoWorker()
 

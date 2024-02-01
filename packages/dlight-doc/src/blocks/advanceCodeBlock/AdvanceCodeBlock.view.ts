@@ -1,10 +1,11 @@
 import { View } from "@dlightjs/dlight"
 import { code, Content, ContentProp, div, pre, Prop, required, Pretty, Typed } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import hljs from "highlight.js"
 import "highlight.js/styles/a11y-light.css"
 import "highlight.js/styles/a11y-dark.css"
 import { ContentCopyFilled, DoneFilled } from "@dlightjs/material-icons"
+import clsx from "clsx"
 
 interface AdvanceCodeBlockProps {
   content: ContentProp<any>
@@ -30,10 +31,10 @@ class AdvanceCodeBlock implements AdvanceCodeBlockProps {
 
   View() {
     div()
-      .class(this.dlightMarkitCodeBlock$)
+      .class(clsx(this.dlightMarkitCodeBlock, "dlight-markit-code-block"))
     {
       div()
-        .class(this.dlightMarkitCodeBlockHeader$)
+        .class(clsx(this.dlightMarkitCodeBlockHeader, "dlight-markit-code-block-header"))
       {
         if (this.language) {
           div()
@@ -102,7 +103,7 @@ class AdvanceCodeBlock implements AdvanceCodeBlockProps {
   `
 
   /** @style */
-  dlightMarkitCodeBlockHeader$ = css`
+  dlightMarkitCodeBlockHeader = css`
     background-color: rgba(250, 190, 142, 0.3);
     padding: 8px 16px;
     border-radius: 12px 12px 0 0;
@@ -128,7 +129,7 @@ class AdvanceCodeBlock implements AdvanceCodeBlockProps {
     align-items: center;
     cursor: pointer;
   `
-  dlightMarkitCodeBlock$ = css`
+  dlightMarkitCodeBlock = css`
     background-color: rgba(242, 214, 159, 0.3);
     border-radius: 12px;
     font-size: 14px;

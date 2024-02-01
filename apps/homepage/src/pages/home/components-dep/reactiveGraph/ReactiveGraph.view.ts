@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, Pretty, div, Env, Prop, Watch, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import Shape from "./Shape.view"
 import LineShape from "./LineShape.view"
 import clsx from "clsx"

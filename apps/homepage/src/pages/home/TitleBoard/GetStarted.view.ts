@@ -2,7 +2,7 @@ import { View } from "@dlightjs/dlight"
 import { button, div, Env, required, type Pretty, type Typed, SubTyped, span } from "@dlightjs/types"
 import { EnvType } from "../../../App.view"
 import { Navigator } from "@dlightjs/components"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import clsx from "clsx"
 import { ChevronRightFilled } from "@dlightjs/material-icons"
 

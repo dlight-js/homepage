@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { Env, Pretty, Typed, div, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { EnvType } from "../../../App.view"
 import SloganSpitter from "./SloganSpitter.view"
 import Title from "./Title.view"

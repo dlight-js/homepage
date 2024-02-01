@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { div, SubTyped, type Pretty, type Typed, Env, required, h1, p } from "@dlightjs/types"
 import { FeatureData } from "../../../const/homeData"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import FeatureCard from "./FeatureCard.view"
 import { EnvType } from "../../../App.view"
 

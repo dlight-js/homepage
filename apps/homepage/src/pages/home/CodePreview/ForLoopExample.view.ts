@@ -2,7 +2,7 @@
 import { View } from "@dlightjs/dlight"
 import { PlayCircleFilled } from "@dlightjs/material-icons"
 import { section, type Pretty, Prop, h1, div, a, SubTyped, img, Typed } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { Example, MusicItem, musics } from "./utils"
 
 @View

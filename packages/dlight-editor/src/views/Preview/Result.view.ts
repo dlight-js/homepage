@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { Env, iframe, Pretty, Prop, required, Typed } from "@dlightjs/types"
 import { Color } from "../../utils/const"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 
 interface ResultProps {
   srcDoc: string

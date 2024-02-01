@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { HeaderData } from "../../../../const/homeData"
 import ShortHeaderMenuItem from "./ShortHeaderMenuItem.view"
 

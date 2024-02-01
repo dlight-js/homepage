@@ -1,11 +1,10 @@
 import { View } from "@dlightjs/dlight"
 import { MarkitView, addBlockRule } from "@dlightjs/markit"
 import { Content, ContentProp, div, env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { AdvantageBlock, HeadingBlock } from "./blocks"
 import { CatalogueView, NextPageNav } from "./views"
 import { PageNavType } from "./views/NextPageNav.view"
-import TableBlock from "./blocks/tableBlock/TableBlock.view"
 
 /**
  * @example
@@ -37,12 +36,6 @@ addBlockRule({
   name: "Heading",
   rule: "default",
   view: HeadingBlock
-})
-
-addBlockRule({
-  name: "Table",
-  rule: "default",
-  view: TableBlock
 })
 
 interface DlightDocProps {
@@ -188,7 +181,7 @@ class DlightDoc implements DlightDocProps {
       .themeType(this.themeType)
     {
       div()
-        .class(this.dlightDocWrap)
+        .class(this.dlightDocWrapCss)
         .element(this.markitViewEl)
       {
         div()
@@ -247,26 +240,7 @@ class DlightDoc implements DlightDocProps {
     }
   `
 
-  dlightMarkitCode$ = css`
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background-color: ${this.shadowColor};
-      color: ${this.highlightColor};
-  `
-
-  dlightMarkitCodeBlock$ = css`
-    background-color: ${this.codeBgColor};
-  `
-
-  dlightMarkitCodeBlockHeader$ = css`
-    background-color: ${this.codeBlockHeaderColor};
-    color: ${this.textColor};
-  `
-
-  dlightMarkitLink$ = css`
-    color: #A9A9A9;
-  `
-
-  dlightDocWrap = css`
+  dlightDocWrapCss = css`
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -274,6 +248,49 @@ class DlightDoc implements DlightDocProps {
     overflow: scroll;
     overflow-x: hidden;
     padding: 30px 25px;
+
+    .dlight-markit-code {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: ${this.shadowColor};
+      color: ${this.highlightColor};
+    }
+
+    .dlight-markit-code-block {
+      background-color: ${this.codeBgColor};
+    }
+
+    .dlight-markit-code-block-header {
+      background-color: ${this.codeBlockHeaderColor};
+      color: ${this.textColor};
+    }
+
+    .dlight-markit-link {
+      color: #A9A9A9;
+    }
+
+    .dlight-markit-divider {
+      border-width: 0 ;
+      height: 1px;
+      width: 100%;
+      margin: 40px 0;
+    }
+
+    .dlight-markit-table {
+      border-collapse: collapse;
+      margin: 15px 0 25px 0;
+    }
+
+    .dlight-markit-table-th {
+      border: none;
+      border-bottom: solid 1px #cecece;
+      padding: 10px;
+    }
+
+    .dlight-markit-table-td {
+      border: none;
+      border-bottom: solid 1px rgb(226 232 240);
+      padding: 15px;
+    }
   `
 
   fixCatalogueCss = css`
@@ -289,13 +306,6 @@ class DlightDoc implements DlightDocProps {
     box-shadow: ${this.isShowCatalogue && !this.isShowCatalogueInner ? `0 2px 8px 0 ${this.shadowColor}` : ""};
     z-index: ${this.isShowCatalogue && !this.isShowCatalogueInner ? 50 : ""};
     margin-top: ${this.isShowCatalogue && !this.isShowCatalogueInner ? "-82px" : ""};
-  `
-
-  dlightMarkitDivider$ = css`
-    border-width: 0 ;
-    height: 1px;
-    width: 100%;
-    margin: 40px 0;
   `
 }
 

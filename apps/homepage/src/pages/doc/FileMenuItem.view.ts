@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { type Typed, Pretty, div, Env, Prop, Watch, required } from "@dlightjs/types"
 import { DocsStructureMapType } from "../../utils/types"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import { Navigator } from "@dlightjs/components"
 import { KeyboardArrowRightFilled } from "@dlightjs/material-icons"
 import clsx from "clsx"

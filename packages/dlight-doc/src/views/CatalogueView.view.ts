@@ -1,7 +1,7 @@
 import { View } from "@dlightjs/dlight"
 import { a, Content, ContentProp, div, Env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
 import { InlineRenderer } from "@dlightjs/markit"
-import { css } from "@iandx/easy-css"
+import { css } from "@emotion/css"
 import clsx from "clsx"
 
 interface CatalogueViewProps {
