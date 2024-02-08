@@ -44,7 +44,7 @@ class RightSetting {
         .href("https://github.com/dlight-js/dlight")
       this.NavForwardIcon()
         .src("/imgs/discord.svg")
-        .href("https://discord.com/invite/TZQxTA5G")
+        .href("https://discord.gg/sD57p7NakQ")
     }
   }
 
