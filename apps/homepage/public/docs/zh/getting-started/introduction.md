@@ -100,7 +100,7 @@ for (const fruit of ["apple", "orange", "banana"]) {
 ```js
 @View
 class MyComp {
-  Body() {
+  View() {
     div("hello")
   }
 }
@@ -110,7 +110,7 @@ class MyComp {
 @View
 class MyComp {
   count = 0
-  Body() {
+  View() {
     div("hello")
     div(this.count)
   }
@@ -122,7 +122,7 @@ class MyComp {
 class MyComp {
   count = 0
   doubleCount = this.count * 2
-  Body() {
+  View() {
     div("hello")
     div(this.doubleCount)
   }

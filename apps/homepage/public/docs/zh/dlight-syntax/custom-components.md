@@ -7,7 +7,7 @@
 class Counter {
   count = 0
 
-  Body() {
+  View() {
     div(this.count)
     button("+")
       .onclick(() => {

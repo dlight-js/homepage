@@ -26,7 +26,7 @@ $: doubled = count * 2;
 class Counter {
   count = 0
 
-  Body() {
+  View() {
     div(this.count)
     button("+")
       .onclick(() => {
@@ -50,7 +50,7 @@ class Counter {
   count = 0
   doubleCount = this.count * 2
 
-  Body() {
+  View() {
     div(this.doubleCount)
       .onclick(() => {
         this.count ++

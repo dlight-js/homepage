@@ -12,7 +12,7 @@ import { View } from "@dlightjs/dlight"
 class Card {
   @Children content
 
-  Body() {
+  View() {
     div()
       .style({
         border: "1px solid gray",
@@ -37,7 +37,7 @@ import Card from "./Card.view"
 
 @View
 class App {
-  Body() {
+  View() {
     Card()
     {
       div("This is the content inside the card.")

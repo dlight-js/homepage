@@ -1,4 +1,4 @@
-让我们回顾一下我们已经讲过的内容。我们已经讨论了 HTML 元素、文本节点、自定义组件、条件语句和循环。语法似乎相当流畅且直接，但这些函数调用到底是什么？它们如何被收集到 `Body` 方法中的呢？
+让我们回顾一下我们已经讲过的内容。我们已经讨论了 HTML 元素、文本节点、自定义组件、条件语句和循环。语法似乎相当流畅且直接，但这些函数调用到底是什么？它们如何被收集到 `View` 方法中的呢？
 
 让我们先回答这些函数调用到底是什么。
 
@@ -35,7 +35,7 @@ class MyComp {
   // I don't know which type it is
   @Prop variable: DLNode | string | undefined | null | (DLNode | string | undefined | null)[]
 
-  Body() {
+  View() {
     // But I can just write this
     _(this.variable)
     // or
@@ -58,7 +58,7 @@ class MyComp {
   @Prop good
   @Prop bad
 
-  Body() {
+  View() {
     _(this.RUOK ? this.good : this.bad)
     // or
     this.RUOK ? this.good : this.bad

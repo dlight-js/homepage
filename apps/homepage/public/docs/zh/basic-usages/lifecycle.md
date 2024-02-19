@@ -31,7 +31,7 @@ class MyComponent {
   }
   // ... similarly for willUnmount and didUnmount
 
-  Body() {...}
+  View() {...}
 }
 ```
 
@@ -44,7 +44,7 @@ class MyComponent {
 举例：
 
 ```js
-// inside Body
+// inside View
 MyComponent()
   .willMount(() => {
     // Code to run before mounting

@@ -13,7 +13,7 @@
 class MyComp {
   @Prop myFirstProp
 
-  Body() {
+  View() {
     div(this.myFirstProp)
   }
 }
@@ -26,7 +26,7 @@ class MyComp {
 ```js
 @View
 class App {
-  Body() {
+  View() {
     MyComp()
       .myFirstProp("this prop is declared in MyComp component")
   }
@@ -45,12 +45,12 @@ class MyComp {
   @Prop myThirdProp
   @Prop ...
 
-  Body() { ... }
+  View() { ... }
 }
 
 @View
 class App {
-  Body() {
+  View() {
     MyComp()
       .myFirstProp("1st prop")
       .mySecondProp({ value: "2nd prop" })
@@ -71,14 +71,14 @@ class App {
 class MyComp {
   @Prop @Content myContentProp
 
-  Body() {
+  View() {
     div(this.myContentProp)
   }
 }
 
 @View 
 class App {
-  Body() {
+  View() {
     MyComp("This is content prop")
   }
 }
@@ -97,7 +97,7 @@ class App {
 class MyComp {
   @Prop compCount
 
-  Body() {
+  View() {
     div(this.compCount)
   }
 }
@@ -106,7 +106,7 @@ class MyComp {
 class App {
   count = 0
 
-  Body() {
+  View() {
     MyComp()
       .compCount(this.count)
   }
@@ -128,7 +128,7 @@ class App {
 class MyComp {
   @Prop changeCount
 
-  Body() {
+  View() {
     button("change count")
       .onclick(() => {
         this.changeCount()
@@ -144,7 +144,7 @@ class App {
     this.count ++
   }
 
-  Body() {
+  View() {
     MyComp()
       .compCount(this.changeCount)
   }
@@ -160,7 +160,7 @@ class MyComp {
   
   count = 1
   prev_cnt = this.count
-  Body() { 
+  View() { 
     setInterval(() => {
       if (this.count !== this.prev_cnt) {
         this.changeCount()
@@ -178,7 +178,7 @@ class App {
     this.count ++
   }
 
-  Body() {
+  View() {
     MyComp()
       .compCount(this.changeCount)
   }

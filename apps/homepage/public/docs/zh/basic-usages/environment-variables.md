@@ -129,7 +129,7 @@ class App {
     this.user = { ...this.user, userName: newUserName }
   }
 
-  Body() {
+  View() {
     h1(`Welcome back, ${this.user.userName}`)
     env()
       .user(this.user)
@@ -150,7 +150,7 @@ class UserProfile {
   @Env user
   @Env updateUsername
 
-  Body() {
+  View() {
     div()
     {
       h2("My Profile")
@@ -188,14 +188,14 @@ class MyComp {
   @Env message // this will be ok
   @Env count // this will be 100
 
-  Body() {
+  View() {
     "nothing here"
   }
 }
 
 @View
 class App {
-  Body() {
+  View() {
     env()
       .message("ok")
       .count(0)
