@@ -150,37 +150,3 @@ class App {
   }
 }
 ```
-
-
-
-<!-- ```js
-@View
-class MyComp {
-  @Prop changeCount
-  
-  count = 1
-  prev_cnt = this.count
-  View() { 
-    setInterval(() => {
-      if (this.count !== this.prev_cnt) {
-        this.changeCount()
-        this.prev_cnt = this.count;
-      }
-    }, 1000);
-  }
-}
-
-@View
-class App {
-  count = 0
-
-  changeCount() {
-    this.count ++
-  }
-
-  View() {
-    MyComp()
-      .compCount(this.changeCount)
-  }
-}
-``` -->
