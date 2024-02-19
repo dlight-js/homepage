@@ -72,9 +72,9 @@ class Tabs implements TabsProps {
 
   geneNewTabName(type = "js") {
     const prefix = type === "js" ? "tab" : "style"
-    const tabNames = this.modules.map(module => this.TabToName(module.path))
+    const tabNames = this.modules.map(module => module.path)
     let i = 0
-    while (tabNames.includes(`${prefix}${i === 0 ? "" : i}.${type}`)) {
+    while (tabNames.includes(`/${prefix}${i === 0 ? "" : i}.${type}`)) {
       i++
     }
     return i === 0 ? `${prefix}.${type}` : `${prefix}${i}.${type}`

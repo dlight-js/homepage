@@ -15,6 +15,7 @@ export const ExamplesCodeData: ExmaplesCodeDataType[] = [
     children: [
       {
         title: "Hello World",
+        zhName: "Hello World",
         description: "A greeting from DLight.js.",
         zhDescription: "来自DLight的问候。",
         modules: [
@@ -35,6 +36,7 @@ render("app", HelloWorld)`,
       },
       {
         title: "TodoMVC",
+        zhName: "ToDoMVC",
         description: "The ToDoMVC example demonstrates how to create a ToDo List application using the dlight.js.",
         zhDescription: "ToDoMVC示例展示了如何使用@dlightjs/dlight框架创建一个ToDoMVC应用程序。",
         modules: [
@@ -699,7 +701,9 @@ html .clear-completed:active {
     children: [
       {
         title: "Reactive States",
+        zhName: "响应式状态",
         description: "Showcase how to use reactive states in dlight.js.",
+        zhDescription: "展示如何在dlight.js中使用响应式状态。",
         modules: [
           {
             code: javascript`import { View, render } from "@dlightjs/dlight"
@@ -718,7 +722,9 @@ render("app", NameComp)`,
       },
       {
         title: "Computed States",
+        zhName: "计算状态",
         description: "Showcase how to use computed states in dlight.js.",
+        zhDescription: "展示如何在dlight.js中使用计算状态。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -740,7 +746,9 @@ render("app", NameComp)`,
       },
       {
         title: "Reactive Assignments",
+        zhName: "响应式赋值",
         description: "Showcase how to assign reactive states in dlight.js.",
+        zhDescription: "展示如何在dlight.js中赋值响应式状态。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -762,7 +770,9 @@ render("app", CountComp)`,
       },
       {
         title: "Watcher",
+        zhName: "Watcher",
         description: "Showcase how to use @Watcher to watch reactive state update in dlight.js.",
+        zhDescription: "展示如何在dlight.js中使用@Watcher来监视响应式状态的更新。",
         modules: [
           {
             code: `import { View, render, Watch } from "@dlightjs/dlight"
@@ -789,7 +799,9 @@ render("app", CountComp)`,
       },
       {
         title: "Environment",
+        zhName: "环境",
         description: "Showcase how to use env block to store the global properties and use @Env to receive environment properties in dlight.js.",
+        zhDescription: "展示如何在dlight.js中使用env块来存储全局属性，并使用@Env来接收环境属性。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -869,7 +881,9 @@ render("app", RootComp)`,
     children: [
       {
         title: "Text Element",
+        zhName: "文本元素",
         description: "Showcase which is text element in dlight.js.",
+        zhDescription: "展示在dlight.js中的文本元素。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -889,7 +903,9 @@ render("app", TextElement)`,
       },
       {
         title: "Html Element",
+        zhName: "Html元素",
         description: "Showcase how to use html element in dlight.js.",
+        zhDescription: "展示在dlight.js中如何使用html元素。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -913,7 +929,9 @@ render("app", HtmlElement)`,
       },
       {
         title: "Html Element Props",
+        zhName: "Html元素属性",
         description: "Showcase how to use props with html element.",
+        zhDescription: "展示如何在html元素中使用属性。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -933,7 +951,9 @@ render("app", HtmlElementProps)`,
       },
       {
         title: "Component",
+        zhName: "组件",
         description: "Showcase how to build and invoke a custom component.",
+        zhDescription: "展示如何构建和调用自定义组件。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -959,7 +979,9 @@ render("app", RootComp)`,
       },
       {
         title: "If Block",
+        zhName: "If模块",
         description: "Showcase how to use if block in dlight.js.",
+        zhDescription: "展示如何在dlight.js中使用if模块。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -1000,7 +1022,9 @@ render("app", TrafficLight)`,
       },
       {
         title: "For Loop",
+        zhName: "For循环",
         description: "Showcase how to use for loop view in dlight.js.",
+        zhDescription: "展示如何在dlight.js中使用for循环视图。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -1026,7 +1050,9 @@ render("app", Colors)`,
       },
       {
         title: "Keyed For Loop",
+        zhName: "带key的for循环",
         description: "Showcase how to use key in for loop to ensure correctness of array sequence.",
+        zhDescription: "展示如何在for循环中使用key来确保数组顺序的正确性。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -1059,7 +1085,9 @@ render("app", NumComp)`,
       },
       {
         title: "Switch Case",
+        zhName: "Switch Case",
         description: "Using TrafficLight component to showcase how to use switch case in dlight.js.",
+        zhDescription: "使用TrafficLight组件展示如何在dlight.js中使用switch case。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -1104,7 +1132,9 @@ render("app", TrafficLight)`,
       },
       {
         title: "Expression",
+        zhName: "表达式",
         description: "Showcase how to use expression as a view in View block.",
+        zhDescription: "展示如何在View块中使用表达式作为视图。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -1133,7 +1163,9 @@ render("app", Expression)`,
     children: [
       {
         title: "Props",
+        zhName: "属性",
         description: "UserProfile component receiving dynamic properties from an App class",
+        zhDescription: "UserProfile组件从App类接收动态属性",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -1195,7 +1227,9 @@ export default UserProfile`,
       },
       {
         title: "Content",
+        zhName: "Content",
         description: "Showcase how to use @Content decorator to receive dynamic content from a parent component which is different way to receive props from dot call.",
+        zhDescription: "展示如何使用@Content装饰器从父组件接收动态内容，这是一种不同于从点调用接收props的方式。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -1244,7 +1278,9 @@ export default BeautifulButton`,
       },
       {
         title: "Children",
+        zhName: "子元素",
         description: "Showcase how to receive dynamic children which is passing in {} from a parent component.",
+        zhDescription: "展示如何从父组件接收动态子元素，这是通过{}传递的。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -1288,7 +1324,9 @@ export default CenterAlign`,
       },
       {
         title: "Sub View",
+        zhName: "子视图",
         description: "Showcase how to use @View in a class to create a sub view.",
+        zhDescription: "展示如何在一个类中使用@View创建一个子视图。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -1321,7 +1359,9 @@ render("app", App)`,
       },
       {
         title: "Prop View",
+        zhName: "Prop视图",
         description: "Showcase how to pass a view as a prop to a component.",
+        zhDescription: "展示如何将视图作为属性传递给组件。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -1382,7 +1422,9 @@ export default Header`,
     children: [
       {
         title: "Html Element Lifecycle",
+        zhName: "Html元素生命周期",
         description: "A Firecracker class showcasing HTML element lifecycle management by dynamically removing firecracker.",
+        zhDescription: "一个Firecracker类展示了通过动态删除鞭炮来管理HTML元素的生命周期。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -1420,7 +1462,9 @@ render("app", Firecracker)`,
       },
       {
         title: "Component Lifecycle",
+        zhName: "组件生命周期",
         description: "An interactive AppleTree class demonstrates the component lifecycle using lifecycle hooks.",
+        zhDescription: "一个交互式的AppleTree类用生命周期钩子演示了的组件生命周期。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -1476,7 +1520,9 @@ export default Apple`,
       },
       {
         title: "Instant Component Lifecycle",
+        zhName: "即时组件生命周期",
         description: "An interactive AppleTree class demonstrates instant component lifecycle using lifecycle hooks.",
+        zhDescription: "一个交互式的AppleTree类使用生命周期钩子演示了即时组件生命周期。",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"
@@ -1544,7 +1590,9 @@ export default Apple`,
       },
       {
         title: "Did Update",
+        zhName: "Did Update",
         description: "A dynamic time display demonstrates how to use didUpdate feature to update every second",
+        zhDescription: "一个动态时间显示演示了如何使用didUpdate功能每秒更新一次",
         modules: [
           {
             code: `import { View, render } from "@dlightjs/dlight"

@@ -112,7 +112,7 @@
       },
       {
         "name": "🅷 HTML Props",
-        "zhName": "🅷 HTML参数",
+        "zhName": "🅷 HTML 属性",
         "path": "html-props"
       },
       {
@@ -122,7 +122,7 @@
       },
       {
         "name": "📦 View Prop",
-        "zhName": "📦 View View",
+        "zhName": "📦 View 属性",
         "path": "view-prop"
       },
       {

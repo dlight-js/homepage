@@ -1,6 +1,6 @@
 import { View } from "@dlightjs/dlight"
 import { MarkitView, addBlockRule } from "@dlightjs/markit"
-import { Content, ContentProp, div, env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
+import { Content, ContentProp, div, Env, env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
 import { css } from "@emotion/css"
 import { AdvantageBlock, HeadingBlock } from "./blocks"
 import { CatalogueView, NextPageNav } from "./views"
@@ -40,6 +40,7 @@ addBlockRule({
 
 interface DlightDocProps {
   title: string
+  zhTitle: string
   isShowCatalogue: boolean
   content: ContentProp<string>
   nextPageNav: PageNavType
@@ -55,8 +56,10 @@ interface DlightDocProps {
 
 @View
 class DlightDoc implements DlightDocProps {
+  @Env i18n: any = required
   @Content content: any = required
   @Prop title = required
+  @Prop zhTitle = required
   @Prop isShowCatalogue = required
   @Prop nextPageNav = required
   @Prop prePageNav = required
@@ -187,7 +190,7 @@ class DlightDoc implements DlightDocProps {
         div()
           .class(this.dlightContentWrap)
         {
-          div(this.title)
+          div(this.i18n(this.title, this.zhTitle))
             .class(this.dlightDocTitleCss)
           MarkitView(this.content ?? "")
             .getAst(this.getAst)

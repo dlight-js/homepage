@@ -25,6 +25,7 @@ class DocPage {
   isFail = false
   mdString: string = ""
   selectedName: string = ""
+  selectedZhName: string = ""
   prevFile: DocsStructureMapType | undefined
   nextFile: DocsStructureMapType | undefined
   scrollView: any
@@ -80,7 +81,7 @@ class DocPage {
       : undefined
 
     if (filePath !== "") {
-      fetch(this.language === "en" ? filePath : filePath.split("docs")[0] + "docs/zh" + filePath.split("docs")[1])
+      fetch(this.language === "en" ? filePath : filePath.split(this.fileType)[0] + this.fileType + "/zh" + filePath.split(this.fileType)[1])
         .then(async data => {
           if (data.ok) {
             return await data.text()
@@ -97,6 +98,7 @@ class DocPage {
         })
     }
     this.selectedName = fileData?.name ?? ""
+    this.selectedZhName = fileData?.zhName ?? ""
   }
 
   @Watch
@@ -156,6 +158,7 @@ class DocPage {
             } else {
               DlightDoc(this.mdString)
                 .title(this.selectedName)
+                .zhTitle(this.selectedZhName)
                 .isShowCatalogue(this.isOpenOutline.value)
                 .nextPageNav(this.nextPageNav)
                 .prePageNav(this.prePageNav)

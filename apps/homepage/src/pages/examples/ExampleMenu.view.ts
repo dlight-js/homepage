@@ -16,6 +16,7 @@ class ExampleMenu implements ExampleMenuProps {
   @Env navigator: Navigator = required
   @Env theme: any = required
   @Env windowWidth = required
+  @Env i18n: any = required
   @Prop isOpen = required
   @Prop examples = required
   @Prop selectedTitle = required
@@ -26,13 +27,15 @@ class ExampleMenu implements ExampleMenuProps {
       .class(this.examplesListWrapCss)
     {
       for (const example of this.examples) {
-        div(example.title)
+        div(this.i18n(example.title, example.zhName))
           .class(this.exampleTitleCss)
-        for (const { title, description } of example.children) {
+        for (const { title, zhName, description, zhDescription } of example.children) {
           SubExampleItem()
             .header(example.title)
             .title(title)
+            .zhName(zhName)
             .description(description)
+            .zhDescription(zhDescription)
             .selectedTitle(this.selectedTitle)
         }
       }

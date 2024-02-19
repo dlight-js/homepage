@@ -8,6 +8,8 @@ interface SubExampleItemProps {
   description: string
   selectedTitle: string
   header: string
+  zhName: string
+  zhDescription: string
 }
 
 @View
@@ -15,7 +17,10 @@ class SubExampleItem implements SubExampleItemProps {
   @Env navigator: Navigator = required
   @Env theme: any = required
   @Env path: string = required
+  @Env i18n: any = required
   @Prop title = required
+  @Prop zhName = required
+  @Prop zhDescription = required
   @Prop description = required
   @Prop selectedTitle = required
   @Prop header = required
@@ -34,9 +39,9 @@ class SubExampleItem implements SubExampleItemProps {
         this.navigator.to(`/examples/${this.mutatedPath}`)
       })
     {
-      div(this.title)
+      div(this.i18n(this.title, this.zhName))
         .class(this.exampleSubTitleCss)
-      div(this.description)
+      div(this.i18n(this.description, this.zhDescription))
         .class(this.exampleSubDescriptionCss)
     }
   }
