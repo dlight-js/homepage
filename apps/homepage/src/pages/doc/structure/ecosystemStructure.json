@@ -12,7 +12,44 @@
       {
         "name": "Routes",
         "zhName": "路由",
-        "path": "routes"
+        "path": "routes",
+        "children": [
+          {
+            "name": "Getting Started",
+            "zhName": "开始",
+            "path": "getting-started"
+          },
+          {
+            "name": "Route",
+            "zhName": "路由",
+            "path": "route"
+          },
+          {
+            "name": "Loading",
+            "zhName": "加载",
+            "path": "loading"
+          },
+          {
+            "name": "Guard/Lifecycle",
+            "zhName": "守卫/生命周期",
+            "path": "guard-lifecycle"
+          },
+          {
+            "name": "Navigation",
+            "zhName": "导航",
+            "path": "navigation"
+          },
+          {
+            "name": "Example",
+            "zhName": "示例",
+            "path": "example"
+          },
+          {
+            "name": "interfaces",
+            "zhName": "接口",
+            "path": "interfaces"
+          }
+        ]
       }
     ]
   },
