@@ -80,7 +80,7 @@ import { View } from "@dlightjs/dlight"
 
 @View
 export default class App {
-  View() {
+  Body() {
     div("hello dlight!")
   }
 }
