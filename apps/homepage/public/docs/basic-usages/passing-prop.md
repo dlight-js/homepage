@@ -125,11 +125,11 @@ Just pass a function that sets the `count` variable like this:
 ```js
 @View
 class MyComp {
-  @Prop changeCount
+  @Prop compCount
 
   View() {
     button("change count")
-      .onClick(this.changeCount)
+      .onClick(this.compCount)
   }
 }
 
