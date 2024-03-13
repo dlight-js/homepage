@@ -126,12 +126,12 @@ class App {
 ```js
 @View
 class MyComp {
-  @Prop changeCount
+  @Prop compCount
 
   View() {
     button("change count")
       .onclick(() => {
-        this.changeCount()
+        this.compCount()
       })
   }
 }
