@@ -74,7 +74,7 @@ to invert selection, and <enter> to proceed)
 ```
 最重要的两个文件是 `App.view.ts` 和 `index.js`.
 
-在 `App.view.js`中, 我们已经声明了一个在浏览器中显示“hello dlght!”的 App 组件：
+在 `App.view.js`中, 我们已经声明了一个在浏览器中显示“hello dlight!”的 App 组件：
 ```js [src/App.view.js]
 import { View } from "@dlightjs/dlight"
 
