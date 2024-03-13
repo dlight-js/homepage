@@ -72,15 +72,15 @@ to invert selection, and <enter> to proceed)
 - package.json
 - vite.config.ts   // vite config, using vite-plugin-dlight
 ```
-The most important two files are `App.view.ts` and `index.js`.
+最重要的两个文件是 `App.view.ts` 和 `index.js`.
 
-In `App.view.js`, we've declared a App component displaying "hello" in the browser:
+在 `App.view.js`中, 我们已经声明了一个在浏览器中显示“hello dlght!”的 App 组件：
 ```js [src/App.view.js]
 import { View } from "@dlightjs/dlight"
 
 @View
 export default class App {
-  View() {
+  Body() {
     div("hello dlight!")
   }
 }
