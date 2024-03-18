@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, Env, Prop, required } from "@dlightjs/types"
+import { View, type Typed, div, Pretty, Env, Prop, required } from "@dlightjs/dlight"
 import NavButton from "./NavButton.view"
 import { css } from "@emotion/css"
 import { Navigator } from "@dlightjs/components"
@@ -66,7 +65,7 @@ class Header implements HeaderProps {
     }
   }
 
-  View() {
+  Body() {
     div()
       .class(this.headerHeightCss)
     {

@@ -1,7 +1,6 @@
 
 import { Navigator } from "@dlightjs/components"
-import { View } from "@dlightjs/dlight"
-import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
+import { View, Env, Pretty, Prop, Typed, div, required } from "@dlightjs/dlight"
 import { Logo, LogoTitle } from "../../../../logo"
 import { css } from "@emotion/css"
 
@@ -16,7 +15,7 @@ class AnimatedLogo implements AnimatedLogoProps {
   @Prop isStyle2 = required
   @Prop isShortHeader = required
 
-  View() {
+  Body() {
     div()
       .onClick(() => { this.navigator.to("/") })
       .class(this.logoWrapCss)

@@ -1,7 +1,0 @@
-{
-  "presets": [
-    ["dlight", {
-      "files": "**/*.view.ts"
-    }]
-  ]
-}

@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, div, ContentProp, Content, Env, Prop, required } from "@dlightjs/types"
+import { View, type Typed, Pretty, div, ContentProp, Content, Env, Prop, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import clsx from "clsx"
 
@@ -21,7 +20,7 @@ class Shape implements ShapeProps {
   @Prop isStartPulse = false
   isLight = this.themeType === "light"
 
-  View() {
+  Body() {
     div()
     {
       div(this.content)

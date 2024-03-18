@@ -1,6 +1,5 @@
-import { View } from "@dlightjs/dlight"
+import { View, type Typed, div, Pretty, Env, Prop, required, Watch } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
-import { type Typed, div, Pretty, Env, Prop, required, Watch } from "@dlightjs/types"
 import DLightEditor from "dlight-editor"
 import { ExamplesCodeData } from "../../const/examplesCodeData"
 import { ExmaplesCodeDataType } from "../../utils/types"
@@ -27,7 +26,7 @@ class NewPlayGround implements NewPlayGroundProps {
     }
   })()
 
-  View() {
+  Body() {
     if (this.a) {
       DLightEditor()
         .modules(this.modules)
@@ -68,6 +67,7 @@ class ExamplesPage implements RoutesEnv {
 
   @Watch
   pathWatcher() {
+    if (!this.path.startsWith("examples")) return
     const pathSplit = this.path!.split("/")
     const title = pathSplit[pathSplit.length - 2]
     const subTitle = pathSplit[pathSplit.length - 1]
@@ -103,7 +103,7 @@ class ExamplesPage implements RoutesEnv {
     this.isMenuOpen = false
   }
 
-  View() {
+  Body() {
     div()
       .class(this.exampleBgCss)
     {

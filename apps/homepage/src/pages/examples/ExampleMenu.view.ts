@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, div, Env, Prop, required } from "@dlightjs/types"
+import { View, type Typed, Pretty, div, Env, Prop, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import SubExampleItem from "./SubExampleItem.view"
 import { Navigator } from "@dlightjs/components"
@@ -22,7 +21,7 @@ class ExampleMenu implements ExampleMenuProps {
   @Prop selectedTitle = required
   @Prop header = required
 
-  View() {
+  Body() {
     div()
       .class(this.examplesListWrapCss)
     {

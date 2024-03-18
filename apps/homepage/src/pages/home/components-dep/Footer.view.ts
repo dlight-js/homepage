@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, div, Env, required } from "@dlightjs/types"
+import { View, type Typed, Pretty, div, Env, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import { getSize } from "../../../utils/utilFunc"
 
@@ -8,7 +7,7 @@ class Footer {
   @Env theme: any = required
   @Env i18n: any = required
 
-  View() {
+  Body() {
     div()
       .class(this.footerWrapCss)
     {

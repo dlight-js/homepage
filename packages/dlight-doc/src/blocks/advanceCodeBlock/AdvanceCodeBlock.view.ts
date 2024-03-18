@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { code, Content, ContentProp, div, pre, Prop, required, Pretty, Typed } from "@dlightjs/types"
+import { View, code, Content, ContentProp, div, pre, Prop, required, Pretty, Typed } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import hljs from "highlight.js"
 import "highlight.js/styles/a11y-light.css"
@@ -9,15 +8,15 @@ import clsx from "clsx"
 
 interface AdvanceCodeBlockProps {
   content: ContentProp<any>
-  props: any
+  mdProps: any
 }
 
 @View
 class AdvanceCodeBlock implements AdvanceCodeBlockProps {
   @Content content: any = required
-  @Prop props = required
-  language = this.props.language
-  title = this.props.title
+  @Prop mdProps = required
+  language = this.mdProps.language
+  title = this.mdProps.title
   highlightedCode = hljs.highlight(this.content, { language: this.language.trim() === "codeTabs" ? "js" : this.language.trim() }).value
   hasCopied = false
 
@@ -29,7 +28,7 @@ class AdvanceCodeBlock implements AdvanceCodeBlockProps {
     }, 2000)
   }
 
-  View() {
+  Body() {
     div()
       .class(clsx(this.dlightMarkitCodeBlock, "dlight-markit-code-block"))
     {

@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { a, div, Env, required, type Pretty, type Typed } from "@dlightjs/types"
+import { View, a, div, Env, required, type Pretty, type Typed } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import { Logo } from "../../../logo"
 import { EnvType } from "../../../App.view"
@@ -7,7 +6,7 @@ import { EnvType } from "../../../App.view"
 @View
 class Footer implements EnvType {
   @Env theme: EnvType["theme"] = required
-  View() {
+  Body() {
     div().class(this.idCss); {
       Logo().height("15px").width("15px").isRotate(true)
       div(" 2023  ")

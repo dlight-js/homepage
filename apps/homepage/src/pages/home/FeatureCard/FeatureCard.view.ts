@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, div, img, Pretty, Env, Prop, required } from "@dlightjs/types"
+import { View, type Typed, div, img, Pretty, Env, Prop, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import { Navigator } from "@dlightjs/components"
 import { EnvType } from "../../../App.view"
@@ -24,7 +23,7 @@ class FeatureCard implements FeatureCardProps, EnvType {
   @Env i18n: EnvType["i18n"] = required
   @Prop data = required
 
-  View() {
+  Body() {
     div()
       .class(this.featureCardWrapCss)
     {

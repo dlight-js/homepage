@@ -1,7 +1,6 @@
 
-import { View } from "@dlightjs/dlight"
+import { View, div, Env, required, a, img } from "@dlightjs/dlight"
 import { FavoriteBorderOutlined, FavoriteFilled, PlayCircleFilled } from "@dlightjs/material-icons"
-import { div, Env, required, a, img } from "@dlightjs/types"
 import { css } from "@emotion/css"
 import { Example, musics } from "./utils"
 import { EnvType } from "../../../App.view"
@@ -15,7 +14,7 @@ class MusicItemClass {
   album = musics[0].album
   favorite = false
 
-  View() {
+  Body() {
     div().class(this.musicItemWrapperCss); {
       div().class(this.musicItemCss); {
         a()
@@ -116,7 +115,7 @@ const example: Example = {
 class MusicFavoriteItem {
   @Prop musicItem
 
-  View() {
+  Body() {
     MusicItem(this.musicItem)
     div().onClick(this.musicItem.toggleFavorite); {
       if (this.musicItem.favorite) {

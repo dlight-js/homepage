@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, required, Env, Prop } from "@dlightjs/types"
+import { View, type Typed, div, Pretty, required, Env, Prop } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 
 interface SkeletonProps {
@@ -17,7 +16,7 @@ class Skeleton implements SkeletonProps {
   // 80 for title, 180 for large content, 120 for small content, 30 for one signle line
   @Prop data = [[60, 100], [20, 50], [20, 80]]
 
-  View() {
+  Body() {
     div()
       .class(this.skeletonCss)
     {

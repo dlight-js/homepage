@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Pretty, type Typed, required, div, Env, ContentProp, Content, h1, p } from "@dlightjs/types"
+import { View, type Pretty, type Typed, required, div, Env, ContentProp, Content, h1, p } from "@dlightjs/dlight"
 import CodeDisplay from "./CodeDisplay.view"
 import { css } from "@emotion/css"
 import { EnvType } from "../../../App.view"
@@ -18,7 +17,7 @@ class CodeBlock implements CodeBlockProps, EnvType {
 
   previewHeight = 0
 
-  View() {
+  Body() {
     div().class(this.titleDesCss); {
       h1(this.i18n?.(this.example.title, this.example.zhTitle))
         .class(this.titleCss)
@@ -31,7 +30,7 @@ class CodeBlock implements CodeBlockProps, EnvType {
         CodeDisplay()
           .title(this.example.codeTitle)
           .code(this.example.code)
-          .element((elements) => {
+          .elements((elements) => {
             this.previewHeight = elements[0].clientHeight
           })
       }

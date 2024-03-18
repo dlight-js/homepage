@@ -33,7 +33,7 @@ export function flatFileStructureData(mapData: any) {
   return flatMapData
 }
 
-export function findCertainFile({ mapData, filePath, fileName }: { mapData: DocsStructureMapType[], filePath?: string, fileName?: string }) {
+export function findCertainFile({ mapData, filePath, fileName }: { mapData: DocsStructureMapType[], filePath?: string, fileName?: string }): [DocsStructureMapType | undefined, number | undefined] {
   let res: DocsStructureMapType | undefined
   let resIndex: number | undefined
   mapData.forEach((item: DocsStructureMapType, index: number) => {

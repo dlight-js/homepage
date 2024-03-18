@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { Env, Pretty, Typed, div, required } from "@dlightjs/types"
+import { View, Env, Pretty, Typed, div, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import { EnvType } from "../../../App.view"
 import SloganSpitter from "./SloganSpitter.view"
@@ -12,7 +11,7 @@ class TitleBoard implements EnvType {
   @Env language: EnvType["language"]
   @Env isShortView: EnvType["isShortView"] = required
 
-  View() {
+  Body() {
     div()
       .class(this.wrapperCss)
     {

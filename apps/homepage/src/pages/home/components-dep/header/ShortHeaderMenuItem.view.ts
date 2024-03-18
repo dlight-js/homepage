@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
+import { View, Env, Pretty, Prop, Typed, div, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import { Navigator } from "@dlightjs/components"
 
@@ -19,7 +18,7 @@ class ShortHeaderMenuItem {
   @Prop handleClickShowMenu = required
   isSelected = this.btnName === "Documents" ? this.path.includes("docs") : this.path.includes(this.btnPath.replace("/", ""))
   isHover = false
-  View() {
+  Body() {
     div(this.btnName)
       .class(this.menuBtnCss)
       .onClick(() => { this.navigator.to(this.btnPath); this.handleClickShowMenu() })

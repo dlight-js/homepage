@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, Children, Env, Prop, Watch, required } from "@dlightjs/types"
+import { View, type Typed, div, Pretty, Children, Env, Prop, Watch, required } from "@dlightjs/dlight"
 import { Navigator } from "@dlightjs/components"
 import { css } from "@emotion/css"
 import { shortViewWidth } from "../../const/pageSetting"
@@ -53,7 +52,7 @@ class SideMenu implements SideMenuProps {
     window.removeEventListener("click", this.closeMenuWhenClickOutside.bind(this))
   }
 
-  View() {
+  Body() {
     div()
       .class(this.sideMenuWrapCss)
     {

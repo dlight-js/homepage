@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, div, Env, Prop, required } from "@dlightjs/types"
+import { View, type Typed, Pretty, div, Env, Prop, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import { Navigator } from "@dlightjs/components"
 
@@ -29,7 +28,7 @@ class SubExampleItem implements SubExampleItemProps {
   isHover = false
   isSelected = this.selectedTitle === this.title
 
-  View() {
+  Body() {
     div()
       .id(this.mutatedPath)
       .class(this.subExampleWrapCss)

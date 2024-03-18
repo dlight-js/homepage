@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
+import { View, Env, Pretty, Prop, Typed, div, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import { HeaderData } from "../../../../const/homeData"
 import ShortHeaderMenuItem from "./ShortHeaderMenuItem.view"
@@ -15,7 +14,7 @@ class ShortHeaderMenu implements ShortHeaderMenuProps {
   @Prop handleClickShowMenu = required
   navBtn = HeaderData
 
-  View() {
+  Body() {
     div()
       .class(this.menuWarpCss)
     {

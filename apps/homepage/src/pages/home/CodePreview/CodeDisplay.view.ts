@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { code, div, pre, Prop, required, Pretty, Typed, Env, Watch } from "@dlightjs/types"
+import { View, code, div, pre, Prop, required, Pretty, Typed, Env, Watch } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import hljs from "highlight.js"
 import "highlight.js/styles/a11y-light.css"
@@ -38,7 +37,7 @@ class CodeDisplay implements CodeDisplayProps {
 
   highlightedCode = hljs.highlight(this.code, { language: "js" }).value
 
-  View() {
+  Body() {
     div().class(this.dlightCodeBlock); {
       div(this.title)
         .class(this.dlightCodeBlockHeader)

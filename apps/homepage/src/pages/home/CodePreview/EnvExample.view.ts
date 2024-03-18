@@ -1,6 +1,5 @@
 
-import { View } from "@dlightjs/dlight"
-import { div, Env, required, button, h1 } from "@dlightjs/types"
+import { View, div, Env, required, button, h1 } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import { Example, musics } from "./utils"
 import { EnvType } from "../../../App.view"
@@ -11,7 +10,7 @@ class AppClass {
   @Env theme: EnvType["theme"] = required
   language = "en"
 
-  View() {
+  Body() {
     div().class(this.wrapperCss); {
       h1(this.language === "zh" ? "音乐列表" : "Music List")
         .class(this.titleCss)
@@ -72,7 +71,7 @@ const example: Example = {
 class Home {
   @Env language
 
-  View() {
+  Body() {
     h1(this.language === "zh" ? "音乐列表" : "Music List")
     MusicList()
   }
@@ -82,7 +81,7 @@ class Home {
 class App {
   language = "en"
 
-  View() {
+  Body() {
     ChangeLanguageBtn()
       .onClick(() => {
         this.language = this.language === "en" ? "zh" : "en"

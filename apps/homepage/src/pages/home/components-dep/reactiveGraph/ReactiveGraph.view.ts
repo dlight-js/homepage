@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, div, Env, Prop, Watch, required } from "@dlightjs/types"
+import { View, type Typed, Pretty, div, Env, Prop, Watch, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import Shape from "./Shape.view"
 import LineShape from "./LineShape.view"
@@ -77,7 +76,7 @@ class ReactiveGraph implements ReactiveGraphProps {
       }
     })()
 
-  View() {
+  Body() {
     div()
       .class(this.graphWrapCss)
     {

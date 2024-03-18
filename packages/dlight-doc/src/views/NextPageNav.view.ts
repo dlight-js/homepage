@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, Env, Prop, required } from "@dlightjs/types"
+import { View, type Typed, div, Pretty, Env, Prop, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import { KeyboardArrowLeftFilled, KeyboardArrowRightFilled } from "@dlightjs/material-icons"
 
@@ -26,7 +25,7 @@ class NextPageNav implements NextPageNavProps {
   hover1 = false
   hover2 = false
 
-  View() {
+  Body() {
     div()
       .class(this.nextPageNavWrapCss)
     {

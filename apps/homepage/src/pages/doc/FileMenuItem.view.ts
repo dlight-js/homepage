@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, div, Env, Prop, Watch, required } from "@dlightjs/types"
+import { View, type Typed, Pretty, div, Env, Prop, Watch, required } from "@dlightjs/dlight"
 import { DocsStructureMapType } from "../../utils/types"
 import { css } from "@emotion/css"
 import { Navigator } from "@dlightjs/components"
@@ -51,7 +50,7 @@ class FileMenuItem implements FileMenuItemProps {
     this.isOpen = !this.isOpen
   }
 
-  View() {
+  Body() {
     div()
     {
       div()

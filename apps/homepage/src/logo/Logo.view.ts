@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { Pretty, Prop, Typed, img, required } from "@dlightjs/types"
+import { View, Pretty, Prop, Typed, img, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import clsx from "clsx"
 
@@ -17,7 +16,7 @@ class Logo implements LogoProps {
   @Prop width = "30px"
   @Prop height = "30px"
 
-  View() {
+  Body() {
     img()
       .src("/imgs/logo-leading-png.svg")
       .alt("DLight Logo")

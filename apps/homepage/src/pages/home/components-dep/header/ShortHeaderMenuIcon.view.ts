@@ -1,6 +1,5 @@
-import { View } from "@dlightjs/dlight"
+import { View, Env, Pretty, Prop, Typed, div, required } from "@dlightjs/dlight"
 import { MenuRound, CloseRound } from "@dlightjs/material-icons"
-import { Env, Pretty, Prop, Typed, div, required } from "@dlightjs/types"
 import { css } from "@emotion/css"
 
 interface ShortHeaderMenuIconProps {
@@ -16,7 +15,7 @@ class ShortHeaderMenuIcon {
   @Prop isShortHeader = required
   @Prop isShowMenu = required
   @Prop handleClickShowMenu = required
-  View() {
+  Body() {
     div()
       .class(this.menuBtnWrapCss)
     {

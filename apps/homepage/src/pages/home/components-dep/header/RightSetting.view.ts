@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { Env, Pretty, SubTyped, Typed, a, div, img, required } from "@dlightjs/types"
+import { View, Env, Pretty, Typed, a, div, img, required, Snippet, SnippetTyped } from "@dlightjs/dlight"
 import { LightModeOutlined, TranslateOutlined } from "@dlightjs/material-icons"
 import { css } from "@emotion/css"
 import { getSize } from "../../../../utils/utilFunc"
@@ -15,7 +14,7 @@ class RightSetting {
   @Env toggleLanguage: any = required
   @Env updateThemeType: any = required
 
-  @View
+  @Snippet
     NavForwardIcon = (({ src, href }: NavForwardIconProps) => {
       a()
         .href(href)
@@ -25,9 +24,9 @@ class RightSetting {
           .class(this.iconSizeCss)
           .src(src)
       }
-    }) as Pretty as SubTyped<NavForwardIconProps>
+    }) as Pretty as SnippetTyped<NavForwardIconProps>
 
-  View() {
+  Body() {
     div()
       .class(this.sectionNav)
     {

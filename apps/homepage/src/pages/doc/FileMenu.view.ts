@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, Prop, required } from "@dlightjs/types"
+import { View, type Typed, Pretty, Prop, required } from "@dlightjs/dlight"
 import { DocsStructureMapType } from "../../utils/types"
 import FileMenuItem from "./FileMenuItem.view"
 
@@ -11,7 +10,7 @@ interface FileMenuProps {
 class FileMenu implements FileMenuProps {
   @Prop structureData = required
 
-  View() {
+  Body() {
     if (this.structureData) {
       for (const { name, zhName, path, children } of this.structureData) {
         FileMenuItem()

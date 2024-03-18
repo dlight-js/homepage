@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, img, Env, required } from "@dlightjs/types"
+import { View, type Typed, div, Pretty, img, Env, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import { Navigator } from "@dlightjs/components"
 import { EnvType } from "../../App.view"
@@ -12,7 +11,7 @@ class Loading implements EnvType {
   @Env theme: any = required
   @Env i18n: any = required
 
-  View() {
+  Body() {
     div()
       .class(this.loadingWrapCss)
     {

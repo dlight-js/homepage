@@ -1,12 +1,11 @@
-import { View } from "@dlightjs/dlight"
-import { div, Env, type Pretty, type Typed, required } from "@dlightjs/types"
+import { View, div, Env, type Pretty, type Typed, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 
 @View
 class LoadingCircle {
   @Env theme: any = required
 
-  View() {
+  Body() {
     div()
       .class(this.wrapperCss)
     {

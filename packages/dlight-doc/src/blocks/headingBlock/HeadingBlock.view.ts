@@ -1,31 +1,30 @@
-import { View } from "@dlightjs/dlight"
-import { ContentProp, div, tag, Pretty, Typed, Content, Prop, required } from "@dlightjs/types"
+import { View, ContentProp, div, tag, Pretty, Typed, Content, Prop, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import { InlineRenderer } from "@dlightjs/markit"
 
 interface HeadingBlockProps {
   content: ContentProp<any>
-  props: any
+  mdProps: any
 }
 
 @View
 class HeadingBlock implements HeadingBlockProps {
   @Content content: any = required
-  @Prop props = required
+  @Prop mdProps = required
 
-  headingName = `h${this.props.headingLevel}`
+  headingName = `h${this.mdProps.headingLevel}`
 
-  View() {
+  Body() {
     tag(this.headingName)()
       .id(this.content[0].content)
       .class(this.dlightMarkitHeading)
     {
       for (const content of this.content) {
         InlineRenderer[content.type](content.content)
-          .props(content.props)
+          .mdProps(content.props)
       }
     }
-    if (this.props.headingLevel === 1) {
+    if (this.mdProps.headingLevel === 1) {
       div()
         .class(this.dlightMarkitHeading1UnderLineCss)
     }

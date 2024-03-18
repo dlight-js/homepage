@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { Env, Pretty, Typed, div, tag } from "@dlightjs/types"
+import { View, Env, Pretty, Typed, div, tag } from "@dlightjs/dlight"
 import { Logo } from "../../../logo"
 import { css } from "@emotion/css"
 import { EnvType } from "../../../App.view"
@@ -118,7 +117,7 @@ class SloganSpitter implements EnvType {
     }, this.holdEmptyTime)
   }
 
-  View() {
+  Body() {
     div()
       .class(this.wrapperCss)
     {

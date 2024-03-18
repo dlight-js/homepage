@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { button, div, Env, required, type Pretty, type Typed, SubTyped, span } from "@dlightjs/types"
+import { View, button, div, Env, required, type Pretty, type Typed, span, Snippet, SnippetTyped } from "@dlightjs/dlight"
 import { EnvType } from "../../../App.view"
 import { Navigator } from "@dlightjs/components"
 import { css } from "@emotion/css"
@@ -18,7 +17,7 @@ class GetStarted implements EnvType {
   @Env i18n: EnvType["i18n"] = required
   navigator = new Navigator()
 
-  @View
+  @Snippet
     Button = (({ content, className, onClick }: ButtonProps) => {
       button()
         .class(clsx(this.btnCss, className))
@@ -35,9 +34,9 @@ class GetStarted implements EnvType {
             .class(this.btnContentCss)
         }
       }
-    }) as Pretty as SubTyped<ButtonProps>
+    }) as Pretty as SnippetTyped<ButtonProps>
 
-  View() {
+  Body() {
     div()
       .class(this.wrapperCss)
     {

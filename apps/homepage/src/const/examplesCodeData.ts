@@ -24,7 +24,7 @@ export const ExamplesCodeData: ExmaplesCodeDataType[] = [
 
 @View
 class HelloWorld {
-  View() {
+  Body() {
     div("Hello World!")
   }
 }
@@ -102,7 +102,7 @@ class TodoMVC {
     this.todos = this.todos.filter(todo => !todo.completed)
   }
 
-  @View
+  @Snippet
   ToDoItem({ id, title, completed, editing }) {
     li().class(
       \`todo \${editing ? "editing" : ""} \${completed ? "completed" : ""}\`.trim()
@@ -140,7 +140,7 @@ class TodoMVC {
     }
   }
 
-  @View
+  @Snippet
   Footer() {
     footer().class("footer")
     {
@@ -184,7 +184,7 @@ class TodoMVC {
     }
   }
 
-  @View
+  @Snippet
   Info() {
     footer().class("info")
     {
@@ -202,7 +202,7 @@ class TodoMVC {
     }
   }
 
-  View() {
+  Body() {
     section().class("todoapp")
     {
       header().class("header")
@@ -711,7 +711,7 @@ html .clear-completed:active {
 @View
 class NameComp {
   name = "John"
-  View() {
+  Body() {
     div(this.name)
   }
 }
@@ -735,7 +735,7 @@ class NameComp {
   lastName = "Doe"
   fullName = \`\${this.firstName} \${this.lastName}\`
 
-  View() {
+  Body() {
     div(this.fullName)
   }
 }
@@ -757,7 +757,7 @@ render("app", NameComp)`,
 class CountComp {
   count = 0
 
-  View() {
+  Body() {
     div(this.count)
     button("Add")
       .onClick(() => { this.count += 1 })
@@ -786,7 +786,7 @@ class CountComp {
     console.log(\`The count change to: \${this.count}\`)
   }
 
-  View() {
+  Body() {
     button("Add")
       .onClick(() => { this.count ++ })
     div(this.count)
@@ -809,7 +809,7 @@ render("app", CountComp)`,
 @View
 class SubSubComp {
   @Env theme
-  View() {
+  Body() {
     div("I am Sub Sub Component!")
       .style({ color: this.theme.textColor, backgroundColor: this.theme.bgColor, margin: "10px 0" })
   }
@@ -818,7 +818,7 @@ class SubSubComp {
 @View
 class SubComp2 {
   @Env theme
-  View() {
+  Body() {
     div("I am Sub Component2!")
       .style({ color: this.theme.textColor, backgroundColor: this.theme.bgColor, margin: "10px 0" })
   }
@@ -828,7 +828,7 @@ class SubComp2 {
 class SubComp {
   @Env theme
 
-  View() {
+  Body() {
     div("I am Sub Component1!")
       .style({ color: this.theme.textColor, backgroundColor: this.theme.bgColor, margin: "10px 0" })
     SubSubComp()
@@ -853,7 +853,7 @@ class RootComp {
     this.themeType = this.themeType === "Light" ? "Dark" : "Light"
   }
 
-  View() {
+  Body() {
     env()
       .theme(this.theme[this.themeType])
     {
@@ -890,7 +890,7 @@ render("app", RootComp)`,
 
 @View
 class TextElement {
-  View() {
+  Body() {
     "I am a Text Element!"
     \`I am also a Text Element! \`
     'Me too!'
@@ -912,7 +912,7 @@ render("app", TextElement)`,
 
 @View
 class HtmlElement {
-  View() {
+  Body() {
     div("I am a Html Element!")
     span("I am also a Html Element!")
     div()
@@ -938,7 +938,7 @@ render("app", HtmlElement)`,
 
 @View
 class HtmlElementProps {
-  View() {
+  Body() {
     a("Click to DLight Github")
       .href("https://github.com/dlight-js/dlight")
   }
@@ -959,14 +959,14 @@ render("app", HtmlElementProps)`,
             code: `import { View, render } from "@dlightjs/dlight"
 @View 
 class SubComp {
-  View() {
+  Body() {
     div("I am Sub Component!")
   }
 }
 
 @View
 class RootComp {
-  View() {
+  Body() {
     div("I am Root Component!")
     SubComp()
   }
@@ -997,7 +997,7 @@ class TrafficLight {
     this.lightIndex = (this.lightIndex + 1)%TRAFFIC_LIGHTS.length
   }
 
-  View() {
+  Body() {
     button("Next light")
       .onClick(this.nextLight)
     p(this.light)
@@ -1033,7 +1033,7 @@ render("app", TrafficLight)`,
 class Colors {
   colors = ["red", "green", "blue"]
 
-  View() {
+  Body() {
     ul()
     {
       for (const color of this.colors) {
@@ -1065,7 +1065,7 @@ class NumComp {
     this.numArr = [...this.numArr, this.numArr.length]
   }
 
-  View() {
+  Body() {
     button("Change numArr")
       .onClick(this.changeNumArr)
     ul()
@@ -1103,7 +1103,7 @@ class TrafficLight {
     this.lightIndex = (this.lightIndex + 1)%TRAFFIC_LIGHTS.length
   }
 
-  View() {
+  Body() {
     button("Next light")
       .onClick(this.nextLight)
     p(this.light)
@@ -1143,7 +1143,7 @@ render("app", TrafficLight)`,
 class Expression {
   count = 2
 
-  View() {
+  Body() {
     _(this.count*2)
   }
 }
@@ -1175,7 +1175,7 @@ import UserProfile from "./UserProfile.view"
 class App {
   name = "John"
 
-  View() {
+  Body() {
     UserProfile()
       .name(this.name)
       .age(20)
@@ -1196,7 +1196,7 @@ class UserProfile {
   @Prop favouriteColors = []
   @Prop isAvailable = false
 
-  View() {
+  Body() {
     div()
     {
       span("My name is ")
@@ -1239,7 +1239,7 @@ import BeautifulButton from "./BeautifulButton.view"
 class App {
   count = 0
 
-  View() {
+  Body() {
     div(this.count)
     BeautifulButton("Add")
       .handleClick(()=>{
@@ -1263,7 +1263,7 @@ class BeautifulButton {
   @Content btnName
   @Prop handleClick
 
-  View() {
+  Body() {
     button(this.btnName)
       .onClick(this.handleClick)
       .style({ color: "white", backgroundColor: "green", border: "none",
@@ -1288,7 +1288,7 @@ import CenterAlign from "./CenterAlign.view"
 
 @View
 class App {
-  View() {
+  Body() {
     CenterAlign()
     {
       div("A very very very long text")
@@ -1308,7 +1308,7 @@ render("app", App)`,
 class CenterAlign {
   @Children children
 
-  View() {
+  Body() {
     div()
     .style({ display: "flex", flexDirection: "column", alignItems: "center" })
     {
@@ -1335,7 +1335,7 @@ export default CenterAlign`,
 class App {
   count = 0
 
-  @View
+  @Snippet
   BeautifulBtn({content, handleClick}) {
     button(content)
       .onClick(handleClick)
@@ -1343,7 +1343,7 @@ class App {
         padding: "5px 10px", marginRight: "10px", borderRadius: "4px" })
   }
 
-  View() {
+  Body() {
     div(this.count)
     this.BeautifulBtn("Add")
       .handleClick(()=>{ this.count ++ })
@@ -1369,7 +1369,7 @@ import Header from './Header.view'
 
 @View
 class PropViewComp {
-  View() {
+  Body() {
     Header()
       .leftView(View => div("X"))
       .centerView(View => div("Title"))
@@ -1389,7 +1389,7 @@ class Header {
   @Prop centerView
   @Prop rightView
 
-  View() {
+  Body() {
     div()
       .style({ display: "flex", justifyContent: "space-between", alignItems: "center",
         backgroundColor: "#a9a9a9", color: "black", padding: "5px 10px" })
@@ -1437,7 +1437,7 @@ class Firecracker {
     this.firecrackers = this.firecrackers.slice(0, this.firecrackers.length - 1)
   }
 
-  View() {
+  Body() {
     for (const firecracker of this.firecrackers) {
       div("🀫")
         .didUnmount(() => { 
@@ -1474,7 +1474,7 @@ import Apple from "./Apple.view"
 class AppleTree {
   appleIds = [0,1,2,3]
 
-  View() {
+  Body() {
     button("Add an Apple")
       .onClick(() => { 
         const newAppleId = [...Array(this.appleIds.length + 1).keys()]
@@ -1508,7 +1508,7 @@ render("app", AppleTree)`,
 class Apple {
   @Prop appleId
 
-  View() {
+  Body() {
     div("🍎apple " + this.appleId)
   }
 }
@@ -1532,7 +1532,7 @@ import Apple from "./Apple.view"
 class AppleTree {
   appleIds = [0,1,2,3]
 
-  View() {
+  Body() {
     button("Add an Apple")
       .onClick(() => { 
         const newAppleId = [...Array(this.appleIds.length + 1).keys()]
@@ -1578,7 +1578,7 @@ class Apple {
     console.log("[didUnmount] apple" + this.appleId)
   }
 
-  View() {
+  Body() {
     div("🍎apple " + this.appleId)
   }
 }
@@ -1612,7 +1612,7 @@ class Time {
     clearInterval(this.timer)
   }
 
-  View() {
+  Body() {
     span(\`Current time: \${this.time}\`)
       .didUpdate(() => {
         this.timer = setTimeout(() => {

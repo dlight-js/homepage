@@ -1,6 +1,5 @@
-import { View } from "@dlightjs/dlight"
+import { View, Env, Pretty, Prop, Typed, Watch, div, required } from "@dlightjs/dlight"
 import { MenuRound, AlignHorizontalLeftRound } from "@dlightjs/material-icons"
-import { Env, Pretty, Prop, Typed, Watch, div, required } from "@dlightjs/types"
 import { css } from "@emotion/css"
 import { shortViewWidth } from "../../const/pageSetting"
 
@@ -22,7 +21,7 @@ class MenuBtn implements MenuBtnProps {
   @Prop setMenuOpenBtnEl = required
   @Prop limitWidth = shortViewWidth
   @Prop title = ""
-  el: HTMLElement = null as any
+  el: HTMLDivElement = null as any
   isShow: boolean = this.windowWidth < this.limitWidth
 
   didMount() {
@@ -40,7 +39,7 @@ class MenuBtn implements MenuBtnProps {
     }
   }
 
-  View() {
+  Body() {
     if (this.isShow) {
       div()
         .class(this.shortViewSubHeaderWrapCss)
@@ -49,7 +48,7 @@ class MenuBtn implements MenuBtnProps {
           div()
             .class(this.btnCss)
             .onClick(this.handleClickOpenMenu)
-            .element(this.el)
+            .ref(this.el)
           {
             MenuRound()
               .class(this.iconCss)

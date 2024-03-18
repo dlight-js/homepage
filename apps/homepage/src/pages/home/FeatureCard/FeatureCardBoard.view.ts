@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { div, SubTyped, type Pretty, type Typed, Env, required, h1, p } from "@dlightjs/types"
+import { View, div, type Pretty, type Typed, Env, required, h1, p, Snippet, SnippetTyped } from "@dlightjs/dlight"
 import { FeatureData } from "../../../const/homeData"
 import { css } from "@emotion/css"
 import FeatureCard from "./FeatureCard.view"
@@ -10,7 +9,7 @@ class FeatureCardBoard implements EnvType {
   @Env isShortView: EnvType["isShortView"] = required
   @Env i18n: EnvType["i18n"] = required
 
-  @View
+  @Snippet
     CardGroup = (({ leftData, rightData }: { leftData: any, rightData: any }) => {
       div()
         .class(this.featureGroupWrapCss)
@@ -20,13 +19,13 @@ class FeatureCardBoard implements EnvType {
         FeatureCard()
           .data(rightData)
       }
-    }) as Pretty as SubTyped<{ leftData: any, rightData: any }>
+    }) as Pretty as SnippetTyped<{ leftData: any, rightData: any }>
 
   featureGroupWrapCss = css`
     display: flex;
     align-items: stretch;
   `
-  View() {
+  Body() {
     div().class(this.wrapperCss); {
       div().class(this.titleWrapperCss); {
         h1(this.i18n!("Features", "特性"))

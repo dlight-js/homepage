@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, img, Pretty, div, button, h2, Env, Prop, required } from "@dlightjs/types"
+import { View, type Typed, img, Pretty, div, button, h2, Env, Prop, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 
 interface ExampleResultProps {
@@ -19,7 +18,7 @@ class ExampleResult implements ExampleResultProps {
   @Prop incrementDoubleCount: () => void = required
   isDark = this.themeType === "dark"
 
-  View() {
+  Body() {
     div()
       .class(this.exampleResultWrapCss)
     {

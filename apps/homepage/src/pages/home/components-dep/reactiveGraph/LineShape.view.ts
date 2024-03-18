@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, div, img, Env, Prop, required } from "@dlightjs/types"
+import { View, type Typed, Pretty, div, img, Env, Prop, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 
 interface LineShapeProps {
@@ -14,7 +13,7 @@ class LineShape implements LineShapeProps {
   @Prop start = required
   @Prop type: "straight" | "downCorner" | "upCorner" = "straight"
 
-  View() {
+  Body() {
     div()
     {
       if (this.type === "straight") {

@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { a, Content, ContentProp, div, Env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
+import { View, a, Content, ContentProp, div, Env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/dlight"
 import { InlineRenderer } from "@dlightjs/markit"
 import { css } from "@emotion/css"
 import clsx from "clsx"
@@ -23,7 +22,7 @@ class CatalogueView implements CatalogueViewProps {
   @Prop updateCurrentIndex = required
   @Prop scrollToTop = required
 
-  View() {
+  Body() {
     div(this.i18n("To Top", "回到顶部"))
       .style({ textDecoration: "underline", fontWeight: 600, cursor: "pointer", width: "max-content" })
       .class(this.dlightDocHeadingLinkCss(-1))

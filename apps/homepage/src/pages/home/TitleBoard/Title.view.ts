@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { Content, ContentProp, Env, Pretty, Typed, div, required, span } from "@dlightjs/types"
+import { View, Content, ContentProp, Env, Pretty, Typed, div, required, span } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 
 import clsx from "clsx"
@@ -16,7 +15,7 @@ class Title implements TitleProps, EnvType {
   @Env isShortView: EnvType["isShortView"] = required
   @Content content: TitleProps["content"] = required
 
-  View() {
+  Body() {
     div(); {
       for (const item of this.content) {
         if (Array.isArray(item)) {

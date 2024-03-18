@@ -1,6 +1,5 @@
 import { Navigator } from "@dlightjs/components"
-import { View } from "@dlightjs/dlight"
-import { type Typed, div, button, Pretty, Env, Prop, required } from "@dlightjs/types"
+import { View, type Typed, div, button, Pretty, Env, Prop, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 
 interface ErrorPageProps {
@@ -19,7 +18,7 @@ class ErrorPage implements ErrorPageProps {
     this.navigator.to("/")
   }
 
-  View() {
+  Body() {
     div()
       .class(this.columnDisplayCss)
     {

@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, img, Pretty, div, Env, Watch, required } from "@dlightjs/types"
+import { View, type Typed, img, Pretty, div, Env, Watch, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import ExampleResult from "./ExampleResult.view"
 import ReactiveGraph from "./reactiveGraph/ReactiveGraph.view"
@@ -48,7 +47,7 @@ class Example {
     }
   }
 
-  View() {
+  Body() {
     if (this.isShowCode) {
       div()
         .class(this.codeWrapCss)

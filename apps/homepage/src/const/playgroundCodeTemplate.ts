@@ -6,7 +6,7 @@ import ToggleView from "./toggle.view"
 
 @View
 class MyComp {
-  View() {
+  Body() {
     HelloView()
     CounterView()
     ArrayView()
@@ -21,7 +21,7 @@ export const HelloView = `import { View } from "@dlightjs/dlight"
 
 @View
 class HelloView {
-  View() {
+  Body() {
     h1("hello, dlight js")
   }
 }
@@ -36,7 +36,7 @@ import WrapperView from "./wrapper.view"
 class CountView {
   count = 1
 
-  View() {
+  Body() {
     WrapperView()
       .color("gray")
     {
@@ -62,7 +62,7 @@ import WrapperView from "./wrapper.view"
 class ArrayView {
   apples = ["apple0", "apple1", "apple2"]
   
-  View() {
+  Body() {
     WrapperView()
       .color("blue")
     {
@@ -90,7 +90,7 @@ import WrapperView from "./wrapper.view"
 class ToggleView {
   toggle = true
 
-  View() {
+  Body() {
     WrapperView()
       .color(this.toggle ? "green" : "red")
     {
@@ -118,7 +118,7 @@ export const WrapperView = `import { View, required } from "@dlightjs/dlight"
 class WrapperView {
   @Prop color
   @Children children
-  View() {
+  Body() {
     div()
       .style({
         border: \`1px solid \${this.color}\`,
@@ -138,7 +138,7 @@ export const codeTemplate = (tabName: string) => `import DLight, { View } from "
 
 @View
 class ${tabName[0].toUpperCase() + tabName.slice(1)}View {
-  View() {
+  Body() {
     "I am ${tabName} view"
   }
 }

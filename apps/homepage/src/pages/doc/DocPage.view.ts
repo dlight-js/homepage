@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { Env, Pretty, Typed, Watch, div, env, required, tr } from "@dlightjs/types"
+import { View, Env, Pretty, Typed, Watch, div, env, required, tr } from "@dlightjs/dlight"
 import DlightDoc from "dlight-doc"
 import { css } from "@emotion/css"
 import { findCertainFile, flatFileStructureData } from "../../utils/utilFunc"
@@ -55,6 +54,7 @@ class DocPage {
   // pathWatcher is a function that will be executed when the path changes
   @Watch
   pathWatcher() {
+    if (!["ecosystem", "docs"].includes(this.fileType)) return
     if (this.path === this.fileType || this.path === `${this.fileType}/`) {
       // --- To new path in the next tick
       setTimeout(() => { this.navigator.to(this.entryFile) })
@@ -117,7 +117,7 @@ class DocPage {
     this.isOpenOutline = { value: true }
   }
 
-  View() {
+  Body() {
     env()
       .selectedName(this.selectedName)
     {
@@ -144,7 +144,7 @@ class DocPage {
           }
         }
         div()
-          .element(this.scrollView)
+          .ref(this.scrollView)
           .class(this.docWrapCss)
         {
           if (this.isFail) {

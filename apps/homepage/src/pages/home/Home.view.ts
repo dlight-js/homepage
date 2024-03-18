@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, div } from "@dlightjs/types"
+import { View, type Typed, Pretty, div } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import TitleBoard from "./TitleBoard/TitleBoard.view"
 import CodeBlock from "./CodePreview/CodeBlcok.view"
@@ -11,7 +10,7 @@ import FeatureCardBoard from "./FeatureCard/FeatureCardBoard.view"
 import Footer from "./Footer/Footer.view"
 @View
 class Home {
-  View() {
+  Body() {
     div()
       .class(this.bgCss)
     {

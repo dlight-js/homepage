@@ -1,10 +1,9 @@
-import { View } from "@dlightjs/dlight"
-import { MarkitView, addBlockRule } from "@dlightjs/markit"
-import { Content, ContentProp, div, Env, env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
+import { View, Content, ContentProp, div, Env, env, Pretty, Prop, required, Typed, Watch } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import { AdvantageBlock, HeadingBlock } from "./blocks"
 import { CatalogueView, NextPageNav } from "./views"
 import { PageNavType } from "./views/NextPageNav.view"
+import { MarkitView, addBlockRule } from "@dlightjs/markit"
 
 /**
  * @example
@@ -20,7 +19,7 @@ import { PageNavType } from "./views/NextPageNav.view"
 addBlockRule({
   name: "CodeBlock",
   rule: {
-    getProps: raw => {
+    getProps: (raw: any) => {
       const text = raw.replace(/ *```|```$/g, "")
       let [language, title] = (text.match(/^.+?\n/g) ?? ["text"])[0].replace("```", "").trim().split("[")
       if (title) {
@@ -94,7 +93,7 @@ class DlightDoc implements DlightDocProps {
     this.changeTheme(theme)
   }
 
-  changeTheme(newTheme) {
+  changeTheme(newTheme: string) {
     const oldLink = document.getElementById("highlight-theme")
     if (oldLink?.parentNode) {
       oldLink.parentNode.removeChild(oldLink)
@@ -133,7 +132,7 @@ class DlightDoc implements DlightDocProps {
   }
 
   handleScroll() {
-    this.docAst.filter(paragraph => paragraph.type === "Heading").forEach((item, index) => {
+    this.docAst.filter((paragraph: any) => paragraph.type === "Heading").forEach((item: any, index: number) => {
       if (index === this.catalogueIndex + 1) {
         const el = document.getElementById(item.content[0].content)
         const fromTop = el?.getBoundingClientRect().top ?? 0
@@ -150,7 +149,7 @@ class DlightDoc implements DlightDocProps {
     })
   }
 
-  scrollToTop(e) {
+  scrollToTop(e: any) {
     e.stopPropagation()
     this.markitViewEl?.scrollTo({
       top: 0
@@ -177,7 +176,7 @@ class DlightDoc implements DlightDocProps {
     document.removeEventListener("click", this.closeCatalogue.bind(this))
   }
 
-  View() {
+  Body() {
     env()
       .textColor(this.textColor)
       .highlightColor(this.highlightColor)
@@ -185,7 +184,7 @@ class DlightDoc implements DlightDocProps {
     {
       div()
         .class(this.dlightDocWrapCss)
-        .element(this.markitViewEl)
+        .ref(this.markitViewEl)
       {
         div()
           .class(this.dlightContentWrap)
@@ -204,9 +203,9 @@ class DlightDoc implements DlightDocProps {
           {
             div()
               .class(this.fixCatalogueCss)
-              .element(this.catalogueEl)
+              .ref(this.catalogueEl)
             {
-              CatalogueView(this.docAst.filter(paragraph => paragraph.type === "Heading"))
+              CatalogueView(this.docAst.filter((paragraph: any) => paragraph.type === "Heading"))
                 .currentIndex(this.catalogueIndex)
                 .updateCurrentIndex(this.updateCatalogueIndex)
                 .isShowShadow(this.isShowCatalogue && !this.isShowCatalogueInner)

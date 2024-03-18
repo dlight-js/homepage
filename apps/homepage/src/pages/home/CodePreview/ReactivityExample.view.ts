@@ -1,7 +1,6 @@
 
-import { View } from "@dlightjs/dlight"
+import { View, div, button, Env, required, a, img } from "@dlightjs/dlight"
 import { PlayCircleFilled } from "@dlightjs/material-icons"
-import { div, button, Env, required, a, img } from "@dlightjs/types"
 import { css } from "@emotion/css"
 import { Example, musics } from "./utils"
 import { EnvType } from "../../../App.view"
@@ -16,7 +15,7 @@ class MusicChooser {
   randomNumber = this.random()
   music = musics[this.randomNumber]
 
-  View() {
+  Body() {
     div().class(this.wrapperCss); {
       button("Get a new song!")
         .class(this.buttonCss)
@@ -99,7 +98,7 @@ class MusicChooser {
     return Math.floor(Math.random() * this.musics.length)
   }
 
-  View() {
+  Body() {
     PrettyBtn("Get a new song!")
       .onClick(() => {
         this.musicIdx = this.random()

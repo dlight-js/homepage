@@ -1,7 +1,6 @@
 
-import { View } from "@dlightjs/dlight"
+import { View, section, type Pretty, Prop, h1, div, a, img, Typed, Snippet, SnippetTyped } from "@dlightjs/dlight"
 import { PlayCircleFilled } from "@dlightjs/material-icons"
-import { section, type Pretty, Prop, h1, div, a, SubTyped, img, Typed } from "@dlightjs/types"
 import { css } from "@emotion/css"
 import { Example, MusicItem, musics } from "./utils"
 
@@ -14,31 +13,32 @@ class ForLoopClass {
     ? `${this.musicList.length} songs  by Lana Del Rey`
     : `Lana Del Rey的${this.musicList.length}首歌`
 
-  @View MusicItem = (({ name, link, album, picture }: MusicItem) => {
-    div().class(this.musicItemCss); {
-      a()
-        .href(link)
-        .target("_blank")
-        .class(this.linkCss)
-      {
-        div().class(this.zstackCss); {
-          img()
-            .src(picture)
-            .alt(name)
-            .class(this.musicPicCss)
-          PlayCircleFilled()
-            .color("rgba(255, 255, 255, 0.7)")
-            .width(30)
-            .height(30)
+  @Snippet
+    MusicItem = (({ name, link, album, picture }: MusicItem) => {
+      div().class(this.musicItemCss); {
+        a()
+          .href(link)
+          .target("_blank")
+          .class(this.linkCss)
+        {
+          div().class(this.zstackCss); {
+            img()
+              .src(picture)
+              .alt(name)
+              .class(this.musicPicCss)
+            PlayCircleFilled()
+              .color("rgba(255, 255, 255, 0.7)")
+              .width(30)
+              .height(30)
+          }
+        }
+        div().class(this.descriptionCss); {
+          div(name)
+          div(album)
+            .class(this.albumCss)
         }
       }
-      div().class(this.descriptionCss); {
-        div(name)
-        div(album)
-          .class(this.albumCss)
-      }
-    }
-  }) as Pretty as SubTyped<MusicItem>
+    }) as Pretty as SnippetTyped<MusicItem>
 
   musicItemCss = css`
     display: flex;
@@ -78,7 +78,7 @@ class ForLoopClass {
     font-size: 12px;
   `
 
-  View() {
+  Body() {
     section(); {
       h1(this.heading).class(this.headingCss)
       for (const { name, link, album, picture } of this.musicList) {
@@ -112,7 +112,7 @@ class MusicList {
     this.musicList.length > 1 ? "songs" : "song"
   } by Lana Del Rey\`
 
-  View() {
+  Body() {
     section(); {
       h1(this.heading)
       for (const music of this.musicList) {

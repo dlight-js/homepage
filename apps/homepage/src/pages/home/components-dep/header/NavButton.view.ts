@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, button, div, Pretty, ContentProp, Content, Env, Prop, required } from "@dlightjs/types"
+import { View, type Typed, button, div, Pretty, ContentProp, Content, Env, Prop, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import MenuItem from "./MenuItem.view"
 import { Navigator } from "@dlightjs/components"
@@ -28,7 +27,7 @@ class NavButton implements NavButtonProps {
   isShowHoverMenu = !!this.structureData
   isSelect = this.path.startsWith(this.btnPath.split("/")[1])
 
-  View() {
+  Body() {
     div()
       .class(this.wrapCss)
     {

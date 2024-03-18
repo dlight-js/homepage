@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, Env, required } from "@dlightjs/types"
+import { View, type Typed, div, Pretty, Env, required } from "@dlightjs/dlight"
 import { Navigator } from "@dlightjs/components"
 import { ArrayView, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "../const/playgroundCodeTemplate"
 import DLightEditor from "dlight-editor"
@@ -49,7 +48,7 @@ class Playground {
     }, 1000)
   })()
 
-  View() {
+  Body() {
     div()
       .class(this.playGroundWrapperCss)
     {

@@ -1,6 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, env, div } from "@dlightjs/types"
-import { Routes, Navigator } from "@dlightjs/components"
+import { View, type Typed, Pretty, env, div } from "@dlightjs/dlight"
+import { Route, RouteGroup, Navigator } from "@dlightjs/components"
 import { Color, colors } from "./const/themes"
 import Header from "./pages/home/components-dep/header"
 import { css } from "@emotion/css"
@@ -63,7 +62,7 @@ class App {
 
   path = ""
 
-  View() {
+  Body() {
     env<EnvType>()
       .updateThemeType(this.updateThemeType)
       .themeType(this.themeType)
@@ -81,15 +80,19 @@ class App {
         .class(this.commonCss)
       {
         Header()
-        Routes({
-          docs: async() => await import("./pages/doc/DocPage.view"),
-          playground: async() => await import("./pages/Playground.view"),
-          examples: async() => await import("./pages/examples/ExamplesPage.view"),
-          ecosystem: async() => await import("./pages/doc/DocPage.view"),
-          ".": async() => await import("./pages/home/Home.view"),
-          "": async() => await import("./pages/ErrorPage.view")
-        }).onPathUpdate(path => { this.path = path })
-          .fallback(View => Loading())
+        RouteGroup()
+          .onPathUpdate(path => {
+            this.path = path
+          })
+          .loading(Loading)
+        {
+          Route("docs").comp(async() => await import("./pages/doc/DocPage.view"))
+          Route("playground").comp(async() => await import("./pages/Playground.view"))
+          Route("examples").comp(async() => await import("./pages/examples/ExamplesPage.view"))
+          Route("ecosystem").comp(async() => await import("./pages/doc/DocPage.view"))
+          Route("").comp(async() => await import("./pages/home/Home.view"))
+          Route(".+?").comp(async() => await import("./pages/ErrorPage.view"))
+        }
       }
     }
   }

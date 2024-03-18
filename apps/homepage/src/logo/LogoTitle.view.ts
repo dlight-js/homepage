@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { Pretty, Prop, Typed, img, required } from "@dlightjs/types"
+import { View, Pretty, Prop, Typed, img, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 
 interface LogoTitleProps {
@@ -12,7 +11,7 @@ class LogoTitle implements LogoTitleProps {
   @Prop onClick = required
   @Prop isShow = required
 
-  View() {
+  Body() {
     img()
       .src("/imgs/light.svg")
       .alt("DLight Title Logo")

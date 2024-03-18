@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, Pretty, div, Env, Prop, required } from "@dlightjs/types"
+import { View, type Typed, Pretty, div, Env, Prop, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 import { Navigator } from "@dlightjs/components"
 
@@ -17,7 +16,7 @@ class MenuItem implements MenuItemProps {
 
   isHover = false
 
-  View() {
+  Body() {
     div(this.name)
       .class(this.menuItemCss)
       .onMouseOver(() => { this.isHover = true })
