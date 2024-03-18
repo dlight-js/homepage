@@ -1,7 +1,5 @@
-import { View } from "@dlightjs/dlight"
-import { div, Env, Pretty, Prop, required, span, Static, Typed, Watch } from "@dlightjs/types"
+import { View, div, Env, Pretty, Prop, required, span, Static, Typed, Watch } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
-import clsx from "clsx"
 import { CloseFilled, AddFilled } from "@dlightjs/material-icons"
 import { EditorStore } from "./CodeEditor.view"
 import * as monaco from "monaco-editor"
@@ -118,7 +116,7 @@ class Tabs implements TabsProps {
   }
 
   /** @view */
-  View() {
+  Body() {
     div()
       .class(this.tabBarCss)
     {
@@ -166,18 +164,6 @@ class Tabs implements TabsProps {
     ::-webkit-scrollbar {
       display: none;
     }
-  `
-
-  tabCss = (backgroundColor: string, borderColor: string) => css`
-    background-color: ${backgroundColor};
-    width: 600px;
-    overflow: scroll;
-    ::-webkit-scrollbar {
-        display: none;
-    }
-    height: 30px;
-    border-right: ${borderColor} solid 3px;
-    border-top: ${borderColor} solid 1px;
   `
 
   tabWrapCss = (tab: string) => css`

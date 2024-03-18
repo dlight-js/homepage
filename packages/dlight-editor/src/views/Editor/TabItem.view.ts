@@ -1,6 +1,6 @@
-import { View } from "@dlightjs/dlight"
+import { View, div, span, type Pretty, type Typed, Prop, required, Env } from "@dlightjs/dlight"
 import { CloseFilled } from "@dlightjs/material-icons"
-import { div, span, type Pretty, type Typed, Prop, required, Env } from "@dlightjs/types"
+
 import clsx from "clsx"
 import { Color } from "../../utils/const"
 import { css } from "@emotion/css"
@@ -9,6 +9,7 @@ interface TabItemProps {
   tabKey: string
   tabName: string
   type: string
+  changeTabName: (currName: string, newName: string) => void
   updateModulePath: (currPath: string, newPath: string) => void
   handleDeleteTab: (tabName: string) => void
 }
@@ -56,7 +57,7 @@ class TabItem {
     return tab.replace(/^(.+?).js/, "$1").replace(/^(.+?).css/, "$1")
   }
 
-  View() {
+  Body() {
     div()
       .class(this.rowDisplayCss)
     {
@@ -65,10 +66,10 @@ class TabItem {
       {
         span(this.TabToName(this.tabName))
           .class(clsx(this.tabNameSpanCss, this.tabName === "index.js" ? this.preventSelectCss : undefined))
-          .element(this.tabElement)
+          .ref(this.tabElement)
           .contentEditable(`${this.tabKey === this.tabName && this.isTabEdit && this.tabName !== "index.js"}`)
           .onBlur((e) => {
-            this.changeTabName(this.tabName, `${e?.target?.innerText}.${this.type}`)
+            this.changeTabName(this.tabName, `${(e?.target as any)?.innerText}.${this.type}`)
           })
           .onDblClick((e: any) => {
             this.isTabEdit = true

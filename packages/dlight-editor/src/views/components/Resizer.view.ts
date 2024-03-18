@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, _, Pretty, div, Children, Prop, Watch, required, Env } from "@dlightjs/types"
+import { View, type Typed, _, Pretty, div, Children, Prop, Watch, required, Env } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
 
 export type OnDragFunc = (x: number, y: number) => void
@@ -18,13 +17,12 @@ class Resizer implements ResizerProps {
   @Prop onDrag?: OnDragFunc
   @Prop axis: DragAxis = "all"
 
-  @Watch
-  axises() {
+  axises = (() => {
     const axises: Array<"x" | "y"> = []
     if (["x", "all"].includes(this.axis)) axises.push("x")
     if (["y", "all"].includes(this.axis)) axises.push("y")
     return axises
-  }
+  })()
 
   /** @reactive */
   startDrag = false
@@ -38,8 +36,8 @@ class Resizer implements ResizerProps {
   /** @func */
   onMouseMove(e: MouseEvent) {
     if (!this.startDrag) return
-    const x = this.axises().includes("x") ? e.clientX - this.offsetX : 0
-    const y = this.axises().includes("y") ? e.clientY - this.offsetY : 0
+    const x = this.axises.includes("x") ? e.clientX - this.offsetX : 0
+    const y = this.axises.includes("y") ? e.clientY - this.offsetY : 0
     this.offsetX = e.clientX
     this.offsetY = e.clientY
     this.onDrag?.(x, y)
@@ -53,7 +51,7 @@ class Resizer implements ResizerProps {
     e.preventDefault()
     this.offsetX = e.clientX
     this.offsetY = e.clientY
-    const draggableEl = e.currentTarget as HTMLDivElement
+    const draggableEl = e.target as HTMLDivElement
     this.startDrag = true
     draggableEl.focus()
   }
@@ -79,9 +77,9 @@ class Resizer implements ResizerProps {
   }
 
   /** @view */
-  View() {
+  Body() {
     div()
-      .element(this.draggableEl)
+      .ref(this.draggableEl)
       .onMouseDown(this.onMouseDown)
       .class(this.resizerCss)
     {

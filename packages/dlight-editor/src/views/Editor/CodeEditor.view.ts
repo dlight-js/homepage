@@ -1,6 +1,6 @@
-import { View } from "@dlightjs/dlight"
+import { View, type Typed, Pretty, div, Env, Prop, Static, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
-import { type Typed, Pretty, div, Env, Prop, Static, required } from "@dlightjs/types"
+
 import * as monaco from "monaco-editor"
 
 export interface EditorStore {
@@ -37,7 +37,7 @@ class CodeEditor implements CodeEditorProps {
   })()
 
   /** @element */
-  @Static editorEl?: HTMLElement
+  @Static editorEl?: HTMLDivElement
   @Static tagElements: Record<string, HTMLElement> = {}
 
   /** @func */
@@ -75,9 +75,9 @@ class CodeEditor implements CodeEditorProps {
   }
 
   /** @view */
-  View() {
+  Body() {
     div()
-      .element(this.editorEl)
+      .ref(this.editorEl)
       .class(this.editorCss)
   }
 

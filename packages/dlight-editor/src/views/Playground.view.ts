@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { type Typed, div, Pretty, Prop, env, required, comp } from "@dlightjs/types"
+import { View, type Typed, div, Pretty, Prop, env, required, comp } from "@dlightjs/dlight"
 import ProjectEditor from "./Editor/ProjectEditor.view"
 import PreviewView from "./Preview/Preview.view"
 import { ToBeTransformedModule } from "../project/types"
@@ -111,7 +110,7 @@ class Playground implements PlaygroundProps {
   wrapperEl?: HTMLDivElement
   // stack = this.isVertical ? VStack : HStack
 
-  View() {
+  Body() {
     env()
       .theme(this.theme)
       .themeType(this.themeType)
@@ -126,7 +125,7 @@ class Playground implements PlaygroundProps {
         .style({
           backgroundColor: this.theme?.background
         })
-        .element(this.wrapperEl)
+        .ref(this.wrapperEl)
       {
         div()
           .class(this.isVertical ? this.columnDisplayCss : this.rowDisplayCss)
@@ -142,11 +141,15 @@ class Playground implements PlaygroundProps {
             .onSave(this.onSave)
             .clearConsoleFunc(this.clearConsoleFunc)
 
-          comp(this.isVertical ? VerticalResizer : HorizontalResizer)()
-            // @ts-expect-error
-            .width(`${this.width}`)
-            .height(`${this.height}`)
-            .onDrag(this.isVertical ? this.handleVerticalResizerDrag.bind(this) : this.handleHorizontalResizerDrag.bind(this))
+          if (this.isVertical) {
+            VerticalResizer()
+              .width(this.width)
+              .onDrag(this.handleVerticalResizerDrag)
+          } else {
+            HorizontalResizer()
+              .height(this.height)
+              .onDrag(this.handleHorizontalResizerDrag)
+          }
           PreviewView()
             .width(this.previewWidth)
             .verticalHeight(this.previewHeight)

@@ -1,12 +1,13 @@
-export const indexCode = `import DLight, { View, render } from "@dlightjs/dlight"
-import HelloView from "./hello"
-import CounterView from "./counter"
-import ArrayView from "./array"
-import ToggleView from "./toggle"
+
+export const indexCode = `import { View, render } from "@dlightjs/dlight"
+import HelloView from "./hello.view"
+import CounterView from "./counter.view"
+import ArrayView from "./array.view"
+import ToggleView from "./toggle.view"
 
 @View
 class MyComp {
-  View() {
+  Body() {
     HelloView()
     CounterView()
     ArrayView()
@@ -17,11 +18,11 @@ class MyComp {
 render("app", MyComp)
 `
 
-export const HelloView = `import DLight, { View } from "@dlightjs/dlight"
+export const HelloView = `import { View } from "@dlightjs/dlight"
 
 @View
 class HelloView {
-  View() {
+  Body() {
     h1("hello, dlight js")
   }
 }
@@ -29,14 +30,14 @@ class HelloView {
 export default HelloView
 `
 
-export const CounterView = `import DLight, { View } from "@dlightjs/dlight"
-import WrapperView from "./wrapper"
+export const CounterView = `import { View } from "@dlightjs/dlight"
+import WrapperView from "./wrapper.view"
 
 @View
 class CountView {
   count = 1
 
-  View() {
+  Body() {
     WrapperView()
       .color("gray")
     {
@@ -56,21 +57,19 @@ class CountView {
 export default CountView
 `
 
-export const ArrayView = `import DLight, { View } from "@dlightjs/dlight"
-import WrapperView from "./wrapper"
-
+export const ArrayView = `import { View } from "@dlightjs/dlight"
+import WrapperView from "./wrapper.view"
 @View
 class ArrayView {
   apples = ["apple0", "apple1", "apple2"]
-
-  View() {
+  
+  Body() {
     WrapperView()
       .color("blue")
     {
       button("add apple")
         .onClick(() => {
-          this.apples.push(\`apple\${this.apples.length}\`)
-          this.apples = [...this.apples]
+          this.apples = [...this.apples, \`apple\${this.apples.length}\`]
         })
       button("remove apple")
         .onClick(() => {
@@ -82,18 +81,17 @@ class ArrayView {
     }
   }
 }
-
 export default ArrayView
 `
 
-export const ToggleView = `import DLight, { View } from "@dlightjs/dlight"
-import WrapperView from "./wrapper"
+export const ToggleView = `import { View } from "@dlightjs/dlight"
+import WrapperView from "./wrapper.view"
 
 @View
 class ToggleView {
   toggle = true
 
-  View() {
+  Body() {
     WrapperView()
       .color(this.toggle ? "green" : "red")
     {
@@ -103,10 +101,10 @@ class ToggleView {
         })
       if (this.toggle) {
         div("now toggle is true")
-          ._color("green")
+          .style({ color: "green" })
       } else {
         div("xxxxx")
-          ._color("red")
+          .style({ color: "red" })
       }
     }
   }
@@ -115,12 +113,13 @@ class ToggleView {
 export default ToggleView
 `
 
-export const WrapperView = `import DLight, { View, required } from "@dlightjs/dlight"
+export const WrapperView = `import { View, required } from "@dlightjs/dlight"
 
 @View
 class WrapperView {
-  @Prop color = required
-  View() {
+  @Prop color
+  @Children children
+  Body() {
     div()
       .style({
         border: \`1px solid \${this.color}\`,
@@ -128,7 +127,7 @@ class WrapperView {
         margin: "10px"
       })
     {
-      _(this._$children)
+      this.children
     }
   }
 }
@@ -140,13 +139,14 @@ export const codeTemplate = (tabName: string) => `import DLight, { View } from "
 
 @View
 class ${tabName[0].toUpperCase() + tabName.slice(1)}View {
-  View() {
+  Body() {
     "I am ${tabName} view"
   }
 }
 
 export default ${tabName[0].toUpperCase() + tabName.slice(1)}View
 `
+
 export interface Color {
   background: string
   text: string

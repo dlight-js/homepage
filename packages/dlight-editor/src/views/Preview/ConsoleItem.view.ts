@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { Content, required, type Pretty, type Typed, div, Env, ContentProp, SubTyped } from "@dlightjs/types"
+import { View, Content, required, type Pretty, type Typed, div, Env, ContentProp, SnippetTyped, Snippet } from "@dlightjs/dlight"
 import { ArrowRightFilled } from "@dlightjs/material-icons"
 import clsx from "clsx"
 import { css } from "@emotion/css"
@@ -45,7 +44,7 @@ class ConsoleItemClass implements ConsoleItemProps {
     this.isOpenObj = !this.isOpenObj
   }
 
-  @View
+  @Snippet
     ItemList = (({ listData }: { listData: any[] }) => {
       for (const [key, value] of listData) {
         div()
@@ -56,12 +55,12 @@ class ConsoleItemClass implements ConsoleItemProps {
           ConsoleItem(value)
         }
       }
-    }) as Pretty as SubTyped<{ listData: any[] }>
+    }) as Pretty as SnippetTyped<{ listData: any[] }>
 
-  View() {
+  Body() {
     if (typeof this.msg === "object") {
       if (this.msg instanceof Error) {
-        div(this.msg)
+        div(this.msg as any)
           .class(this.errorTextCss)
       } else {
         div()

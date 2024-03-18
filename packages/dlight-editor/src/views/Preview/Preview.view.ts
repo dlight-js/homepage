@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { div, Typed, Pretty, Env, Prop, required } from "@dlightjs/types"
+import { View, div, Typed, Pretty, Env, Prop, required, Snippet } from "@dlightjs/dlight"
 import ResultView from "./Result.view"
 import OutputView from "./Output.view"
 import ConsoleView from "./Console.view"
@@ -25,7 +24,7 @@ class Preview implements PreviewProps {
   @Prop verticalHeight: string = required
   @Env theme: Color = required
   @Env height: string = required
-  wrapperEl: HTMLElement | undefined = undefined
+  wrapperEl: HTMLDivElement | undefined = undefined
   onClick = false
 
   /** @reactive */
@@ -48,7 +47,7 @@ class Preview implements PreviewProps {
   }
 
   /** @view */
-  @View
+  @Snippet
   Head({ content }: any): any {
     div(content)
       .class(this.headerCss)
@@ -60,7 +59,7 @@ class Preview implements PreviewProps {
       })
   }
 
-  @View
+  @Snippet
   Header() {
     div()
       .class(this.headerBGCss)
@@ -84,14 +83,14 @@ class Preview implements PreviewProps {
     }
   }
 
-  View() {
+  Body() {
     div()
       .id("dlight-playground-preview")
       .class(this.wrapperCss)
       .style({
         width: this.width
       })
-      .element(this.wrapperEl)
+      .ref(this.wrapperEl)
     {
       this.Header()
       div()

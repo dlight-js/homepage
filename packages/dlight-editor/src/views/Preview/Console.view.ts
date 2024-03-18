@@ -1,6 +1,6 @@
-import { View } from "@dlightjs/dlight"
+import { View, Env, Pretty, Prop, Typed, Watch, div, required } from "@dlightjs/dlight"
 import { css } from "@emotion/css"
-import { Env, Pretty, Prop, Typed, Watch, div, required } from "@dlightjs/types"
+
 import { Color, headerHeight } from "../../utils/const"
 import { DoDisturbFilled } from "@dlightjs/material-icons"
 import ConsoleItem from "./ConsoleItem.view"
@@ -32,7 +32,7 @@ class Console {
   }
 
   /** @view */
-  View() {
+  Body() {
     div()
       .class(this.consoleCss)
     {

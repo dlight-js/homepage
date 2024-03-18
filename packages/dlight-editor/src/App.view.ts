@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { div, Pretty, type Typed } from "@dlightjs/types"
+import { View, div, Pretty, type Typed } from "@dlightjs/dlight"
 import { ArrayView, colors, CounterView, HelloView, indexCode, ToggleView, WrapperView } from "./utils/const"
 import Playground from "./views/Playground.view"
 
@@ -13,28 +12,28 @@ class App {
     this.theme = colors[this.toggle ? "dark" : "light"]
   }
 
-  View() {
+  Body() {
     div()
     {
       Playground()
         .modules([{
           code: indexCode,
-          path: "/index.ts"
+          path: "/index.js"
         }, {
           code: HelloView,
-          path: "/hello.ts"
+          path: "/hello.view.js"
         }, {
           code: CounterView,
-          path: "/counter.ts"
+          path: "/counter.view.js"
         }, {
           code: ArrayView,
-          path: "/array.ts"
+          path: "/array.view.js"
         }, {
           code: ToggleView,
-          path: "/toggle.ts"
+          path: "/toggle.view.js"
         }, {
           code: WrapperView,
-          path: "/wrapper.ts"
+          path: "/wrapper.view.js"
         }
         ])
       // .height("700px")

@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { Env, iframe, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { View, Env, iframe, Pretty, Prop, required, Typed } from "@dlightjs/dlight"
 import { Color } from "../../utils/const"
 import { css } from "@emotion/css"
 
@@ -17,8 +16,31 @@ class Result {
   @Env isStartResize = required
   @Prop height: string = required
 
+  importMap = [
+    "createElement",
+    "setStyle",
+    "setDataset",
+    "setEvent",
+    "delegateEvent",
+    "setHTMLProp",
+    "setHTMLAttr",
+    "setHTMLProps",
+    "setHTMLAttrs",
+    "createTextNode",
+    "updateText",
+    "insertNode",
+    "ForNode",
+    "CondNode",
+    "ExpNode",
+    "EnvNode",
+    "TryNode",
+    "SnippetNode",
+    "PropView",
+    "render",
+  ].map(name => [name, `$$${name}`])
+
   /** @view */
-  View() {
+  Body() {
     iframe()
       .class(this.wrapperCss)
       .srcdoc(`<!DOCTYPE html>
@@ -45,7 +67,7 @@ class Result {
               // Send the message to the parent window
               window.parent.postMessage(error, '*');
             }
-            import { View, render, createElement, setStyle, setDataset, setEvent, setHTMLProp, setHTMLAttr, setHTMLProps, setHTMLAttrs, createTextNode, updateText, insertNode, ForNode, CondNode, ExpNode, EnvNode, SubViewNode, PropView } from "/dlight.js";\n${this.srcDoc}</script>
+            import { View, render, ${this.importMap.map(([key, value]) => `${key} as ${value}`).join(", ")} } from "/dlight.js";\n${this.srcDoc}</script>
         </head>
         <body style="margin: 0;">
           <div id="app" style="height: 100%; color: ${this.theme.text}"></div>

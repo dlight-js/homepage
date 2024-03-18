@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { div, Env, Pretty, Prop, required, Typed } from "@dlightjs/types"
+import { View, div, Env, Pretty, Prop, required, Typed } from "@dlightjs/dlight"
 import Resizer, { OnDragFunc } from "./Resizer.view"
 import { Color, dividerWidth } from "../../utils/const"
 import { css } from "@emotion/css"
@@ -51,7 +50,7 @@ class VerticalResizer implements VerticalResizerProps {
   }
 
   /** @func */
-  View() {
+  Body() {
     Resizer()
       .onDrag(this.handleDrag)
       .axis("y")

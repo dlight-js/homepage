@@ -1,5 +1,4 @@
-import { View } from "@dlightjs/dlight"
-import { div, Pretty, Prop, required, Typed, Watch } from "@dlightjs/types"
+import { View, div, Pretty, Prop, required, Typed, Watch } from "@dlightjs/dlight"
 import { DLightProject } from "../../project/dlightProject"
 import CodeEditor, { EditorStore } from "./CodeEditor.view"
 import * as monaco from "monaco-editor"
@@ -138,7 +137,7 @@ class ProjectEditor {
     })
   }
 
-  View() {
+  Body() {
     div()
       .style({
         width: this.width,
