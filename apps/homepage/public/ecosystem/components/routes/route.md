@@ -35,7 +35,7 @@ In the `UserView`, you can get the `id` jus like a regular DLight prop:
 @View
 class UserView {
   @Prop id
-  View() {
+  Body() {
     h1(`User ${this.id}`)
   }
 }
@@ -56,7 +56,7 @@ In every one of your components used inside a `RouteGroup`, you can get the curr
 @View
 class MyComp {
   @Env path
-  View() {
+  Body() {
     h1(`Current path: ${path}`)
   }
 }

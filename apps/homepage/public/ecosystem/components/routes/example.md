@@ -10,7 +10,7 @@ import Links from "./Links.view";
 @View
 @Main
 class App {
-  View() {
+  Body() {
     Links([
       "/home", 
       "/about", 
@@ -112,7 +112,7 @@ class Links implements LinksProps {
     }
   }
 
-  View() {
+  Body() {
     div(); {
       for (const link of this.links) {
         this.Link(link)
@@ -128,7 +128,7 @@ import { View, type Pretty, type Typed, h1 } from "@dlightjs/dlight"
 
 @View
 class Home {
-  View() {
+  Body() {
     h1("Home: component")
   }
 }
@@ -140,7 +140,7 @@ import { View, type Pretty, type Typed, h1 } from "@dlightjs/dlight"
 
 @View
 class About {
-  View() {
+  Body() {
     h1("About: component")
   }
 }
@@ -161,7 +161,7 @@ class Doc {
     console.log(`Doc willUnmount: ${this.name}`)
   }
   
-  View() {
+  Body() {
     h2(`Doc name: ${this.name}`)
   }
 }

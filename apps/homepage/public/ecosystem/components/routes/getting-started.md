@@ -7,7 +7,7 @@ import { RouteGroup, Route } from '@dlightjs/components';
 
 @View
 class MyComp {
-  View() {
+  Body() {
     RouteGroup(); {
       Route("home"); {
         h1("Home");

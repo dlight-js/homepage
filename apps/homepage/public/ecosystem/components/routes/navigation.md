@@ -13,7 +13,7 @@ Link is a component that allows you to navigate to a route. It's also provided b
 import { Link } from "@dlightjs/components"
 @View
 class MyComp {
-  View() {
+  Body() {
     Link("Content").to("/about")
     // or
     Link()
@@ -37,7 +37,7 @@ import { Navigator } from "@dlightjs/components"
 @View
 class MyComp {
   navigator = new Navigator()
-  View() {
+  Body() {
     h1("Home")
     button("Go to about")
       .onClick(() => this.navigator.to("/about"))
@@ -50,7 +50,7 @@ You can also get the navigator from the environment if your component's inside a
 @View
 class MyComp {
   @Env navigator
-  View() {
+  Body() {
     h1("Home")
     button("Go to about")
       .onClick(() => navigator.to("/about"))
