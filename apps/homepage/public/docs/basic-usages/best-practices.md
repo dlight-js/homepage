@@ -1,14 +1,14 @@
 # File Naming Convention
 DLight is using a pre-compiler to compile DLight DSL into js code. There's a babel preset called `babel-preset-dlight` to do this job. In this preset's option, there're two parameters called `files` and `excludeFiles` to specify which files to compile. By default, it's `**/*.{js,jsx,ts,tsx}` for files and `**/{dist,node_modules,lib}/*` for excludeFiles. You can change it in your babel config file.
 
-We recommend you to use `*.view.js` as your view file's extension, in this way, it'll be very clear for you to know which file is a view file and which is not. And also, it'll make the compiler faster because it only compiles view files. So a recommended babel preset option will be:
+We recommend you to use `*.view.js` as your view file's extension and `*.model.js` as your model file's extension, in this way, it'll be very clear for you to know which file is a view file and which is not. And also, it'll make the compiler faster because it only compiles view files. So a recommended babel preset option will be:
 ```json
 {
   "presets": [
     [
       "babel-preset-dlight",
       {
-        "files": "**/*.view.{js,ts}",
+        "files": "**/*.{view,model}.{js,ts}",
       }
     ]
   ]
@@ -21,7 +21,7 @@ import dlight from "vite-plugin-dlight"
 export default {
   plugins: [
     dlight({
-      files: "**/*.view.{js,ts}",
+      files: "**/*.{view,model}.{js,ts}",
     })
   ]
 }
@@ -43,7 +43,7 @@ class Counter {
     this.count++
   }
 
-  View() {
+  Body() {
     button("increment")
       .onClick(this.increment)
   }
@@ -58,7 +58,7 @@ class Counter {
     this.count++
   }
 
-  View() {
+  Body() {
     button("increment")
       .onClick(this.increment)
   }
@@ -116,7 +116,7 @@ div("hello tailwind")
 ```
 
 ## Css in Js
-In the frontend community, there're a lot of css in js solutions like [emotion](https://emotion.sh) or [Linaria](https://linaria.dev/). I even implemented a minimal static css in js solution called [easy-css](https://github.com/IanDxSSXX/easy-css).
+In the frontend community, there're a lot of css in js solutions like [emotion](https://emotion.sh) or [Linaria](https://linaria.dev/).
 
 Example integration in DLight:
 ```js
@@ -134,7 +134,7 @@ How we recommend in a DLight component:
 class MyComp {
   @Prop color: string
 
-  View() {
+  Body() {
     div("hello css in js")
       .class(this.helloWorldCss)
   }
@@ -184,9 +184,9 @@ const styles = stylex.create({
 ```js
 @View
 class TestStyleX {
-  View() {
+  Body() {
     div("hello stylex")
-      .prop(stylex.props(styles.base, styles.highlighted))
+      .props(stylex.props(styles.base, styles.highlighted))
   }
 }
 ```
@@ -239,7 +239,7 @@ We recommend you to put one component in one file. This will make your code more
 // ~> App.view.js
 @View
 class App {
-  View() {
+  Body() {
     div("hello")
   }
 }
@@ -247,4 +247,4 @@ class App {
 export default App
 ```
 ----
-But of course you can do what the fk you want in DLight and don't need to follow any of the rules.
+But of course you can do what the xx you want in DLight and don't need to follow any of the rules.

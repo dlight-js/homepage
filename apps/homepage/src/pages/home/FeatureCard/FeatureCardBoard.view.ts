@@ -30,7 +30,6 @@ class FeatureCardBoard implements EnvType {
       div().class(this.titleWrapperCss); {
         h1(this.i18n!("Features", "特性"))
           .class(this.titleCss)
-        p(this.i18n!("Things that every framework brags about...", "每个框架都在吹嘘的东西..."))
       }
       if (this.isShortView) {
         this.CardGroup()

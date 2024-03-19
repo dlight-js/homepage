@@ -7,7 +7,7 @@ Consider the following representation:
 ```js
 @View
 class MyComp {
-  View() {
+  Body() {
     div("hello")
   }
 }
@@ -15,7 +15,7 @@ class MyComp {
 Let's analyze the syntax:
 * `@View`: This leading decorator is a marker to DLight that the subsequent class is purpose-built for UI representation.
 * `class MyComp`: By declaring MyComp, we're stitching together the internal state, potential behaviors, and the eventual visual layout our component will exhibit.
-* `View()`: This method is **central** to the visual articulation of the component. It's here that DLight finds the blueprint of how the component should manifest on screen. Inside this View method, you can **only code in the DLight DSL syntax** that we've described in above sections. 
+* `Body()`: This method is **central** to the visual articulation of the component. It's here that DLight finds the blueprint of how the component should manifest on screen. Inside this View method, you can **only code in the DLight DSL syntax** that we've described in above sections. 
 * `div("hello")`: This is the DSL we've talked about.
 
 # Elements and Components
@@ -29,7 +29,7 @@ This is a simple example of how you combine elements and components:
 ```js
 @View
 class MyComp1 {
-  View() {
+  Body() {
     div("hello")
     img()
       .src("/DLight-logo.png")
@@ -38,14 +38,14 @@ class MyComp1 {
 
 @View
 class MyComp2 {
-  View() {
+  Body() {
     h1("This is a big title!")
   }
 }
 
 @View
 class MyComp3 {
-  View() {
+  Body() {
     div(); {
       span("hello")
       "world"
@@ -55,7 +55,7 @@ class MyComp3 {
 
 @View
 class App {
-  View() {
+  Body() {
     MyComp1()
     p("Below is comp2")
     MyComp2()

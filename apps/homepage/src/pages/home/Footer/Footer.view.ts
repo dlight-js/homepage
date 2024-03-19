@@ -9,7 +9,7 @@ class Footer implements EnvType {
   Body() {
     div().class(this.idCss); {
       Logo().height("15px").width("15px").isRotate(true)
-      div(" 2023  ")
+      div(" 2024  ")
       a("DLight.js contributors")
         .href("https://github.com/dlight-js/dlight")
         .class(this.contributorCss)

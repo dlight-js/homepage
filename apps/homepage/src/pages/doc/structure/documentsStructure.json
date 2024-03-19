@@ -106,9 +106,9 @@
         "path": "watch"
       },
       {
-        "name": "🎼 SubView",
-        "zhName": "🎼 子视图",
-        "path": "subview"
+        "name": "🎼 Snippet",
+        "zhName": "🎼 Snippet",
+        "path": "snippet"
       },
       {
         "name": "🅷 HTML Props",
@@ -121,8 +121,8 @@
         "path": "getting-element"
       },
       {
-        "name": "📦 View Prop",
-        "zhName": "📦 View 属性",
+        "name": "🎬 View Prop",
+        "zhName": "🎬 View 属性",
         "path": "view-prop"
       },
       {
@@ -134,6 +134,16 @@
         "name": "⤵️ Forward Props",
         "zhName": "⤵️ 向下传递属性",
         "path": "forward-props"
+      },
+      {
+        "name": "⚠️ Try Catch",
+        "zhName": "⚠️ 错误捕获",
+        "path": "try-catch"
+      },
+      {
+        "name": "📦 Modeling",
+        "zhName": "📦 Modeling",
+        "path": "modeling"
       }
     ]
   },

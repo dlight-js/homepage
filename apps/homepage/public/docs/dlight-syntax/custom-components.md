@@ -6,7 +6,7 @@ Let's say that we've already build a `Counter` component like this:
 @View
 class Counter {
   count = 0
-  View() {
+  Body() {
     div(this.count)
     button("+")
       .onClick(() => {

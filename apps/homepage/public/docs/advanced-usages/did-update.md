@@ -7,36 +7,15 @@ Example:
 class Counter {
   count = 0
 
-  View() {
+  Body() {
     div(this.count)
       .didUpdate(() => {
+        // ---- Will trigger when `this.count` is updated
         console.log("div updated")
       })
-  }
-}
-```
-
-Parameters passed to `didUpdate`: 
-* `node`: current element or component
-* `key`: the name of the state that changes
-* `prevValue`: the previous value of that state
-* `nextValue`: the next value of the state
-
-Example:
-```js
-@View
-class Counter {
-  count = 0
-
-  View() {
-    div(this.count)
-      .didUpdate((node, key, prevValue, nextValue) => {
-        console.log(`${node} ${key} updated: ${prevValue} -> ${nextValue}`)
-      })
-    MyComp()
-      .prop(this.count)
-      .didUpdate((node, key, prevValue, nextValue) => {
-        console.log(`Component ${node} ${key} updated: ${prevValue} -> ${nextValue}`)
+    button("increment")
+      .onClick(() => {
+        this.count++
       })
   }
 }

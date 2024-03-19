@@ -19,8 +19,8 @@ So now you might ask, if every node type is fixed, is there a way to dynamically
 
 In another word, is there a function `xxx` that can achieve this?
 ```js
-xxx(thisCouldBeAndNode) 
-// -> switch (thisCouldBeAndNode.type)
+xxx(thisCouldBeAnyNode) 
+// -> switch (thisCouldBeAnyNode.type)
 //    case html: new HTMLNode()
 //    case text: new TextNode()
 //    case custom: new CompNode()
@@ -32,7 +32,7 @@ class MyComp {
   // I don't know which type it is
   @Prop variable: DLNode | string | undefined | null | (DLNode | string | undefined | null)[]
 
-  View() {
+  Body() {
     // But I can just write this
     _(this.variable)
     // or
@@ -51,7 +51,7 @@ class MyComp {
   @Prop good
   @Prop bad
 
-  View() {
+  Body() {
     _(this.RUOK ? this.good : this.bad)
     // or
     this.RUOK ? this.good : this.bad

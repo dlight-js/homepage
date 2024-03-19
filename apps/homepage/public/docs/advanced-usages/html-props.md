@@ -11,7 +11,7 @@ The main naming difference for other paired properties and attributes is that th
 After a long-time consideration, we decided to go with `class` and `for` + `className` and `htmlFor`. Yeah both of them are valid. But we recommend using `class` and `for` since they're shorter.
 
 # Set a bunch of properties at once
-In DLight, you can set a bunch of properties at once by using the `prop` prop. For instance, if you have a pre-defined object like this:
+In DLight, you can set a bunch of properties at once by using the `props` prop. For instance, if you have a pre-defined object like this:
 ```js
 const props = {
   id: "my-id",
@@ -23,7 +23,7 @@ const props = {
 ```
 and you want to set all these properties to an element, you can do it like this:
 ```js
-div().prop(props)
+div().props(props)
 ```
 Very useful when involving with stylex:
 ```js
@@ -44,13 +44,13 @@ const styles = stylex.create({
 class TestStyleX {
   View() {
     div("hello stylex")
-      .prop(stylex.props(styles.base, styles.highlighted))
+      .props(stylex.props(styles.base, styles.highlighted))
   }
 }
 ```
 
 # Set a bunch of attributes at once
-Similar to `prop`, you can also set a bunch of attributes at once by using the `attr` prop. For instance, if you have a pre-defined object like this:
+Similar to `props`, you can also set a bunch of attributes at once by using the `attrs` prop. For instance, if you have a pre-defined object like this:
 ```js
 const attrs = {
   "my-id": "my-id",
@@ -60,7 +60,7 @@ const attrs = {
 ```
 and you want to set all these attributes to an element, you can do it like this:
 ```js
-div().attr(attrs)
+div().attrs(attrs)
 ```
 
 # Dataset

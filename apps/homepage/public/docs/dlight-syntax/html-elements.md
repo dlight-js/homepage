@@ -17,7 +17,6 @@ img()
 ```
 And this will be mounted to the DOM as:
 ```html
-<div class="hello-cls" style="color: red">hello</div>
 <img src="/dlight-logo.jpg" alt="DLight Logo">
 ```
 # Style
@@ -76,7 +75,22 @@ div("But I can't")
   .id("0")
 { ... }
 ```
-
+# Children addon
+Besides the block statement, we also provide a so called `PropView` way to set children. This is a community-driven feature to align all the prop-settings at the end of the element. For example, if you want to set a `div` with a group of `span` children, you can do it like this:
+```js
+div(View => {
+  span("child1")
+    .id("child1")
+  span("child2")
+    .id("child2")
+    .class("child2-cls")
+  span("child3")
+    .id("child3")
+    .class("child3-cls")
+})
+  .id("parent")
+  .class("parent-cls")
+```
 # Wrap Up
 Hey, in DLight, how can I
 * create a div element with its textContent as "hi, dlight"?
@@ -103,6 +117,14 @@ div()
   div("child2")
 }
 ```
+or
+```js
+div(View => {
+  div("child1")
+  div("child2")
+})
+  .id("container")
+```
 * nest three levels of children elements?
 ```js
 div().id("level1"); {
@@ -111,4 +133,14 @@ div().id("level1"); {
   }
   div().id("level2-1")
 }
+```
+or
+```js
+div(View => {
+  div(View => {
+    div().id("level3")
+  })
+  div().id("level2-1")
+})
+  .id("level1")
 ```

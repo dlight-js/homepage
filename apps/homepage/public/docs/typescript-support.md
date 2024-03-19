@@ -5,12 +5,11 @@ This integration is provided by the `@dlightjs/types` package. It provides a set
 # HTML Elements
 Example first:
 ```typescript
-import { View } from "@dlightjs/dlight"
-import { div, button } from "@dlightjs/types"
+import { View, div, button } from "@dlightjs/dlight"
 
 @View
 class MyComp {
-  View() {
+  Body() {
     div().class("app"); {
       button("click me")
         .onClick(() => {
@@ -37,8 +36,7 @@ Lifecycle & element:
 Also example first:
 
 ```typescript
-import { View } from "@dlightjs/dlight"
-import { required, type Typed, type Pretty } from "@dlightjs/types"
+import { View, required, type Typed, type Pretty } from "@dlightjs/dlight"
 
 interface MyCompProps {
   /** This is prop1 */
@@ -58,7 +56,7 @@ class MyComp implements MyCompProps {
   @Prop prop2 = required
   @Prop prop3 = required
 
-  View() {}
+  Body() {}
 }
 
 export default MyComp as Pretty as Typed<MyCompProps>
@@ -90,10 +88,11 @@ interface EnvType {
   language?: string
 }
 
+@View
 class SubCompClass implements EnvType {
   @Env theme?: Theme | undefined
   @Env language?: string | undefined
-  View() {}
+  Body() {}
 }
 
 const SubComp = SubCompClass as Pretty as Typed
@@ -101,7 +100,7 @@ const SubComp = SubCompClass as Pretty as Typed
 @View
 class MyComp {
 
-  View() {
+  Body() {
     env<EnvType>()
       .language("en")
       .theme(darkTheme)
@@ -113,3 +112,49 @@ class MyComp {
 ```
 What you get in your IDE:
 ![ts-env](./imgs/ts-env.gif "ts-env")
+
+# Modeling
+Example:
+```typescript
+import { Model, type Modeling, type Pretty } from "@dlightjs/dlight"
+
+interface FetchModelProps {
+  url: string
+}
+
+@Model
+class FetchModel implements FetchModelProps {
+  @Prop url = required
+  data = await fetch(this.url)
+}
+
+export default FetchModel as Pretty as Modeling<FetchModel, FetchModelProps>
+```
+
+DLight offers a type to get best coding experience with `use` function in TypeScript. The first type parameter is the model class, and the second type parameter is the props interface.
+
+## Generic Modeling
+```typescript
+import { Model, type Modeling, type Pretty } from "@dlightjs/dlight"
+
+interface FetchModelProps<G> {
+  url: string
+  args: G
+}
+
+@Model
+class FetchModel<T, G> implements FetchModelProps<G> {
+  @Prop url = required
+  @Prop args = required
+  data: T = await fetch(this.url, this.args)
+}
+
+export default FetchModel as Pretty as <T, G>(props: G) => GetData<T, G>
+```
+
+When you want to make a generic model, things get a little bit tricky. You need to declare the generic type in the model class and the props interface, and then you need to declare a function type with generic type parameters to cast the model class to it. So that when you use it in `use` function, you can do it like:
+```typescript
+const fetchModel = use(FetchModel<string, MyDataType>, { url, args })
+```
+
+You won't be seeing this a lot unless you're doing some advanced stuff or you're a lib builder.

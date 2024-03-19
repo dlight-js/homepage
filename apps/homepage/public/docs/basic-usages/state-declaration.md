@@ -1,7 +1,7 @@
 # Rethinking State Variables
 Imagine a world where managing state in your app is as easy as declaring a variable - no fanfare, no special treatment. Just declare it, use it in the view, and voilà, any changes to the variable automatically update the view. Sounds nice, doesn't it?
 
-Because at its core, what is state? It’s a variable that, when changed, should naturally cause the view to update. It's unique but not THAT unique, right? It should be as straightforward to use as any other variable in your code.
+Because at its core, what is state? It’s a variable that, when changed, should naturally cause the view to update. It's unique but not THAT unique. It should be as straightforward to use as any other variable in your code.
 
 Now, we’ve seen this story unfold in different ways in the realm of frontend frameworks. Most ask for a little too much ceremony like `useState()` or `ref()` or other forms of declaration, while others like Svelte made a bold step towards simplicity. But even with Svelte’s ease of use, there's a hiccup when dealing with computed states, needing that extra bit of special attention like this:
 ```js [svelte]
@@ -17,7 +17,7 @@ Declare a state in a DLight class component is straightforward:
 class Counter {
   count = 0
 
-  View() {
+  Body() {
     div(this.count)
     button("+")
       .onClick(() => {
@@ -36,7 +36,7 @@ class Counter {
   count = 0
   doubleCount = this.count * 2
 
-  View() {
+  Body() {
     div(this.doubleCount)
       .onClick(() => {
         this.count ++

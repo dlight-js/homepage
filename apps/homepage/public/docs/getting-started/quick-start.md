@@ -66,36 +66,31 @@ Let's take a blank js template as an example and break the codes down.
 After creating a new DLight.js project using the CLI tool, it sets up a file structure that is similar to a Vite project. The file structure consists of the following files and directories:
 ```text
 - src
-  - App.view.ts    // codes for AppView
-  - index.ts       // js entry, mounting the AppView into html
+  - App.view.js    // codes for AppView and Entry
 - index.html       // html entry
 - package.json
-- vite.config.ts   // vite config, using vite-plugin-dlight
+- vite.config.js   // vite config, using vite-plugin-dlight
 ```
-The most important two files are `App.view.ts` and `index.js`.
+The most important file is `App.view.ts`.
 
-In `App.view.js`, we've declared a App component displaying "hello" in the browser:
-```js [src/App.view.js]
-import { View } from "@dlightjs/dlight"
-
-@View
-export default class App {
-  View() {
-    div("hello dlight!")
-  }
-}
-```
 Quick question: Why is it called App.**view**.js instead of App.js? 
 * There're basically two main reasons. First to reduce compiling burden, we make our compiler to process files whose name only match this pattern: `**/*.view.js` and second we think it's a good practice to mark all UI files as `xx.view`. 
 * And of course you can change it to compile any file you want, just go to the vite config and you'll see a plugin setting like this: `dlight({ files: "**/*.view.js" })`.
 
-In the `index.js` file, we've imported the previously declared App component from `App.view.js` and mount it to the `<div id="app"/>` element in the `/index.html` file using `render` function from core DLight library.
-```js [src/index.js]
-import { render } from "@dlightjs/dlight"
-import App from "./App.view"
 
-render("app", App)
+In `App.view.ts`, we've declared a App component displaying "hello" in the browser:
+```js [src/App.view.js]
+import { View } from "@dlightjs/dlight"
+
+@Main
+@View
+class App {
+  Body() {
+    div("hello dlight!")
+  }
+}
 ```
+and `@Main` will mount this App component to the `#main` element in the `index.html` file.
 
 ---
 If you've successfully set up and run your DLight.js project, congratulations to you! Navigating through the initial setup and witnessing your app saying "hello dlight!" is the first step into the expansive world of DLight.js. As you continue along this journey, the upcoming sections on 🧩 DLight Syntax and 🛠 DLight Usage will further illuminate your path。 

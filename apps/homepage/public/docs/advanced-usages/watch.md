@@ -11,7 +11,7 @@ class Counter {
   })()
 
 
-  View() {
+  Body() {
     button("click me")
       .onClick(() => {
         this.count++
@@ -35,7 +35,7 @@ class Counter {
     console.log(`count changed: ${this.count}`)
   }
 
-  View() {
+  Body() {
     button("click me")
       .onClick(() => {
         this.count++
@@ -57,26 +57,3 @@ class Counter {
 ```
 
 But we don't recommend doing this since everybody hates the dependency array in `useEffect` in React. 
-
-# Parameters
-`@Watch` method does have some parameters: `key`, `prevValue`, `nextValue`. `key` is the name of the state that changes, `prevValue` is the previous value of that state, `nextValue` is the next value of the state. 
-
-Example:
-```js
-@View
-class Counter {
-  count = 0
-
-  @Watch
-  watchCount(key, prevValue, nextValue) {
-    console.log(`${key} changed: ${prevValue} -> ${nextValue}`)
-  }
-
-  View() {
-    button("click me")
-      .onClick(() => {
-        this.count++
-      })
-  }
-}
-```

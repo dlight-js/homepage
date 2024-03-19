@@ -10,7 +10,7 @@ Props are a way to pass data into a component. In DLight, you can declare props 
 class MyComp {
   @Prop myFirstProp
 
-  View() {
+  Body() {
     div(this.myFirstProp)
   }
 }
@@ -21,7 +21,7 @@ Once you've declared a prop, you can pass data to it inside other components tha
 ```js
 @View
 class App {
-  View() {
+  Body() {
     MyComp()
       .myFirstProp("this prop is declared in MyComp component")
   }
@@ -38,12 +38,12 @@ class MyComp {
   @Prop myThirdProp
   @Prop ...
 
-  View() { ... }
+  Body() { ... }
 }
 
 @View
 class App {
-  View() {
+  Body() {
     MyComp()
       .myFirstProp("1st prop")
       .mySecondProp({ value: "2nd prop" })
@@ -63,14 +63,14 @@ Consider the following example:
 class MyComp {
   @Content myContentProp
 
-  View() {
+  Body() {
     div(this.myContentProp)
   }
 }
 
 @View 
 class App {
-  View() {
+  Body() {
     MyComp("This is content prop")
   }
 }
@@ -85,7 +85,7 @@ You can also set a default value for any prop. For example:
 class MyComp {
   @Prop message = "Hello, DLight! This is a default value."
 
-  View() {
+  Body() {
     div(this.message)
   }
 }
@@ -98,7 +98,7 @@ We've already talked about DLight adhering to the concept of unidirectional data
 class MyComp {
   @Prop compCount
 
-  View() {
+  Body() {
     div(this.compCount)
   }
 }
@@ -107,7 +107,7 @@ class MyComp {
 class App {
   count = 0
 
-  View() {
+  Body() {
     MyComp()
       .compCount(this.count)
   }
@@ -127,7 +127,7 @@ Just pass a function that sets the `count` variable like this:
 class MyComp {
   @Prop changeCount
 
-  View() {
+  Body() {
     button("change count")
       .onClick(this.changeCount)
   }
@@ -141,7 +141,7 @@ class App {
     this.count ++
   }
 
-  View() {
+  Body() {
     MyComp()
       .compCount(this.changeCount)
   }

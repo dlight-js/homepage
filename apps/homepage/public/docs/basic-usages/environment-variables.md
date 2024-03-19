@@ -120,7 +120,7 @@ class App {
     this.user = { ...this.user, userName: newUserName }
   }
 
-  View() {
+  Body() {
     h1(`Welcome back, ${this.user.userName}`)
     env()
       .user(this.user)
@@ -141,7 +141,7 @@ class UserProfile {
   @Env user
   @Env updateUsername
 
-  View() {
+  Body() {
     div(); {
       h2("My Profile")
       p(`Username: ${this.user.username}`)
@@ -173,12 +173,12 @@ class MyComp {
   @Env message // this will be ok
   @Env count // this will be 100
 
-  View() {}
+  Body() {}
 }
 
 @View
 class App {
-  View() {
+  Body() {
     env()
       .message("ok")
       .count(0)
@@ -190,3 +190,6 @@ class App {
   }
 }
 ```
+
+# Performance concern
+Will the environment cause performance issues? The answer is no. Setting up an environment is just like setting up a prop. It's a one-time operation. The environment is not a reactive variable, and it won't cause re-rendering when it changes. It's just a way to pass data and methods between components.

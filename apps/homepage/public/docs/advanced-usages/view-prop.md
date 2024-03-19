@@ -5,7 +5,7 @@ Prop view is a property passed to a component that is a DLight View. It is somet
 class RedBorder {
   @Content contentView
 
-  View() {
+  Body() {
     div()
       .style({
         border: "1px solid red",
@@ -20,7 +20,7 @@ class RedBorder {
 
 @View
 class App {
-  View() {
+  Body() {
     RedBorder(View => {
       div("hello")
       div("world")
@@ -48,7 +48,7 @@ Fun fact, `children` is actually a view prop as well. So what we recommend is th
 ```js
 @View
 class MyComp {
-  View() {
+  Body() {
     Wrapper(); {
       div("hello")
       div("world")
@@ -75,7 +75,7 @@ And use then in `Expressions` like this:
 class Wrapper {
   @Children children
 
-  View() {
+  Body() {
     div().class("wrapper"); {
       this.children
       // or
@@ -90,7 +90,7 @@ class MyCard {
   @Prop titleView
   @Prop descriptionView
 
-  View() {
+  Body() {
     this.iconView
     this.titleView
     this.descriptionView
@@ -106,7 +106,7 @@ Be noted that each time a view prop/child is used, it'll create a new instance o
 class MyComp {
   @Prop myView
 
-  View() {
+  Body() {
     // Three different instances of myView
     this.myView
     this.myView

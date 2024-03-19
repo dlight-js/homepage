@@ -11,7 +11,7 @@ import { View } from "@dlightjs/dlight"
 class Card {
   @Children cardContent
 
-  View() {
+  Body() {
     div()
       .style({
         border: "1px solid gray",
@@ -34,7 +34,7 @@ import Card from "./Card.view"
 
 @View
 class App {
-  View() {
+  Body() {
     Card(); {
       div("This is the content inside the card.")
     }
@@ -46,3 +46,85 @@ export default App
 In this example, the Card component can wrap around any content. The content placed inside it becomes its "children", which is referred to in the Card component as `this.cardContent`.
 
 DLight's approach to handling children components is all about intuitive design. By utilizing the `{}` notation, it mirrors the familiar structure found in HTML's child nodes. The `{}` notation signifies a cohesive unit, an organized block that can be easily interpreted and modified through out DLight. You can find it in elements' childNodes, environment, components' children and even for and if expression.
+
+# Another way to set children
+Remember in HTMLNode, we also provide a so called `PropView` way to set nested elements? You can also use this way to set "children"(looks like children but is content in fact) in a custom component. For example:
+
+```js
+// ~> Card.js
+import { View } from "@dlightjs/dlight"
+
+@View
+class Card {
+  @Content cardContent
+
+  Body() {
+    div()
+      .style({
+        border: "1px solid gray",
+        padding: "15px",
+        borderRadius: "5px"
+      })
+    {
+      this.cardContent
+    }
+  }
+}
+
+export default Card
+// ~> App.js
+import { View } from "@dlightjs/dlight"
+import Card from "./Card.view"
+
+@View
+class App {
+  Body() {
+    Card(View => {
+      div("This is the content inside the card.")
+    })
+  }
+}
+
+export default App
+```
+
+Note that here we receive this "children" with `@Content` decorator. Yeah that's true and it's consistent with the `@Content` in the "Prop Passing" section. You'll get to know more about it in the "Advanced Usages/View Prop" section. Here's a simple preview:
+```js
+
+// ~> Card.js
+import { View } from "@dlightjs/dlight"
+
+@View
+class Card {
+  @Prop anyPropViewToHoldIt
+
+  Body() {
+    div()
+      .style({
+        border: "1px solid gray",
+        padding: "15px",
+        borderRadius: "5px"
+      })
+    {
+      this.anyPropViewToHoldIt
+    }
+  }
+}
+
+export default Card
+// ~> App.js
+import { View } from "@dlightjs/dlight"
+import Card from "./Card.view"
+
+@View
+class App {
+  Body() {
+    Card()
+      .anyPropViewToHoldIt(View => {
+        div("This is the content inside the card.")
+      })
+  }
+}
+
+export default App
+```
