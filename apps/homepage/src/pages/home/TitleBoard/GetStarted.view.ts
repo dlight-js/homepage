@@ -4,6 +4,7 @@ import { Navigator } from "@dlightjs/components"
 import { css } from "@emotion/css"
 import clsx from "clsx"
 import { ChevronRightFilled } from "@dlightjs/material-icons"
+import { HeaderData } from "../../../const/homeData"
 
 interface ButtonProps {
   content: string
@@ -42,10 +43,10 @@ class GetStarted implements EnvType {
     {
       this.Button(this.i18n!("Get Started", "快速开始"))
         .className(this.startCss)
-        .onClick(() => { this.navigator.to("/docs/getting-started") })
+        .onClick(() => { this.navigator.to(HeaderData[0].path) })
       this.Button(this.i18n!("Quick Example", "快速示例"))
         .className(this.exampleCss)
-        .onClick(() => { this.navigator.to("/examples/introduction/hello-world") })
+        .onClick(() => { this.navigator.to(HeaderData[1].path) })
     }
   }
 
