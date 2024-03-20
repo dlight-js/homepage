@@ -1,9 +1,10 @@
-export const indexCode = `import { View, render } from "@dlightjs/dlight"
+export const indexCode = `import { View, Main } from "@dlightjs/dlight"
 import HelloView from "./hello.view"
 import CounterView from "./counter.view"
 import ArrayView from "./array.view"
 import ToggleView from "./toggle.view"
 
+@Main
 @View
 class MyComp {
   Body() {
@@ -13,8 +14,6 @@ class MyComp {
     ToggleView()
   }
 }
-
-render("app", MyComp)
 `
 
 export const HelloView = `import { View } from "@dlightjs/dlight"
