@@ -11,7 +11,7 @@ class Counter {
   })()
 
 
-  View() {
+  Body() {
     button("click me")
       .onClick(() => {
         this.count++
@@ -35,7 +35,7 @@ class Counter {
     console.log(`count changed: ${this.count}`)
   }
 
-  View() {
+  Body() {
     button("click me")
       .onClick(() => {
         this.count++
@@ -57,26 +57,3 @@ class Counter {
 ```
 
 但我们不推荐这样做，因为大家都不喜欢在React的useEffect中使用依赖数组。
-
-# 参数
-`@Watch` 方法确实有一些参数： `key` 、 `prevValue和nextValue` 。 `key` 是发生变化的状态的名称， `prevValue` 是该状态的前一个值， `nextValue` 是该状态的下一个值。
-
-示例:
-```js
-@View
-class Counter {
-  count = 0
-
-  @Watch
-  watchCount(key, prevValue, nextValue) {
-    console.log(`${key} changed: ${prevValue} -> ${nextValue}`)
-  }
-
-  View() {
-    button("click me")
-      .onClick(() => {
-        this.count++
-      })
-  }
-}
-```

@@ -46,7 +46,7 @@ const styles = stylex.create({
 
 @View
 class TestStyleX {
-  View() {
+  Body() {
     div("hello stylex")
       .prop(stylex.props(styles.base, styles.highlighted))
   }

@@ -129,7 +129,7 @@ class App {
     this.user = { ...this.user, userName: newUserName }
   }
 
-  View() {
+  Body() {
     h1(`Welcome back, ${this.user.userName}`)
     env()
       .user(this.user)
@@ -150,7 +150,7 @@ class UserProfile {
   @Env user
   @Env updateUsername
 
-  View() {
+  Body() {
     div()
     {
       h2("My Profile")
@@ -188,14 +188,14 @@ class MyComp {
   @Env message // this will be ok
   @Env count // this will be 100
 
-  View() {
+  Body() {
     "nothing here"
   }
 }
 
 @View
 class App {
-  View() {
+  Body() {
     env()
       .message("ok")
       .count(0)
@@ -209,3 +209,6 @@ class App {
   }
 }
 ```
+
+# 性能问题
+环境设置会导致性能问题吗？答案是否定的。设置环境就像设置一个属性一样。这是一次性操作。环境不是一个响应式变量，并且当它改变时不会导致重新渲染。它只是一种在组件之间传递数据和方法的方式。

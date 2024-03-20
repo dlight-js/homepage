@@ -43,7 +43,7 @@ class Counter {
     this.count++
   }
 
-  View() {
+  Body() {
     button("increment")
       .onClick(this.increment)
   }
@@ -58,7 +58,7 @@ class Counter {
     this.count++
   }
 
-  View() {
+  Body() {
     button("increment")
       .onClick(this.increment)
   }
@@ -133,7 +133,7 @@ div("hello css in js")
 class MyComp {
   @Prop color: string
 
-  View() {
+  Body() {
     div("hello css in js")
       .class(this.helloWorldCss)
   }
@@ -183,7 +183,7 @@ const styles = stylex.create({
 ```js
 @View
 class TestStyleX {
-  View() {
+  Body() {
     div("hello stylex")
       .prop(stylex.props(styles.base, styles.highlighted))
   }
@@ -237,7 +237,7 @@ a("hello")
 // ~> App.view.js
 @View
 class App {
-  View() {
+  Body() {
     div("hello")
   }
 }

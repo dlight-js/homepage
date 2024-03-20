@@ -113,3 +113,50 @@ class MyComp {
 ```
 在你的 IDE 中你会得到：
 ![ts-env](./imgs/ts-env.gif "ts-env")
+
+# 模型
+示例：
+```typescript
+import { Model, type Modeling, type Pretty } from "@dlightjs/dlight"
+
+interface FetchModelProps {
+  url: string
+}
+
+@Model
+class FetchModel implements FetchModelProps {
+  @Prop url = required
+  data = await fetch(this.url)
+}
+
+export default FetchModel as Pretty as Modeling<FetchModel, FetchModelProps>
+```
+
+DLight提供了一个类型，用于在TypeScript中使用 `use` 函数时获得最佳编码体验。第一个参数是模型类，第二个参数是模型需要的props。
+
+## 泛型模型
+```typescript
+import { Model, type Modeling, type Pretty } from "@dlightjs/dlight"
+
+interface FetchModelProps<G> {
+  url: string
+  args: G
+}
+
+@Model
+class FetchModel<T, G> implements FetchModelProps<G> {
+  @Prop url = required
+  @Prop args = required
+  data: T = await fetch(this.url, this.args)
+}
+
+export default FetchModel as Pretty as <T, G>(props: G) => GetData<T, G>
+```
+
+当你想要创建一个泛型模型时，事情会变得有点复杂。你需要在模型类和props接口中声明泛型类型，然后你需要声明一个具有泛型类型参数的函数类型，以将模型类转换为它。这样当你在 `use` 函数中使用它时，你可以这样做：
+
+```typescript
+const fetchModel = use(FetchModel<string, MyDataType>, { url, args })
+```
+
+除非你正在做一些高级的事情或你是一个库构建者，否则你不会经常看到这个。

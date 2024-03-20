@@ -42,7 +42,7 @@ button("click")
   })
   .onYourEvent(yourCustomFunc)
 ```
-Note that all event name will be forced lowercased, e.g., `onYourEvent` -> `yourevent`.
+Note that all event name will be forced lowercased, e.g., `onYourEvent` -> `onyourevent`.
 
 # Children
 We're using a block statement to nest children elements. For instance, if you want to get an HTML structure like this:

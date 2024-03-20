@@ -5,7 +5,7 @@ class Button {
   @Prop content
   @Prop onClick
 
-  View() {
+  Body() {
     button(this.content)
       .onClick(this.onClick)
   }
@@ -18,7 +18,7 @@ You can only pass the `content` and `onClick` props to the `Button` component be
 class Button {
   @Prop content
 
-  View() {
+  Body() {
     button(this.content)
       .forwardProps()
   }
@@ -31,7 +31,7 @@ Use the new `Button` component:
 ```js
 @View
 class App {
-  View() {
+  Body() {
     Button("click me")
       .onClick(() => {
         alert("clicked")
@@ -47,7 +47,7 @@ You can also forwardProps to multiple components:
 class Button {
   @Prop content
 
-  View() {
+  Body() {
     div().class("button-wrapper"); {
       button(this.content)
         .forwardProps()

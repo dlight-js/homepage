@@ -7,37 +7,15 @@
 class Counter {
   count = 0
 
-  View() {
+  Body() {
     div(this.count)
       .didUpdate(() => {
+        // ---- Will trigger when `this.count` is updated
         console.log("div updated")
       })
-  }
-}
-```
-
-传给 `didUpdate` 的参数：
-
-* `node`：当前元素或组件
-* `key`：状态变化的名称
-* `prevValue`：该状态的前一个值
-* `nextValue`：状态的下一个值
-
-示例：
-```js
-@View
-class Counter {
-  count = 0
-
-  View() {
-    div(this.count)
-      .didUpdate((node, key, prevValue, nextValue) => {
-        console.log(`${node} ${key} updated: ${prevValue} -> ${nextValue}`)
-      })
-    MyComp()
-      .prop(this.count)
-      .didUpdate((node, key, prevValue, nextValue) => {
-        console.log(`Component ${node} ${key} updated: ${prevValue} -> ${nextValue}`)
+    button("increment")
+      .onClick(() => {
+        this.count++
       })
   }
 }

@@ -8,7 +8,7 @@
 class MyComp {
   el
 
-  View() {
+  Body() {
     div("hello")
       .element(el => {
         this.el = el
@@ -29,7 +29,7 @@ class MyComp {
     console.log(el)
   }
 
-  View() {
+  Body() {
     div("hello")
       .element(this.el)
     div("world")
@@ -50,7 +50,7 @@ class App {
   @Children children
   counterEls
 
-  View() {
+  Body() {
     Counter()
       .element(this.counterEls)
     MyComp()

@@ -31,7 +31,7 @@ class MyComponent {
   }
   // ... similarly for willUnmount and didUnmount
 
-  View() {...}
+  Body() {...}
 }
 ```
 
@@ -58,36 +58,46 @@ MyComponent()
 这种方法，特别是当你想在不同部分的应用中重用组件时，会非常灵活。它允许开发者根据组件的使用上下文，轻松地动态调整组件的行为。
 
 # HTML 元素中的生命周期
-
-DLight 中的 HTML 元素有着稍微不一样的生命周期钩子：
-
-* willAppear: 这个方法在元素被添进 DOM 之前被触发。
-* didAppear: 这个方法在元素被添加进入 DOM 之后被触发。
-* willDisappear: 在元素从 DOM 中移除之前会被触发。
-* didDisappear: 在元素从 DOM 中被移除之后会被触发。
-
-## 使用
-
-与自定义组件（其生命周期方法可以在类定义中和在方法调用期间被添加）不同，DLight 中的 HTML 元素在元素声明期间会直接使用这些方法：
+在DLight中，HTML元素具有与自定义组件相同的生命周期方法。然而，不同于自定义组件可以在类定义和调用时添加生命周期方法，DLight中的HTML元素在元素声明期间直接使用这些方法：
 
 ```js
 div()
-  .willAppear(() => {
+  .willMount(() => {
     console.log("div will appear in the DOM!")
   })
-  .didAppear(() => {
-    console.log("div has appeared in the DOM!")
+  .didMount(element => {
+    console.log(`${element} has appeared in the DOM!`)
   })
-  .willDisappear(() => {
+  .willUnmount(() => {
     console.log("div will be removed from the DOM!")
   })
-  .didDisappear(() => {
+  .didUnmount(() => {
     console.log("div has been removed from the DOM!")
   })
 ```
+这种方法允许开发者直观且轻松地直接在元素声明的地方定义生命周期行为，使元素的生命周期方法何时以及如何被调用变得清晰明了。
 
-这种机制允许开发者在元素声明的位置轻松且直观地定义生命周期行为。同时，也使得元素的生命周期方法将在何时调用以及将被如何调用一目了然。
+# 嵌套组件/元素中的生命周期顺序
+## willMount/willUnmount
+ `willMount` 和 `willUnmount` 方法按照组件层级的顺序被调用。例如，如果你有一个包含另一个组件的组件，父组件的 `willMount` 方法将在子组件的 `willMount`方法之前被调用。 `willUnmount` 也是类似的。
 
-# 小结
+## didMount/didUnmount
+ `didMount` 和 `didUnmount` 方法按照组件层级的反向顺序被调用。例如，如果你有一个包含另一个组件的组件，子组件的 `didMount` 方法将在父组件的 `didMount` 方法之后被调用。 `didUnmount` 也是类似的。
 
-DLight 中的生命周期为开发者提供了在特定阶段处理组件和元素行为的细粒度，也确保了高效流畅的用户体验。
+示例：
+```js
+A(); {
+  B(); {
+    C()
+  }
+  D()
+}
+```
+声明周期顺序：
+```
+A.willMount -> B.willMount -> C.willMount -> D.willMount 
+-> D.didMount -> C.didMount -> B.didMount -> A.didMount
+
+A.willUnmount -> B.willUnmount -> C.willUnmount -> D.willUnmount
+-> D.didUnmount -> C.didUnmount -> B.didUnmount -> A.didUnmount
+```

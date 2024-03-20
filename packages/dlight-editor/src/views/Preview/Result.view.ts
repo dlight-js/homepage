@@ -37,6 +37,7 @@ class Result {
     "SnippetNode",
     "PropView",
     "render",
+    "use",
   ].map(name => [name, `$$${name}`])
 
   /** @view */
@@ -67,10 +68,10 @@ class Result {
               // Send the message to the parent window
               window.parent.postMessage(error, '*');
             }
-            import { View, render, ${this.importMap.map(([key, value]) => `${key} as ${value}`).join(", ")} } from "/dlight.js";\n${this.srcDoc}</script>
+            import { View, Model, ${this.importMap.map(([key, value]) => `${key} as ${value}`).join(", ")} } from "/dlight.js";\n${this.srcDoc}</script>
         </head>
         <body style="margin: 0;">
-          <div id="app" style="height: 100%; color: ${this.theme.text}"></div>
+          <div id="main" style="height: 100%; color: ${this.theme.text}"></div>
         </body>
       </html>`)
   }

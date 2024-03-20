@@ -72,9 +72,9 @@ to invert selection, and <enter> to proceed)
 - package.json
 - vite.config.ts   // vite config, using vite-plugin-dlight
 ```
-The most important two files are `App.view.ts` and `index.js`.
+最重要的两个文件是 `App.view.ts` 和 `index.js`。
 
-In `App.view.js`, we've declared a App component displaying "hello" in the browser:
+在 `App.view.js`，我们声明了一个App组件展示“hello”
 ```js [src/App.view.js]
 import { View } from "@dlightjs/dlight"
 
@@ -96,6 +96,5 @@ import App from "./App.view"
 
 render("app", App)
 ```
-
 ---
 如果您已成功设置并运行了 DLight.js 项目，恭喜您！顺利完成初始设置并见证您的应用程序说出“hello dlight!”是踏入 DLight.js 广阔世界的第一步。随着您继续这段旅程，接下来的🧩 DLight 语法和🛠 DLight 使用章节将进一步照亮您的道路。

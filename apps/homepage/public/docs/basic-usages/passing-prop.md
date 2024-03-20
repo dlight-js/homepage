@@ -143,7 +143,7 @@ class App {
 
   Body() {
     MyComp()
-      .compCount(this.changeCount)
+      .changeCount(this.changeCount)
   }
 }
 ```

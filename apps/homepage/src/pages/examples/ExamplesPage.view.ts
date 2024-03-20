@@ -3,7 +3,7 @@ import { css } from "@emotion/css"
 import DLightEditor from "dlight-editor"
 import { ExamplesCodeData } from "../../const/examplesCodeData"
 import { ExmaplesCodeDataType } from "../../utils/types"
-import { RoutesEnv } from "@dlightjs/components"
+import { RouteEnv } from "@dlightjs/components"
 import { Loading } from "../../common"
 import ExampleMenu from "./ExampleMenu.view"
 import MenuBtn from "../doc/MenuBtn.view"
@@ -46,9 +46,9 @@ class NewPlayGround implements NewPlayGroundProps {
 }
 
 @View
-class ExamplesPage implements RoutesEnv {
-  @Env navigator: RoutesEnv["navigator"] = required
-  @Env path: RoutesEnv["path"] = required
+class ExamplesPage implements RouteEnv {
+  @Env navigator: RouteEnv["navigator"] = required
+  @Env path: RouteEnv["path"] = required
   @Env theme: any = required
   @Env themeType: "light" | "dark" = required
   @Env isShortView: boolean = required

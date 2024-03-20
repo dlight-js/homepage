@@ -5,7 +5,7 @@ Prop view是传递给DLight视图组件的一个属性。有时创建一个高�
 class RedBorder {
   @Content contentView
 
-  View() {
+  Body() {
     div()
       .style({
         border: "1px solid red",
@@ -20,7 +20,7 @@ class RedBorder {
 
 @View
 class App {
-  View() {
+  Body() {
     RedBorder(View => {
       div("hello")
       div("world")
@@ -49,7 +49,7 @@ View => {
 ```js
 @View
 class MyComp {
-  View() {
+  Body() {
     Wrapper(); {
       div("hello")
       div("world")
@@ -76,7 +76,7 @@ class MyComp {
 class Wrapper {
   @Children children
 
-  View() {
+  Body() {
     div().class("wrapper"); {
       this.children
       // or
@@ -91,7 +91,7 @@ class MyCard {
   @Prop titleView
   @Prop descriptionView
 
-  View() {
+  Body() {
     this.iconView
     this.titleView
     this.descriptionView
@@ -107,7 +107,7 @@ class MyCard {
 class MyComp {
   @Prop myView
 
-  View() {
+  Body() {
     // Three different instances of myView
     this.myView
     this.myView

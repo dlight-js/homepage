@@ -66,6 +66,6 @@ class MyComp {
 }
 ```
 
-正因为他不是一个像`div()` 的 `call expression`， 它便成了一个 `ExpressionNode`.
+正因为他不是一个像`div()` 的 `call expression`， 它便成了一个 `ExpressionNode`。
 
 这个功能在 **子组件** 或 **插槽** 中非常有用，这将会在基本用法中介绍到。现在，你只需要知道这是一个有效的语法，并且它接受任何内容。

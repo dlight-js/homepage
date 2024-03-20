@@ -79,9 +79,9 @@ for (const [idx, color] of Object.entries(colors)) {
 假设我们有四个显示数字 `1, 2, 3, 4` 的元素，我们希望移除数字 1。
 
 - 对于键控更新，首先需要移除数字 1 并将其他三个元素向上移动。在这种情况下，我们需要计算已移除元素的索引，并将其从其父节点中移除。（keyed 使用 shuffle 算法）
-  ![keyed-update](../../imgs/keyed-update.png "keyed-update")
+  ![keyed-update](../imgs/keyed-update.png "keyed-update")
 - 对于非键控更新，它只会删除最后一个元素，并相应地更改前面的元素。在实现中，我们不需要找到要移除的元素的索引。我们在这里要做的是获取新数组的长度（3），并在旧数组中进行切割（1,3,4），然后进行一些元素属性的修改操作，这样的操作成本要低得多。
-  ![non-keyed-update](../../imgs/non-keyed-update.png "non-keyed-update")
+  ![non-keyed-update](../imgs/non-keyed-update.png "non-keyed-update")
 
 如果没有特定的要求设置键，非键控更新适用于 90% 的情况。这是我们在 DLight 中如何实现的：
 

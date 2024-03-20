@@ -46,7 +46,7 @@ export const HeaderData = [
   {
     btnName: "🎯 Examples",
     zhBtnName: "🎯 示例",
-    path: "/examples/introduction/hello-world",
+    path: "/examples/dlight-syntax/hello-world",
     structureData: ExamplesCodeData
   },
   {

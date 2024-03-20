@@ -8,10 +8,10 @@ function javascript(strings: TemplateStringsArray, ...values: any[]): string {
 
 export const ExamplesCodeData: ExmaplesCodeDataType[] = [
   {
-    title: "Introduction",
-    zhName: "介绍",
+    title: "DLight Syntax",
+    zhName: "DLight语法",
     description: "",
-    path: "/examples/introduction/hello-world",
+    path: "/examples/dlight-syntax/hello-world",
     children: [
       {
         title: "Hello World",
@@ -20,20 +20,1152 @@ export const ExamplesCodeData: ExmaplesCodeDataType[] = [
         zhDescription: "来自DLight的问候。",
         modules: [
           {
-            code: javascript`import { View, render } from "@dlightjs/dlight"
+            code: javascript`import { View, Main } from "@dlightjs/dlight"
 
+@Main
 @View
 class HelloWorld {
   Body() {
     div("Hello World!")
   }
 }
-
-render("app", HelloWorld)`,
+`,
             path: "/index.js"
           }
         ]
       },
+      {
+        title: "Text Element",
+        zhName: "文本元素",
+        description: "Showcase which is text element in dlight.js.",
+        zhDescription: "展示在dlight.js中的文本元素。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@Main
+@View
+class TextElement {
+  Body() {
+    "I am a Text Element!"
+    \`I am also a Text Element! \`
+    'Me too!'
+  }
+}`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Html Element",
+        zhName: "Html元素",
+        description: "Showcase how to use html element in dlight.js.",
+        zhDescription: "展示在dlight.js中如何使用html元素。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@Main
+@View
+class HtmlElement {
+  Body() {
+    div("I am a Html Element!")
+    span("I am also a Html Element!")
+    div()
+    {
+      button("Button")
+    }
+  }
+}
+`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Html Element Props",
+        zhName: "Html元素属性",
+        description: "Showcase how to use props with html element.",
+        zhDescription: "展示如何在html元素中使用属性。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@Main
+@View
+class HtmlElementProps {
+  Body() {
+    a("Click to DLight Github")
+      .href("https://github.com/dlight-js/dlight")
+      .target("_blank")
+  }
+}
+`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Component",
+        zhName: "组件",
+        description: "Showcase how to build and invoke a custom component.",
+        zhDescription: "展示如何构建和调用自定义组件。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@View 
+class SubComp {
+  Body() {
+    div("I am Sub Component!")
+  }
+}
+
+@Main
+@View
+class RootComp {
+  Body() {
+    div("I am Root Component!")
+    SubComp()
+  }
+}
+`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "If Block",
+        zhName: "If模块",
+        description: "Showcase how to use if block in dlight.js.",
+        zhDescription: "展示如何在dlight.js中使用if模块。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+const TRAFFIC_LIGHTS = ["red", "orange", "green"]
+
+@Main
+@View
+class TrafficLight {
+  lightIndex = 0
+  light = TRAFFIC_LIGHTS[this.lightIndex]
+
+  nextLight() {
+    this.lightIndex = (this.lightIndex + 1)%TRAFFIC_LIGHTS.length
+  }
+
+  Body() {
+    button("Next light")
+      .onClick(this.nextLight)
+    p(this.light)
+    p()
+    {
+      "You must "
+      if (this.light === "red") {
+        span("STOP")
+      } else if (this.light === "orange") {
+        span("SLOW DOWN")
+      } else if (this.light === "green") {
+        span("GO")
+      }
+    }
+  }
+}
+`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "For Loop",
+        zhName: "For循环",
+        description: "Showcase how to use for loop view in dlight.js.",
+        zhDescription: "展示如何在dlight.js中使用for循环视图。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@Main
+@View
+class Colors {
+  colors = ["red", "green", "blue"]
+
+  Body() {
+    ul()
+    {
+      for (const color of this.colors) {
+        li(color)
+      }
+    }
+  }
+}
+`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Keyed For Loop",
+        zhName: "带key的for循环",
+        description: "Showcase how to use key in for loop to ensure correctness of array sequence.",
+        zhDescription: "展示如何在for循环中使用key来确保数组顺序的正确性。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@Main
+@View
+class NumComp {
+  numArr = [0,1,2,3,4]
+
+  changeNumArr() {
+    this.numArr.push(this.numArr.length)
+  }
+
+  Body() {
+    button("Change numArr")
+      .onClick(this.changeNumArr)
+    ul()
+    {
+      for (const num of this.numArr) {
+        key: num
+        li(num)
+      }
+    }
+  }
+}
+`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Switch Case",
+        zhName: "Switch Case",
+        description: "Using TrafficLight component to showcase how to use switch case in dlight.js.",
+        zhDescription: "使用TrafficLight组件展示如何在dlight.js中使用switch case。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+const TRAFFIC_LIGHTS = ["red", "orange", "green"]
+
+@Main
+@View
+class TrafficLight {
+  lightIndex = 0
+  light = TRAFFIC_LIGHTS[this.lightIndex]
+
+  nextLight() {
+    this.lightIndex = (this.lightIndex + 1)%TRAFFIC_LIGHTS.length
+  }
+
+  Body() {
+    button("Next light")
+      .onClick(this.nextLight)
+    p(this.light)
+    p()
+    {
+      "You must "
+      switch (this.light) {
+        case "red":
+          span("STOP")
+          break
+        case "orange":
+          span("SLOW DOWN")
+          break
+        case "green":
+          span("GO")
+          break
+      }
+    }
+  }
+}
+`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Expression",
+        zhName: "表达式",
+        description: "Showcase how to use expression as a view in View block.",
+        zhDescription: "展示如何在View块中使用表达式作为视图。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@Main
+@View
+class Expression {
+  count = 2
+
+  Body() {
+    this.count*2
+  }
+}
+`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Try Catch",
+        zhName: "抛出错误",
+        description: "Showcase how to use try catch.",
+        zhDescription: "展示如何使用try catch。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@View
+class MyBadComp {
+  @Prop obj
+
+  Body() {
+    div(this.obj.count)
+  }
+}
+
+@Main
+@View
+class MyComp {
+  obj = { count: 0 }
+
+  Body() {
+    try {
+      MyBadComp().obj(this.obj)
+    } catch (e) {
+      "Oops, something went wrong..."
+      div(e.message)
+    }
+    button("Click me to break it")
+      .onClick(() => {
+        this.obj = null
+      })
+  }
+}
+`,
+            path: "/index.js"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    title: "Reactivity",
+    zhName: "响应式",
+    description: "",
+    path: "/examples/reactivity/reactive-states",
+    children: [
+      {
+        title: "Reactive States",
+        zhName: "响应式状态",
+        description: "Showcase how to use reactive states in dlight.js.",
+        zhDescription: "展示如何在dlight.js中使用响应式状态。",
+        modules: [
+          {
+            code: javascript`import { View, Main } from "@dlightjs/dlight"
+
+@Main
+@View
+class NameComp {
+  name = "John"
+  Body() {
+    div(this.name)
+  }
+}`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Computed States",
+        zhName: "计算状态",
+        description: "Showcase how to use computed states in dlight.js.",
+        zhDescription: "展示如何在dlight.js中使用计算状态。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@Main
+@View
+class NameComp {
+  firstName = "John"
+  lastName = "Doe"
+  fullName = \`\${this.firstName} \${this.lastName}\`
+
+  Body() {
+    div(this.fullName)
+  }
+}`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Reactive Assignments",
+        zhName: "响应式赋值",
+        description: "Showcase how to assign reactive states in dlight.js.",
+        zhDescription: "展示如何在dlight.js中赋值响应式状态。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@Main
+@View
+class CountComp {
+  count = 0
+
+  Body() {
+    div(this.count)
+    button("Add")
+      .onClick(() => { this.count += 1 })
+  }
+}`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Deep Reactive Assignments",
+        zhName: "深度响应式赋值",
+        description: "Showcase how to assign reactive states like object, array in dlight.js.",
+        zhDescription: "展示如何在dlight.js中赋值引用数据类型的状态来达成响应式。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@Main
+@View
+class CountComp {
+  countArr = []
+
+  Body() {
+    div(this.countArr)
+    button("Add")
+      .onClick(() => { this.countArr.push(this.countArr.length) })
+  }
+}`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Watcher",
+        zhName: "Watcher",
+        description: "Showcase how to use @Watcher to watch reactive state update in dlight.js.",
+        zhDescription: "展示如何在dlight.js中使用@Watcher来监视响应式状态的更新。",
+        modules: [
+          {
+            code: `import { View, Main, Watch } from "@dlightjs/dlight"
+
+@Main
+@View
+class CountComp {
+  count = 0
+
+  @Watch
+  watchCount() {
+    console.log(\`The count change to: \${this.count}\`)
+  }
+
+  Body() {
+    button("Add")
+      .onClick(() => { this.count ++ })
+    div(this.count)
+  }
+}`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Environment",
+        zhName: "环境",
+        description: "Showcase how to use env block to store the global properties and use @Env to receive environment properties in dlight.js.",
+        zhDescription: "展示如何在dlight.js中使用env块来存储全局属性，并使用@Env来接收环境属性。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@View
+class SubSubComp {
+  @Env theme
+  Body() {
+    div("I am Sub Sub Component!")
+      .style({ color: this.theme.textColor, backgroundColor: this.theme.bgColor, margin: "10px 0" })
+  }
+}
+
+@View
+class SubComp2 {
+  @Env theme
+  Body() {
+    div("I am Sub Component2!")
+      .style({ color: this.theme.textColor, backgroundColor: this.theme.bgColor, margin: "10px 0" })
+  }
+}
+
+@View
+class SubComp {
+  @Env theme
+
+  Body() {
+    div("I am Sub Component1!")
+      .style({ color: this.theme.textColor, backgroundColor: this.theme.bgColor, margin: "10px 0" })
+    SubSubComp()
+  }
+}
+
+@Main
+@View
+class RootComp {
+  themeType = "Light"
+  theme = {
+    Light: {
+      bgColor: "#fff",
+      textColor: "#000"
+    },
+    Dark: {
+      bgColor: "#000",
+      textColor: "#fff"
+    }
+  }
+
+  changeTheme() {
+    this.themeType = this.themeType === "Light" ? "Dark" : "Light"
+  }
+
+  Body() {
+    env()
+      .theme(this.theme[this.themeType])
+    {
+      div("The themeType is " + this.themeType)
+      button("Change Theme")
+        .onClick(this.changeTheme)
+      SubComp()
+      SubComp2()
+    }
+  }
+}
+`,
+            path: "/index.js"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    title: "Component",
+    zhName: "组件",
+    description: "",
+    path: "/examples/component/props",
+    children: [
+      {
+        title: "Props",
+        zhName: "属性",
+        description: "UserProfile component receiving dynamic properties from an App class",
+        zhDescription: "UserProfile组件从App类接收动态属性",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+import UserProfile from "./UserProfile.view"
+
+@Main
+@View
+class App {
+  name = "John"
+
+  Body() {
+    UserProfile()
+      .name(this.name)
+      .age(20)
+      .favouriteColors(["green", "blue", "red"])
+      .isAvailable(true)
+  }
+}`,
+            path: "/index.js"
+          },
+          {
+            code: `import { View } from "@dlightjs/dlight" 
+
+@View
+class UserProfile {
+  @Prop name = ""
+  @Prop age = null
+  @Prop favouriteColors = []
+  @Prop isAvailable = false
+
+  Body() {
+    div()
+    {
+      span("My name is ")
+      span(this.name)
+    }
+    div()
+    {
+      span("My age is ")
+      span(this.age)
+    }
+    div()
+    {
+      span("I am ")
+      span(this.isAvailable ? "available" : "not available")
+    }
+    div()
+    {
+      span("My favourite colors are ")
+      span(this.favouriteColors.join(", "))
+    }
+  }
+}
+
+export default UserProfile`,
+            path: "/UserProfile.view.js"
+          }
+        ]
+      },
+      {
+        title: "Content",
+        zhName: "Content",
+        description: "Showcase how to use @Content decorator to receive dynamic content from a parent component which is different way to receive props from dot call.",
+        zhDescription: "展示如何使用@Content装饰器从父组件接收动态内容，这是一种不同于从点调用接收props的方式。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+import BeautifulButton from "./BeautifulButton.view"
+
+@Main
+@View
+class App {
+  count = 0
+
+  Body() {
+    div(this.count)
+    BeautifulButton("Add")
+      .handleClick(()=>{
+        this.count ++
+      })
+    BeautifulButton("Minus")
+      .handleClick(()=>{
+        this.count --
+      })
+  }
+}
+`,
+            path: "/index.js"
+          },
+          {
+            code: `import { View } from "@dlightjs/dlight" 
+
+@View
+class BeautifulButton {
+  @Content btnName
+  @Prop handleClick
+
+  Body() {
+    button(this.btnName)
+      .onClick(this.handleClick)
+      .style({ color: "white", backgroundColor: "green", border: "none",
+        padding: "5px 10px", marginRight: "10px", borderRadius: "4px" })
+  }
+}
+
+export default BeautifulButton`,
+            path: "/BeautifulButton.view.js"
+          }
+        ]
+      },
+      {
+        title: "Children",
+        zhName: "子元素",
+        description: "Showcase how to receive dynamic children which is passing in {} from a parent component.",
+        zhDescription: "展示如何从父组件接收动态子元素，这是通过{}传递的。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+import CenterAlign from "./CenterAlign.view"
+
+@Main
+@View
+class App {
+  Body() {
+    div("Method1: ")
+    CenterAlign()
+    {
+      div("A very very very long text")
+      div("short text")
+      div("Another very very very long text")
+    }
+
+    // Alternative way to pass children
+    div("Method2: ")
+    CenterAlign(View => {
+      div("A very very very long text")
+      div("short text")
+      div("Another very very very long text")
+    })
+  }
+}
+`,
+            path: "/index.js"
+          },
+          {
+            code: `import { View, Children } from "@dlightjs/dlight" 
+
+@View
+class CenterAlign {
+  @Children children
+  @Content content // Alternative way to receive children
+
+  Body() {
+    div()
+    .style({ display: "flex", flexDirection: "column", alignItems: "center" })
+    {
+      this.children
+      this.content // Alternative way to display children
+    }
+  }
+}
+
+export default CenterAlign`,
+            path: "/CenterAlign.view.js"
+          }
+        ]
+      },
+      {
+        title: "Sub View",
+        zhName: "子视图",
+        description: "Showcase how to use @Snippet in a class to create a sub view.",
+        zhDescription: "展示如何在一个类中使用@Snippet创建一个子视图。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@Main
+@View
+class App {
+  count = 0
+
+  @Snippet
+  BeautifulBtn({content, handleClick}) {
+    button(content)
+      .onClick(handleClick)
+      .style({ color: "white", backgroundColor: "green", border: "none",
+        padding: "5px 10px", marginRight: "10px", borderRadius: "4px" })
+  }
+
+  Body() {
+    div(this.count)
+    this.BeautifulBtn("Add")
+      .handleClick(()=>{ this.count ++ })
+    this.BeautifulBtn("Minus")
+      .handleClick(()=>{ this.count -- })
+  }
+}
+`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Prop View",
+        zhName: "Prop视图",
+        description: "Showcase how to pass a view as a prop to a component.",
+        zhDescription: "展示如何将视图作为属性传递给组件。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+import Header from './Header.view'
+
+@Main
+@View
+class PropViewComp {
+  Body() {
+    Header()
+      .leftView(View => div("X"))
+      .centerView(View => div("Title"))
+      .rightView(View => div("···"))
+  }
+}
+`,
+            path: "/index.js"
+          },
+          {
+            code: `import { View } from "@dlightjs/dlight" 
+
+@View
+class Header {
+  @Prop leftView
+  @Prop centerView
+  @Prop rightView
+
+  Body() {
+    div()
+      .style({ display: "flex", justifyContent: "space-between", alignItems: "center",
+        backgroundColor: "#a9a9a9", color: "black", padding: "5px 10px" })
+    {
+      if (this.leftView) {
+        this.leftView
+      }
+      if (this.centerView) {
+        this.centerView
+      }
+      if (this.rightView) {
+        this.rightView
+      }
+    }
+  }
+}
+
+export default Header`,
+            path: "/Header.view.js"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    title: "Lifecycle",
+    zhName: "生命周期",
+    description: "",
+    path: "/examples/lifecycle/html-element-lifecycle",
+    children: [
+      {
+        title: "Html Element Lifecycle",
+        zhName: "Html元素生命周期",
+        description: "A Firecracker class showcasing HTML element lifecycle management by dynamically removing firecracker.",
+        zhDescription: "一个Firecracker类展示了通过动态删除鞭炮来管理HTML元素的生命周期。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@Main
+@View
+class Firecracker {
+  firecrackers = new Array(10).fill(0)
+
+  fire() {
+    this.firecrackers = this.firecrackers.slice(0, this.firecrackers.length - 1)
+  }
+
+  Body() {
+    for (const firecracker of this.firecrackers) {
+      div("🀫")
+        .style({ color: "red" })
+        .didUnmount(() => { 
+          if (this.firecrackers.length > 0) {
+            setTimeout(() => {
+              this.firecrackers = this.firecrackers.slice(0, this.firecrackers.length - 1)
+            }, 50)
+          }
+        })
+    }
+    button("🔥")
+      .onClick(this.fire)
+    button("get a new firecracker")
+      .onClick(() => { this.firecrackers = new Array(10).fill(0) })
+  }
+}
+`,
+            path: "/index.js"
+          }
+        ]
+      },
+      {
+        title: "Component Lifecycle",
+        zhName: "组件生命周期",
+        description: "An interactive AppleTree class demonstrates the component lifecycle using lifecycle hooks.",
+        zhDescription: "一个交互式的AppleTree类用生命周期钩子演示了的组件生命周期。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+import Apple from "./Apple.view"
+
+@Main
+@View
+class AppleTree {
+  appleIds = [0,1,2,3]
+
+  Body() {
+    button("Add an Apple")
+      .onClick(() => { 
+        const newAppleId = [...Array(this.appleIds.length + 1).keys()]
+          .find(i => !this.appleIds.includes(i))
+        this.appleIds = [...this.appleIds, newAppleId] 
+      })
+    button("Pick an Apple")
+      .onClick(() => { 
+        this.appleIds.splice(Math.floor(Math.random() * this.appleIds.length), 1)
+        this.appleIds = [...this.appleIds]
+       })
+    for (const appleId of this.appleIds) {
+      key: appleId
+      Apple()
+        .appleId(appleId)
+        .willMount(() => { console.log("[willMount] apple " + appleId) })
+        .didMount(() => { console.log("[didMount] apple " + appleId) })
+        .willUnmount(() => { console.log("[willUnmount] apple " + appleId) })
+        .didUnmount(() => { console.log("[didUnmount] apple " + appleId) })
+    }
+  }
+}
+`,
+            path: "/index.js"
+          },
+          {
+            code: `import { View } from "@dlightjs/dlight" 
+
+@View
+class Apple {
+  @Prop appleId
+
+  Body() {
+    div("🍎apple " + this.appleId)
+  }
+}
+
+export default Apple`,
+            path: "/Apple.view.js"
+          }
+        ]
+      },
+      {
+        title: "Instant Component Lifecycle",
+        zhName: "即时组件生命周期",
+        description: "An interactive AppleTree class demonstrates instant component lifecycle using lifecycle hooks.",
+        zhDescription: "一个交互式的AppleTree类使用生命周期钩子演示了即时组件生命周期。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+import Apple from "./Apple.view"
+
+@Main
+@View
+class AppleTree {
+  appleIds = [0,1,2,3]
+
+  Body() {
+    button("Add an Apple")
+      .onClick(() => { 
+        const newAppleId = [...Array(this.appleIds.length + 1).keys()]
+          .find(i => !this.appleIds.includes(i))
+        this.appleIds = [...this.appleIds, newAppleId] 
+      })
+    button("Pick an Apple")
+      .onClick(() => { 
+        this.appleIds.splice(Math.floor(Math.random() * this.appleIds.length), 1)
+        this.appleIds = [...this.appleIds]
+       })
+    for (const appleId of this.appleIds) {
+      key: appleId
+      Apple()
+        .appleId(appleId)
+    }
+  }
+}
+`,
+            path: "/index.js"
+          },
+          {
+            code: `import { View, Main } from "@dlightjs/dlight" 
+
+@View
+class Apple {
+  @Prop appleId
+
+  willMount() {
+    console.log("[willMount] apple " + this.appleId)
+  }
+
+  didMount() {
+    console.log("[didMount] apple " + this.appleId)
+  }
+
+  willUnmount() {
+    console.log("[willUnmount] apple " + this.appleId)
+  }
+
+  didUnmount() {
+    console.log("[didUnmount] apple" + this.appleId)
+  }
+
+  Body() {
+    div("🍎apple " + this.appleId)
+  }
+}
+
+export default Apple`,
+            path: "/Apple.view.js"
+          }
+        ]
+      },
+      {
+        title: "Did Update",
+        zhName: "Did Update",
+        description: "A dynamic time display demonstrates how to use didUpdate feature to update every second",
+        zhDescription: "一个动态时间显示演示了如何使用didUpdate功能每秒更新一次。",
+        modules: [
+          {
+            code: `import { View, Main } from "@dlightjs/dlight"
+
+@Main
+@View
+class Time {
+  time = new Date().toLocaleTimeString()
+  timer
+
+  didMount() {
+    this.timer = setTimeout(() => {
+      this.time = new Date().toLocaleTimeString()
+    }, 1000)
+  }
+
+  willUnmount() {
+    clearInterval(this.timer)
+  }
+
+  Body() {
+    span(\`Current time: \${this.time}\`)
+      .didUpdate(() => {
+        this.timer = setTimeout(() => {
+          this.time = new Date().toLocaleTimeString()
+        }, 1000)
+      })
+  }
+}
+`,
+            path: "/index.js"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    title: "Model",
+    zhName: "模型",
+    description: "",
+    path: "/examples/model/use-mouse-position",
+    children: [
+      {
+        title: "Use Mouse Position",
+        zhName: "使用鼠标位置",
+        description: "Use Model to encapsulate the logic of tracking mouse position.",
+        zhDescription: "使用Model来封装跟踪鼠标位置逻辑。",
+        modules: [
+          {
+            code: `import { View, Main, use } from "@dlightjs/dlight"
+import MouseTrackerModel from "./MouseTracker.model"
+
+@Main
+@View
+class MyComp {
+  mouseTrackerModel = use(MouseTrackerModel)
+
+  Body() {
+    div("Move your mouse in the result window to see the position.")
+    div(\`Mouse position: \${this.mouseTrackerModel.x}, \${this.mouseTrackerModel.y}\`)
+  }
+}
+`,
+            path: "/index.js"
+          },
+          {
+            code: `import { Model } from "@dlightjs/dlight"
+
+@Model
+class MouseTracker {
+  x = 0
+  y = 0
+
+  async willMount() {
+    window.addEventListener("mousemove", e => {
+      this.x = e.clientX
+      this.y = e.clientY
+    })
+  }
+  willUnmount() {
+    window.removeEventListener("mousemove", e => {
+      this.x = e.clientX
+      this.y = e.clientY
+    })
+  }
+}
+
+export default MouseTracker
+`,
+            path: "/MouseTracker.model.js"
+          }
+        ]
+      },
+      {
+        title: "Use Fetch",
+        zhName: "使用Fetch",
+        description: "A Firecracker class showcasing HTML element lifecycle management by dynamically removing firecracker.",
+        zhDescription: "一个Firecracker类展示了通过动态删除鞭炮来管理HTML元素的生命周期。",
+        modules: [
+          {
+            code: `import { View, Main, use } from "@dlightjs/dlight"
+import FetchModel from "./FetchData.model"
+
+@Main
+@View
+class MyComp {
+  fetchModel = use(FetchModel)
+
+  Body() {
+    if (this.fetchModel.loading) {
+      div("Loading...")
+    } else if (this.fetchModel.error) {
+      div("Error: " + this.fetchModel.error)
+        .style({ color: "red" })
+    } else {
+      h2("Data")
+      div(JSON.stringify(this.fetchModel.data))
+    }
+  }
+}
+`,
+            path: "/index.js"
+          },
+          {
+            code: `import { Model } from "@dlightjs/dlight"
+
+@Model
+class FetchData {
+  loading = true
+  error = null
+  data = null
+
+  async willMount() {
+    try {
+      const res = await fetch("/mockData.json")
+      const data = await res.json()
+      this.data = data
+    } catch (e) {
+      this.error = e
+    } finally {
+      this.loading = false
+    }
+  }
+}
+
+export default FetchData
+`,
+            path: "/FetchData.model.js"
+          }
+        ]
+      },
+    ]
+  },
+  {
+    title: "More Examples",
+    zhName: "更多示例",
+    description: "",
+    path: "/examples/more-examples/todomvc",
+    children: [ 
       {
         title: "TodoMVC",
         zhName: "ToDoMVC",
@@ -41,8 +1173,9 @@ render("app", HelloWorld)`,
         zhDescription: "ToDoMVC示例展示了如何使用@dlightjs/dlight框架创建一个ToDoMVC应用程序。",
         modules: [
           {
-            code: `import { View, render } from "@dlightjs/dlight"
+            code: `import { View, Main } from "@dlightjs/dlight"
       
+@Main
 @View
 class TodoMVC {
   todos = []
@@ -237,8 +1370,7 @@ class TodoMVC {
     this.Info()
   }
 }
-
-render("app", TodoMVC)`,
+`,
             path: "/index.js"
           },
           {
@@ -693,940 +1825,4 @@ html .clear-completed:active {
       }
     ]
   },
-  {
-    title: "Reactivity",
-    zhName: "响应式",
-    description: "",
-    path: "/examples/reactivity/reactive-states",
-    children: [
-      {
-        title: "Reactive States",
-        zhName: "响应式状态",
-        description: "Showcase how to use reactive states in dlight.js.",
-        zhDescription: "展示如何在dlight.js中使用响应式状态。",
-        modules: [
-          {
-            code: javascript`import { View, render } from "@dlightjs/dlight"
-
-@View
-class NameComp {
-  name = "John"
-  Body() {
-    div(this.name)
-  }
-}
-render("app", NameComp)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "Computed States",
-        zhName: "计算状态",
-        description: "Showcase how to use computed states in dlight.js.",
-        zhDescription: "展示如何在dlight.js中使用计算状态。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-@View
-class NameComp {
-  firstName = "John"
-  lastName = "Doe"
-  fullName = \`\${this.firstName} \${this.lastName}\`
-
-  Body() {
-    div(this.fullName)
-  }
-}
-render("app", NameComp)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "Reactive Assignments",
-        zhName: "响应式赋值",
-        description: "Showcase how to assign reactive states in dlight.js.",
-        zhDescription: "展示如何在dlight.js中赋值响应式状态。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-@View
-class CountComp {
-  count = 0
-
-  Body() {
-    div(this.count)
-    button("Add")
-      .onClick(() => { this.count += 1 })
-  }
-}
-render("app", CountComp)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "Watcher",
-        zhName: "Watcher",
-        description: "Showcase how to use @Watcher to watch reactive state update in dlight.js.",
-        zhDescription: "展示如何在dlight.js中使用@Watcher来监视响应式状态的更新。",
-        modules: [
-          {
-            code: `import { View, render, Watch } from "@dlightjs/dlight"
-
-@View
-class CountComp {
-  count = 0
-
-  @Watch
-  watchCount() {
-    console.log(\`The count change to: \${this.count}\`)
-  }
-
-  Body() {
-    button("Add")
-      .onClick(() => { this.count ++ })
-    div(this.count)
-  }
-}
-render("app", CountComp)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "Environment",
-        zhName: "环境",
-        description: "Showcase how to use env block to store the global properties and use @Env to receive environment properties in dlight.js.",
-        zhDescription: "展示如何在dlight.js中使用env块来存储全局属性，并使用@Env来接收环境属性。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-@View
-class SubSubComp {
-  @Env theme
-  Body() {
-    div("I am Sub Sub Component!")
-      .style({ color: this.theme.textColor, backgroundColor: this.theme.bgColor, margin: "10px 0" })
-  }
-}
-
-@View
-class SubComp2 {
-  @Env theme
-  Body() {
-    div("I am Sub Component2!")
-      .style({ color: this.theme.textColor, backgroundColor: this.theme.bgColor, margin: "10px 0" })
-  }
-}
-
-@View
-class SubComp {
-  @Env theme
-
-  Body() {
-    div("I am Sub Component1!")
-      .style({ color: this.theme.textColor, backgroundColor: this.theme.bgColor, margin: "10px 0" })
-    SubSubComp()
-  }
-}
-
-@View
-class RootComp {
-  themeType = "Light"
-  theme = {
-    Light: {
-      bgColor: "#fff",
-      textColor: "#000"
-    },
-    Dark: {
-      bgColor: "#000",
-      textColor: "#fff"
-    }
-  }
-
-  changeTheme() {
-    this.themeType = this.themeType === "Light" ? "Dark" : "Light"
-  }
-
-  Body() {
-    env()
-      .theme(this.theme[this.themeType])
-    {
-      div("The themeType is " + this.themeType)
-      button("Change Theme")
-        .onClick(this.changeTheme)
-      SubComp()
-      SubComp2()
-    }
-  }
-}
-
-render("app", RootComp)`,
-            path: "/index.js"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    title: "DLight Syntax",
-    zhName: "DLight语法",
-    description: "",
-    path: "/examples/dlight-syntax/text-element",
-    children: [
-      {
-        title: "Text Element",
-        zhName: "文本元素",
-        description: "Showcase which is text element in dlight.js.",
-        zhDescription: "展示在dlight.js中的文本元素。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-@View
-class TextElement {
-  Body() {
-    "I am a Text Element!"
-    \`I am also a Text Element! \`
-    'Me too!'
-  }
-}
-render("app", TextElement)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "Html Element",
-        zhName: "Html元素",
-        description: "Showcase how to use html element in dlight.js.",
-        zhDescription: "展示在dlight.js中如何使用html元素。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-@View
-class HtmlElement {
-  Body() {
-    div("I am a Html Element!")
-    span("I am also a Html Element!")
-    div()
-    {
-      button("Button")
-    }
-  }
-}
-
-render("app", HtmlElement)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "Html Element Props",
-        zhName: "Html元素属性",
-        description: "Showcase how to use props with html element.",
-        zhDescription: "展示如何在html元素中使用属性。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-@View
-class HtmlElementProps {
-  Body() {
-    a("Click to DLight Github")
-      .href("https://github.com/dlight-js/dlight")
-  }
-}
-
-render("app", HtmlElementProps)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "Component",
-        zhName: "组件",
-        description: "Showcase how to build and invoke a custom component.",
-        zhDescription: "展示如何构建和调用自定义组件。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-@View 
-class SubComp {
-  Body() {
-    div("I am Sub Component!")
-  }
-}
-
-@View
-class RootComp {
-  Body() {
-    div("I am Root Component!")
-    SubComp()
-  }
-}
-
-render("app", RootComp)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "If Block",
-        zhName: "If模块",
-        description: "Showcase how to use if block in dlight.js.",
-        zhDescription: "展示如何在dlight.js中使用if模块。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-const TRAFFIC_LIGHTS = ["red", "orange", "green"]
-
-@View
-class TrafficLight {
-  lightIndex = 0
-  light = TRAFFIC_LIGHTS[this.lightIndex]
-
-  nextLight() {
-    this.lightIndex = (this.lightIndex + 1)%TRAFFIC_LIGHTS.length
-  }
-
-  Body() {
-    button("Next light")
-      .onClick(this.nextLight)
-    p(this.light)
-    p()
-    {
-      "You must "
-      if (this.light === "red") {
-        span("STOP")
-      } else if (this.light === "orange") {
-        span("SLOW DOWN")
-      } else if (this.light === "green") {
-        span("GO")
-      }
-    }
-  }
-}
-
-render("app", TrafficLight)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "For Loop",
-        zhName: "For循环",
-        description: "Showcase how to use for loop view in dlight.js.",
-        zhDescription: "展示如何在dlight.js中使用for循环视图。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-@View
-class Colors {
-  colors = ["red", "green", "blue"]
-
-  Body() {
-    ul()
-    {
-      for (const color of this.colors) {
-        li(color)
-      }
-    }
-  }
-}
-
-render("app", Colors)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "Keyed For Loop",
-        zhName: "带key的for循环",
-        description: "Showcase how to use key in for loop to ensure correctness of array sequence.",
-        zhDescription: "展示如何在for循环中使用key来确保数组顺序的正确性。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-@View
-class NumComp {
-  numArr = [0,1,2,3,4]
-
-  changeNumArr() {
-    this.numArr = [...this.numArr, this.numArr.length]
-  }
-
-  Body() {
-    button("Change numArr")
-      .onClick(this.changeNumArr)
-    ul()
-    {
-      for (const num of this.numArr) {
-        key: num
-        li(num)
-      }
-    }
-  }
-}
-
-render("app", NumComp)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "Switch Case",
-        zhName: "Switch Case",
-        description: "Using TrafficLight component to showcase how to use switch case in dlight.js.",
-        zhDescription: "使用TrafficLight组件展示如何在dlight.js中使用switch case。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-const TRAFFIC_LIGHTS = ["red", "orange", "green"]
-
-@View
-class TrafficLight {
-  lightIndex = 0
-  light = TRAFFIC_LIGHTS[this.lightIndex]
-
-  nextLight() {
-    this.lightIndex = (this.lightIndex + 1)%TRAFFIC_LIGHTS.length
-  }
-
-  Body() {
-    button("Next light")
-      .onClick(this.nextLight)
-    p(this.light)
-    p()
-    {
-      "You must "
-      switch (this.light) {
-        case "red":
-          span("STOP")
-          break
-        case "orange":
-          span("SLOW DOWN")
-          break
-        case "green":
-          span("GO")
-          break
-      }
-    }
-  }
-}
-
-render("app", TrafficLight)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "Expression",
-        zhName: "表达式",
-        description: "Showcase how to use expression as a view in View block.",
-        zhDescription: "展示如何在View块中使用表达式作为视图。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-@View
-class Expression {
-  count = 2
-
-  Body() {
-    _(this.count*2)
-  }
-}
-
-render("app", Expression)`,
-            path: "/index.js"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    title: "Component",
-    zhName: "组件",
-    description: "",
-    path: "/examples/component/props",
-    children: [
-      {
-        title: "Props",
-        zhName: "属性",
-        description: "UserProfile component receiving dynamic properties from an App class",
-        zhDescription: "UserProfile组件从App类接收动态属性",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-import UserProfile from "./UserProfile.view"
-
-@View
-class App {
-  name = "John"
-
-  Body() {
-    UserProfile()
-      .name(this.name)
-      .age(20)
-      .favouriteColors(["green", "blue", "red"])
-      .isAvailable(true)
-  }
-}
-render("app", App)`,
-            path: "/index.js"
-          },
-          {
-            code: `import { View } from "@dlightjs/dlight" 
-
-@View
-class UserProfile {
-  @Prop name = ""
-  @Prop age = null
-  @Prop favouriteColors = []
-  @Prop isAvailable = false
-
-  Body() {
-    div()
-    {
-      span("My name is ")
-      span(this.name)
-    }
-    div()
-    {
-      span("My age is ")
-      span(this.age)
-    }
-    div()
-    {
-      span("I am ")
-      span(this.isAvailable ? "available" : "not available")
-    }
-    div()
-    {
-      span("My favourite colors are ")
-      span(this.favouriteColors.join(", "))
-    }
-  }
-}
-
-export default UserProfile`,
-            path: "/UserProfile.view.js"
-          }
-        ]
-      },
-      {
-        title: "Content",
-        zhName: "Content",
-        description: "Showcase how to use @Content decorator to receive dynamic content from a parent component which is different way to receive props from dot call.",
-        zhDescription: "展示如何使用@Content装饰器从父组件接收动态内容，这是一种不同于从点调用接收props的方式。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-import BeautifulButton from "./BeautifulButton.view"
-
-@View
-class App {
-  count = 0
-
-  Body() {
-    div(this.count)
-    BeautifulButton("Add")
-      .handleClick(()=>{
-        this.count ++
-      })
-    BeautifulButton("Minus")
-      .handleClick(()=>{
-        this.count --
-      })
-  }
-}
-
-render("app", App)`,
-            path: "/index.js"
-          },
-          {
-            code: `import { View } from "@dlightjs/dlight" 
-
-@View
-class BeautifulButton {
-  @Content btnName
-  @Prop handleClick
-
-  Body() {
-    button(this.btnName)
-      .onClick(this.handleClick)
-      .style({ color: "white", backgroundColor: "green", border: "none",
-        padding: "5px 10px", marginRight: "10px", borderRadius: "4px" })
-  }
-}
-
-export default BeautifulButton`,
-            path: "/BeautifulButton.view.js"
-          }
-        ]
-      },
-      {
-        title: "Children",
-        zhName: "子元素",
-        description: "Showcase how to receive dynamic children which is passing in {} from a parent component.",
-        zhDescription: "展示如何从父组件接收动态子元素，这是通过{}传递的。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-import CenterAlign from "./CenterAlign.view"
-
-@View
-class App {
-  Body() {
-    CenterAlign()
-    {
-      div("A very very very long text")
-      div("short text")
-      div("Another very very very long text")
-    }
-  }
-}
-
-render("app", App)`,
-            path: "/index.js"
-          },
-          {
-            code: `import { View, Children } from "@dlightjs/dlight" 
-
-@View
-class CenterAlign {
-  @Children children
-
-  Body() {
-    div()
-    .style({ display: "flex", flexDirection: "column", alignItems: "center" })
-    {
-      this.children
-    }
-  }
-}
-
-export default CenterAlign`,
-            path: "/CenterAlign.view.js"
-          }
-        ]
-      },
-      {
-        title: "Sub View",
-        zhName: "子视图",
-        description: "Showcase how to use @View in a class to create a sub view.",
-        zhDescription: "展示如何在一个类中使用@View创建一个子视图。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-@View
-class App {
-  count = 0
-
-  @Snippet
-  BeautifulBtn({content, handleClick}) {
-    button(content)
-      .onClick(handleClick)
-      .style({ color: "white", backgroundColor: "green", border: "none",
-        padding: "5px 10px", marginRight: "10px", borderRadius: "4px" })
-  }
-
-  Body() {
-    div(this.count)
-    this.BeautifulBtn("Add")
-      .handleClick(()=>{ this.count ++ })
-    this.BeautifulBtn("Minus")
-      .handleClick(()=>{ this.count -- })
-  }
-}
-
-render("app", App)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "Prop View",
-        zhName: "Prop视图",
-        description: "Showcase how to pass a view as a prop to a component.",
-        zhDescription: "展示如何将视图作为属性传递给组件。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-import Header from './Header.view'
-
-@View
-class PropViewComp {
-  Body() {
-    Header()
-      .leftView(View => div("X"))
-      .centerView(View => div("Title"))
-      .rightView(View => div("···"))
-  }
-}
-
-render("app", PropViewComp)`,
-            path: "/index.js"
-          },
-          {
-            code: `import { View } from "@dlightjs/dlight" 
-
-@View
-class Header {
-  @Prop leftView
-  @Prop centerView
-  @Prop rightView
-
-  Body() {
-    div()
-      .style({ display: "flex", justifyContent: "space-between", alignItems: "center",
-        backgroundColor: "#a9a9a9", color: "black", padding: "5px 10px" })
-    {
-      if (this.leftView) {
-        this.leftView
-      }
-      if (this.centerView) {
-        this.centerView
-      }
-      if (this.rightView) {
-        this.rightView
-      }
-    }
-  }
-}
-
-export default Header`,
-            path: "/Header.view.js"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    title: "Lifecycle",
-    zhName: "生命周期",
-    description: "",
-    path: "/examples/lifecycle/html-element-lifecycle",
-    children: [
-      {
-        title: "Html Element Lifecycle",
-        zhName: "Html元素生命周期",
-        description: "A Firecracker class showcasing HTML element lifecycle management by dynamically removing firecracker.",
-        zhDescription: "一个Firecracker类展示了通过动态删除鞭炮来管理HTML元素的生命周期。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-@View
-class Firecracker {
-  firecrackers = new Array(10).fill(0)
-
-  fire() {
-    this.firecrackers = this.firecrackers.slice(0, this.firecrackers.length - 1)
-  }
-
-  Body() {
-    for (const firecracker of this.firecrackers) {
-      div("🀫")
-        .didUnmount(() => { 
-          if (this.firecrackers.length > 0) {
-            setTimeout(() => {
-              this.firecrackers = this.firecrackers.slice(0, this.firecrackers.length - 1)
-            }, 50)
-          }
-        })
-    }
-    button("🔥")
-      .onClick(this.fire)
-    button("get a new firecracker")
-      .onClick(() => { this.firecrackers = new Array(10).fill(0) })
-  }
-}
-
-render("app", Firecracker)`,
-            path: "/index.js"
-          }
-        ]
-      },
-      {
-        title: "Component Lifecycle",
-        zhName: "组件生命周期",
-        description: "An interactive AppleTree class demonstrates the component lifecycle using lifecycle hooks.",
-        zhDescription: "一个交互式的AppleTree类用生命周期钩子演示了的组件生命周期。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-import Apple from "./Apple.view"
-
-@View
-class AppleTree {
-  appleIds = [0,1,2,3]
-
-  Body() {
-    button("Add an Apple")
-      .onClick(() => { 
-        const newAppleId = [...Array(this.appleIds.length + 1).keys()]
-          .find(i => !this.appleIds.includes(i))
-        this.appleIds = [...this.appleIds, newAppleId] 
-      })
-    button("Pick an Apple")
-      .onClick(() => { 
-        this.appleIds.splice(Math.floor(Math.random() * this.appleIds.length), 1)
-        this.appleIds = [...this.appleIds]
-       })
-    for (const appleId of this.appleIds) {
-      key: appleId
-      Apple()
-        .appleId(appleId)
-        .willMount(() => { console.log("[willMount] apple " + appleId) })
-        .didMount(() => { console.log("[didMount] apple " + appleId) })
-        .willUnmount(() => { console.log("[willUnmount] apple " + appleId) })
-        .didUnmount(() => { console.log("[didUnmount] apple " + appleId) })
-    }
-  }
-}
-
-render("app", AppleTree)`,
-            path: "/index.js"
-          },
-          {
-            code: `import { View } from "@dlightjs/dlight" 
-
-@View
-class Apple {
-  @Prop appleId
-
-  Body() {
-    div("🍎apple " + this.appleId)
-  }
-}
-
-export default Apple`,
-            path: "/Apple.view.js"
-          }
-        ]
-      },
-      {
-        title: "Instant Component Lifecycle",
-        zhName: "即时组件生命周期",
-        description: "An interactive AppleTree class demonstrates instant component lifecycle using lifecycle hooks.",
-        zhDescription: "一个交互式的AppleTree类使用生命周期钩子演示了即时组件生命周期。",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-import Apple from "./Apple.view"
-
-@View
-class AppleTree {
-  appleIds = [0,1,2,3]
-
-  Body() {
-    button("Add an Apple")
-      .onClick(() => { 
-        const newAppleId = [...Array(this.appleIds.length + 1).keys()]
-          .find(i => !this.appleIds.includes(i))
-        this.appleIds = [...this.appleIds, newAppleId] 
-      })
-    button("Pick an Apple")
-      .onClick(() => { 
-        this.appleIds.splice(Math.floor(Math.random() * this.appleIds.length), 1)
-        this.appleIds = [...this.appleIds]
-       })
-    for (const appleId of this.appleIds) {
-      key: appleId
-      Apple()
-        .appleId(appleId)
-    }
-  }
-}
-
-render("app", AppleTree)`,
-            path: "/index.js"
-          },
-          {
-            code: `import { View } from "@dlightjs/dlight" 
-
-@View
-class Apple {
-  @Prop appleId
-
-  willMount() {
-    console.log("[willMount] apple " + this.appleId)
-  }
-
-  didMount() {
-    console.log("[didMount] apple " + this.appleId)
-  }
-
-  willUnmount() {
-    console.log("[willUnmount] apple " + this.appleId)
-  }
-
-  didUnmount() {
-    console.log("[didUnmount] apple" + this.appleId)
-  }
-
-  Body() {
-    div("🍎apple " + this.appleId)
-  }
-}
-
-export default Apple`,
-            path: "/Apple.view.js"
-          }
-        ]
-      },
-      {
-        title: "Did Update",
-        zhName: "Did Update",
-        description: "A dynamic time display demonstrates how to use didUpdate feature to update every second",
-        zhDescription: "一个动态时间显示演示了如何使用didUpdate功能每秒更新一次",
-        modules: [
-          {
-            code: `import { View, render } from "@dlightjs/dlight"
-
-@View
-class Time {
-  time = new Date().toLocaleTimeString()
-  timer
-
-  didMount() {
-    this.timer = setTimeout(() => {
-      this.time = new Date().toLocaleTimeString()
-    }, 1000)
-  }
-
-  willUnmount() {
-    clearInterval(this.timer)
-  }
-
-  Body() {
-    span(\`Current time: \${this.time}\`)
-      .didUpdate(() => {
-        this.timer = setTimeout(() => {
-          this.time = new Date().toLocaleTimeString()
-        }, 1000)
-      })
-  }
-}
-
-render("app", Time)`,
-            path: "/index.js"
-          }
-        ]
-      }
-    ]
-  }
 ]

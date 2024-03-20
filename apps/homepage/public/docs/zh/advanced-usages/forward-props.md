@@ -5,7 +5,7 @@ class Button {
   @Prop content
   @Prop onClick
 
-  View() {
+  Body() {
     button(this.content)
       .onClick(this.onClick)
   }
@@ -18,7 +18,7 @@ class Button {
 class Button {
   @Prop content
 
-  View() {
+  Body() {
     button(this.content)
       .forwardProps()
   }
@@ -31,7 +31,7 @@ class Button {
 ```js
 @View
 class App {
-  View() {
+  Body() {
     Button("click me")
       .onClick(() => {
         alert("clicked")
@@ -47,7 +47,7 @@ class App {
 class Button {
   @Prop content
 
-  View() {
+  Body() {
     div().class("button-wrapper"); {
       button(this.content)
         .forwardProps()
