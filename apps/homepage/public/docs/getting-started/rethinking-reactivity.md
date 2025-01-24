@@ -1,7 +1,7 @@
 A Dive into the Reactivity Graph
 
 # Introduction
-Reactivity, or the ability to update the UI in response to data changes, is pivotal in modern frontend frameworks. As frontend applications burgeon in complexity, managing the mutable states and their effects on the UI is vitally important. While the frontend community has devised various solutions for reactivity, a handful of common issues and challenges still linger:
+Reactivity, or the ability to update the UI in response to data changes, is pivotal in modern frontend frameworks. As frontend applications burgeon in complexity, managing the mutable states and their effects on the UI is vital. While the frontend community has devised various solutions to reactivity, a handful of common issues and challenges still linger:
 * Inconsistent Updates: Issues can sprout from inconsistencies between data changes and UI updates.
 * Over-rendering: An inability to precisely discern which UI parts need re-rendering can lead to unnecessary computations and DOM manipulations.
 * Dependency Management Challenges: Understanding and managing dependencies between various states becomes increasingly intricate in large applications.
@@ -20,7 +20,8 @@ Each state change in this model will propagate along the direction of the depend
 
 While the concept of the `Reactivity Graph` has been explored and applied in various domains since the last century, its thorough and systematic implementation in frontend frameworks is notably lacking. This gap presents an opportunity to explore and adapt this robust model to address the unique challenges of managing reactivity and data flow in modern web development.
 
-# Building Reactivity Graph
+# Building a Reactivity Graph
+
 ## Basic count example
 Consider a simple application state where we have `count`, `doubleCount` (which is always twice the count), and a UI element `first-el` that displays the count value.
 
@@ -37,21 +38,21 @@ Here's a simplified breakdown:
 * `declareState(count * 2);`: Declares a reactive derived state doubleCount that is always double the value of count.
 * `declareState(count)`: Binds the inner text of our el element to always display the current value of count.
 
-Now, let's transform this into a simple reactivity graph:
+Now, let's transform this into a simple Reactivity Graph:
 ![reactivity-graph0](../imgs/reactivity-graph0.jpeg "reactivity-graph0")
 
-In this graph, nodes (`count`, `doubleCount`, and `div: first-el`) represent our states and UI element and edges signify the dependencies between them, which will be:
+In this graph, nodes (`count`, `doubleCount`, and `div: first-el`) represent our states and UI element, and edges signify the dependencies between them, which would be:
 1. When `count` changes, `doubleCount` re-calculates **ONCE** 
 2. When `count` changes, `first-el` re-renders innerText **ONCE**
 
-Put them in a table:
+Putting them in a table:
 
 | state | target |
 | --- | --- |
 | count | doubleCount |
 |       | first-el |
 
-Visualization will be like:
+Which could be visualized like this:
 
 ![reactivity-graph0-count](../imgs/reactivity-graph0-count.gif "reactivity-graph0-count")
 
@@ -64,7 +65,7 @@ let el1 = document.createElement("div");
 el1.id = "first-el";
 el1.innerText = declareState(doubleCount)
 ```
-The reactivity graph would look like:
+Now, the Reactivity Graph would look like this:
 
 ![reactivity-graph1](../imgs/reactivity-graph1.jpeg "reactivity-graph1")
 
@@ -102,7 +103,7 @@ Under this model, any subsequent alteration to count will yet again recalculate 
 ## Section Wrap-up and More Complexity
 In the previous part, we've built some simple reactivity graphs, understanding how various states and their dependencies can be visualized and managed using this model. From simple to complex dependencies, the reactivity graph has demonstrated its ability to intuitively illustrate and guide state management and data flow within applications.
 
-Let’s get a more complicated example, with multiple states and dependencies in a mathematical logic operation setting.
+Let’s use a more complicated example, with multiple states and dependencies in a mathematical logic operation setting.
 
 Imagine we have four states: a, b, c, d:
 * a: Base state, initial value 1.
@@ -114,11 +115,11 @@ and two elements:
 * el1 => display `a + b`
 * el2 => display `d`
 
-No we can get the reactivity graph:
+No we can visualize its Reactivity Graph:
 
 ![reactivity-graph2](../imgs/reactivity-graph2.gif "reactivity-graph2")
 
-# Adapting Reactivity Graph to Frontend
+# Adapting the Reactivity Graph to the Frontend
 The adaptation of the reactivity graph in frontend development introduces a variety of scenarios that may require specific handling or modifications of the graph to ensure smooth and efficient reactivity management.
 
 We've mentioned four frontend challenges with reactivity graph before, which are:
@@ -132,9 +133,9 @@ In this section, we'll go deeper into strategizing the reactivity graph model to
 ## Inconsistent Updates
 Inconsistent updates refer to the scenario where the UI does not accurately reflect the current application state, causing discrepancies and potentially leading to incorrect data being displayed or processed.
 
-By adhering to the flow of the reactivity graph, the execution becomes inherently robust, safeguarding against inconsistencies in UI updates.
+By adhering to the flow of the Reactivity Graph, the execution becomes inherently robust, safeguarding against inconsistencies in UI updates.
 
-And there's a big part of the updating scenario to be this "side effects" situation. In current frontend frameworks, developers often contend with "side effects," which refer to operations that influence or are influenced by states outside their local environment. These might encompass data fetching, subscriptions, or manual DOM manipulations. Essentially, they are operations that not only derive new data from existing values but also initiate changes that might indirectly affect other parts of the system. The introduction of side effects often complicates the data flow, occasionally leading to the dreaded inconsistent updates, where the UI does not accurately mirror the current application states.
+And there's a big part of the updating story that relates to handling "side effects". In current frontend frameworks, developers often contend with "side effects," which refer to operations that influence or are influenced by states outside their local environment. These might encompass data fetching, subscriptions, or manual DOM manipulations. Essentially, they are operations that not only derive new data from existing values but also initiate changes that might indirectly affect other parts of the system. The introduction of side effects often complicates the data flow, occasionally leading to the dreaded inconsistent updates, where the UI does not accurately mirror the current application states.
  
 In contrast, the reactivity graph methodically extinguishes the concept of side effects, adopting a structure where:
 * Every operation, state, or view is encapsulated as a node.
@@ -152,30 +153,30 @@ effect(() => {
 ```
 In this scenario, `effect` operates as a side effect that listens for changes in count and runs a block of code (logging to the console) whenever count alters.
 
-Doing this in a reactivity graph, the traditionally known side effect is essentially translated into a dependent node within the graph structure. Let’s further this with a pseudo-coding approach:
+Doing this in a Reactivity Graph, the traditionally known side effect is essentially translated into a dependent node within the graph structure. Let’s further this with a pseudo-coding approach:
 ```js
 let count = declareState(1)
 let logCount = declareState((() => {
     console.log(count);
-    return null; // This value can be anything, as the main purpose is the execution of the IIFE.
+    return null; // This value can be anything, as the main purpose is the execution of the IIFE, see below.
 })());
 ```
 Here:
 * `declareState(1)`: Declares a reactive state count, initialized with 1.
-* `declareState((() => { console.log(count); return null; })())`: This isn't setting up a "side effect" in the traditional sense. Instead, it establishes another state. However, because it's an immediately-invoked function expression (IIFE), it executes the logging operation instantly during its declaration. The act of logging here, similar to a "side effect", is performed before a value is returned and the state is finalized. However, within the context of a reactivity graph, this is not viewed or treated as a "side effect" but merely a state with an operation executed during its creation.
+* `declareState((() => { console.log(count); return null; })())`: This isn't setting up a "side effect" in the traditional sense. Instead, it establishes another state. However, because it's an immediately-invoked function expression (IIFE), it executes the logging operation instantly during its declaration. The act of logging here, similar to a "side effect", is performed before a value is returned and the state is finalized. However, within the context of a Reactivity Graph, this is not viewed or treated as a "side effect" but merely a state with an operation executed during its creation.
 
-In the reactivity graph, it would be visualized as:
+In the Reactivity Graph, it would be visualized as:
 ![reactivity-graph3](../imgs/reactivity-graph3.jpeg "reactivity-graph3")
 
-In the reactivity graph, everything, including what traditional frameworks might regard as side effects, is treated as nodes. This means there's no explicit "effect" or "side effect" concept; every node has equal footing, and the behavior is based on the relationships (edges) they form with other nodes. This design choice simplifies dependency management, and with every operation being explicit and contained within nodes, there is clarity in data flow and less room for inconsistencies.
+In the Reactivity Graph, everything, including what traditional frameworks might regard as side effects, is treated as nodes. This means there's no explicit "effect" or "side effect" concept; every node has equal footing, and the behavior is based on the relationships (edges) they form with other nodes. This design choice simplifies dependency management, and with every operation being explicit and contained within nodes, there is clarity in data flow and less room for inconsistencies.
 
 ## Over-rendering
 Over-rendering is one of the most prevalent performance concerns in frontend development. It occurs when parts of the UI are re-rendered without any actual change in the data they represent, leading to unnecessary computational overhead.
 
-The reactivity graph, with its explicit depiction of nodes (states and views) and edges (dependencies), provides a robust countermeasure against over-rendering. Here's how:
+The Reactivity Graph, with its explicit depiction of nodes (states and views) and edges (dependencies), provides a robust countermeasure against over-rendering. Here's how:
 1. Explicit Dependency Management: With each node's dependencies clearly marked by edges, there's a lucid picture of what data impacts which part of the UI. This structure ensures that only the affected parts of the UI get re-rendered when a particular data node changes.
 2. Optimized Change Propagation: The graph-based model promotes an efficient traversal method. When a node updates, only its direct and indirect dependencies are re-evaluated, sidestepping any unrelated computations.
-3. Granular Control over Properties: Developers can exercise finer control by designating specific properties of a view as individual nodes. By doing so, only these properties get updated, negating the need to re-render the entire component. This granularity prevents the waste of resources and significantly boosts performance.
+3. Granular Control over Properties: Developers can exercise finer control by designating specific properties of a view as individual nodes. By doing so, only these properties get updated, negating the need to re-render the entire component. This granularity prevents a waste of resources, and significantly boosts performance.
 
 ## Dependency Management Challenges
 Loop dependencies arise when there's a direct or indirect self-reference causing a reactive state or operation to endlessly trigger itself. Such dependencies can lead to infinite loops, making the application unresponsive or producing unintended results.
@@ -218,15 +219,15 @@ By using the above steps, the reactivity graph ensures that loop dependencies ar
 ## Debugging Difficulties
 Debugging is a critical aspect of software development, and in complex reactive systems, it can be particularly challenging. One of the main hurdles often faced is the obscurity of data flow, making it tough to pinpoint where things might have gone awry.
 
-However, the reactivity graph provides a solution to this conundrum. Its clear, node-based structure allows for a transparent view of the entire state flow. With this clarity, developers can easily trace the origin of any inconsistencies or unexpected behaviors.
+However, the Reactivity Graph provides a solution to this conundrum. Its clear, node-based structure allows for a transparent view of the entire state flow. With this clarity, developers can easily trace the origin of any inconsistencies or unexpected behaviors.
 
-In essence, the reactivity graph simplifies debugging by offering a coherent and lucid overview of the state interactions and dependencies. As a result, developers can swiftly identify and resolve issues, ensuring the smooth operation of the application.
+In essence, the Reactivity Graph simplifies debugging by offering a coherent and lucid overview of the state interactions and dependencies. As a result, developers can swiftly identify and resolve issues, ensuring the smooth operation of the application.
 
 # Summary
-In this article, we delved deep into the concept of "Reactivity Graph" and showcased how it can be used to address reactivity issues in frontend applications.
+In this article, we delved deep into the concept of the "Reactivity Graph" and showcased how it can be used to address reactivity issues in frontend applications.
 
 Key Takeaways:
-* Concept of Reactivity Graph: A reactivity graph is a directed acyclic graph where nodes represent observable and mutable states, and edges signify the dependencies between states. Through this, any change in data can be propagated accurately, leading to efficient UI updates.
+* Concept of Reactivity Graph: A reactivity graph is a DAG (directed acyclic graph) where nodes represent observable and mutable states, and edges signify the dependencies between states. Through this, any change in data can be propagated accurately, leading to efficient UI updates.
 * Challenges in Frontend Development: We outlined four main reactivity challenges faced in frontend development - inconsistent updates, over-rendering, challenges in dependency management, and difficulties in debugging. The reactivity graph offers a structured approach to tackle these issues.
 
 In conclusion, the reactivity graph provides frontend developers with a potent tool to more effectively manage application state and UI changes. By utilizing this approach, developers can build more robust, efficient, and maintainable applications. And as frontend technology continues to advance, we look forward to seeing more innovations and optimizations that make reactivity management even simpler and more efficient.
