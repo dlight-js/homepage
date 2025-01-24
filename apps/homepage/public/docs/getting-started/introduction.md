@@ -1,16 +1,16 @@
 
 DLight.js is all about rethinking how we build user interfaces, and we're exploring new things with a fresh perspective. 
 
-Why we're calling DLight a DX-first library is that you don't actually have to worry about anything in development. You don't need to care how to 
-* make a reactive state
+Why we're calling DLight a "DX-first" library is that you don't actually have to worry about anything in development. You don't need to care how to:
+* make reactive state
 * make the view re-render
 * memorize computed states
-* listen to a specific dependency array
+* specify dependency arrays
 * avoid dependency loops
-* avoid performance drop when the project is scaling
+* avoid a performance drop when the project scales
 * ... or anything that troubles you right now
 
-We want front-end developers to focus more on the product, pay attention to business attributes, data processing, and in-depth user interactions, rather than wasting time on building simple dynamic pages, in which way, front-end developers can better understand the product in their work. That's exactly why DLight is here, offering the best developing experience and allowing you to code delighted.
+We want front-end developers to focus more on the product, pay attention to business attributes, data processing, and in-depth user interactions, rather than wasting time on building simple dynamic pages. That's exactly why DLight is here, offering the best developing experience and allowing you to code delightfully.
 
 Here's the lowdown on what makes DLight.js tick.
 
@@ -19,8 +19,9 @@ Here's the lowdown on what makes DLight.js tick.
 In recent years, thanks to React and other frameworks, JSX has become the go-to way to build user interfaces. But here's the catch – JSX is not a silver bullet. JSX and all HTML/XML, are primarily designed for machines, not humans. The opening tag paired with a closing tag makes your code quite bulky. And we like jsx because IT'S JS, right? But the whole syntax -- to create an element, or to set a property -- isn't that JS, is it?
 
 So, how does DLight.js handle this problem -- making UI building more js? We've done three delicate designs to approach this problem.
+
 ## Function Called View Declarations
-We love to make everything a function and just call it. It can modular our code and simpler our life. So here in DLight, we're using a way of "function-call" to build ui views. Let's recall how we declare an element in jsx:
+We love to make everything a function call. It can modularize our code and simplify our life. So here in DLight, we're using a form of function calling to build UI views. Let's recall how we declare an element in jsx:
 ```jsx [jsx]
 <div>Hello world</div>
 ```
@@ -29,8 +30,9 @@ This is how we do it in DLight:
 div("hello world")
 ```
 It seems like we're calling a function called "div" with a string as its first paramerter. It looks very familiar because IT'S JS!
+
 ## Method Dot Chaining Properties
-To be honest, setting properties in jsx is not always pleasant. And since we've go down to use a function call to build views, why don't we take it one step further? In an old jsx way, we set properties like this:
+To be honest, setting properties in jsx is not always pleasant. And since we've gone down the path of using a function call to build views, why don't we take it one step further? In the old jsx way, we would set properties like this:
 ```jsx [jsx]
 <div 
   className="hello-view"
@@ -47,10 +49,10 @@ div("hello world")
   .onClick(showHello)
   .otherProp(yourProp)
 ```
-That's the dot chaining of a function. You can just keep dotting and dotting and dotting and it never ends. It looks way better than our old jsx syntax because IT'S JS!
+This uses dot chaining with functions. You can just keep dotting and dotting and dotting and it never ends. It looks way better than our old jsx syntax because IT'S JS!
 
 ## JS Control Flows
-How long since the last time you used `for` or even `if` in js? Because in jsx, you don't get the chance to:
+How long since the last time you used `for` or even `if` in js? Perhaps it's been a while, because in jsx, you don't get the chance to:
 ```jsx [jsx]
 <>
   { showHello ? <div>hello</div> : null }
@@ -62,7 +64,7 @@ How long since the last time you used `for` or even `if` in js? Because in jsx, 
   }
 </>
 ```
-In jsx, we have to use conditional statements and function maps, and say goodbye to our good friends "for" and "if". This is fine when there're only a few conditions. But when things get messy, your codes will do too. 
+In jsx, we have to use conditional expressions and function maps. And say goodbye to our good friends, "for", and "if". This is fine when there're only a few conditions. But when things get messy, your code will, too.
 
 And things are different in DLight, we welcome our old friends back:
 ```js [dlight DSL]
@@ -84,12 +86,12 @@ I totally get why functional programming feels right at home with MVC frameworks
 
 And if we pause and think about it, isn't the whole deal with giving side effects to pure functional components just to achieve this spontaneous chit-chat between views and data?
 
-A quick side note here: DLight’s class components aren’t even close to React's class components, which look like a functional components dress up because its `render` function. DLight's MVVM philosophy feels a bit closer to Angular's class component spirit. But here’s the kicker – DLight does it in a way that’s sleeker and way more developer-friendly.
+A quick side note here: DLight’s class components aren’t even close to React's class components, which look like a functional components dress up because of its `render` function. DLight's MVVM philosophy feels a bit closer to Angular's class component spirit. But here’s the kicker – DLight does it in a way that’s sleeker and way more developer friendly.
 
 #  🧂 Fine-grained reactivity
 Now, let's take a look at how DLight.js handles updates.
 
-Instead of relying on a Virtual DOM, we've designed DLight.js to provide granular control over reative variable updates using a signal based reactivity. Here's how it works: each variable, if it is set to a new value or reference, will only result in the updates of its relevant elements' **properties**. 
+Instead of relying on a Virtual DOM, we've designed DLight.js to provide granular control over reative variable updates using signal-based reactivity. Here's how it works: each variable, if it is set to a new value or reference, will only result in the updates of its relevant elements' **properties**.
 
 Imagine a scenario where you have multiple variables tied to different elements in your UI. When one of these variables changes, DLight.js ensures that only the elements directly affected by that variable's update undergo changes. This approach minimizes unnecessary re-renders and keeps your UI responsive and efficient.
 
