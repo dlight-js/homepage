@@ -1,9 +1,10 @@
 DLight.js is a DX-first UI rendering library. And now the first stable version v1.0.0 is out!
 
 * 🥳 Delightful
-  * With an API designed to be intuitive and user-friendly, web development becomes effortless with Dlight, whether you're building a simple website or a complex web application.Dlight enhances code performance at compile time and directly manipulates the DOM, which makes the execution speed of the code as close to vanilla JavaScript as possible, even with limited optimization knowledge.
+  * With an API designed to be intuitive and user-friendly, web development becomes effortless with Dlight. Whether you're building a simple website or a complex web application, DLight is a joy to build with.
 * 🚀 Performant
   * With a minuscule file size of just 4KB, Dlight is lightning-fast and ultra-lightweight, delivering optimal performance without the need for manual optimization.
+  * Dlight enhances code performance at compile time and directly manipulates the DOM, which makes the execution speed of the code as close to vanilla JavaScript as possible, even with limited optimization knowledge.
 * ✨ DX-first
   * Dlight uses the syntax of function calls and dot notation to make development more enjoyable, without the need to write outdated and hard-to-read XML code.
 * 🪶 Intuitively Simple
